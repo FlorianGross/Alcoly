@@ -32,6 +32,7 @@ import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
@@ -39,6 +40,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -84,12 +86,26 @@ public class CameraAndKI extends AppCompatActivity {
                         CropImage.activity().start(CameraAndKI.this);
                     }
                 });
-                // Use Picture
+
+
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        Gson gson1 = new Gson();
+                        String json1 = sharedPreferences.getString("List", null);
+                        if (drinks == null) {
+                            drinks = new ArrayList<Getränke>();
+                        }
+                        Type type = new TypeToken<ArrayList<Getränke>>() {
+                        }.getType();
+
+                        drinks = gson1.fromJson(json1, type);
+
+                        drinks.add(new Getränke(uri, new Date(), 0.5f, 0.05f));
                         Gson gson = new Gson();
                         String json = gson.toJson(drinks);
                         editor.putString("List", json);
@@ -138,7 +154,6 @@ public class CameraAndKI extends AppCompatActivity {
                         openCamera.setVisibility(View.VISIBLE);
                     } else {
                         textView.append(eachlabel + " - " + "Denied " + confidence + "\n\n");
-                        openCamera.setVisibility(View.VISIBLE);
                     }
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;

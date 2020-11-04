@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Calculator extends AppCompatActivity {
     ArrayList<Getränke> drinks;
@@ -25,9 +27,10 @@ public class Calculator extends AppCompatActivity {
     String massString;
     String agePre;
     String promilleFeedback;
-    TextView textView;
-    RecyclerView rv;
-
+    private TextView textView;
+    private RecyclerView rv;
+    private Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +46,6 @@ public class Calculator extends AppCompatActivity {
        // startCalculate();
 
     }
-
-    private void loadRecycleView() {
-        Adapter myAdapter = new Adapter(this, drinks);
-        rv.setAdapter(myAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-    }
-
     private void loadArrayList() {
         SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
         Gson gson = new Gson();
@@ -57,11 +53,30 @@ public class Calculator extends AppCompatActivity {
         Type type = new TypeToken<ArrayList<Getränke>>() {
         }.getType();
         drinks = gson.fromJson(json, type);
-
         if (drinks == null) {
             drinks = new ArrayList<Getränke>();
         }
     }
+
+    private void loadRecycleView() {
+      /*  Adapter myAdapter = new Adapter(this, drinks);
+        rv.setAdapter(myAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        */
+        rv = findViewById(R.id.recyclerView);
+        rv.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new Adapter(this, drinks);
+        rv.setLayoutManager(mLayoutManager);
+        rv.setAdapter(mAdapter);
+
+
+
+
+
+    }
+
+
 
     public void startCalculate() {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
