@@ -85,6 +85,11 @@ public class CameraAndKI extends AppCompatActivity {
                     public void onClick(View v) {
                         double percentage = confidenceLevel;
 
+
+
+
+
+                        
                     }
                 });
             }
