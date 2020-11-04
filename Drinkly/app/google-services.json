@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1040089596911",
+    "firebase_url": "https://alkoli.firebaseio.com",
+    "project_id": "alkoli",
+    "storage_bucket": "alkoli.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040089596911:android:ad225aec1552232bf5ec1a",
+        "android_client_info": {
+          "package_name": "com.example.drinkly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040089596911-ed55e96b6nsuimc34442tsau99l3uc40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK7P8Vwb0ODKpUKcgGb3mfUPmqiSdmIKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040089596911-ed55e96b6nsuimc34442tsau99l3uc40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
