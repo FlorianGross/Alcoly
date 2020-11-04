@@ -84,7 +84,7 @@ public class CameraAndKI extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         double percentage = confidenceLevel;
-                    
+
                     }
                 });
             }
@@ -116,7 +116,13 @@ public class CameraAndKI extends AppCompatActivity {
                 for (FirebaseVisionImageLabel label : task.getResult()) {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
-                    textView.append(eachlabel + " - " + ("" + confidence * 100).subSequence(0, 4) + "%" + "\n\n");
+
+                    if (confidence > 0.7) {
+                        textView.append(eachlabel + " - " + "Successful");
+                    } else {
+                        textView.append(eachlabel + " - " + "Denied");
+                    }
+                    //textView.append(eachlabel + " - " + ("" + confidence * 100).subSequence(0, 4) + "%" + "\n\n");
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;
                     }
