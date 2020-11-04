@@ -18,18 +18,19 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:textSize="25sp"
+        android:textColor="@color/white"
         />
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/bt_open"
-        android:text="Save"
-        />
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Redo"
+        android:text="Save" />
+
+    <Button
         android:id="@+id/redo"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Redo" />
 </LinearLayout>

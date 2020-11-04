@@ -71,7 +71,7 @@ public class CameraAndKI extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Uri uri = result.getUri();
                 imgView.setImageURI(uri);
-                //setLabelerFromLocalModel(uri);
+                setLabelerFromLocalModel(uri);
                 //Restart Take Picture
                 redo.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -117,17 +117,17 @@ public class CameraAndKI extends AppCompatActivity {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
 
-                    if (confidence > 0.7) {
-                        textView.append(eachlabel + " - " + "Successful");
+                    if (confidence * 100 > 60) {
+                        textView.append(eachlabel + " - " + "Successful " + confidence + "\n\n");
                     } else {
-                        textView.append(eachlabel + " - " + "Denied");
+                        textView.append(eachlabel + " - " + "Denied " + confidence + "\n\n");
                     }
-                    //textView.append(eachlabel + " - " + ("" + confidence * 100).subSequence(0, 4) + "%" + "\n\n");
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;
                     }
                 }
             }
+
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
