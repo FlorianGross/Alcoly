@@ -1,6 +1,7 @@
 package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
@@ -42,7 +43,8 @@ public class Calculator extends AppCompatActivity {
         loadArrayList();
 
         Adapter myAdapter = new Adapter(this, drinks.get(1).getUri(), drinks.get(1).getDate(), drinks.get(1).getVolume(), drinks.get(1).getVolumePart());
-
+        rv.setAdapter(myAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
 
     }
     private void loadArrayList(){
