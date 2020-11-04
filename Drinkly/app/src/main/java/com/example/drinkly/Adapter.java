@@ -11,23 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
+    private ArrayList<Getränke> drink;
     Context ct;
-    Uri uri;
-    Date date;
-    float volume;
-    float volumePart;
 
-
-    public Adapter(Context ct, Uri uri, Date date, float volume, float volumePart) {
+    public Adapter(Context ct, ArrayList<Getränke> drink) {
         ct = this.ct;
-        uri = this.uri;
-        date = this.date;
-        volume = this.volume;
-        volumePart = this.volumePart;
+        drink = this.drink;
     }
 
     @NonNull
@@ -40,10 +34,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-    holder.time.setText(date.toString());
-    holder.vol.setText(volume + "");
-    holder.volP.setText(volumePart + "");
-    holder.img.setImageURI(uri);
+    Getränke currentGetränk = drink.get(position);
+        holder.time.setText(currentGetränk.getDate().toString());
+    holder.vol.setText(currentGetränk.getVolume() + "");
+    holder.volP.setText(currentGetränk.getVolumePart() + "");
+    holder.img.setImageURI(currentGetränk.getUri());
 
     }
 

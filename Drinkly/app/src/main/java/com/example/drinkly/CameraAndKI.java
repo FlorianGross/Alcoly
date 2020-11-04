@@ -88,17 +88,23 @@ public class CameraAndKI extends AppCompatActivity {
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         Gson gson = new Gson();
-                    String json = gson.toJson(drinks);
-                    editor.putString("List", json);
-                    editor.apply();
+                        String json = gson.toJson(drinks);
+                        editor.putString("List", json);
+                        editor.apply();
+                        openMainScreen();
                     }
                 });
             }
         }
 
+    }
+
+    private void openMainScreen() {
+        Intent intent = new Intent(this, MainScreen.class);
+        startActivity(intent);
     }
 
     private void setLabelerFromLocalModel(Uri uri) {
@@ -126,12 +132,13 @@ public class CameraAndKI extends AppCompatActivity {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
 
+
                     if (confidence * 100 > 60) {
                         textView.append(eachlabel + " - " + "Successful " + confidence + "\n\n");
                         openCamera.setVisibility(View.VISIBLE);
                     } else {
                         textView.append(eachlabel + " - " + "Denied " + confidence + "\n\n");
-                        openCamera.setVisibility(View.GONE);
+                        openCamera.setVisibility(View.VISIBLE);
                     }
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;

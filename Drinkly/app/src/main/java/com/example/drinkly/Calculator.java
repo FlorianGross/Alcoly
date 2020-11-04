@@ -37,30 +37,35 @@ public class Calculator extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         rv = findViewById(R.id.recyclerView);
 
-        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        startCalculate(editor, settings);
-        loadArrayList();
 
-        Adapter myAdapter = new Adapter(this, drinks.get(1).getUri(), drinks.get(1).getDate(), drinks.get(1).getVolume(), drinks.get(1).getVolumePart());
-        rv.setAdapter(myAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        loadArrayList();
+        loadRecycleView();
+       // startCalculate();
 
     }
-    private void loadArrayList(){
+
+    private void loadRecycleView() {
+        Adapter myAdapter = new Adapter(this, drinks);
+        rv.setAdapter(myAdapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void loadArrayList() {
         SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("List", null);
-        Type type = new TypeToken<ArrayList<Getränke>>(){}.getType();
+        Type type = new TypeToken<ArrayList<Getränke>>() {
+        }.getType();
         drinks = gson.fromJson(json, type);
 
-        if(drinks == null){
+        if (drinks == null) {
             drinks = new ArrayList<Getränke>();
         }
     }
 
-    public void startCalculate(SharedPreferences.Editor editor, SharedPreferences settings){
-
+    public void startCalculate() {
+        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
         massString = settings.getString("weight", "");
         mass = Integer.parseInt(massString);
         gender = settings.getString("gender", "male");
@@ -80,8 +85,8 @@ public class Calculator extends AppCompatActivity {
         } else {
             uDef = 0.2;
         }
-        System.out.println(mass + " " + rfact + " " + age +  " "  + uDef);
-        if(!drinks.isEmpty()) {
+        System.out.println(mass + " " + rfact + " " + age + " " + uDef);
+        if (!drinks.isEmpty()) {
             promille = calculateZ(mass, rfact, age, uDef);
 
             promilleFeedback = (promille + " ");
@@ -90,7 +95,6 @@ public class Calculator extends AppCompatActivity {
             textView.setText("promille: " + promilleFeedback);
         }
     }
-
 
     public double calculateZ(int mass, double rfact, int time, double uDef) {
         double p = 0.8;
