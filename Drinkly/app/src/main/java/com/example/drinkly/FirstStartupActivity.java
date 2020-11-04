@@ -1,10 +1,11 @@
- package com.example.drinkly;
+package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.style.TtsSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,8 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 
- public class FirstStartupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+public class FirstStartupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,37 +46,51 @@ import android.widget.Spinner;
 
             @Override
             public void onClick(View v) {
-                saveSettings(ageInput, weightInput);
+                try {
+                    saveSettings(ageInput, weightInput);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 startMainScreen();
             }
         });
     }
 
-     @Override
-     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String gender = parent.getItemAtPosition(position).toString();
-         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
-         SharedPreferences.Editor editor = settings.edit();
-         editor.putString("gender", gender);
-         editor.apply();
-     }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String gender = parent.getItemAtPosition(position).toString();
+        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("gender", gender);
+        editor.apply();
+    }
 
-     @Override
-     public void onNothingSelected(AdapterView<?> parent) {
-     }
-     public void saveSettings(EditText ageInput, EditText weightInput){
-        String date = ageInput.getText().toString();
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
+
+    public void saveSettings(EditText ageInput, EditText weightInput) throws ParseException {
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-YYYY");
+        Date date;
+        date = df.parse(ageInput.getText().toString());
+        LocalDate today = java.time.LocalDate.now();
+        LocalDate birthDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        int age = Period.between(birthDate, today).getYears();
+
         String weight = weightInput.getText().toString();
 
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        editor.putString("date", date);
+        editor.putInt("age", age);
         editor.putString("weight", weight);
         editor.apply();
     }
-     public void startMainScreen(){
-         Intent intent = new Intent(this, MainScreen.class);
-         startActivity(intent);
-     }
- }
+
+    public void startMainScreen() {
+        Intent intent = new Intent(this, MainScreen.class);
+        startActivity(intent);
+    }
+}

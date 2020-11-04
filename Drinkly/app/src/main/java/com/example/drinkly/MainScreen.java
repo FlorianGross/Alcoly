@@ -8,10 +8,13 @@ import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainScreen extends AppCompatActivity {
-    Button mainButton, topLeft, topRight;
+    Button topLeft, topRight;
+    ImageView mainButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,32 +24,32 @@ public class MainScreen extends AppCompatActivity {
         topRight = findViewById(R.id.topRight);
 
 
-
-
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            openCamera();
+                openCamera();
             }
         });
         topLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            openCalculator();
+                openCalculator();
             }
         });
-        topRight.setOnClickListener(new View.OnClickListener(){
+        topRight.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
             }
         });
     }
-    public void openCalculator(){
+
+    public void openCalculator() {
         Intent intent = new Intent(this, Calculator.class);
         startActivity(intent);
     }
-    public void openCamera(){
+
+    public void openCamera() {
         Intent intent = new Intent(this, CameraAndKI.class);
         startActivity(intent);
     }

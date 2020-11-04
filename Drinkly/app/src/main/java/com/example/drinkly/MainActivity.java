@@ -14,14 +14,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
-        if(firstStart){
+        if (firstStart) {
             showStartActivity();
-        }else{
+        } else {
             showMainScreen();
         }
     }
 
-    private void showStartActivity(){
+    private void showStartActivity() {
         Intent intent = new Intent(this, FirstStartupActivity.class);
         startActivity(intent);
 
@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
     }
-    private void showMainScreen(){
+
+    private void showMainScreen() {
         Intent intent = new Intent(this, MainScreen.class);
         startActivity(intent);
     }

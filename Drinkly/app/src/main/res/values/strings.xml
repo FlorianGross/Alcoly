@@ -4,7 +4,7 @@
     <string name="continue2">Continue</string>
     <string name="gender">Gender:</string>
     <string name="weight">Weight:</string>
-    <string name="todo">TODO</string>
+    <string name="_2_4_promille">2.4 Promille</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="genders">
         <item>Male</item>

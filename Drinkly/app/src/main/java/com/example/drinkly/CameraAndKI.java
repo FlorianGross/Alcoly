@@ -5,9 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -35,6 +37,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +71,7 @@ public class CameraAndKI extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Uri uri = result.getUri();
                 imgView.setImageURI(uri);
-                setLabelerFromLocalModel(uri);
+                //setLabelerFromLocalModel(uri);
                 //Restart Take Picture
                 redo.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -83,17 +86,38 @@ public class CameraAndKI extends AppCompatActivity {
                         long millis = System.currentTimeMillis();
                         Date date = new Date(millis);
                         double percentage = confidenceLevel;
-                        File filepath = Environment.getExternalStorageDirectory();
-                        File dir = new File(filepath.getAbsolutePath() + "/Demo/");
-                        dir.mkdir();
-                        File file = new File(dir, System.currentTimeMillis()+".jpg");
 
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+/*
+                        File path = context.getFilesDir();
+                        File file = new File(path, "myfile.txt");
+                        FileOutputStream stream = null;
+                        try {
+                            stream = new FileOutputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
 
+                        String uriStr = uri.toString();
+                        try {
+                            try {
+                                stream.write(uriStr.getBytes());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } finally {
+                            try {
+                                stream.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+          */
                     }
                 });
             }
         }
+
     }
 
     private void setLabelerFromLocalModel(Uri uri) {
@@ -121,7 +145,7 @@ public class CameraAndKI extends AppCompatActivity {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
                     textView.append(eachlabel + " - " + ("" + confidence * 100).subSequence(0, 4) + "%" + "\n\n");
-                    if(confidence > confidenceLevel){
+                    if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;
                     }
                 }
@@ -135,5 +159,42 @@ public class CameraAndKI extends AppCompatActivity {
         });
     }
 
+    public Bitmap getContactBitmapFromURI(Context context, Uri uri) {
+        try {
 
+            InputStream input = context.getContentResolver().openInputStream(uri);
+            if (input == null) {
+                return null;
+            }
+            return BitmapFactory.decodeStream(input);
+        } catch (FileNotFoundException e) {
+
+        }
+        return null;
+
+    }
 }
+    /*
+    public  File saveBitmapIntoSDCardImage(Context context, Bitmap finalBitmap) {
+
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(Util.getTempFileReceivedPath(context));
+        myDir.mkdirs();
+
+        String fname = "file_name" + ".jpg";
+        File file = new File (myDir, fname);
+
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
+     */
