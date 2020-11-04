@@ -10,7 +10,7 @@ public class Getränke {
     private int volume;
     private float volumePart;
 
-    public Getränke(Uri uri, Date date, int volume, float volumePart) {
+    public Getränke(Uri uri, Date date, float volume, float volumePart) {
         uri = this.uri;
         date = this.date;
         volume = this.volume;
@@ -21,7 +21,7 @@ public class Getränke {
         return date;
     }
 
-    public int getVolume() {
+    public float getVolume() {
         return volume;
     }
 

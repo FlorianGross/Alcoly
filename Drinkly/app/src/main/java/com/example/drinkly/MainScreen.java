@@ -31,22 +31,25 @@ public class MainScreen extends AppCompatActivity {
         }else{
             textView.setText("Alkoli");
         }
+
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCamera();
             }
         });
+
         topLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCalculator();
             }
         });
+
         topRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            openNothing();
             }
         });
     }
@@ -54,10 +57,17 @@ public class MainScreen extends AppCompatActivity {
     public void openCalculator() {
         Intent intent = new Intent(this, Calculator.class);
         startActivity(intent);
+        //overridePendingTransition(android.R.anim.fade_in, 0);
     }
 
     public void openCamera() {
         Intent intent = new Intent(this, CameraAndKI.class);
         startActivity(intent);
+
+    }
+    public void openNothing(){
+        Intent intent = new Intent(this, Statistics.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, 0);
     }
 }

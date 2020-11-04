@@ -31,6 +31,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
+import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
@@ -38,18 +39,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CameraAndKI extends AppCompatActivity {
     ImageView imgView;
     FirebaseAutoMLLocalModel localModel;
     FirebaseVisionImageLabeler labeler;
     FirebaseVisionImage image;
-    ProgressDialog progressDialog;
     TextView textView;
     Button openCamera, redo;
     float confidenceLevel = 0;
+    ArrayList<Getränke> drinks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,7 @@ public class CameraAndKI extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Uri uri = result.getUri();
                 imgView.setImageURI(uri);
+                Date date = new Date();
                 setLabelerFromLocalModel(uri);
                 //Restart Take Picture
                 redo.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +88,12 @@ public class CameraAndKI extends AppCompatActivity {
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        double percentage = confidenceLevel;
-
-
-
-
-
-                        
+                    SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        Gson gson = new Gson();
+                    String json = gson.toJson(drinks);
+                    editor.putString("List", json);
+                    editor.apply();
                     }
                 });
             }
@@ -124,8 +128,10 @@ public class CameraAndKI extends AppCompatActivity {
 
                     if (confidence * 100 > 60) {
                         textView.append(eachlabel + " - " + "Successful " + confidence + "\n\n");
+                        openCamera.setVisibility(View.VISIBLE);
                     } else {
                         textView.append(eachlabel + " - " + "Denied " + confidence + "\n\n");
+                        openCamera.setVisibility(View.GONE);
                     }
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;
@@ -141,43 +147,4 @@ public class CameraAndKI extends AppCompatActivity {
             }
         });
     }
-
-    public Bitmap getContactBitmapFromURI(Context context, Uri uri) {
-        try {
-
-            InputStream input = context.getContentResolver().openInputStream(uri);
-            if (input == null) {
-                return null;
-            }
-            return BitmapFactory.decodeStream(input);
-        } catch (FileNotFoundException e) {
-
-        }
-        return null;
-
-    }
 }
-    /*
-    public  File saveBitmapIntoSDCardImage(Context context, Bitmap finalBitmap) {
-
-        String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(Util.getTempFileReceivedPath(context));
-        myDir.mkdirs();
-
-        String fname = "file_name" + ".jpg";
-        File file = new File (myDir, fname);
-
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return file;
-    }
-
-     */

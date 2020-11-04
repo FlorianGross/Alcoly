@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@android:color/darker_gray"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     tools:context=".FirstStartupActivity">
 
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/ageInput"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -59,6 +60,7 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:inputType="date"
+        android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/weightInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +83,7 @@
         android:layout_height="wrap_content"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/forwardButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
