@@ -76,43 +76,15 @@ public class CameraAndKI extends AppCompatActivity {
                 redo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        CropImage.activity().start(CameraAndKI.this);
                     }
                 });
                 // Use Picture
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        long millis = System.currentTimeMillis();
-                        Date date = new Date(millis);
                         double percentage = confidenceLevel;
-
-/*
-                        File path = context.getFilesDir();
-                        File file = new File(path, "myfile.txt");
-                        FileOutputStream stream = null;
-                        try {
-                            stream = new FileOutputStream(file);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-
-                        String uriStr = uri.toString();
-                        try {
-                            try {
-                                stream.write(uriStr.getBytes());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } finally {
-                            try {
-                                stream.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-          */
+                    
                     }
                 });
             }

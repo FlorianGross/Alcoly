@@ -18,21 +18,28 @@ public class Calculator extends AppCompatActivity {
         String massString = settings.getString("weight", "");
         int mass = Integer.parseInt(massString);
         String gender = settings.getString("gender", "male");
+        double rfact;
         if (gender.equals("male")) {
-            double rfact = 0.7;
+            rfact = 0.7;
         } else {
-            double rfact = 0.6;
+            rfact = 0.6;
         }
         String agePre = settings.getString("age", "");
         int age = Integer.parseInt(agePre);
+        double uDef;
         if (age < 55) {
-            double uDef = 0.15;
+            uDef = 0.15;
         } else {
-            double uDef = 0.2;
+            uDef = 0.2;
         }
+        double promille = calculateZ(mass, rfact, age, uDef);
+        SharedPreferences.Editor editor = settings.edit();
+        String promilleFeedback = "" + promille;
+        editor.putString("promille", promilleFeedback);
+        editor.apply();
     }
 
-    public double calculateZ(int mass, double rfact, int time, float uDef) {
+    public double calculateZ(int mass, double rfact, int time, double uDef) {
         double p = 0.8;
         double v;
         double e;

@@ -35,7 +35,7 @@
         tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/promilleErgebnis"
-        android:text="@string/_2_4_promille"
+        android:text=""
         android:textSize="50sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

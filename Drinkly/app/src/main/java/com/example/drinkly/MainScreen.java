@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class MainScreen extends AppCompatActivity {
     Button topLeft, topRight;
     ImageView mainButton;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,14 @@ public class MainScreen extends AppCompatActivity {
         mainButton = findViewById(R.id.mainAction);
         topLeft = findViewById(R.id.topLeft);
         topRight = findViewById(R.id.topRight);
-
-
+        textView = findViewById(R.id.promilleErgebnis);
+        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
+        String promille = settings.getString("promille", "");
+        if(promille != null) {
+            textView.setText(promille + " Promille");
+        }else{
+            textView.setText("Alkoli");
+        }
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
