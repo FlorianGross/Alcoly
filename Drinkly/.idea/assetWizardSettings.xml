@@ -62,6 +62,18 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="imagePath" value="C:\Users\flori\Downloads\alcoly_logo.svg" />
+                                                <entry key="scalingPercent" value="49" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundClipArt">
                                         <value>
                                           <PersistentState>
@@ -114,10 +126,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="legacyIconShape" value="NONE" />
-                                      <entry key="outputName" value="Alcoly" />
+                                      <entry key="outputName" value="alcoly" />
                                     </map>
                                   </option>
                                 </PersistentState>
