@@ -19,7 +19,7 @@ import java.util.Date;
 
 public class Calculator extends AppCompatActivity {
 
-    ArrayList<Getränke> drinks;
+    ArrayList<Getränke> drinks = new ArrayList<Getränke>();
     private TextView textView;
     private RecyclerView rv;
     private Adapter mAdapter;
