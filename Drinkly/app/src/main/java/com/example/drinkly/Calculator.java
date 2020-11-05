@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,7 +18,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Calculator extends AppCompatActivity {
+
     ArrayList<Getränke> drinks;
+    private TextView textView;
+    private RecyclerView rv;
+    private Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+
     double rfact;
     double uDef;
     double promille;
@@ -27,10 +35,7 @@ public class Calculator extends AppCompatActivity {
     String massString;
     String agePre;
     String promilleFeedback;
-    private TextView textView;
-    private RecyclerView rv;
-    private Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,15 @@ public class Calculator extends AppCompatActivity {
 
 
         loadArrayList();
-        loadRecycleView();
-       // startCalculate();
+        if(!(drinks == null)) {
+            loadRecycleView();
+        }else{
+            System.out.println("Error");
+        }
+        // startCalculate();
 
     }
+
     private void loadArrayList() {
         SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
         Gson gson = new Gson();
@@ -56,26 +66,15 @@ public class Calculator extends AppCompatActivity {
         if (drinks == null) {
             drinks = new ArrayList<Getränke>();
         }
+
     }
 
     private void loadRecycleView() {
-      /*  Adapter myAdapter = new Adapter(this, drinks);
-        rv.setAdapter(myAdapter);
+        mAdapter = new Adapter(drinks);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        */
-        rv = findViewById(R.id.recyclerView);
-        rv.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new Adapter(this, drinks);
-        rv.setLayoutManager(mLayoutManager);
         rv.setAdapter(mAdapter);
 
-
-
-
-
     }
-
 
 
     public void startCalculate() {
@@ -116,7 +115,7 @@ public class Calculator extends AppCompatActivity {
         double v;
         double e;
         double result = 0;
-
+/*
         for (int i = 0; i < drinks.size(); i++) {
             v = drinks.get(i).getVolume();
             e = drinks.get(i).getVolumePart();
@@ -125,7 +124,7 @@ public class Calculator extends AppCompatActivity {
 
         result = result - time * 0.16;
 
-
+*/
         return result;
     }
 

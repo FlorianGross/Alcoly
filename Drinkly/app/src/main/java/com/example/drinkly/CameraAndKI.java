@@ -4,16 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,19 +29,15 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class CameraAndKI extends AppCompatActivity {
+    private ArrayList<Getränke> drinks = new ArrayList<Getränke>();
     ImageView imgView;
     FirebaseAutoMLLocalModel localModel;
     FirebaseVisionImageLabeler labeler;
@@ -55,7 +45,6 @@ public class CameraAndKI extends AppCompatActivity {
     TextView textView;
     Button openCamera, redo;
     float confidenceLevel = 0;
-    ArrayList<Getränke> drinks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +66,6 @@ public class CameraAndKI extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Uri uri = result.getUri();
                 imgView.setImageURI(uri);
-                Date date = new Date();
                 setLabelerFromLocalModel(uri);
                 //Restart Take Picture
                 redo.setOnClickListener(new View.OnClickListener() {
@@ -87,30 +75,33 @@ public class CameraAndKI extends AppCompatActivity {
                     }
                 });
 
-
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                        Gson gson1 = new Gson();
-                        String json1 = sharedPreferences.getString("List", null);
-                        if (drinks == null) {
-                            drinks = new ArrayList<Getränke>();
-                        }
+                        ArrayList<Getränke> drinks1 = new ArrayList<Getränke>();
+                        Gson gson = new Gson();
+                        String json = sharedPreferences.getString("List", null);
                         Type type = new TypeToken<ArrayList<Getränke>>() {
                         }.getType();
+                        drinks1 = gson.fromJson(json, type);
 
-                        drinks = gson1.fromJson(json1, type);
-
-                        drinks.add(new Getränke(uri, new Date(), 0.5f, 0.05f));
-                        Gson gson = new Gson();
-                        String json = gson.toJson(drinks);
+                        if (drinks1 == null) {
+                            Date date = new Date();
+                            drinks.add(new Getränke(uri, date, 0.5f, 0.05f));
+                        } else {
+                            drinks = drinks1;
+                            Date date = new Date();
+                            drinks.add(new Getränke(uri, date, 0.5f, 0.05f));
+                        }
+                        System.out.println("Added Picture" + new Date());
+                        json = gson.toJson(drinks);
                         editor.putString("List", json);
                         editor.apply();
                         openMainScreen();
+
+
                     }
                 });
             }

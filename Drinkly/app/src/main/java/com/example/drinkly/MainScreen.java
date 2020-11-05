@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Camera;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 public class MainScreen extends AppCompatActivity {
     Button topLeft, topRight;
@@ -24,11 +24,12 @@ public class MainScreen extends AppCompatActivity {
         topLeft = findViewById(R.id.topLeft);
         topRight = findViewById(R.id.topRight);
         textView = findViewById(R.id.promilleErgebnis);
+
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         String promille = settings.getString("promille", "");
-        if(promille != null) {
+        if (promille != null) {
             textView.setText(promille + " Promille");
-        }else{
+        } else {
             textView.setText("Alkoli");
         }
 
@@ -49,7 +50,7 @@ public class MainScreen extends AppCompatActivity {
         topRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            openNothing();
+                openNothing();
             }
         });
     }
@@ -65,7 +66,8 @@ public class MainScreen extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void openNothing(){
+
+    public void openNothing() {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
         //overridePendingTransition(android.R.anim.fade_in, 0);
