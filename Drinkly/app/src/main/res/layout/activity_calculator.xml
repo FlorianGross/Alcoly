@@ -12,13 +12,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="500dp" />
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/textView"
-        android:textSize="20sp"
-        />
+
 </LinearLayout>

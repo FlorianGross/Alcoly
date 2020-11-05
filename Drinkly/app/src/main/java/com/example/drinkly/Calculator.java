@@ -5,24 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Calculator extends AppCompatActivity {
 
     ArrayList<Getränke> drinks = new ArrayList<Getränke>();
-    private TextView textView;
-    private RecyclerView rv;
-    private Adapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private com.example.drinkly.mAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -42,45 +33,34 @@ public class Calculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        textView = findViewById(R.id.textView);
-        rv = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerView);
 
 
-        loadArrayList();
-        if(!(drinks == null)) {
-            loadRecycleView();
-        }else{
-            System.out.println("Error");
-        }
-        // startCalculate();
+        drinks = PrefConfig.readListFromPref(this);
 
-    }
-
-    private void loadArrayList() {
-        SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("List", null);
-        Type type = new TypeToken<ArrayList<Getränke>>() {
-        }.getType();
-        drinks = gson.fromJson(json, type);
         if (drinks == null) {
             drinks = new ArrayList<Getränke>();
+            System.out.print("Leeres Array");
+        } else {
+            System.out.println("Volles Array");
         }
 
+        generateRecyclerView();
     }
 
-    private void loadRecycleView() {
-        mAdapter = new Adapter(drinks);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(mAdapter);
-
+    public void generateRecyclerView() {
+        mRecyclerView.setHasFixedSize(false);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new mAdapter(drinks);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+        System.out.println("Generated");
     }
-
 
     public void startCalculate() {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        massString = settings.getString("weight", "");
+        massString = settings.getString("wweight", "");
         mass = Integer.parseInt(massString);
         gender = settings.getString("gender", "male");
 
@@ -106,7 +86,6 @@ public class Calculator extends AppCompatActivity {
             promilleFeedback = (promille + " ");
             editor.putString("promille", promilleFeedback);
             editor.apply();
-            textView.setText("promille: " + promilleFeedback);
         }
     }
 
@@ -115,7 +94,7 @@ public class Calculator extends AppCompatActivity {
         double v;
         double e;
         double result = 0;
-/*
+
         for (int i = 0; i < drinks.size(); i++) {
             v = drinks.get(i).getVolume();
             e = drinks.get(i).getVolumePart();
@@ -123,8 +102,6 @@ public class Calculator extends AppCompatActivity {
         }
 
         result = result - time * 0.16;
-
-*/
         return result;
     }
 

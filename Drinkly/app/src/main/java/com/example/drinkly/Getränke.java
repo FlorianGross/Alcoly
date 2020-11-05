@@ -5,19 +5,19 @@ import android.net.Uri;
 import java.util.Date;
 
 public class Getränke {
-    private Uri uri;
-    private Date date;
+    private String uri;
+    private long date;
     private int volume;
     private float volumePart;
 
-    public Getränke(Uri uri, Date date, float volume, float volumePart) {
+    public Getränke(String uri, long date, float volume, float volumePart) {
         uri = this.uri;
         date = this.date;
         volume = this.volume;
         volumePart = this.volumePart;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
@@ -25,7 +25,7 @@ public class Getränke {
         return volume;
     }
 
-    public Uri getUri() {
+    public String getUri() {
         return uri;
     }
 
@@ -33,11 +33,11 @@ public class Getränke {
         return volumePart;
     }
 
-    public void setUri(Uri uri) {
+    public void setUri(String uri) {
         this.uri = uri;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

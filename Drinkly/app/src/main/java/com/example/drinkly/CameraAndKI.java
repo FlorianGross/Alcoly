@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,15 +32,19 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
 public class CameraAndKI extends AppCompatActivity {
-    private ArrayList<Getränke> drinks = new ArrayList<Getränke>();
+    ArrayList<Getränke> drinks;
     ImageView imgView;
     FirebaseAutoMLLocalModel localModel;
     FirebaseVisionImageLabeler labeler;
@@ -56,6 +63,8 @@ public class CameraAndKI extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         redo = findViewById(R.id.redo);
         CropImage.activity().start(CameraAndKI.this);
+
+
     }
 
     @Override
@@ -67,6 +76,13 @@ public class CameraAndKI extends AppCompatActivity {
                 Uri uri = result.getUri();
                 imgView.setImageURI(uri);
                 setLabelerFromLocalModel(uri);
+
+                drinks = PrefConfig.readListFromPref(this);
+
+                if(drinks == null){
+                    drinks = new ArrayList<Getränke>();
+                }
+
                 //Restart Take Picture
                 redo.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -74,31 +90,47 @@ public class CameraAndKI extends AppCompatActivity {
                         CropImage.activity().start(CameraAndKI.this);
                     }
                 });
-
+                //save Picture
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SharedPreferences sharedPreferences = getSharedPreferences("drinks", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        ArrayList<Getränke> drinks1 = new ArrayList<Getränke>();
-                        Gson gson = new Gson();
-                        String json = sharedPreferences.getString("List", null);
-                        Type type = new TypeToken<ArrayList<Getränke>>() {
-                        }.getType();
-                        drinks1 = gson.fromJson(json, type);
-
-                        if (drinks1 == null) {
-                            Date date = new Date();
-                            drinks.add(new Getränke(uri, date, 0.5f, 0.05f));
-                        } else {
-                            drinks = drinks1;
-                            Date date = new Date();
-                            drinks.add(new Getränke(uri, date, 0.5f, 0.05f));
+                        Date date = new Date();
+                        long datelong = date.getTime();
+                        Bitmap bitmap = null;
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                        System.out.println("Added Picture" + new Date());
-                        json = gson.toJson(drinks);
-                        editor.putString("List", json);
-                        editor.apply();
+
+                        String root = Environment.getExternalStorageDirectory().toString();
+                        File myDir = new File(root + "/Alkoly");
+                        if (!myDir.exists()) {
+                            myDir.mkdirs();
+                        }
+
+                        File file = new File (myDir, (drinks.size() + 1) + ".jpg");
+                        if (file.exists ())
+                            file.delete ();
+                        try {
+                            FileOutputStream out = new FileOutputStream(file);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                            out.flush();
+                            out.close();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                        String savedImageURL = file.getAbsolutePath().toString();
+                        System.out.println(savedImageURL);
+                        drinks.add(new Getränke(savedImageURL, datelong, 0.5f, 0.05f));
+                        System.out.println(drinks.size());
+                        PrefConfig.writeListInPref(getApplicationContext(), drinks);
+                        System.out.println("Succeded");
+                        ArrayList<Getränke> test = PrefConfig.readListFromPref(getApplicationContext());
+                        System.out.println(test.size());
                         openMainScreen();
 
 
