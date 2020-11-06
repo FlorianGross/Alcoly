@@ -3,10 +3,18 @@ package com.example.drinkly;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,6 +38,8 @@ import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
@@ -53,6 +63,7 @@ public class CameraAndKI extends AppCompatActivity {
     Button openCamera, redo;
     float confidenceLevel = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +73,9 @@ public class CameraAndKI extends AppCompatActivity {
         imgView = findViewById(R.id.image_view);
         textView = findViewById(R.id.textView);
         redo = findViewById(R.id.redo);
+
+        checkPermissions(CameraAndKI.this);
+
         CropImage.activity().start(CameraAndKI.this);
 
 
@@ -79,7 +93,7 @@ public class CameraAndKI extends AppCompatActivity {
 
                 drinks = PrefConfig.readListFromPref(this);
 
-                if(drinks == null){
+                if (drinks == null) {
                     drinks = new ArrayList<Getränke>();
                 }
 
@@ -109,9 +123,9 @@ public class CameraAndKI extends AppCompatActivity {
                             myDir.mkdirs();
                         }
 
-                        File file = new File (myDir, (drinks.size() + 1) + ".jpg");
-                        if (file.exists ())
-                            file.delete ();
+                        File file = new File(myDir, (drinks.size() + 1) + ".jpg");
+                        if (file.exists())
+                            file.delete();
                         try {
                             FileOutputStream out = new FileOutputStream(file);
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
@@ -191,5 +205,22 @@ public class CameraAndKI extends AppCompatActivity {
                 Toast.makeText(CameraAndKI.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public static void checkPermissions(Context context){
+        PermissionListener perListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(context, "Permission not Granted", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        TedPermission.with(context).setPermissionListener(perListener).setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE).check();
     }
 }
