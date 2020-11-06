@@ -1,14 +1,12 @@
 package com.example.drinkly;
 
 public class Getränke {
-    private int countNumber;
     private String uri;
     private long date;
     private int volume;
     private float volumePart;
 
-    public Getränke(int countNumber, String uri, long date, float volume, float volumePart) {
-        countNumber = this.countNumber;
+    public Getränke(String uri, long date, float volume, float volumePart) {
         uri = this.uri;
         date = this.date;
         volume = this.volume;
@@ -18,17 +16,13 @@ public class Getränke {
     @Override
     public String toString() {
         return "Getränke{" +
-                "countNumber=" + countNumber +
-                ", uri='" + uri + '\'' +
+                "uri='" + uri + '\'' +
                 ", date=" + date +
                 ", volume=" + volume +
                 ", volumePart=" + volumePart +
                 '}';
     }
 
-    public int getCountNumber() {
-        return countNumber;
-    }
 
     public long getDate() {
         return date;
@@ -62,7 +56,4 @@ public class Getränke {
         this.volumePart = volumePart;
     }
 
-    public void setCountNumber(int countNumber) {
-        this.countNumber = countNumber;
-    }
 }

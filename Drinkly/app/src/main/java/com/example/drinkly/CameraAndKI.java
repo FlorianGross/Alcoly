@@ -141,17 +141,17 @@ public class CameraAndKI extends AppCompatActivity {
                         System.out.println(savedImageURL);
 
 
-                        DatabaseHelper databaseHelper = new DatabaseHelper(CameraAndKI.this);
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
                         try {
-                            getränk = new Getränke(-1, savedImageURL, datelong, 0.5f, 0.05f);
-                            Toast.makeText(CameraAndKI.this, getränk.toString(), Toast.LENGTH_SHORT).show();
+                            getränk = new Getränke(savedImageURL, datelong, 0.5f, 0.05f);
+                            Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
-                            Toast.makeText(CameraAndKI.this, "Error creating getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(-1, savedImageURL, datelong, 0.5f, 0.05f);
+                            Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
+                            getränk = new Getränke(savedImageURL, datelong, 0.5f, 0.05f);
                         }
                         boolean success = databaseHelper.addOne(getränk);
-                        Toast.makeText(CameraAndKI.this, "Success = " + success, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Success = " + success, Toast.LENGTH_SHORT).show();
 
                         openMainScreen();
 
