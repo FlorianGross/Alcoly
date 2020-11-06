@@ -31,11 +31,11 @@ public class mAdapter extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull mAdapter.MyViewHolder holder, int position) {
-        holder.date.setText(mdrinks.get(position).getDate() + "");
-        holder.vol.setText(mdrinks.get(position).getVolume() + "");
-        holder.volP.setText(mdrinks.get(position).getVolumePart() + "");
-        Bitmap bitmap = BitmapFactory.decodeFile(mdrinks.get(position).getUri());
-        holder.imgV.setImageBitmap(bitmap);
+        holder.date.setText(new StringBuilder().append(mdrinks.get(position).getDate()).append("").toString());
+        holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
+        holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append("").toString());
+        //Bitmap bitmap = BitmapFactory.decodeFile(mdrinks.get(position).getUri());
+        //holder.imgV.setImageBitmap(bitmap);
     }
 
     @Override
@@ -47,14 +47,14 @@ public class mAdapter extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
         public TextView date;
         public TextView vol;
         public TextView volP;
-        public ImageView imgV;
+       // public ImageView imgV;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             date = itemView.findViewById(R.id.date);
             vol = itemView.findViewById(R.id.volume);
             volP = itemView.findViewById(R.id.volumePerc);
-            imgV = itemView.findViewById(R.id.drinkImage);
+            //imgV = itemView.findViewById(R.id.drinkImage);
         }
     }
 }

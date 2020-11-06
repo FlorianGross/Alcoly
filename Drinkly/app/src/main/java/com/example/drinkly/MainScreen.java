@@ -56,7 +56,7 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void openCalculator() {
-        Intent intent = new Intent(this, Calculator.class);
+        Intent intent = new Intent(this, NewCalculator.class);
         startActivity(intent);
         //overridePendingTransition(android.R.anim.fade_in, 0);
     }

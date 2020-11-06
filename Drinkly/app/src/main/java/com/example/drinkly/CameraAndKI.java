@@ -139,12 +139,20 @@ public class CameraAndKI extends AppCompatActivity {
 
                         String savedImageURL = file.getAbsolutePath().toString();
                         System.out.println(savedImageURL);
-                        drinks.add(new Getränke(savedImageURL, datelong, 0.5f, 0.05f));
-                        System.out.println(drinks.size());
-                        PrefConfig.writeListInPref(getApplicationContext(), drinks);
-                        System.out.println("Succeded");
-                        ArrayList<Getränke> test = PrefConfig.readListFromPref(getApplicationContext());
-                        System.out.println(test.size());
+
+
+                        DatabaseHelper databaseHelper = new DatabaseHelper(CameraAndKI.this);
+                        Getränke getränk;
+                        try{
+                            getränk = new Getränke(-1, savedImageURL, datelong, 0.5f, 0.05f);
+                            Toast.makeText(CameraAndKI.this, getränk.toString(),Toast.LENGTH_SHORT).show();
+                        }catch (Exception e){
+                            Toast.makeText(CameraAndKI.this, "Error creating getränk", Toast.LENGTH_SHORT).show();
+                            getränk = new Getränke(-1, savedImageURL, datelong, 0.5f, 0.05f);
+                        }
+                        boolean success = databaseHelper.addOne(getränk);
+                        Toast.makeText(CameraAndKI.this, "Success = " + success, Toast.LENGTH_SHORT).show();
+
                         openMainScreen();
 
 
