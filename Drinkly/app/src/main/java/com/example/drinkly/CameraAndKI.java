@@ -143,10 +143,10 @@ public class CameraAndKI extends AppCompatActivity {
 
                         DatabaseHelper databaseHelper = new DatabaseHelper(CameraAndKI.this);
                         Getränke getränk;
-                        try{
+                        try {
                             getränk = new Getränke(-1, savedImageURL, datelong, 0.5f, 0.05f);
-                            Toast.makeText(CameraAndKI.this, getränk.toString(),Toast.LENGTH_SHORT).show();
-                        }catch (Exception e){
+                            Toast.makeText(CameraAndKI.this, getränk.toString(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
                             Toast.makeText(CameraAndKI.this, "Error creating getränk", Toast.LENGTH_SHORT).show();
                             getränk = new Getränke(-1, savedImageURL, datelong, 0.5f, 0.05f);
                         }
@@ -215,7 +215,7 @@ public class CameraAndKI extends AppCompatActivity {
         });
     }
 
-    public static void checkPermissions(Context context){
+    public static void checkPermissions(Context context) {
         PermissionListener perListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {

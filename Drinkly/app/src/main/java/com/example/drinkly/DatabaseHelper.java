@@ -49,13 +49,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public ArrayList<Getränke> getAllGetraenke(){
+
+    public ArrayList<Getränke> getAllGetraenke() {
         ArrayList<Getränke> getränke = new ArrayList<Getränke>();
         String queryString = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 int getraenkIndex = cursor.getInt(0);
                 String getraenkUri = cursor.getString(1);
                 long getraenkDate = cursor.getLong(2);
@@ -64,8 +65,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 Getränke newGetränke = new Getränke(getraenkIndex, getraenkUri, getraenkDate, getraenkVolume, getraenkVolumeP);
                 getränke.add(newGetränke);
-            }while(cursor.moveToNext());
-        }else{
+            } while (cursor.moveToNext());
+        } else {
 
         }
         cursor.close();

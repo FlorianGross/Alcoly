@@ -15,6 +15,7 @@ public class NewCalculator extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     ArrayList<Getränke> arrayList;
     ArrayAdapter arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,8 @@ public class NewCalculator extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(NewCalculator.this);
         arrayList = databaseHelper.getAllGetraenke();
+        arrayAdapter = new ArrayAdapter<Getränke>(NewCalculator.this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(arrayAdapter);
 
     }
 }

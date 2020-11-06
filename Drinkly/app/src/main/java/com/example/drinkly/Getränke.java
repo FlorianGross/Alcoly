@@ -26,9 +26,10 @@ public class Getränke {
                 '}';
     }
 
-    public int getCountNumber(){
+    public int getCountNumber() {
         return countNumber;
     }
+
     public long getDate() {
         return date;
     }
@@ -60,7 +61,8 @@ public class Getränke {
     public void setVolumePart(int volumePart) {
         this.volumePart = volumePart;
     }
-    public void setCountNumber(int countNumber){
+
+    public void setCountNumber(int countNumber) {
         this.countNumber = countNumber;
     }
 }
