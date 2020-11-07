@@ -60,7 +60,7 @@ public class Calculator extends AppCompatActivity {
     public void startCalculate() {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        massString = settings.getString("wweight", "");
+        massString = settings.getString("weight", "");
         mass = Integer.parseInt(massString);
         gender = settings.getString("gender", "male");
 

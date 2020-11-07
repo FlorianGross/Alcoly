@@ -3,14 +3,15 @@ package com.example.drinkly;
 public class Getränke {
     private String uri;
     private long date;
-    private int volume;
+    private float volume;
     private float volumePart;
 
     public Getränke(String uri, long date, float volume, float volumePart) {
-        uri = this.uri;
-        date = this.date;
-        volume = this.volume;
-        volumePart = this.volumePart;
+        this.uri = uri;
+        this.date = date;
+        this.volume = volume;
+        this.volumePart = volumePart;
+
     }
 
     @Override

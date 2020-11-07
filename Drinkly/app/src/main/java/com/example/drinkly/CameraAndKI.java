@@ -74,7 +74,7 @@ public class CameraAndKI extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         redo = findViewById(R.id.redo);
 
-        checkPermissions(CameraAndKI.this);
+        checkPermissions(getApplicationContext());
 
         CropImage.activity().start(CameraAndKI.this);
 
@@ -108,8 +108,41 @@ public class CameraAndKI extends AppCompatActivity {
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        long datelong = getDatelong();
+                        System.out.println(datelong);
+                        //Saves the Uri as Bitmap inside the System and returns the Path as an String
+                        String savedImageURL = getString();
+                        //Stores the Informations inside the Database
+                        saveInDB(datelong, savedImageURL);
+                        //Returns to the Main Screen
+                        openMainScreen();
+
+
+                    }
+
+                    private void saveInDB(long datelong, String savedImageURL) {
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        Getränke getränk;
+                        try {
+                            getränk = new Getränke(savedImageURL, datelong, (float) 0.5, (float)0.05);
+                            Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
+                            getränk = new Getränke(null, -1, -1, -1);
+                            System.out.println("Error creating getrank");
+                        }
+
+                        System.out.println(getränk.toString());
+                        boolean success = databaseHelper.addOne(getränk);
+                        //Toast.makeText(getApplicationContext(), "Success = " + success, Toast.LENGTH_SHORT).show();
+                    }
+
+                    private long getDatelong() {
                         Date date = new Date();
-                        long datelong = date.getTime();
+                        return date.getTime();
+                    }
+
+                    private String getString() {
                         Bitmap bitmap = null;
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
@@ -139,23 +172,7 @@ public class CameraAndKI extends AppCompatActivity {
 
                         String savedImageURL = file.getAbsolutePath().toString();
                         System.out.println(savedImageURL);
-
-
-                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-                        Getränke getränk;
-                        try {
-                            getränk = new Getränke(savedImageURL, datelong, 0.5f, 0.05f);
-                            Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(savedImageURL, datelong, 0.5f, 0.05f);
-                        }
-                        boolean success = databaseHelper.addOne(getränk);
-                        Toast.makeText(getApplicationContext(), "Success = " + success, Toast.LENGTH_SHORT).show();
-
-                        openMainScreen();
-
-
+                        return savedImageURL;
                     }
                 });
             }
