@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="89dp"
-    android:layout_height="115dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="90dp"
+    android:layout_height="115dp"
+    android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="40dp"
-            android:layout_height="19dp"
-            android:text="TextView" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/currentImage"
@@ -21,22 +19,51 @@
             android:layout_height="60dp" />
 
         <TextView
-            android:id="@+id/type"
-            android:layout_width="82dp"
-            android:layout_height="14dp" />
+            android:id="@+id/time"
+            android:layout_width="40dp"
+            android:layout_height="19dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:text="19:30"
+            android:textAlignment="center" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/newvolumePerc"
-            android:layout_width="82dp"
-            android:layout_height="14dp" />
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="82dp"
+        android:layout_height="14dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/newvolumePerc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/newvolume"
-            android:layout_width="82dp"
-            android:layout_height="14dp" />
+    <TextView
+        android:id="@+id/newvolumePerc"
+        android:layout_width="82dp"
+        android:layout_height="14dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/newvolume"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/newvolume"
+        android:layout_width="82dp"
+        android:layout_height="14dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newvolumePerc"
+        tools:ignore="MissingConstraints" />
 
 
-    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</RelativeLayout>

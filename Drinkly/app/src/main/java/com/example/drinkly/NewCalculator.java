@@ -1,6 +1,7 @@
 package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,33 +10,29 @@ import android.os.Bundle;
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
 import com.example.drinkly.NonMain.mAdapter;
+import com.example.drinkly.NonMain.myAdapter;
 
 import java.util.ArrayList;
 
 public class NewCalculator extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-
     DatabaseHelper databaseHelper;
     ArrayList<Getränke> arrayList;
-    mAdapter arrayAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
+    myAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_calculator);
-
-        mRecyclerView = findViewById(R.id.mRecyclerView);
-
         databaseHelper = new DatabaseHelper(getApplicationContext());
         arrayList = databaseHelper.getAllGetraenke();
-        arrayAdapter = new mAdapter(arrayList);
-        mRecyclerView.setAdapter(arrayAdapter);
+
+        RecyclerView mRecyclerView = findViewById(R.id.mRecyclerView);
+        int numberOfColumns = 3;
+
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+        adapter = new myAdapter(this, arrayList);
+        mRecyclerView.setAdapter(adapter);
         mRecyclerView.setHasFixedSize(false);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-
     }
 }
