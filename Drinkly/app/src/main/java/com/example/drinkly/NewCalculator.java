@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
@@ -34,5 +35,10 @@ public class NewCalculator extends AppCompatActivity {
         adapter = new myAdapter(this, arrayList);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setHasFixedSize(false);
+
+
+
     }
+
 }
+

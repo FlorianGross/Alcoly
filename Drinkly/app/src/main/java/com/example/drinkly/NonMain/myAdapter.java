@@ -47,7 +47,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         String strDate = formatter.format(newDate);
         holder.date.setText(strDate);
         holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
-        holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append("").toString());
+        holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append(" \u2030").toString());
         Bitmap bitmap = BitmapFactory.decodeFile(mdrinks.get(position).getUri());
         holder.imgV.setImageBitmap(bitmap);
 
@@ -62,7 +62,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView date;
         public TextView vol;
         public TextView volP;
@@ -76,10 +76,10 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
             imgV = itemView.findViewById(R.id.currentImage);
         }
 
-        @Override
-        public void onClick(View v) {
+    }
 
-        }
+    public interface RecyclerViewClickListener{
+        
     }
 
 }

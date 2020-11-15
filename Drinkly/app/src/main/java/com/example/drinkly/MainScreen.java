@@ -25,6 +25,7 @@ public class MainScreen extends AppCompatActivity {
         leftB = findViewById(R.id.LeftButton);
         centerB = findViewById(R.id.CenterButton);
         rightB = findViewById(R.id.RightButton);
+
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
 

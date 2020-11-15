@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/CenterButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/CenterButton"
@@ -23,7 +24,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/RightButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/LeftButton" />
+        app:layout_constraintStart_toEndOf="@+id/LeftButton"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/RightButton"
@@ -31,7 +33,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/CenterButton" />
+        app:layout_constraintStart_toEndOf="@+id/CenterButton"
+        tools:ignore="MissingConstraints" />
 
 
     <ImageView

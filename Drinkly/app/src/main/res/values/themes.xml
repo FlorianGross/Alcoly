@@ -3,7 +3,7 @@
     <style name="Theme.Drinkly" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#FF5722</item>
-        <item name="colorPrimaryVariant">#ED463A</item>
+        <item name="colorPrimaryVariant">#FF852A</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
