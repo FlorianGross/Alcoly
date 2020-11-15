@@ -43,7 +43,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Insert New Data
         Date newDate = new Date(mdrinks.get(position).getDate());
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd.M.yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         String strDate = formatter.format(newDate);
         holder.date.setText(strDate);
         holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
@@ -70,10 +70,10 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-            date = itemView.findViewById(R.id.date);
-            vol = itemView.findViewById(R.id.volume);
-            volP = itemView.findViewById(R.id.volumePerc);
-            imgV = itemView.findViewById(R.id.drinkImage);
+            date = itemView.findViewById(R.id.time);
+            vol = itemView.findViewById(R.id.newvolume);
+            volP = itemView.findViewById(R.id.newvolumePerc);
+            imgV = itemView.findViewById(R.id.currentImage);
         }
 
         @Override

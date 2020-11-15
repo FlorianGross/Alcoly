@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class MainScreen extends AppCompatActivity {
     ImageView mainButton;
     TextView textView;
+    Button leftB, centerB, rightB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,9 @@ public class MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
         mainButton = findViewById(R.id.mainAction);
         textView = findViewById(R.id.promilleErgebnis);
-
+        leftB = findViewById(R.id.LeftButton);
+        centerB = findViewById(R.id.CenterButton);
+        rightB = findViewById(R.id.RightButton);
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
 
@@ -44,7 +47,18 @@ public class MainScreen extends AppCompatActivity {
                     openCamera();
                 }
             });
-
+            leftB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                openCalculator();
+                }
+            });
+            rightB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+            openNothing();
+                }
+            });
         }
     }
 

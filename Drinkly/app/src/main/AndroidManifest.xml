@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
+        <activity android:name=".Details"></activity>
         <activity android:name=".NewCalculator" />
         <activity android:name=".Statistics" />
         <activity android:name=".CameraAndKI" />

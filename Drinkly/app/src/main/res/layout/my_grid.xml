@@ -26,6 +26,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
+            android:textSize="12sp"
             android:text="19:30"
             android:textAlignment="center" />
     </RelativeLayout>
@@ -37,6 +38,8 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/newvolumePerc"
         app:layout_constraintEnd_toEndOf="parent"
+        android:text="Bier"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         tools:ignore="MissingConstraints" />
@@ -46,6 +49,7 @@
         android:layout_width="82dp"
         android:layout_height="14dp"
         android:textAlignment="center"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/newvolume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +61,7 @@
         android:layout_width="82dp"
         android:layout_height="14dp"
         android:textAlignment="center"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
