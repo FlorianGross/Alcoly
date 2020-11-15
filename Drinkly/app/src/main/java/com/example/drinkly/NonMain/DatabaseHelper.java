@@ -1,4 +1,4 @@
-package com.example.drinkly;
+package com.example.drinkly.NonMain;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,17 +6,19 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.drinkly.NonMain.Getränke;
+
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "getraenkeSammlung";
-    private static final String TABLE_NAME = "table_name";
+    public static final String DATABASE_NAME = "getraenkeSammlung";
+    public static final String TABLE_NAME = "table_name";
     public static final String COLUMN_GETTRAENK_URI = "GETTRAENK_URI";
     public static final String COLUMN_GETRAENK_DATE = "GETRAENK_DATE";
     public static final String COLUMN_GETRAENK_VOLUME = "GETRAENK_VOLUME";
     public static final String COLUMN_GETRAENK_VOLUMEP = "GETRAENK_VOLUMEP";
 
-    DatabaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
@@ -69,6 +71,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return getränke;
+    }
+
+    public boolean deleteOne(Getränke getränke) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_GETTRAENK_URI + " = " + getränke.getUri();
+
+        Cursor cursor = database.rawQuery(queryString, null);
+        if (cursor.moveToFirst()) {
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
 }

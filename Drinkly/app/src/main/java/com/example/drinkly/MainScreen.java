@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 
 public class MainScreen extends AppCompatActivity {
-    Button topLeft, topRight;
     ImageView mainButton;
     TextView textView;
 
@@ -21,38 +20,32 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         mainButton = findViewById(R.id.mainAction);
-        topLeft = findViewById(R.id.topLeft);
-        topRight = findViewById(R.id.topRight);
         textView = findViewById(R.id.promilleErgebnis);
 
-        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
-        String promille = settings.getString("promille", "");
-        if (promille != null) {
-            textView.setText(promille + " Promille");
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+
+        if (firstStart) {
+            showStartActivity();
         } else {
-            textView.setText("Alkoli");
+
+
+            SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
+            String promille = settings.getString("promille", "");
+            if (promille != null) {
+                textView.setText(promille + " Promille");
+            } else {
+                textView.setText("Alkoli");
+            }
+
+            mainButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openCamera();
+                }
+            });
+
         }
-
-        mainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCamera();
-            }
-        });
-
-        topLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCalculator();
-            }
-        });
-
-        topRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNothing();
-            }
-        });
     }
 
     public void openCalculator() {
@@ -71,5 +64,16 @@ public class MainScreen extends AppCompatActivity {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
         //overridePendingTransition(android.R.anim.fade_in, 0);
+    }
+
+    private void showStartActivity() {
+        Intent intent = new Intent(this, FirstStartupActivity.class);
+        startActivity(intent);
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
+
     }
 }

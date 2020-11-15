@@ -1,4 +1,4 @@
-package com.example.drinkly;
+package com.example.drinkly.oldClass;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,13 +7,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.drinkly.NonMain.Getränke;
+import com.example.drinkly.NonMain.PrefConfig;
+import com.example.drinkly.R;
+import com.example.drinkly.NonMain.mAdapter;
+
 import java.util.ArrayList;
 
 public class Calculator extends AppCompatActivity {
 
     ArrayList<Getränke> drinks = new ArrayList<Getränke>();
     private RecyclerView mRecyclerView;
-    private com.example.drinkly.mAdapter mAdapter;
+    private com.example.drinkly.NonMain.mAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 

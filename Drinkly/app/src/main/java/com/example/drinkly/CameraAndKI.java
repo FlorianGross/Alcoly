@@ -4,17 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.drinkly.NonMain.DatabaseHelper;
+import com.example.drinkly.NonMain.Getränke;
+import com.example.drinkly.NonMain.PrefConfig;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -36,18 +33,14 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Type;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,8 +67,6 @@ public class CameraAndKI extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         redo = findViewById(R.id.redo);
 
-        checkPermissions(getApplicationContext());
-
         CropImage.activity().start(CameraAndKI.this);
 
 
@@ -87,6 +78,7 @@ public class CameraAndKI extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
+
                 Uri uri = result.getUri();
                 imgView.setImageURI(uri);
                 setLabelerFromLocalModel(uri);
@@ -109,7 +101,9 @@ public class CameraAndKI extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         long datelong = getDatelong();
-                        System.out.println(datelong);
+                        //Checks for Permission
+                        ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                         //Saves the Uri as Bitmap inside the System and returns the Path as an String
                         String savedImageURL = getString();
                         //Stores the Informations inside the Database
@@ -124,7 +118,7 @@ public class CameraAndKI extends AppCompatActivity {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
                         try {
-                            getränk = new Getränke(savedImageURL, datelong, (float) 0.5, (float)0.05);
+                            getränk = new Getränke(savedImageURL, datelong, (float) 0.5, (float) 0.05);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
@@ -150,27 +144,25 @@ public class CameraAndKI extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        String root = Environment.getExternalStorageDirectory().toString();
-                        File myDir = new File(root + "/Alkoly");
-                        if (!myDir.exists()) {
-                            myDir.mkdirs();
-                        }
+                        File root = Environment.getExternalStorageDirectory();
+                        File myDir = new File(root.getPath() + File.separator + "Alkoly");
+                        myDir.mkdirs();
 
                         File file = new File(myDir, (drinks.size() + 1) + ".jpg");
-                        if (file.exists())
-                            file.delete();
+                        FileOutputStream out;
                         try {
-                            FileOutputStream out = new FileOutputStream(file);
+                            out = new FileOutputStream(file);
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
                             out.flush();
                             out.close();
-
-                        } catch (Exception e) {
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
 
 
-                        String savedImageURL = file.getAbsolutePath().toString();
+                        String savedImageURL = file.getAbsolutePath();
                         System.out.println(savedImageURL);
                         return savedImageURL;
                     }

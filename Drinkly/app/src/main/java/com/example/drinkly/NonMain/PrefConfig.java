@@ -1,9 +1,10 @@
-package com.example.drinkly;
+package com.example.drinkly.NonMain;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.drinkly.NonMain.Getränke;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

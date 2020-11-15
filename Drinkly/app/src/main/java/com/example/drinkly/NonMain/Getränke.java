@@ -1,4 +1,4 @@
-package com.example.drinkly;
+package com.example.drinkly.NonMain;
 
 public class Getränke {
     private String uri;

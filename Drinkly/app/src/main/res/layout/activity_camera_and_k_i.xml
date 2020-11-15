@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CameraAndKI"
     android:orientation="vertical"
+    android:background="@color/normalBackground"
     android:padding="10dp"
     android:gravity="center">
     <ImageView
@@ -26,12 +27,15 @@
         android:id="@+id/bt_open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
         android:visibility="invisible"
         android:text="Save" />
+
 
     <Button
         android:id="@+id/redo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
         android:text="Redo" />
 </LinearLayout>

@@ -71,13 +71,8 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
 
     public void saveSettings(EditText ageInput, EditText weightInput) throws ParseException {
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-YYYY");
-        Date date;
-        date = df.parse(ageInput.getText().toString());
-        LocalDate today = java.time.LocalDate.now();
-        LocalDate birthDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        int age = Period.between(birthDate, today).getYears();
+        int age = Integer.parseInt(ageInput.getText().toString());
 
         String weight = weightInput.getText().toString();
 

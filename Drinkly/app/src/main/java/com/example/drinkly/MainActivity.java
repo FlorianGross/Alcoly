@@ -1,53 +1,31 @@
 package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
-
-import java.util.List;
+import com.example.drinkly.NonMain.ProgressBarAnimation;
 
 public class MainActivity extends AppCompatActivity {
+
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        boolean firstStart = prefs.getBoolean("firstStart", true);
 
-        if (firstStart) {
-            showStartActivity();
-        } else {
-            showMainScreen();
-        }
-    }
-
-
-    private void showStartActivity() {
-        Intent intent = new Intent(this, FirstStartupActivity.class);
-        startActivity(intent);
-
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean("firstStart", false);
-        editor.apply();
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(100);
+        progressBar.setScaleY(3f);
+        progressAnimation();
 
     }
-
-    private void showMainScreen() {
-        Intent intent = new Intent(this, MainScreen.class);
-        startActivity(intent);
+    public void progressAnimation(){
+        ProgressBarAnimation anim = new ProgressBarAnimation(this, progressBar, 0f, 100f);
+        anim.setDuration(4000);
+        progressBar.setAnimation(anim);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.drinkly;
+package com.example.drinkly.NonMain;
 
 
 import android.graphics.Bitmap;
@@ -12,10 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.drinkly.R;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
-public class mAdapter<G> extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
+public class mAdapter extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
     ArrayList<Getränke> mdrinks;
 
     public mAdapter(ArrayList<Getränke> drinks) {
@@ -31,7 +35,10 @@ public class mAdapter<G> extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull mAdapter.MyViewHolder holder, int position) {
-        holder.date.setText(new StringBuilder().append(mdrinks.get(position).getDate()).append("").toString());
+        Date newDate = new Date(mdrinks.get(position).getDate());
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd.M.yyyy");
+        String strDate = formatter.format(newDate);
+        holder.date.setText(strDate);
         holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
         holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append("").toString());
         Bitmap bitmap = BitmapFactory.decodeFile(mdrinks.get(position).getUri());

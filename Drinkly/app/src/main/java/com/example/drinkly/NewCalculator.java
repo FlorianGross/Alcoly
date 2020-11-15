@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.drinkly.NonMain.DatabaseHelper;
+import com.example.drinkly.NonMain.Getränke;
+import com.example.drinkly.NonMain.mAdapter;
+
 import java.util.ArrayList;
 
 public class NewCalculator extends AppCompatActivity {
