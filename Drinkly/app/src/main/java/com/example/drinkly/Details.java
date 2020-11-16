@@ -79,7 +79,7 @@ public class Details extends AppCompatActivity {
                     type.setFocusableInTouchMode(true);
                     edit.setText("Save");
                     saveMode = true;
-                }else{
+                } else {
                     percentage.setFocusable(false);
                     type.setFocusable(false);
                     percentage.setFocusableInTouchMode(false);

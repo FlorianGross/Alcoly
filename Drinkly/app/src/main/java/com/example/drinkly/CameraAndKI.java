@@ -50,10 +50,10 @@ public class CameraAndKI extends AppCompatActivity {
     private ArrayList<Getränke> drinks;
     private ImageView imgView;
     private FirebaseAutoMLLocalModel localModel;
-    private  FirebaseVisionImageLabeler labeler;
-    private  FirebaseVisionImage image;
+    private FirebaseVisionImageLabeler labeler;
+    private FirebaseVisionImage image;
     private TextView textView;
-    private  Button openCamera, redo;
+    private Button openCamera, redo;
     private float confidenceLevel = 0;
 
 

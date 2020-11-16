@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PrefConfig {
     private static final String LIST_KEY = "list_key";
 
-    public static void writeListInPref(Context context, ArrayList<Getränke> drinks){
+    public static void writeListInPref(Context context, ArrayList<Getränke> drinks) {
         Gson gson = new Gson();
         String jsonString = gson.toJson(drinks);
 
@@ -24,11 +24,12 @@ public class PrefConfig {
         editor.apply();
     }
 
-    public static ArrayList<Getränke> readListFromPref(Context context){
+    public static ArrayList<Getränke> readListFromPref(Context context) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
         String jsonString = pref.getString(LIST_KEY, "");
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Getränke>>(){}.getType();
+        Type type = new TypeToken<ArrayList<Getränke>>() {
+        }.getType();
         ArrayList<Getränke> drinks = gson.fromJson(jsonString, type);
         return drinks;
     }

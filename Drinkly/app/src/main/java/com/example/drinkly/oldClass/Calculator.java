@@ -27,10 +27,10 @@ public class Calculator extends AppCompatActivity {
     private double promille;
     private int age;
     private int mass;
-    private  String gender;
-    private  String massString;
-    private  String agePre;
-    private  String promilleFeedback;
+    private String gender;
+    private String massString;
+    private String agePre;
+    private String promilleFeedback;
 
 
     @Override

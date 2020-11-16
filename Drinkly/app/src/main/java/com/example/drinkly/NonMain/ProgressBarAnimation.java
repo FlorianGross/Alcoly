@@ -25,9 +25,9 @@ public class ProgressBarAnimation extends Animation {
     protected void applyTransformation(float interpolatedTime, Transformation t) {
         super.applyTransformation(interpolatedTime, t);
         float value = from + (to - from) * interpolatedTime;
-        progressBar.setProgress((int)value);
+        progressBar.setProgress((int) value);
 
-        if(value == to){
+        if (value == to) {
             context.startActivity(new Intent(context, MainScreen.class));
         }
     }

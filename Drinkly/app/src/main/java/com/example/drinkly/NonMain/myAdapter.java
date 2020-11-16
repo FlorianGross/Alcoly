@@ -64,7 +64,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView date;
         public TextView vol;
         public TextView volP;
@@ -81,11 +81,11 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
         @Override
         public void onClick(View v) {
-    listener.onClick(v, getAdapterPosition());
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
-    public interface RecyclerViewClickListener{
+    public interface RecyclerViewClickListener {
         void onClick(View v, int position);
     }
 
