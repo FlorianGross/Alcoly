@@ -20,7 +20,7 @@ import java.util.Date;
 
 
 public class mAdapter extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
-    ArrayList<Getränke> mdrinks;
+    private ArrayList<Getränke> mdrinks;
 
     public mAdapter(ArrayList<Getränke> drinks) {
         this.mdrinks = drinks;

@@ -47,14 +47,14 @@ import java.util.List;
 
 
 public class CameraAndKI extends AppCompatActivity {
-    ArrayList<Getränke> drinks;
-    ImageView imgView;
-    FirebaseAutoMLLocalModel localModel;
-    FirebaseVisionImageLabeler labeler;
-    FirebaseVisionImage image;
-    TextView textView;
-    Button openCamera, redo;
-    float confidenceLevel = 0;
+    private ArrayList<Getränke> drinks;
+    private ImageView imgView;
+    private FirebaseAutoMLLocalModel localModel;
+    private  FirebaseVisionImageLabeler labeler;
+    private  FirebaseVisionImage image;
+    private TextView textView;
+    private  Button openCamera, redo;
+    private float confidenceLevel = 0;
 
 
     @Override

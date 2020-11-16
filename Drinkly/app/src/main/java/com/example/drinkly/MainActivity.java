@@ -9,7 +9,7 @@ import com.example.drinkly.NonMain.ProgressBarAnimation;
 
 public class MainActivity extends AppCompatActivity {
 
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
 
     @Override

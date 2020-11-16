@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 
 public class MainScreen extends AppCompatActivity {
-    ImageView mainButton;
-    TextView textView;
-    Button leftB, centerB, rightB;
+    private ImageView mainButton;
+    private TextView textView;
+    private Button leftB, centerB, rightB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

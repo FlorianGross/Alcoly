@@ -22,15 +22,15 @@ public class Calculator extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
 
-    double rfact;
-    double uDef;
-    double promille;
-    int age;
-    int mass;
-    String gender;
-    String massString;
-    String agePre;
-    String promilleFeedback;
+    private double rfact;
+    private double uDef;
+    private double promille;
+    private int age;
+    private int mass;
+    private  String gender;
+    private  String massString;
+    private  String agePre;
+    private  String promilleFeedback;
 
 
     @Override

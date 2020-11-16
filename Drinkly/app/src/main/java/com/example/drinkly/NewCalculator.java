@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,9 +18,10 @@ import java.util.ArrayList;
 
 public class NewCalculator extends AppCompatActivity {
 
-    DatabaseHelper databaseHelper;
-    ArrayList<Getränke> arrayList;
-    myAdapter adapter;
+    private DatabaseHelper databaseHelper;
+    private ArrayList<Getränke> arrayList;
+    private myAdapter adapter;
+    private myAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +33,25 @@ public class NewCalculator extends AppCompatActivity {
         RecyclerView mRecyclerView = findViewById(R.id.mRecyclerView);
         int numberOfColumns = 3;
 
+        setOnCLickListener();
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        adapter = new myAdapter(this, arrayList);
+        adapter = new myAdapter(this, arrayList, listener);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setHasFixedSize(false);
 
 
 
+    }
+
+    private void setOnCLickListener() {
+        listener = new myAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), Details.class);
+                intent.putExtra("intPosition", position);
+                startActivity(intent);
+            }
+        };
     }
 
 }

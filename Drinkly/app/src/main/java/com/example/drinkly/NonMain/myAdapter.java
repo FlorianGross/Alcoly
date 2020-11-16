@@ -21,13 +21,15 @@ import java.util.Date;
 
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
-    ArrayList<Getränke> mdrinks;
-    LayoutInflater mInflater;
+    private ArrayList<Getränke> mdrinks;
+    private LayoutInflater mInflater;
+    private RecyclerViewClickListener listener;
 
     // data is passed into the constructor
-    public myAdapter(Context context, ArrayList<Getränke> mdrinks) {
+    public myAdapter(Context context, ArrayList<Getränke> mdrinks, RecyclerViewClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.mdrinks = mdrinks;
+        this.listener = listener;
     }
 
     // inflates the cell layout from xml when needed
@@ -62,7 +64,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         public TextView date;
         public TextView vol;
         public TextView volP;
@@ -74,12 +76,17 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
             vol = itemView.findViewById(R.id.newvolume);
             volP = itemView.findViewById(R.id.newvolumePerc);
             imgV = itemView.findViewById(R.id.currentImage);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+    listener.onClick(v, getAdapterPosition());
+        }
     }
 
     public interface RecyclerViewClickListener{
-        
+        void onClick(View v, int position);
     }
 
 }
