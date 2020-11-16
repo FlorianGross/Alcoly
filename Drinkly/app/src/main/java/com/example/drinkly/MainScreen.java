@@ -32,8 +32,6 @@ public class MainScreen extends AppCompatActivity {
         if (firstStart) {
             showStartActivity();
         } else {
-
-
             SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
             String promille = settings.getString("promille", "");
             if (promille != null) {
@@ -51,13 +49,13 @@ public class MainScreen extends AppCompatActivity {
             leftB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                openCalculator();
+                    openCalculator();
                 }
             });
             rightB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-            openNothing();
+                    openNothing();
                 }
             });
         }

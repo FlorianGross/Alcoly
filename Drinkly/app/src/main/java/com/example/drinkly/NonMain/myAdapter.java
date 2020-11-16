@@ -50,10 +50,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         holder.date.setText(strDate);
         holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
         holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append(" \u2030").toString());
-        Bitmap bitmap = BitmapFactory.decodeFile(mdrinks.get(position).getUri());
-        holder.imgV.setImageBitmap(bitmap);
-
-
+        holder.imgV.setImageBitmap(mdrinks.get(position).getUri());
     }
 
     // total number of cells

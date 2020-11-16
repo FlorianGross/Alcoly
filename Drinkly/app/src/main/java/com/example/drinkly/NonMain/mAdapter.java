@@ -41,8 +41,7 @@ public class mAdapter extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
         holder.date.setText(strDate);
         holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
         holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append("").toString());
-        Bitmap bitmap = BitmapFactory.decodeFile(mdrinks.get(position).getUri());
-        holder.imgV.setImageBitmap(bitmap);
+        holder.imgV.setImageBitmap(mdrinks.get(position).getUri());
     }
 
     @Override

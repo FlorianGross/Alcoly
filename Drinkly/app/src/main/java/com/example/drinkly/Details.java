@@ -2,9 +2,7 @@ package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +13,7 @@ import android.widget.TextView;
 
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
-import com.example.drinkly.oldClass.Calculator;
 
-import java.nio.BufferUnderflowException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,6 +103,6 @@ public class Details extends AppCompatActivity {
         String strDate = formatter.format(newDate);
         currentDate.setText(strDate);
         percentage.setText(ai.get(i).getVolumePart() * 1000 + "\u2030");
-        // imageView.setImageURI(arrayList.get(i).getUri());
+        imageView.setImageBitmap(ai.get(i).getUri());
     }
 }

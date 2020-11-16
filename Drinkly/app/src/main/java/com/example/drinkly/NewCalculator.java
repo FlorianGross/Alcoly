@@ -2,7 +2,6 @@ package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.view.View;
 
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
-import com.example.drinkly.NonMain.mAdapter;
 import com.example.drinkly.NonMain.myAdapter;
 
 import java.util.ArrayList;
@@ -38,7 +36,6 @@ public class NewCalculator extends AppCompatActivity {
         adapter = new myAdapter(this, arrayList, listener);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setHasFixedSize(false);
-
 
 
     }

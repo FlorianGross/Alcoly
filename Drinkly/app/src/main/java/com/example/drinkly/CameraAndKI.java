@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -33,13 +31,8 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,7 +59,6 @@ public class CameraAndKI extends AppCompatActivity {
         imgView = findViewById(R.id.image_view);
         textView = findViewById(R.id.textView);
         redo = findViewById(R.id.redo);
-
         CropImage.activity().start(CameraAndKI.this);
 
 
@@ -105,20 +97,24 @@ public class CameraAndKI extends AppCompatActivity {
                         ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                         ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                         //Saves the Uri as Bitmap inside the System and returns the Path as an String
-                        String savedImageURL = getString();
+                        Bitmap bitmap = null;
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.print("Error Converting Bitmap");
+                        }
                         //Stores the Informations inside the Database
-                        saveInDB(datelong, savedImageURL);
+                        saveInDB(datelong, bitmap);
                         //Returns to the Main Screen
                         openMainScreen();
-
-
                     }
 
-                    private void saveInDB(long datelong, String savedImageURL) {
+                    private void saveInDB(long datelong, Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
                         try {
-                            getränk = new Getränke(savedImageURL, datelong, (float) 0.5, (float) 0.05);
+                            getränk = new Getränke(bitmap, datelong, (float) 0.5, (float) 0.05);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
@@ -135,41 +131,9 @@ public class CameraAndKI extends AppCompatActivity {
                         Date date = new Date();
                         return date.getTime();
                     }
-
-                    private String getString() {
-                        Bitmap bitmap = null;
-                        try {
-                            bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        File root = Environment.getExternalStorageDirectory();
-                        File myDir = new File(root.getPath() + File.separator + "Alkoly");
-                        myDir.mkdirs();
-
-                        File file = new File(myDir, (drinks.size() + 1) + ".jpg");
-                        FileOutputStream out;
-                        try {
-                            out = new FileOutputStream(file);
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                            out.flush();
-                            out.close();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-
-                        String savedImageURL = file.getAbsolutePath();
-                        System.out.println(savedImageURL);
-                        return savedImageURL;
-                    }
                 });
             }
         }
-
     }
 
     private void openMainScreen() {
@@ -194,7 +158,8 @@ public class CameraAndKI extends AppCompatActivity {
         }
     }
 
-    private void processImageLabeler(FirebaseVisionImageLabeler labeler, FirebaseVisionImage image) {
+    private void processImageLabeler(FirebaseVisionImageLabeler
+                                             labeler, FirebaseVisionImage image) {
         labeler.processImage(image).addOnCompleteListener(new OnCompleteListener<List<FirebaseVisionImageLabel>>() {
             @Override
             public void onComplete(@NonNull Task<List<FirebaseVisionImageLabel>> task) {
@@ -204,10 +169,10 @@ public class CameraAndKI extends AppCompatActivity {
 
 
                     if (confidence * 100 > 60) {
-                        textView.append(eachlabel + " - " + "Successful " + confidence + "\n\n");
+                        textView.append(eachlabel + " - " + "Successful " + "\n\n");
                         openCamera.setVisibility(View.VISIBLE);
                     } else {
-                        textView.append(eachlabel + " - " + "Denied " + confidence + "\n\n");
+                        textView.append(eachlabel + " - " + "Denied " + "\n\n");
                     }
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;
@@ -222,22 +187,5 @@ public class CameraAndKI extends AppCompatActivity {
                 Toast.makeText(CameraAndKI.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    public static void checkPermissions(Context context) {
-        PermissionListener perListener = new PermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onPermissionDenied(List<String> deniedPermissions) {
-                Toast.makeText(context, "Permission not Granted", Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        TedPermission.with(context).setPermissionListener(perListener).setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE).check();
     }
 }

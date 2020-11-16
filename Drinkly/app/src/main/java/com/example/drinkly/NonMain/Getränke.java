@@ -1,12 +1,14 @@
 package com.example.drinkly.NonMain;
 
+import android.graphics.Bitmap;
+
 public class Getränke {
-    private String uri;
+    private Bitmap uri;
     private long date;
     private float volume;
     private float volumePart;
 
-    public Getränke(String uri, long date, float volume, float volumePart) {
+    public Getränke(Bitmap uri, long date, float volume, float volumePart) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;
@@ -17,7 +19,7 @@ public class Getränke {
     @Override
     public String toString() {
         return "Getränke{" +
-                "uri='" + uri + '\'' +
+                "Bitmap='" + uri.toString() +
                 ", date=" + date +
                 ", volume=" + volume +
                 ", volumePart=" + volumePart +
@@ -33,7 +35,7 @@ public class Getränke {
         return volume;
     }
 
-    public String getUri() {
+    public Bitmap getUri() {
         return uri;
     }
 
@@ -41,7 +43,7 @@ public class Getränke {
         return volumePart;
     }
 
-    public void setUri(String uri) {
+    public void setUri(Bitmap uri) {
         this.uri = uri;
     }
 

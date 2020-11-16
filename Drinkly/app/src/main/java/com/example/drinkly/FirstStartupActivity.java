@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.style.TtsSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,16 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.drinkly.NonMain.DatabaseHelper;
+import com.example.drinkly.NonMain.Getränke;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
 
 
 public class FirstStartupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private DatabaseHelper databaseHelper;
+    private ArrayList<Getränke> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,9 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
 
         EditText ageInput = findViewById(R.id.ageInput);
         EditText weightInput = findViewById(R.id.weightInput);
+
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        databaseHelper.deleteAllGetränke();
 
         forwardButton.setOnClickListener(new View.OnClickListener() {
 
