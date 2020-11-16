@@ -64,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String queryString = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToLast()) {
             do {
                 byte[] getraenkUri = cursor.getBlob(0);
                 long getraenkDate = cursor.getLong(1);
@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Getränke newGetränke = new Getränke(bitmap, getraenkDate, getraenkVolume, getraenkVolumeP);
                 getränke.add(newGetränke);
-            } while (cursor.moveToNext());
+            } while (cursor.moveToPrevious());
         } else {
 
         }
