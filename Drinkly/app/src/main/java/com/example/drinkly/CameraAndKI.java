@@ -35,6 +35,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -113,11 +114,15 @@ public class CameraAndKI extends AppCompatActivity {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
                         try {
-                            getränk = new Getränke(bitmap, new Date(), 0.5f, 0.05f);
+                            Date returnDate = new Date();
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTime(returnDate);
+                            String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + calendar.get(Calendar.MONTH) + "." + calendar.get(Calendar.YEAR);
+                            getränk = new Getränke(bitmap, returnDate, 0.5f, 0.05f, realDate);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(null, new Date(), -1, -1);
+                            getränk = new Getränke(null, new Date(), -1, -1, null);
                             System.out.println("Error creating getrank");
                         }
 

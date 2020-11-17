@@ -6,16 +6,17 @@ import java.util.Date;
 
 public class Getränke {
     private Bitmap uri;
+    private String realDate;
     private Date date;
     private float volume;
     private float volumePart;
 
-    public Getränke(Bitmap uri, Date date, float volume, float volumePart) {
+    public Getränke(Bitmap uri, Date date, float volume, float volumePart, String realDate) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;
         this.volumePart = volumePart;
-
+        this.realDate = realDate;
     }
 
     @Override
@@ -45,6 +46,10 @@ public class Getränke {
         return volumePart;
     }
 
+    public String getRealDate() {
+        return realDate;
+    }
+
     public void setUri(Bitmap uri) {
         this.uri = uri;
     }
@@ -61,4 +66,7 @@ public class Getränke {
         this.volumePart = volumePart;
     }
 
+    public void setRealDate(String realDate) {
+        this.realDate = realDate;
+    }
 }

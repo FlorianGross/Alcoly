@@ -9,10 +9,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.drinkly.NonMain.Getränke;
+import com.example.drinkly.oldClass.Calculator;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "getraenkeSammlung";
@@ -21,17 +24,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_GETRAENK_DATE = "GETRAENK_DATE";
     public static final String COLUMN_GETRAENK_VOLUME = "GETRAENK_VOLUME";
     public static final String COLUMN_GETRAENK_VOLUMEP = "GETRAENK_VOLUMEP";
+    public static final String COLUMN_GETRAENK_REALDATE = "GETRAENK_REALDATE";
     private ByteArrayOutputStream objectByteArrayOutputStream;
     private byte[] imageInByte;
     private long dateLong;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " TEXT )";
         db.execSQL(createTable);
     }
 
@@ -54,6 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GETRAENK_DATE, dateLong);
         cv.put(COLUMN_GETRAENK_VOLUME, getränke.getVolume());
         cv.put(COLUMN_GETRAENK_VOLUMEP, getränke.getVolumePart());
+        cv.put(COLUMN_GETRAENK_REALDATE, getränke.getRealDate());
         long insert = db.insert(TABLE_NAME, null, cv);
         if (insert == -1) {
             return false;
@@ -73,10 +78,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long getraenkDate = cursor.getLong(1);
                 float getraenkVolume = cursor.getFloat(2);
                 float getraenkVolumeP = cursor.getFloat(3);
+                String realDate = cursor.getString(4);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(dateLong);
-                Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP);
+                Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate);
                 getränke.add(newGetränke);
             } while (cursor.moveToPrevious());
         } else {
@@ -117,10 +123,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long getraenkDate = cursor.getLong(1);
                 float getraenkVolume = cursor.getFloat(2);
                 float getraenkVolumeP = cursor.getFloat(3);
+                String realDate = cursor.getString(4);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(dateLong);
-                Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP);
+                Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate);
                 getränkeList.add(newGetränke);
             } while (cursor.moveToPrevious());
         } else {
@@ -129,6 +136,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return getränkeList;
+    }
+
+    public String[] getAllDates(ArrayList<Getränke> getränkeList) {
+        String[] stringArray = null;
+        Set<String> set = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToFirst()) {
+            do {
+                set.add(cursor.getString(4));
+            } while (cursor.moveToNext());
+        }
+        stringArray = (String[]) set.toArray();
+        return stringArray;
     }
 
 }
