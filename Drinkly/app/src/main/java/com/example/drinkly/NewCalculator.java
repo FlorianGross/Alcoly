@@ -15,6 +15,7 @@ import com.example.drinkly.NonMain.GroupAdapter;
 import com.example.drinkly.NonMain.myAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NewCalculator extends AppCompatActivity {
 
@@ -41,6 +42,9 @@ public class NewCalculator extends AppCompatActivity {
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setHasFixedSize(false);
 */
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        arrayList = databaseHelper.getAllGetraenke();
+        arrayListString = databaseHelper.getAllDates(arrayList);
         RecyclerView newRecyclerView = findViewById(R.id.mRecyclerView);
         newRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         groupAdapter = new GroupAdapter(this, arrayListString);

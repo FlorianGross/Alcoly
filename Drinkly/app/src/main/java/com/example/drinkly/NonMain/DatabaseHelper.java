@@ -15,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -138,19 +139,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getränkeList;
     }
 
-    public String[] getAllDates(ArrayList<Getränke> getränkeList) {
-        String[] stringArray = null;
-        Set<String> set = null;
+    public ArrayList<String> getAllDates(ArrayList<Getränke> getränkeList) {
+        ArrayList<String> returnArray = new ArrayList<>();
+
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(queryString, null);
-        if (cursor.moveToFirst()) {
+
+        if (cursor.moveToLast()) {
             do {
-                set.add(cursor.getString(4));
-            } while (cursor.moveToNext());
+                returnArray.add(cursor.getString(4));
+            } while (cursor.moveToPrevious());
         }
-        stringArray = (String[]) set.toArray();
-        return stringArray;
+
+
+        returnArray = removeDublicates(returnArray);
+
+        return returnArray;
+    }
+
+    private ArrayList<String> removeDublicates(ArrayList<String> returnArray) {
+    Set<String> set = new LinkedHashSet<>();
+    set.addAll(returnArray);
+    returnArray.clear();
+    returnArray.addAll(set);
+    return returnArray;
     }
 
 }
