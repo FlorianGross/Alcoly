@@ -92,7 +92,6 @@ public class CameraAndKI extends AppCompatActivity {
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        long datelong = getDatelong();
                         //Checks for Permission
                         ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                         ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
@@ -105,31 +104,26 @@ public class CameraAndKI extends AppCompatActivity {
                             System.out.print("Error Converting Bitmap");
                         }
                         //Stores the Informations inside the Database
-                        saveInDB(datelong, bitmap);
+                        saveInDB(bitmap);
                         //Returns to the Main Screen
                         openMainScreen();
                     }
 
-                    private void saveInDB(long datelong, Bitmap bitmap) {
+                    private void saveInDB(Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
                         try {
-                            getränk = new Getränke(bitmap, datelong, (float) 0.5, (float) 0.05);
+                            getränk = new Getränke(bitmap, new Date(), 0.5f, 0.05f);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(null, -1, -1, -1);
+                            getränk = new Getränke(null, new Date(), -1, -1);
                             System.out.println("Error creating getrank");
                         }
 
                         System.out.println(getränk.toString());
                         boolean success = databaseHelper.addOne(getränk);
                         //Toast.makeText(getApplicationContext(), "Success = " + success, Toast.LENGTH_SHORT).show();
-                    }
-
-                    private long getDatelong() {
-                        Date date = new Date();
-                        return date.getTime();
                     }
                 });
             }

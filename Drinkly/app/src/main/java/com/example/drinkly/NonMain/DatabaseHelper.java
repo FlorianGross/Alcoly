@@ -12,6 +12,7 @@ import com.example.drinkly.NonMain.Getränke;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "getraenkeSammlung";
@@ -22,6 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_GETRAENK_VOLUMEP = "GETRAENK_VOLUMEP";
     private ByteArrayOutputStream objectByteArrayOutputStream;
     private byte[] imageInByte;
+    private long dateLong;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 2);
@@ -29,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " TEXT, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL )";
         db.execSQL(createTable);
     }
 
@@ -47,8 +49,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         objectByteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, objectByteArrayOutputStream);
         imageInByte = objectByteArrayOutputStream.toByteArray();
+        dateLong = getränke.getDate().getTime();
         cv.put(COLUMN_GETTRAENK_URI, imageInByte);
-        cv.put(COLUMN_GETRAENK_DATE, getränke.getDate());
+        cv.put(COLUMN_GETRAENK_DATE, dateLong);
         cv.put(COLUMN_GETRAENK_VOLUME, getränke.getVolume());
         cv.put(COLUMN_GETRAENK_VOLUMEP, getränke.getVolumePart());
         long insert = db.insert(TABLE_NAME, null, cv);
@@ -72,7 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 float getraenkVolumeP = cursor.getFloat(3);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
-                Getränke newGetränke = new Getränke(bitmap, getraenkDate, getraenkVolume, getraenkVolumeP);
+                Date returnDate = new Date(dateLong);
+                Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP);
                 getränke.add(newGetränke);
             } while (cursor.moveToPrevious());
         } else {
@@ -99,6 +103,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
         return true;
+    }
+
+    public ArrayList<Getränke> getAllOfDate(Getränke getränke, Date date) {
+        ArrayList<Getränke> getränkeList = new ArrayList<Getränke>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " = " + date.getTime();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToLast()) {
+            do {
+                byte[] getraenkUri = cursor.getBlob(0);
+                long getraenkDate = cursor.getLong(1);
+                float getraenkVolume = cursor.getFloat(2);
+                float getraenkVolumeP = cursor.getFloat(3);
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
+                Date returnDate = new Date(dateLong);
+                Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP);
+                getränkeList.add(newGetränke);
+            } while (cursor.moveToPrevious());
+        } else {
+
+        }
+        cursor.close();
+        db.close();
+        return getränkeList;
     }
 
 }

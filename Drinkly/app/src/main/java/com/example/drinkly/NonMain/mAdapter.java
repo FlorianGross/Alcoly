@@ -35,7 +35,7 @@ public class mAdapter extends RecyclerView.Adapter<mAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull mAdapter.MyViewHolder holder, int position) {
-        Date newDate = new Date(mdrinks.get(position).getDate());
+        Date newDate = mdrinks.get(position).getDate();
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd.M.yyyy");
         String strDate = formatter.format(newDate);
         holder.date.setText(strDate);

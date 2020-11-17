@@ -2,13 +2,15 @@ package com.example.drinkly.NonMain;
 
 import android.graphics.Bitmap;
 
+import java.util.Date;
+
 public class Getränke {
     private Bitmap uri;
-    private long date;
+    private Date date;
     private float volume;
     private float volumePart;
 
-    public Getränke(Bitmap uri, long date, float volume, float volumePart) {
+    public Getränke(Bitmap uri, Date date, float volume, float volumePart) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;
@@ -27,7 +29,7 @@ public class Getränke {
     }
 
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -47,7 +49,7 @@ public class Getränke {
         this.uri = uri;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
