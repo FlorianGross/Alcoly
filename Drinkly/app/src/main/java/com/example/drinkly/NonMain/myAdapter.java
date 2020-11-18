@@ -47,6 +47,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         Date newDate = mdrinks.get(position).getDate();
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         String strDate = formatter.format(newDate);
+
         holder.date.setText(strDate);
         holder.vol.setText(new StringBuilder().append(mdrinks.get(position).getVolume()).append("L").toString());
         holder.volP.setText(new StringBuilder().append(mdrinks.get(position).getVolumePart()).append(" \u2030").toString());

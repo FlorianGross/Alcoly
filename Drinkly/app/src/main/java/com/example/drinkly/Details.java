@@ -102,7 +102,7 @@ public class Details extends AppCompatActivity {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String strDate = formatter.format(newDate);
         currentDate.setText(strDate);
-        percentage.setText(ai.get(i).getVolumePart() * 100 + "\u2030");
+        percentage.setText(ai.get(i).getVolumePart() + "\u2030");
         imageView.setImageBitmap(ai.get(i).getUri());
     }
 }

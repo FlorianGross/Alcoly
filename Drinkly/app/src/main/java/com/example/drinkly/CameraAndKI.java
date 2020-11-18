@@ -121,8 +121,7 @@ public class CameraAndKI extends AppCompatActivity {
                             int month = calendar.get(Calendar.MONTH) + 1;
                             String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                             int realDateTest = Integer.parseInt(realDate);
-                            int realDateInt = calendar.get(Calendar.DAY_OF_MONTH)*1000000 + calendar.get(Calendar.YEAR) * 1000 + calendar.get(Calendar.YEAR);
-                            getränk = new Getränke(bitmap, new Date(), 0.5f, 0.05f, realDateTest);
+                            getränk = new Getränke(bitmap, new Date(), 0.5f, 5.0f, realDateTest);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();

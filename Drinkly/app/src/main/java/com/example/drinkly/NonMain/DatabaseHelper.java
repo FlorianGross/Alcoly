@@ -159,11 +159,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private ArrayList<Integer> removeDublicates(ArrayList<Integer> returnArray) {
-    Set<Integer> set = new LinkedHashSet<>();
-    set.addAll(returnArray);
-    returnArray.clear();
-    returnArray.addAll(set);
-    return returnArray;
+        Set<Integer> set = new LinkedHashSet<>();
+        set.addAll(returnArray);
+        returnArray.clear();
+        returnArray.addAll(set);
+        return returnArray;
     }
 
 }

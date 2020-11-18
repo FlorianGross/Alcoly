@@ -35,7 +35,15 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.tv.setText(arrayListGroup.get(position).toString());
+
+        int preString = arrayListGroup.get(position);
+        int day = preString / 1000000;
+        preString = preString - day * 1000000;
+        int month = preString / 10000;
+        preString = preString - month * 10000;
+        int year = preString;
+        String postString = day + "." + month + "." + year;
+        holder.tv.setText(postString);
 
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
         //ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();
@@ -50,6 +58,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
 
 
     }
+
     private void setOnCLickListener() {
         listener = new myAdapter.RecyclerViewClickListener() {
             @Override
@@ -69,6 +78,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
     public class myViewHolder extends RecyclerView.ViewHolder {
         public TextView tv;
         public RecyclerView rv;
+
         public myViewHolder(View view) {
             super(view);
             tv = view.findViewById(R.id.DateView);
