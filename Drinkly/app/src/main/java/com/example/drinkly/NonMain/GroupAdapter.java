@@ -38,12 +38,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
         holder.tv.setText(arrayListGroup.get(position));
 
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
-        ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();
+        //ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();
+        ArrayList<Getränke> newGetränkeList = databaseHelper.getAllOfDate(arrayListGroup.get(position));
         int numberOfColumns = 3;
 
         setOnCLickListener();
         holder.rv.setLayoutManager(new GridLayoutManager(context, numberOfColumns));
-        myAdapter adapter = new myAdapter(context, getränkeList, listener);
+        myAdapter adapter = new myAdapter(context, newGetränkeList, listener);
         holder.rv.setAdapter(adapter);
         holder.rv.setHasFixedSize(false);
 

@@ -112,10 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<Getränke> getAllOfDate(Getränke getränke, String date) {
+    public ArrayList<Getränke> getAllOfDate(String date) {
         ArrayList<Getränke> getränkeList = new ArrayList<Getränke>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " = " + date;
+        String queryString = "SELECT FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " LIKE " + date;
 
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {
