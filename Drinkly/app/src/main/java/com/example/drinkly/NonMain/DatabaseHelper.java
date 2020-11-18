@@ -127,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int realDate = cursor.getInt(4);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
-                Date returnDate = new Date(dateLong);
+                Date returnDate = new Date(getraenkDate);
                 Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate);
                 getränkeList.add(newGetränke);
             } while (cursor.moveToPrevious());
