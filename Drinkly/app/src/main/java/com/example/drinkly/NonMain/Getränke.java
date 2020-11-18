@@ -23,7 +23,8 @@ public class Getränke {
     public String toString() {
         return "Getränke{" +
                 "Bitmap='" + uri.toString() +
-                ", date=" + date +
+                ", date=" + date.toString() +
+                ", realDate=" + realDate +
                 ", volume=" + volume +
                 ", volumePart=" + volumePart +
                 '}';

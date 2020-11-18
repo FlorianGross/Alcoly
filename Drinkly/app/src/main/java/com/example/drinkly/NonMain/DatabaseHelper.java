@@ -82,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String realDate = cursor.getString(4);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
-                Date returnDate = new Date(dateLong);
+                Date returnDate = new Date(getraenkDate);
                 Getränke newGetränke = new Getränke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate);
                 getränke.add(newGetränke);
             } while (cursor.moveToPrevious());
@@ -112,10 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<Getränke> getAllOfDate(Getränke getränke, Date date) {
+    public ArrayList<Getränke> getAllOfDate(Getränke getränke, String date) {
         ArrayList<Getränke> getränkeList = new ArrayList<Getränke>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " = " + date.getTime();
+        String queryString = "SELECT FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " = " + date;
 
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {

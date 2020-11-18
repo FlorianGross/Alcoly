@@ -36,6 +36,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         holder.tv.setText(arrayListGroup.get(position));
+
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
         ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();
         int numberOfColumns = 3;
@@ -65,12 +66,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder {
-        TextView tv;
-        RecyclerView rv;
+        public TextView tv;
+        public RecyclerView rv;
         public myViewHolder(View view) {
             super(view);
-            tv.findViewById(R.id.DateView);
-            rv.findViewById(R.id.FirstRecyclerView);
+            tv = view.findViewById(R.id.DateView);
+            rv = view.findViewById(R.id.FirstRecyclerView);
         }
     }
 }

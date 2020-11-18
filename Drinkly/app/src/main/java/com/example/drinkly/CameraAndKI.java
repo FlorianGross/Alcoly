@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
 import com.example.drinkly.NonMain.PrefConfig;
+import com.example.drinkly.oldClass.Calculator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -117,8 +118,9 @@ public class CameraAndKI extends AppCompatActivity {
                             Date returnDate = new Date();
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(returnDate);
-                            String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + calendar.get(Calendar.MONTH) + "." + calendar.get(Calendar.YEAR);
-                            getränk = new Getränke(bitmap, returnDate, 0.5f, 0.05f, realDate);
+                            int month = calendar.get(Calendar.MONTH) + 1;
+                            String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + month + "." + calendar.get(Calendar.YEAR);
+                            getränk = new Getränke(bitmap, new Date(), 0.5f, 0.05f, realDate);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
