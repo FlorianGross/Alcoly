@@ -82,7 +82,7 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
         SharedPreferences.Editor editor = settings.edit();
 
         editor.putInt("age", age);
-        editor.putString("weight", weight);
+        editor.putInt("weight", Integer.parseInt(weight));
         editor.apply();
     }
 

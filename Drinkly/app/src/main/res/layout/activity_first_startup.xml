@@ -79,6 +79,7 @@
         app:layout_constraintBottom_toTopOf="@+id/forwardButton"
         app:layout_constraintEnd_toStartOf="@+id/weightInput"
         app:layout_constraintHorizontal_bias="0.5"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageText" />
 
