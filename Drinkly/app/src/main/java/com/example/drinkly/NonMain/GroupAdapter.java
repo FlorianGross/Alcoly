@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder> {
     private Context context;
-    ArrayList<String> arrayListGroup;
+    ArrayList<Integer> arrayListGroup;
     private myAdapter.RecyclerViewClickListener listener;
 
-    public GroupAdapter(Context context, ArrayList<String> arrayListGroup) {
+    public GroupAdapter(Context context, ArrayList<Integer> arrayListGroup) {
         this.context = context;
         this.arrayListGroup = arrayListGroup;
     }
@@ -35,7 +35,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.tv.setText(arrayListGroup.get(position));
+        holder.tv.setText(arrayListGroup.get(position).toString());
 
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
         //ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();

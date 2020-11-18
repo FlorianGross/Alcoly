@@ -24,7 +24,7 @@ public class NewCalculator extends AppCompatActivity {
     private ArrayList<Getränke> arrayList;
     private myAdapter adapter;
     private GroupAdapter groupAdapter;
-    private ArrayList<String> arrayListString;
+    private ArrayList<Integer> arrayListString;
     private myAdapter.RecyclerViewClickListener listener;
 
     @Override

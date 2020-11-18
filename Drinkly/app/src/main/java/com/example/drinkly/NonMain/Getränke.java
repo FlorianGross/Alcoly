@@ -6,12 +6,12 @@ import java.util.Date;
 
 public class Getränke {
     private Bitmap uri;
-    private String realDate;
+    private int realDate;
     private Date date;
     private float volume;
     private float volumePart;
 
-    public Getränke(Bitmap uri, Date date, float volume, float volumePart, String realDate) {
+    public Getränke(Bitmap uri, Date date, float volume, float volumePart, int realDate) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;
@@ -47,7 +47,7 @@ public class Getränke {
         return volumePart;
     }
 
-    public String getRealDate() {
+    public int getRealDate() {
         return realDate;
     }
 
@@ -67,7 +67,7 @@ public class Getränke {
         this.volumePart = volumePart;
     }
 
-    public void setRealDate(String realDate) {
+    public void setRealDate(int realDate) {
         this.realDate = realDate;
     }
 }

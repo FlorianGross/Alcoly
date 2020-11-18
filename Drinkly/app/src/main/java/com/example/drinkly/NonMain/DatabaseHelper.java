@@ -31,12 +31,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private long dateLong;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        super(context, DATABASE_NAME, null, 4);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " TEXT )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " INTEGER )";
         db.execSQL(createTable);
     }
 
@@ -79,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long getraenkDate = cursor.getLong(1);
                 float getraenkVolume = cursor.getFloat(2);
                 float getraenkVolumeP = cursor.getFloat(3);
-                String realDate = cursor.getString(4);
+                int realDate = cursor.getInt(4);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteOne(Getränke getränke) {
         SQLiteDatabase database = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_GETTRAENK_URI + " = " + getränke.getUri();
+        String queryString = "DELETE * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETTRAENK_URI + " = " + getränke.getUri();
 
         Cursor cursor = database.rawQuery(queryString, null);
         if (cursor.moveToFirst()) {
@@ -112,10 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<Getränke> getAllOfDate(String date) {
+    public ArrayList<Getränke> getAllOfDate(int date) {
         ArrayList<Getränke> getränkeList = new ArrayList<Getränke>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " LIKE " + date;
+        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " == " + date;
 
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {
@@ -124,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long getraenkDate = cursor.getLong(1);
                 float getraenkVolume = cursor.getFloat(2);
                 float getraenkVolumeP = cursor.getFloat(3);
-                String realDate = cursor.getString(4);
+                int realDate = cursor.getInt(4);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(dateLong);
@@ -139,8 +139,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getränkeList;
     }
 
-    public ArrayList<String> getAllDates(ArrayList<Getränke> getränkeList) {
-        ArrayList<String> returnArray = new ArrayList<>();
+    public ArrayList<Integer> getAllDates(ArrayList<Getränke> getränkeList) {
+        ArrayList<Integer> returnArray = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME;
@@ -148,7 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToLast()) {
             do {
-                returnArray.add(cursor.getString(4));
+                returnArray.add(cursor.getInt(4));
             } while (cursor.moveToPrevious());
         }
 
@@ -158,8 +158,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnArray;
     }
 
-    private ArrayList<String> removeDublicates(ArrayList<String> returnArray) {
-    Set<String> set = new LinkedHashSet<>();
+    private ArrayList<Integer> removeDublicates(ArrayList<Integer> returnArray) {
+    Set<Integer> set = new LinkedHashSet<>();
     set.addAll(returnArray);
     returnArray.clear();
     returnArray.addAll(set);

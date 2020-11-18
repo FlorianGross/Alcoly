@@ -119,12 +119,14 @@ public class CameraAndKI extends AppCompatActivity {
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(returnDate);
                             int month = calendar.get(Calendar.MONTH) + 1;
-                            String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "." + month + "." + calendar.get(Calendar.YEAR);
-                            getränk = new Getränke(bitmap, new Date(), 0.5f, 0.05f, realDate);
+                            String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
+                            int realDateTest = Integer.parseInt(realDate);
+                            int realDateInt = calendar.get(Calendar.DAY_OF_MONTH)*1000000 + calendar.get(Calendar.YEAR) * 1000 + calendar.get(Calendar.YEAR);
+                            getränk = new Getränke(bitmap, new Date(), 0.5f, 0.05f, realDateTest);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(null, new Date(), -1, -1, null);
+                            getränk = new Getränke(null, new Date(), -1, -1, -1);
                             System.out.println("Error creating getrank");
                         }
 
