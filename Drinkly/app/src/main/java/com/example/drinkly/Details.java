@@ -43,20 +43,7 @@ public class Details extends AppCompatActivity {
         type = findViewById(R.id.CurrentName);
         currentDate = findViewById(R.id.currentDate);
 
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        arrayList = databaseHelper.getAllGetraenke();
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            current = extras.getInt("intPosition");
-        }
-        percentage.setFocusable(false);
-        type.setFocusable(false);
-        percentage.setFocusableInTouchMode(false);
-        type.setFocusableInTouchMode(false);
-        if (saveMode = false) {
-            edit.setText("Edit");
-        }
-        setAllValues(arrayList, current);
+        generateDelails();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +76,32 @@ public class Details extends AppCompatActivity {
 
     }
 
+    /**
+     * Generates the details page
+     */
+    private void generateDelails() {
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        arrayList = databaseHelper.getAllGetraenke();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            current = extras.getInt("intPosition");
+        }
+        percentage.setFocusable(false);
+        type.setFocusable(false);
+        percentage.setFocusableInTouchMode(false);
+        type.setFocusableInTouchMode(false);
+        if (saveMode = false) {
+            edit.setText("Edit");
+        }
+        setAllValues(arrayList, current);
+    }
+
+    /**
+     * sets all the values of the details view
+     *
+     * @param ai the list of all drinks
+     * @param i  the position of the current item in the array
+     */
     private void setAllValues(ArrayList<Getränke> ai, int i) {
         //arrayList.get(current).getUri();
         if (ai.get(i).getVolume() == 0.5) {

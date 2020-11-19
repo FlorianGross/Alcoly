@@ -30,7 +30,29 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
 
         Button forwardButton = findViewById(R.id.forwardButton);
         Spinner spinner = findViewById(R.id.spinner);
+        EditText ageInput = findViewById(R.id.ageInput);
+        EditText weightInput = findViewById(R.id.weightInput);
 
+        generateSaveLocations(spinner);
+
+        forwardButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                saveSettings(ageInput, weightInput);
+
+                startMainScreen();
+            }
+        });
+    }
+
+    /**
+     * Creates the Shared preference and the database, if it already exists, it cleans it
+     *
+     * @param spinner the spinner item
+     */
+    private void generateSaveLocations(Spinner spinner) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genders, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -38,24 +60,8 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        EditText ageInput = findViewById(R.id.ageInput);
-        EditText weightInput = findViewById(R.id.weightInput);
-
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.deleteAllGetränke();
-
-        forwardButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                try {
-                    saveSettings(ageInput, weightInput);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                startMainScreen();
-            }
-        });
     }
 
     @Override
@@ -71,7 +77,13 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
-    public void saveSettings(EditText ageInput, EditText weightInput) throws ParseException {
+    /**
+     * Saves the values inside the SharedPreferences
+     *
+     * @param ageInput    the age value, from the userInput
+     * @param weightInput the weight value, from the userInput
+     */
+    public void saveSettings(EditText ageInput, EditText weightInput) {
 
 
         int age = Integer.parseInt(ageInput.getText().toString());
@@ -86,6 +98,9 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
         editor.apply();
     }
 
+    /**
+     * Starts the MainScreen
+     */
     public void startMainScreen() {
         Intent intent = new Intent(this, MainScreen.class);
         startActivity(intent);

@@ -61,24 +61,36 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Opens the Calculator page
+     */
     public void openCalculator() {
         Intent intent = new Intent(this, NewCalculator.class);
         startActivity(intent);
         //overridePendingTransition(android.R.anim.fade_in, 0);
     }
 
+    /**
+     * Opens the Camera Page
+     */
     public void openCamera() {
         Intent intent = new Intent(this, CameraAndKI.class);
         startActivity(intent);
 
     }
 
+    /**
+     * Open the Statistics Page
+     */
     public void openNothing() {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
         //overridePendingTransition(android.R.anim.fade_in, 0);
     }
 
+    /**
+     * Starts the first Startup activity
+     */
     private void showStartActivity() {
         Intent intent = new Intent(this, FirstStartupActivity.class);
         startActivity(intent);

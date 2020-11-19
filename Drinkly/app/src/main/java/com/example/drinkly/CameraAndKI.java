@@ -73,9 +73,7 @@ public class CameraAndKI extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
 
-                Uri uri = result.getUri();
-                imgView.setImageURI(uri);
-                setLabelerFromLocalModel(uri);
+                Uri uri = useUri(result);
 
                 drinks = PrefConfig.readListFromPref(this);
 
@@ -94,9 +92,6 @@ public class CameraAndKI extends AppCompatActivity {
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Checks for Permission
-                        ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                        ActivityCompat.requestPermissions(CameraAndKI.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                         //Saves the Uri as Bitmap inside the System and returns the Path as an String
                         Bitmap bitmap = null;
                         try {
@@ -111,6 +106,10 @@ public class CameraAndKI extends AppCompatActivity {
                         openMainScreen();
                     }
 
+                    /**
+                     * Stores the new Getränk in the Database
+                     * @param bitmap the Bimap generated from the Cropper Camera
+                     */
                     private void saveInDB(Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
@@ -130,19 +129,39 @@ public class CameraAndKI extends AppCompatActivity {
                         }
 
                         System.out.println(getränk.toString());
-                        boolean success = databaseHelper.addOne(getränk);
-                        //Toast.makeText(getApplicationContext(), "Success = " + success, Toast.LENGTH_SHORT).show();
+                        databaseHelper.addOne(getränk);
                     }
                 });
             }
         }
     }
 
+    /**
+     * Gets the Uri from the Cropper and labels it with the KI
+     *
+     * @param result the Result from the Cropper
+     * @return uri, the finished Image in Uri format
+     */
+    private Uri useUri(CropImage.ActivityResult result) {
+        Uri uri = result.getUri();
+        imgView.setImageURI(uri);
+        setLabelerFromLocalModel(uri);
+        return uri;
+    }
+
+    /**
+     * Opens the MainScreen window
+     */
     private void openMainScreen() {
         Intent intent = new Intent(this, MainScreen.class);
         startActivity(intent);
     }
 
+    /**
+     * Labels the Image with the Firebase KI
+     *
+     * @param uri the Image in uri format
+     */
     private void setLabelerFromLocalModel(Uri uri) {
         localModel = new FirebaseAutoMLLocalModel.Builder()
                 .setAssetFilePath("model/manifest.json")
@@ -160,6 +179,12 @@ public class CameraAndKI extends AppCompatActivity {
         }
     }
 
+    /**
+     * The process of Labeling
+     *
+     * @param labeler the labeler for the Image
+     * @param image   the image to be labeled
+     */
     private void processImageLabeler(FirebaseVisionImageLabeler
                                              labeler, FirebaseVisionImage image) {
         labeler.processImage(image).addOnCompleteListener(new OnCompleteListener<List<FirebaseVisionImageLabel>>() {

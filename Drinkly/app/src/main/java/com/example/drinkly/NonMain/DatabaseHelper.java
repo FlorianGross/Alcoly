@@ -47,6 +47,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Adds one getränk to the Database
+     *
+     * @param getränke the object to be added
+     * @return true if it succeded
+     */
     public boolean addOne(Getränke getränke) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -68,6 +74,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Generates the ArrayList from the Values in the Database
+     *
+     * @return ArrayList with all the elements from the Database
+     */
     public ArrayList<Getränke> getAllGetraenke() {
         ArrayList<Getränke> getränke = new ArrayList<Getränke>();
         String queryString = "SELECT * FROM " + TABLE_NAME;
@@ -94,6 +105,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getränke;
     }
 
+    /**
+     * Deletes one item from the Database
+     *
+     * @param getränke the object, to be removed
+     * @return true if it succeded
+     */
     public boolean deleteOne(Getränke getränke) {
         SQLiteDatabase database = this.getWritableDatabase();
         String queryString = "DELETE * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETTRAENK_URI + " = " + getränke.getUri();
@@ -106,12 +123,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Clears the Database from all objects
+     *
+     * @return true if it succeded
+     */
     public boolean deleteAllGetränke() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
         return true;
     }
 
+    /**
+     * Gets all the Objects from one Day
+     *
+     * @param date the specific Date
+     * @return An new ArrayList with all the Objects from this date
+     */
     public ArrayList<Getränke> getAllOfDate(int date) {
         ArrayList<Getränke> getränkeList = new ArrayList<Getränke>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -139,6 +167,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return getränkeList;
     }
 
+    /**
+     * Returns a list with all the dates, represented in the Database
+     *
+     * @param getränkeList the list with all the objects from the Database
+     * @return ArrayList with all the Dates
+     */
     public ArrayList<Integer> getAllDates(ArrayList<Getränke> getränkeList) {
         ArrayList<Integer> returnArray = new ArrayList<>();
 
@@ -158,6 +192,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnArray;
     }
 
+    /**
+     * Removes the Dublicates from the getAllDates function
+     *
+     * @param returnArray the begin array, with the dublicates
+     * @return the finalized array without the dublicates
+     */
     private ArrayList<Integer> removeDublicates(ArrayList<Integer> returnArray) {
         Set<Integer> set = new LinkedHashSet<>();
         set.addAll(returnArray);

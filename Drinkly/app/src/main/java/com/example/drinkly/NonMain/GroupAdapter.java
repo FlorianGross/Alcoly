@@ -70,6 +70,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
         };
     }
 
+    /**
+     * Returns the amount of items inside the Adapter
+     */
     @Override
     public int getItemCount() {
         return arrayListGroup.size();

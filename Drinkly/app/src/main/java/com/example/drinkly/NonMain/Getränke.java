@@ -19,6 +19,11 @@ public class Getränke {
         this.realDate = realDate;
     }
 
+    /**
+     * Generates toString for the object
+     *
+     * @return String with all values from the object
+     */
     @Override
     public String toString() {
         return "Getränke{" +
@@ -30,7 +35,11 @@ public class Getränke {
                 '}';
     }
 
-
+    /**
+     * Returns the Date of the object
+     *
+     * @return Date from the Object
+     */
     public Date getDate() {
         return date;
     }
