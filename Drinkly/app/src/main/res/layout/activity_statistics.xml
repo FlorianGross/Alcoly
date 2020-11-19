@@ -7,4 +7,76 @@
     android:background="@color/normalBackground"
     tools:context=".Statistics">
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="345dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/helvetica_neue_regular"
+        android:text="Niedriger Wert"
+        android:textColor="#3B7FCE"
+        android:textSize="12sp"
+        android:background="none"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:text="Mittlerer Wert"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:background="none"
+        android:fontFamily="@font/helvetica_neue_regular"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/helvetica_neue_regular"
+        android:text="HOHER WERT"
+        android:background="none"
+        android:textColor="@color/MainOrange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.drinkly.niedrigerWert"
+        android:layout_width="345dp"
+        android:layout_height="525dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
