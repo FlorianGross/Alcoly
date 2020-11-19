@@ -1,4 +1,4 @@
-package com.example.drinkly;
+package com.example.drinkly.fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.drinkly.R;
 
 
 public class niedrigerWert extends Fragment {

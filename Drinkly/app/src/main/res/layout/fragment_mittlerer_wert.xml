@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/normalBackground"
-    tools:context=".mittlererWert">
+    tools:context=".fragments.mittlererWert">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/ageTextStatsLow"
+                android:id="@+id/ageTextStatsMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
@@ -46,13 +46,13 @@
                 android:text="20 Jahre"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/weightTextStatsLow"
+                app:layout_constraintEnd_toStartOf="@+id/weightTextStatsMedium"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
             <TextView
-                android:id="@+id/weightTextStatsLow"
+                android:id="@+id/weightTextStatsMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
@@ -62,7 +62,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView8"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/ageTextStatsLow"
+                app:layout_constraintStart_toEndOf="@+id/ageTextStatsMedium"
                 app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
             <ImageView
@@ -73,7 +73,7 @@
                 android:src="@android:drawable/btn_star_big_off"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/weightTextStatsLow"
+                app:layout_constraintStart_toEndOf="@+id/weightTextStatsMedium"
                 app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
             <ImageView
@@ -99,10 +99,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsLow" />
+                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsMedium" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/timeViewMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -126,10 +126,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@+id/timeViewMedium" />
 
             <TextView
-                android:id="@+id/amountOfAlcohol"
+                android:id="@+id/amountOfAlcoholMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -152,10 +152,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcohol" />
+                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholMedium" />
 
             <TextView
-                android:id="@+id/textType"
+                android:id="@+id/textTypeMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -174,7 +174,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/imageView6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textType"
+                app:layout_constraintTop_toBottomOf="@+id/textTypeMedium"
                 tools:src="@mipmap/linie" />
 
             <TextView
