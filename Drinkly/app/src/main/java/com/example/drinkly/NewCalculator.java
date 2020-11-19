@@ -14,7 +14,6 @@ import com.example.drinkly.NonMain.Getränke;
 import com.example.drinkly.NonMain.GroupAdapter;
 import com.example.drinkly.NonMain.myAdapter;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class NewCalculator extends AppCompatActivity {
         //Creates the nested Recyclerview
         createRecycler();
         //calculates the Results from the given Values
-        //getResult(arrayList);
+        getResult(arrayList);
 
     }
 
@@ -67,26 +66,36 @@ public class NewCalculator extends AppCompatActivity {
      */
     public void getResult(ArrayList<Getränke> arrayList) {
         lastDrink = arrayList.get(arrayList.size() - 1).getDate();
-        double time = getDrinkTime(arrayList, lastDrink);
+        double time = getDrinkTime(arrayList, new Date());
         double promille = calculatePromille(arrayList, sessionStart(lastDrink, arrayList));
-        minResult = promille - time * 0.7;
-        normalResult = promille - time * 0.6;
-        highResult = promille - time * 0.5;
+        System.out.println(time + " . " + promille);
+        minResult = promille - time * (0.15/60);
+        normalResult = promille - time * (0.13/60);
+        highResult = promille - time * (0.11/60);
+        if(minResult <= 0){
+            minResult = 0;
+        }
+        if(normalResult <= 0){
+            normalResult = 0;
+        }
+        if(highResult <= 0){
+            highResult = 0;
+        }
+        System.out.println(normalResult);
     }
 
     /**
      * Calculates the Time between the First and the last drink
      *
      * @param arrayList the list of all drinks
-     * @param lastDrink the last drink of the arrayList
+     * @param now the last drink of the arrayList
      * @return the duration between the first and the last drink in hours
      */
-    public double getDrinkTime(ArrayList<Getränke> arrayList, Date lastDrink) {
+    public double getDrinkTime(ArrayList<Getränke> arrayList, Date now) {
 
         firstDrink = arrayList.get(sessionStart(lastDrink, arrayList)).getDate();
-        LocalDate firstDrinkLocal = convertToLocalDateViaInstant(firstDrink);
-        LocalDate lastDrinkLocal = convertToLocalDateViaInstant(lastDrink);
-        return Duration.between(firstDrinkLocal, lastDrinkLocal).toMillis() / 3.6e+6;
+        double result = now.getTime() - firstDrink.getTime();
+        return result / 60000;
     }
 
     /**
@@ -97,14 +106,16 @@ public class NewCalculator extends AppCompatActivity {
      * @return the position of the first element of the session
      */
     private int sessionStart(Date lastDrink, ArrayList<Getränke> arrayList) {
-        LocalDate realLastDrink = convertToLocalDateViaInstant(lastDrink);
-        LocalDate testLocalDate;
-        int returnInt = 0;
+        long datelast = lastDrink.getTime();
+        long dateTest;
+
+        int returnInt = -1;
         for (int j = 0; j < arrayList.size(); j++) {
-            testLocalDate = convertToLocalDateViaInstant(arrayList.get(j).getDate());
-            if ((Duration.between(realLastDrink, testLocalDate).toMillis() / 3.6e+6) > 24 || returnInt != 0) {
-            } else {
-                returnInt = j;
+            dateTest = arrayList.get(j).getDate().getTime();
+            if ((dateTest - datelast) > 8.64e+7) {
+            } else
+                if(returnInt == -1) {
+                    returnInt = j;
             }
         }
         return returnInt;
@@ -137,17 +148,17 @@ public class NewCalculator extends AppCompatActivity {
         double u = getAgeU(age < 55, 0.15, 0.2);
         int m = settings.getInt("weight", 80);
         double p = 0.8;
-        double v = 0;
-        double e = 0;
-
+        double v;
+        double e;
+        double a = 0;
 
         for (int i = startElement; i < arrayList.size(); i++) {
-            v += arrayList.get(i).getVolume();
-            e += arrayList.get(i).getVolumePart();
-
+            v = (arrayList.get(i).getVolume() * 1000);
+            e = (arrayList.get(i).getVolumePart()/100);
+            a += v*e*p;
         }
-
-        return ((v * e * p) / (m * r) - u);
+        double value = (a / (m * r));
+        return (value - (u*value));
     }
 
     /**
