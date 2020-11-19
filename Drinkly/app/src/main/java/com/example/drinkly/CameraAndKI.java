@@ -51,7 +51,6 @@ public class CameraAndKI extends AppCompatActivity {
     private FirebaseVisionImage image;
     private TextView drinkName, erkannt;
     private Button openCamera, redo;
-    private float confidenceLevel = 0;
     float volume;
     float permil;
     Spinner spinnerVolume, spinnerPermil;
@@ -83,8 +82,7 @@ public class CameraAndKI extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.permil, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinnerVolume.setAdapter(adapter);
-
+        spinnerPermil.setAdapter(adapter);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.volume, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -168,30 +166,30 @@ public class CameraAndKI extends AppCompatActivity {
                     private float getPermil() {
                         int permilItem = spinnerPermil.getSelectedItemPosition();
                         switch (permilItem) {
-                            case 11:
-                                return 0.45f;
-                            case 10:
-                                return 0.40f;
-                            case 9:
-                                return 0.35f;
-                            case 8:
-                                return 0.30f;
-                            case 7:
-                                return 0.25f;
-                            case 6:
-                                return 0.20f;
-                            case 5:
-                                return 0.15f;
-                            case 4:
-                                return 0.11f;
-                            case 3:
-                                return 0.08f;
-                            case 2:
-                                return 0.051f;
-                            case 1:
-                                return 0.025f;
                             case 0:
-                                return 0.00f;
+                                return 0f;
+                            case 1:
+                                return 2.5f;
+                            case 2:
+                                return 5.1f;
+                            case 3:
+                                return 8f;
+                            case 4:
+                                return 11f;
+                            case 5:
+                                return 15f;
+                            case 6:
+                                return 20f;
+                            case 7:
+                                return 25f;
+                            case 8:
+                                return 30f;
+                            case 9:
+                                return 35f;
+                            case 10:
+                                return 40f;
+                            case 11:
+                                return 45f;
                             default:
                                 return -1.0f;
                         }
@@ -284,20 +282,30 @@ public class CameraAndKI extends AppCompatActivity {
                 for (FirebaseVisionImageLabel label : task.getResult()) {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
-
-
                     if (confidence * 100 > 60) {
-                        drinkName.setText(eachlabel);
-                        openCamera.setVisibility(View.VISIBLE);
-                        erkannt.setVisibility(View.VISIBLE);
+                        System.out.println(confidence + " Success");
+                        onConfidenceSuccess(eachlabel);
                     } else {
-                        drinkName.setText("Nicht Erkannt");
-                        erkannt.setVisibility(View.INVISIBLE);
-                    }
-                    if (confidence > confidenceLevel) {
-                        confidenceLevel = confidence;
+                        System.out.println(confidence + " Decline");
+                        onConfidenceDecline();
                     }
                 }
+            }
+
+            private void onConfidenceDecline() {
+                drinkName.setText("Nicht Erkannt");
+                erkannt.setVisibility(View.INVISIBLE);
+                openCamera.setVisibility(View.VISIBLE);
+                openCamera.setText("Trotzdem");
+            }
+
+            private void onConfidenceSuccess(String eachlabel) {
+                drinkName.setText(eachlabel);
+                openCamera.setVisibility(View.VISIBLE);
+                erkannt.setVisibility(View.VISIBLE);
+                spinnerPermil.setSelection(2);
+                spinnerVolume.setSelection(1);
+                openCamera.setText("Hinzufügen");
             }
 
         }).addOnFailureListener(new OnFailureListener() {

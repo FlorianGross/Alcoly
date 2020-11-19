@@ -42,7 +42,7 @@ public class NewCalculator extends AppCompatActivity {
         //Creates the nested Recyclerview
         createRecycler();
         //calculates the Results from the given Values
-        getResult(arrayList);
+        //getResult(arrayList);
 
     }
 

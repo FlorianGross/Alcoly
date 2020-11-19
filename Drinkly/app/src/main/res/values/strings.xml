@@ -7,24 +7,23 @@
     <string name="_2_4_promille">2.4 Promille</string>
     <string name="application_by_florian_gro_sven_herz_verena_huber_and_milan_ritscher_2020_all_rights_reserved">Application by Florian Groß, Sven Herz, Verena Huber and Milan Ritscher © 2020 all rights reserved</string>
     <string name="app_logo">App Logo</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="genders">
         <item>Male</item>
         <item>Female</item>
     </string-array>
     <string-array name="permil">
-        <item>45 ‰</item>
-        <item>40 ‰</item>
-        <item>35 ‰</item>
-        <item>30 ‰</item>
-        <item>25 ‰</item>
-        <item>20 ‰</item>
-        <item>15 ‰</item>
+        <item>45‰</item>
+        <item>40‰</item>
+        <item>35‰</item>
+        <item>30‰</item>
+        <item>25‰</item>
+        <item>20‰</item>
+        <item>15‰</item>
         <item>11‰</item>
-        <item>8 ‰</item>
-        <item>5 ‰</item>
-        <item>2.5 ‰</item>
-        <item>0 ‰</item>
+        <item>8‰</item>
+        <item>5‰</item>
+        <item>2.5‰</item>
+        <item>0‰</item>
     </string-array>
     <string-array name="volume">
         <item>Maß (1L)</item>
@@ -34,7 +33,7 @@
         <item>Weinglas (0.2L)</item>
         <item>Weinglas (0.1L)</item>
         <item>Shot(0.05L)</item>
-        </string-array>
+    </string-array>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
