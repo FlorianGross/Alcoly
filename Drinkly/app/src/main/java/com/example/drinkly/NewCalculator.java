@@ -1,7 +1,6 @@
 package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,10 +16,8 @@ import com.example.drinkly.NonMain.myAdapter;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 public class NewCalculator extends AppCompatActivity {
@@ -84,12 +81,12 @@ public class NewCalculator extends AppCompatActivity {
      * @param lastDrink the last drink of the arrayList
      * @return the duration between the first and the last drink in hours
      */
-    public long getDrinkTime(ArrayList<Getränke> arrayList, Date lastDrink) {
+    public double getDrinkTime(ArrayList<Getränke> arrayList, Date lastDrink) {
 
         firstDrink = arrayList.get(sessionStart(lastDrink, arrayList)).getDate();
         LocalDate firstDrinkLocal = convertToLocalDateViaInstant(firstDrink);
         LocalDate lastDrinkLocal = convertToLocalDateViaInstant(lastDrink);
-        return Duration.between(firstDrinkLocal, lastDrinkLocal).toHours();
+        return Duration.between(firstDrinkLocal, lastDrinkLocal).toMillis() / 3.6e+6;
     }
 
     /**
@@ -105,7 +102,7 @@ public class NewCalculator extends AppCompatActivity {
         int returnInt = 0;
         for (int j = 0; j < arrayList.size(); j++) {
             testLocalDate = convertToLocalDateViaInstant(arrayList.get(j).getDate());
-            if (Duration.between(realLastDrink, testLocalDate).toHours() > 24 || returnInt != 0) {
+            if ((Duration.between(realLastDrink, testLocalDate).toMillis() / 3.6e+6) > 24 || returnInt != 0) {
             } else {
                 returnInt = j;
             }
