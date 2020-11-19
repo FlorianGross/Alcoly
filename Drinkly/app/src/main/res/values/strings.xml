@@ -12,6 +12,29 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="permil">
+        <item>45 ‰</item>
+        <item>40 ‰</item>
+        <item>35 ‰</item>
+        <item>30 ‰</item>
+        <item>25 ‰</item>
+        <item>20 ‰</item>
+        <item>15 ‰</item>
+        <item>11‰</item>
+        <item>8 ‰</item>
+        <item>5 ‰</item>
+        <item>2.5 ‰</item>
+        <item>0 ‰</item>
+    </string-array>
+    <string-array name="volume">
+        <item>Maß (1L)</item>
+        <item>Bierglas (0.5L)</item>
+        <item>Kleines Bierglas (0.3L)</item>
+        <item>Longdrink (0.2L)</item>
+        <item>Weinglas (0.2L)</item>
+        <item>Weinglas (0.1L)</item>
+        <item>Shot(0.05L)</item>
+        </string-array>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>

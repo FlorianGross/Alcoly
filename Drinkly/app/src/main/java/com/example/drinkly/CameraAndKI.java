@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +49,12 @@ public class CameraAndKI extends AppCompatActivity {
     private FirebaseAutoMLLocalModel localModel;
     private FirebaseVisionImageLabeler labeler;
     private FirebaseVisionImage image;
-    private TextView textView;
+    private TextView drinkName, erkannt;
     private Button openCamera, redo;
     private float confidenceLevel = 0;
+    float volume;
+    float permil;
+    Spinner spinnerVolume, spinnerPermil;
 
 
     @Override
@@ -59,12 +64,33 @@ public class CameraAndKI extends AppCompatActivity {
 
         openCamera = findViewById(R.id.bt_open);
         imgView = findViewById(R.id.image_view);
-        textView = findViewById(R.id.textView);
+        drinkName = findViewById(R.id.DrinkName);
         redo = findViewById(R.id.redo);
+        erkannt = findViewById(R.id.Erkannt);
+        spinnerPermil = findViewById(R.id.permilSpinner);
+        spinnerVolume = findViewById(R.id.volumeSpinner);
+
+        generateSpinner();
+
         CropImage.activity().start(CameraAndKI.this);
 
-
     }
+
+    /**
+     * Generates the spinner and fills them with the String array
+     */
+    private void generateSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.permil, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerVolume.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.volume, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerVolume.setAdapter(adapter2);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -114,22 +140,87 @@ public class CameraAndKI extends AppCompatActivity {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getränke getränk;
                         try {
+                            volume = getVolume();
+                            permil = getPermil();
+
                             Date returnDate = new Date();
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(returnDate);
                             int month = calendar.get(Calendar.MONTH) + 1;
                             String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                             int realDateTest = Integer.parseInt(realDate);
-                            getränk = new Getränke(bitmap, new Date(), 0.5f, 5.0f, realDateTest);
+                            getränk = new Getränke(bitmap, new Date(), volume, permil, realDateTest);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(), "Error creating getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(null, new Date(), -1, -1, -1);
+                            Toast.makeText(getApplicationContext(), "Error creating Getränk", Toast.LENGTH_SHORT).show();
+                            getränk = new Getränke(null, new Date(), -1f, -1f, -1);
                             System.out.println("Error creating getrank");
                         }
 
                         System.out.println(getränk.toString());
                         databaseHelper.addOne(getränk);
+                    }
+
+                    /**
+                     * gets the value of the Spinners item
+                     * @return the value of the drink
+                     */
+                    private float getPermil() {
+                        int permilItem = spinnerPermil.getSelectedItemPosition();
+                        switch (permilItem) {
+                            case 11:
+                                return 0.45f;
+                            case 10:
+                                return 0.40f;
+                            case 9:
+                                return 0.35f;
+                            case 8:
+                                return 0.30f;
+                            case 7:
+                                return 0.25f;
+                            case 6:
+                                return 0.20f;
+                            case 5:
+                                return 0.15f;
+                            case 4:
+                                return 0.11f;
+                            case 3:
+                                return 0.08f;
+                            case 2:
+                                return 0.051f;
+                            case 1:
+                                return 0.025f;
+                            case 0:
+                                return 0.00f;
+                            default:
+                                return -1.0f;
+                        }
+                    }
+
+                    /**
+                     * gets the Volume of the spinners item
+                     * @return the volume of the drink selected
+                     */
+                    private float getVolume() {
+                        int volumeItem = spinnerVolume.getSelectedItemPosition();
+                        switch (volumeItem) {
+                            case 6:
+                                return 0.05f;
+                            case 5:
+                                return 0.1f;
+                            case 4:
+                                return 0.2f;
+                            case 3:
+                                return 0.2f;
+                            case 2:
+                                return 0.3f;
+                            case 1:
+                                return 0.5f;
+                            case 0:
+                                return 1.00f;
+                            default:
+                                return -1.0f;
+                        }
                     }
                 });
             }
@@ -196,10 +287,12 @@ public class CameraAndKI extends AppCompatActivity {
 
 
                     if (confidence * 100 > 60) {
-                        textView.append(eachlabel + " - " + "Successful " + "\n\n");
+                        drinkName.setText(eachlabel);
                         openCamera.setVisibility(View.VISIBLE);
+                        erkannt.setVisibility(View.VISIBLE);
                     } else {
-                        textView.append(eachlabel + " - " + "Denied " + "\n\n");
+                        drinkName.setText("Nicht Erkannt");
+                        erkannt.setVisibility(View.INVISIBLE);
                     }
                     if (confidence > confidenceLevel) {
                         confidenceLevel = confidence;

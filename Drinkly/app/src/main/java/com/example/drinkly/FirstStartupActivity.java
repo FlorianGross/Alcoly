@@ -13,15 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.drinkly.NonMain.DatabaseHelper;
-import com.example.drinkly.NonMain.Getränke;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 
 
 public class FirstStartupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private DatabaseHelper databaseHelper;
-    private ArrayList<Getränke> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

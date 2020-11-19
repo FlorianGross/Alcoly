@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/btn_radio"
+        app:srcCompat="@drawable/alcoly_logo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="61dp" />
 
@@ -26,6 +26,7 @@
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:text="@string/gender"
+        android:textColor="@color/white"
         android:fontFamily="@font/helvetica_neue_regular"
         app:layout_constraintBottom_toTopOf="@+id/ageText"
         app:layout_constraintEnd_toStartOf="@+id/spinner"
@@ -49,6 +50,7 @@
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:text="@string/age"
+        android:textColor="@color/white"
         android:fontFamily="@font/helvetica_neue_regular"
         app:layout_constraintBottom_toTopOf="@+id/weightText"
         app:layout_constraintEnd_toStartOf="@+id/ageInput"
@@ -75,6 +77,7 @@
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:text="@string/weight"
+        android:textColor="@color/white"
         android:fontFamily="@font/helvetica_neue_regular"
         app:layout_constraintBottom_toTopOf="@+id/forwardButton"
         app:layout_constraintEnd_toStartOf="@+id/weightInput"
