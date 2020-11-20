@@ -256,19 +256,3 @@ public class NewCalculator extends AppCompatActivity {
     }
 }
 
-
-
-        /*
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        arrayList = databaseHelper.getAllGetraenke();
-
-        RecyclerView mRecyclerView = findViewById(R.id.mRecyclerView);
-        int numberOfColumns = 3;
-
-        setOnCLickListener();
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        adapter = new myAdapter(this, arrayList, listener);
-        mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setHasFixedSize(false);
-*/
-
