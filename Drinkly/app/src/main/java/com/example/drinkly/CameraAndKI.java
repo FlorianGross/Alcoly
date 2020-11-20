@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
 import com.example.drinkly.NonMain.PrefConfig;
-import com.example.drinkly.oldClass.Calculator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

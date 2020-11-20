@@ -16,7 +16,6 @@
         <activity android:name=".NewCalculator" />
         <activity android:name=".Statistics" />
         <activity android:name=".CameraAndKI" />
-        <activity android:name=".oldClass.Calculator" />
         <activity android:name=".MainScreen" />
         <activity android:name=".FirstStartupActivity" />
         <activity

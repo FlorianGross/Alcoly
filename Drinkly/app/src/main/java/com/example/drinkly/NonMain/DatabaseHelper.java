@@ -8,12 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.drinkly.NonMain.Getränke;
-import com.example.drinkly.oldClass.Calculator;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
