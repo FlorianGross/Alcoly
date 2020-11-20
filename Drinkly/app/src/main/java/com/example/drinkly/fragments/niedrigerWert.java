@@ -15,7 +15,7 @@ public class niedrigerWert extends Fragment {
 
 
     public niedrigerWert() {
-        // Required empty public constructor
+
     }
 
 
@@ -30,7 +30,6 @@ public class niedrigerWert extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_niedriger_wert, container, false);
     }
 }

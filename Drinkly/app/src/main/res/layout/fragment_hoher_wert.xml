@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/ageTextStatsLow"
+                android:id="@+id/ageTextStatsHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
@@ -46,13 +46,13 @@
                 android:text="20 Jahre"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/weightTextStatsLow"
+                app:layout_constraintEnd_toStartOf="@+id/weightTextStatsHigh"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
             <TextView
-                android:id="@+id/weightTextStatsLow"
+                android:id="@+id/weightTextStatsHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
@@ -62,7 +62,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView8"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/ageTextStatsLow"
+                app:layout_constraintStart_toEndOf="@+id/ageTextStatsHigh"
                 app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
             <ImageView
@@ -73,7 +73,7 @@
                 android:src="@android:drawable/btn_star_big_off"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/weightTextStatsLow"
+                app:layout_constraintStart_toEndOf="@+id/weightTextStatsHigh"
                 app:layout_constraintTop_toBottomOf="@+id/editButton" />
 
             <ImageView
@@ -84,7 +84,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/textView8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsLow" />
+                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsHigh" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -99,7 +99,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsLow" />
+                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsHigh" />
 
             <TextView
                 android:id="@+id/textView9"
