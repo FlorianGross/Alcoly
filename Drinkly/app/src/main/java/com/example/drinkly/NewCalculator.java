@@ -47,8 +47,7 @@ public class NewCalculator extends AppCompatActivity {
 
     public float getMinPermilAtTime(long date) {
         Date dateDate = new Date(date);
-        int lastElement = getLastElementWithDate(dateDate);
-        double promille = calculatePromille(arrayList, sessionStart(arrayList.get(arrayList.size() - 1).getDate(), arrayList), lastElement);
+        double promille = getPromilleToDate(dateDate);
         double time = getDrinkTime(arrayList, dateDate);
         return (float) (promille - time * (0.15 / 60));
     }
@@ -56,16 +55,19 @@ public class NewCalculator extends AppCompatActivity {
 
     public float getMedPermilAtTime(long date) {
         Date dateDate = new Date(date);
-        int lastElement = getLastElementWithDate(dateDate);
-        double promille = calculatePromille(arrayList, sessionStart(arrayList.get(arrayList.size() - 1).getDate(), arrayList), lastElement);
+        double promille = getPromilleToDate(dateDate);
         double time = getDrinkTime(arrayList, dateDate);
         return (float) (promille - time * (0.13 / 60));
     }
 
+    private double getPromilleToDate(Date dateDate) {
+        int lastElement = getLastElementWithDate(dateDate);
+        return calculatePromille(arrayList, sessionStart(arrayList.get(arrayList.size() - 1).getDate(), arrayList), lastElement);
+    }
+
     public float getMaxPermilAtTime(long date) {
         Date dateDate = new Date(date);
-        int lastElement = getLastElementWithDate(dateDate);
-        double promille = calculatePromille(arrayList, sessionStart(arrayList.get(arrayList.size() - 1).getDate(), arrayList), lastElement);
+        double promille = getPromilleToDate(dateDate);
         double time = getDrinkTime(arrayList, dateDate);
         return (float) (promille - time * (0.11 / 60));
     }
