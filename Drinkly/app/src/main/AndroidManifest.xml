@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
+        <service
+            android:name=".calculator"
+            android:enabled="true"
+            android:exported="true" />
+
         <receiver android:name=".calculatorWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -20,11 +25,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/calculator_widget_info" />
         </receiver>
-
-        <service
-            android:name=".calculater"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity android:name=".Details" />
         <activity android:name=".NewCalculator" />
