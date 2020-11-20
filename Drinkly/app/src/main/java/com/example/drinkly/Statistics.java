@@ -19,7 +19,7 @@ import java.util.Date;
 public class Statistics extends AppCompatActivity {
     Button niedrigerWert, mittlererWert, hoherWert;
     BarChart barChart;
-    int[] colorClassArray = new int[]{0x3B7FCE, Color.WHITE, 0xFF852A};
+    int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +56,11 @@ public class Statistics extends AppCompatActivity {
 
     private void initializeBarChart() {
         ArrayList<BarEntry> drink = new ArrayList<>();
-        drink = addDrinks();
+        //drink = addDrinks();
+        drink.add(new BarEntry(20f, new float[]{1.0f, 1.2f,1.3f}));
         BarDataSet barDataSet = new BarDataSet(drink, "Getränke");
         barDataSet.setColors(colorClassArray);
-        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextColor(Color.WHITE);
         barDataSet.setValueTextSize(16f);
         BarData barData = new BarData(barDataSet);
         barChart.setFitBars(true);
@@ -67,7 +68,7 @@ public class Statistics extends AppCompatActivity {
         barChart.animateY(500);
 
     }
-
+/*
     private ArrayList<BarEntry> addDrinks() {
         NewCalculator newCalculator = new NewCalculator();
         ArrayList<BarEntry> drinks = new ArrayList<>();
@@ -80,5 +81,5 @@ public class Statistics extends AppCompatActivity {
         }
         return drinks;
     }
-
+*/
 }
