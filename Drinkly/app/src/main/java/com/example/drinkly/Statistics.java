@@ -1,63 +1,88 @@
 package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.drinkly.fragments.hoherWert;
+import com.example.drinkly.fragments.mittlererWert;
+import com.example.drinkly.fragments.niedrigerWert;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Statistics extends AppCompatActivity {
-    Button niedrigerWert, mittlererWert, hoherWert;
     BarChart barChart;
     int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
+    Button lowValue, mediumValue, highValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-
-        niedrigerWert = findViewById(R.id.niedrigerWert);
-        mittlererWert = findViewById(R.id.mittlererWert);
-        hoherWert = findViewById(R.id.hoherWert);
         barChart = findViewById(R.id.barChart);
+        lowValue = findViewById(R.id.lowButton);
+        mediumValue = findViewById(R.id.mediumButton);
+        highValue = findViewById(R.id.highButton);
+
+        FragmentManager fm = getSupportFragmentManager();
+
+
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment, new hoherWert());
+        ft.commit();
+
 
         initializeBarChart();
 
 
-        niedrigerWert.setOnClickListener(new View.OnClickListener() {
+        lowValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment, new niedrigerWert());
+                ft.commit();
             }
         });
-        mittlererWert.setOnClickListener(new View.OnClickListener() {
+        mediumValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment, new mittlererWert());
+                ft.commit();
             }
         });
-        hoherWert.setOnClickListener(new View.OnClickListener() {
+        highValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment, new hoherWert());
+                ft.commit();
             }
         });
+
     }
 
     private void initializeBarChart() {
         ArrayList<BarEntry> drink = new ArrayList<>();
         //drink = addDrinks();
-        drink.add(new BarEntry(20f, new float[]{1.0f, 1.2f,1.3f}));
+        drink.add(new BarEntry(20f, new float[]{1.0f, 1.2f, 1.3f}));
         BarDataSet barDataSet = new BarDataSet(drink, "Getränke");
         barDataSet.setColors(colorClassArray);
         barDataSet.setValueTextColor(Color.WHITE);

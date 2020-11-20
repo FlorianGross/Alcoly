@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="normalBackground">#383838</color>
     <color name="MainOrange">#FF852A</color>
+    <color name="mainBlue">#3B7FCE</color>
 </resources>
