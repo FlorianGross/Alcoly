@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/normalBackground"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/normalBackground">
 
     <TextView
         android:id="@+id/DateView"
@@ -11,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="343dp"
+        android:layout_marginRight="25dp"
         android:fontFamily="@font/helvetica_neue_regular"
         android:text="Gestern"
         android:textColor="@color/white"
-        android:layout_marginRight="25dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/FirstRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +26,7 @@
         android:id="@+id/FirstRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="35dp"
         android:background="@mipmap/path"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
