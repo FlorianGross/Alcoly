@@ -38,7 +38,7 @@ public class MainScreen extends AppCompatActivity {
         if (firstStart) {
             showStartActivity();
         } else {
-            Calculate calculate = new Calculate();
+            calculator calculate = new calculator();
             double promille = calculate.getNormalResult(this);
             System.out.println(promille);
             textView.setText(promille + "");
@@ -61,6 +61,11 @@ public class MainScreen extends AppCompatActivity {
                 }
             });
         }
+        refreshData();
+    }
+
+    private void refreshData() {
+        
     }
 
     /**
