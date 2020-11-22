@@ -138,7 +138,6 @@ public class CameraAndKI extends AppCompatActivity {
                         try {
                             volume = getVolume();
                             permil = getPermil();
-
                             Date returnDate = new Date();
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(returnDate);
@@ -147,14 +146,12 @@ public class CameraAndKI extends AppCompatActivity {
                             int realDateTest = Integer.parseInt(realDate);
                             getränk = new Getränke(bitmap, new Date(), volume, permil, realDateTest);
                             Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
+                            System.out.println(getränk.toString());
+                            databaseHelper.addOne(getränk);
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating Getränk", Toast.LENGTH_SHORT).show();
-                            getränk = new Getränke(null, new Date(), -1f, -1f, -1);
                             System.out.println("Error creating getrank");
                         }
-
-                        System.out.println(getränk.toString());
-                        databaseHelper.addOne(getränk);
                     }
 
                     /**
