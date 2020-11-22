@@ -80,11 +80,10 @@ public class CameraAndKI extends AppCompatActivity {
     private void generateSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.permil, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinnerPermil.setAdapter(adapter);
+
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.volume, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinnerVolume.setAdapter(adapter2);
     }
 
@@ -278,16 +277,23 @@ public class CameraAndKI extends AppCompatActivity {
         labeler.processImage(image).addOnCompleteListener(new OnCompleteListener<List<FirebaseVisionImageLabel>>() {
             @Override
             public void onComplete(@NonNull Task<List<FirebaseVisionImageLabel>> task) {
+                Boolean succes = false;
+                String returnLabel = "Nicht erkannt";
                 for (FirebaseVisionImageLabel label : task.getResult()) {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
                     if (confidence * 100 > 60) {
-                        System.out.println(confidence + " Success");
-                        onConfidenceSuccess(eachlabel);
+                        succes = true;
                     } else {
                         System.out.println(confidence + " Decline");
                         onConfidenceDecline();
+                        returnLabel = eachlabel;
                     }
+                }
+                if(succes){
+                    onConfidenceSuccess(returnLabel);
+                }else{
+                    onConfidenceDecline();
                 }
             }
 

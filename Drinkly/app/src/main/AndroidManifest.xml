@@ -3,6 +3,7 @@
     package="com.example.drinkly">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,7 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
+
         <service
             android:name=".calculator"
             android:enabled="true"

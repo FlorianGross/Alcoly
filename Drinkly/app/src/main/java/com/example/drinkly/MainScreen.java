@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.drinkly.NonMain.Calculate;
+import com.example.drinkly.NonMain.DatabaseHelper;
+import com.example.drinkly.NonMain.Getränke;
+
+import java.util.ArrayList;
+
 
 public class MainScreen extends AppCompatActivity {
     private ImageView mainButton;
@@ -32,14 +38,10 @@ public class MainScreen extends AppCompatActivity {
         if (firstStart) {
             showStartActivity();
         } else {
-            SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
-            String promille = settings.getString("promille", "");
-            if (promille != null) {
-                textView.setText(promille + " Promille");
-            } else {
-                textView.setText("Alkoli");
-            }
-
+            Calculate calculate = new Calculate();
+            double promille = calculate.getNormalResult(this);
+            System.out.println(promille);
+            textView.setText(promille + "");
             mainButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
