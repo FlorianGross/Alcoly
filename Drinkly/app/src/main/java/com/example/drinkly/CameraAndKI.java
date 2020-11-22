@@ -160,6 +160,7 @@ public class CameraAndKI extends AppCompatActivity {
                      */
                     private float getPermil() {
                         int permilItem = spinnerPermil.getSelectedItemPosition();
+                        System.out.println(permilItem);
                         switch (permilItem) {
                             case 0:
                                 return 0f;

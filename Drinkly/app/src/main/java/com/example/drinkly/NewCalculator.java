@@ -149,6 +149,22 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
+    public double getHighTimeToDrive(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        try {
+            lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
+            double time = getDrinkTime(arrayList, new Date());
+            double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
+            normalResult = promille - time * (0.13 / 60);
+            double returnTime = (promille)/(0.13 / 60);
+            return returnTime;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
+
     /**
      * Calculates the Time between the First and the last drink
      *

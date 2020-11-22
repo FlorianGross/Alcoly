@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.drinkly.NewCalculator;
 import com.example.drinkly.R;
 
 
 public class hoherWert extends Fragment {
-    private hoherWertViewModel hoherWertViewModel;
     private TextView age, weight, timeToDrive, amountOfAlc, textType;
     private ImageView genderImage;
 
@@ -38,29 +38,36 @@ public class hoherWert extends Fragment {
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
         textType = root.findViewById(R.id.textTypeHigh);
 
-        hoherWertViewModel =
-                new ViewModelProvider(this).get(hoherWertViewModel.class);
-
-        hoherWertViewModel.getAmountOfAlc().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                amountOfAlc.setText(s);
-            }
-        });
-        hoherWertViewModel.getTimeToDrive().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                timeToDrive.setText(s);
-            }
-        });
-        hoherWertViewModel.getTextType().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textType.setText(s);
-            }
-        });
 
 
+        refreshData();
         return root;
+    }
+
+    private void refreshData() {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            NewCalculator calculate = new NewCalculator();
+                            double returnDouble = calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60;
+                            String returnString = String.format("%s", returnDouble);
+                            timeToDrive.setText(returnString + " h");
+
+                        }
+                    });
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }
