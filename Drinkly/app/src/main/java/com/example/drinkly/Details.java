@@ -103,7 +103,6 @@ public class Details extends AppCompatActivity {
      * @param i  the position of the current item in the array
      */
     private void setAllValues(ArrayList<Getränke> ai, int i) {
-        //arrayList.get(current).getUri();
         if (ai.get(i).getVolume() == 0.5) {
             check1.setChecked(false);
             check2.setChecked(true);

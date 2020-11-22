@@ -27,10 +27,10 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         mainButton = findViewById(R.id.mainAction);
-        textView = findViewById(R.id.promilleErgebnis);
         leftB = findViewById(R.id.LeftButton);
         centerB = findViewById(R.id.CenterButton);
         rightB = findViewById(R.id.RightButton);
+        textView = findViewById(R.id.promilleErgebnis);
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
@@ -38,10 +38,7 @@ public class MainScreen extends AppCompatActivity {
         if (firstStart) {
             showStartActivity();
         } else {
-            calculator calculate = new calculator();
-            double promille = calculate.getNormalResult(this);
-            System.out.println(promille);
-            textView.setText(promille + "");
+            refreshData();
             mainButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -61,11 +58,31 @@ public class MainScreen extends AppCompatActivity {
                 }
             });
         }
-        refreshData();
     }
 
     private void refreshData() {
-        
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            NewCalculator calculate = new NewCalculator();
+                            textView.setText(calculate.getNormalResultValue(getApplicationContext()) + " \u2030");
+                            System.out.println(calculate.getNormalResultValue(getApplicationContext()) + "\u2030");
+                        }
+                    });
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     /**
@@ -92,7 +109,6 @@ public class MainScreen extends AppCompatActivity {
     public void openNothing() {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
-        //overridePendingTransition(android.R.anim.fade_in, 0);
     }
 
     /**

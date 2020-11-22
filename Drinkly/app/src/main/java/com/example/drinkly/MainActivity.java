@@ -23,13 +23,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setMax(100);
         progressBar.setScaleY(3f);
         progressAnimation(2000);
-        Intent intent = new Intent(this, calculator.class);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            startForegroundService(intent);
-        }else{
-            startService(intent);
-        }
     }
 
     /**
