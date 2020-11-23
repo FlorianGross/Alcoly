@@ -14,6 +14,7 @@ import com.example.drinkly.NonMain.Calculate;
 import com.example.drinkly.NonMain.DatabaseHelper;
 import com.example.drinkly.NonMain.Getränke;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -69,8 +70,10 @@ public class MainScreen extends AppCompatActivity {
                         @Override
                         public void run() {
                             NewCalculator calculate = new NewCalculator();
-                            textView.setText(calculate.getNormalResultValue(getApplicationContext()) + " \u2030");
-                            System.out.println(calculate.getNormalResultValue(getApplicationContext()) + "\u2030");
+                            DecimalFormat f = new DecimalFormat();
+                            f.setMaximumFractionDigits(2);
+                            String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()) );
+                            textView.setText(promilleString + " \u2030");
                         }
                     });
                     try {

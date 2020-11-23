@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imageView9Medium"
             android:layout_marginLeft="180dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,13 +60,13 @@
                 android:text="100 kg"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintEnd_toStartOf="@+id/imageView8Medium"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ageTextStatsMedium"
                 app:layout_constraintTop_toBottomOf="@+id/editButtonMedium" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/imageView8Medium"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
@@ -107,7 +107,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/PromilleMedium" />
 
             <TextView
-                android:id="@+id/timeViewMedium"
+                android:id="@+id/timeToDriveMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -131,7 +131,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timeViewMedium" />
+                app:layout_constraintTop_toBottomOf="@+id/timeToDriveMedium" />
 
             <TextView
                 android:id="@+id/amountOfAlcoholMedium"
@@ -173,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/lastTourMedium" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/imageView7Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -35,11 +35,11 @@ public class mittlererWert extends Fragment {
         View root = inflater.inflate(R.layout.fragment_mittlerer_wert, container, false);
         age = root.findViewById(R.id.ageTextStatsMedium);
         weight = root.findViewById(R.id.weightTextStatsMedium);
-        genderImage = root.findViewById(R.id.imageView8);
-        timeToDrive = root.findViewById(R.id.textView9High);
+        genderImage = root.findViewById(R.id.imageView8Medium);
+        timeToDrive = root.findViewById(R.id.timeToDriveMedium);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholMedium);
         textType = root.findViewById(R.id.textTypeMedium);
-        promille = root.findViewById(R.id.PromilleHigh);
+        promille = root.findViewById(R.id.PromilleMedium);
         setBasicData();
         refreshData();
         return root;

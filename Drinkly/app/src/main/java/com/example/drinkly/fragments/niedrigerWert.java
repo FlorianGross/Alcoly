@@ -35,11 +35,11 @@ public class niedrigerWert extends Fragment {
         View root = inflater.inflate(R.layout.fragment_niedriger_wert, container, false);
         age = root.findViewById(R.id.ageTextStatsLow);
         weight = root.findViewById(R.id.weightTextStatsLow);
-        genderImage = root.findViewById(R.id.imageView8);
-        timeToDrive = root.findViewById(R.id.textView9High);
-        amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
-        textType = root.findViewById(R.id.textTypeHigh);
-        promille = root.findViewById(R.id.PromilleHigh);
+        genderImage = root.findViewById(R.id.imageView8Low);
+        timeToDrive = root.findViewById(R.id.textView9Low);
+        amountOfAlc = root.findViewById(R.id.amountOfAlcoholLow);
+        textType = root.findViewById(R.id.textTypeLow);
+        promille = root.findViewById(R.id.PromilleLow);
         setBasicData();
         refreshData();
         return root;

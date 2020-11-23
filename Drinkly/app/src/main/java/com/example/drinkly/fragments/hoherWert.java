@@ -37,7 +37,7 @@ public class hoherWert extends Fragment {
         View root = inflater.inflate(R.layout.fragment_hoher_wert, container, false);
         age = root.findViewById(R.id.ageTextStatsHigh);
         weight = root.findViewById(R.id.weightTextStatsHigh);
-        genderImage = root.findViewById(R.id.imageView8);
+        genderImage = root.findViewById(R.id.imageView8High);
         timeToDrive = root.findViewById(R.id.textView9High);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
         textType = root.findViewById(R.id.textTypeHigh);

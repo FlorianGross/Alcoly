@@ -178,7 +178,7 @@ public class NewCalculator extends AppCompatActivity {
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculatePromille(context, arrayList, sessionStart(lastDrink, arrayList), arrayList.size());
         highResult = promille - time * (0.11 / 60);
-        if (minResult <= 0) {
+        if (highResult <= 0) {
             return 0.0;
         } else {
             return highResult;
