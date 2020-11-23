@@ -20,9 +20,7 @@ import android.widget.Toast;
 
 import com.example.drinkly.backend.DatabaseHelper;
 import com.example.drinkly.backend.Getraenke;
-import com.example.drinkly.backend.PrefConfig;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.label.ImageLabel;
@@ -33,7 +31,6 @@ import com.google.mlkit.vision.label.automl.AutoMLImageLabelerOptions;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -89,13 +86,6 @@ public class CameraAndKI extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 Uri uri = useUri(result);
-
-                ArrayList<Getraenke> drinks = PrefConfig.readListFromPref(this);
-
-                if (drinks == null) {
-                    drinks = new ArrayList<>();
-                }
-
                 //Restart Take Picture
                 redo.setOnClickListener(v -> CropImage.activity().start(CameraAndKI.this));
                 //save Picture
@@ -191,7 +181,6 @@ public class CameraAndKI extends AppCompatActivity {
                             case 5:
                                 return 0.1f;
                             case 4:
-                                return 0.2f;
                             case 3:
                                 return 0.2f;
                             case 2:
