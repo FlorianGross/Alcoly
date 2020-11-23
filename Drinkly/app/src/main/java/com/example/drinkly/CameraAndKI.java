@@ -3,9 +3,7 @@ package com.example.drinkly;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -163,29 +161,29 @@ public class CameraAndKI extends AppCompatActivity {
                         System.out.println(permilItem);
                         switch (permilItem) {
                             case 0:
-                                return 0f;
-                            case 1:
-                                return 2.5f;
-                            case 2:
-                                return 5.1f;
-                            case 3:
-                                return 8f;
-                            case 4:
-                                return 11f;
-                            case 5:
-                                return 15f;
-                            case 6:
-                                return 20f;
-                            case 7:
-                                return 25f;
-                            case 8:
-                                return 30f;
-                            case 9:
-                                return 35f;
-                            case 10:
-                                return 40f;
-                            case 11:
                                 return 45f;
+                            case 1:
+                                return 40f;
+                            case 2:
+                                return 35f;
+                            case 3:
+                                return 30f;
+                            case 4:
+                                return 25f;
+                            case 5:
+                                return 20f;
+                            case 6:
+                                return 15f;
+                            case 7:
+                                return 11f;
+                            case 8:
+                                return 8f;
+                            case 9:
+                                return 5.1f;
+                            case 10:
+                                return 2.5f;
+                            case 11:
+                                return 0f;
                             default:
                                 return -1.0f;
                         }
@@ -306,7 +304,7 @@ public class CameraAndKI extends AppCompatActivity {
                 drinkName.setText(eachlabel);
                 openCamera.setVisibility(View.VISIBLE);
                 erkannt.setVisibility(View.VISIBLE);
-                spinnerPermil.setSelection(2);
+                spinnerPermil.setSelection(9);
                 spinnerVolume.setSelection(1);
                 openCamera.setText("Hinzufügen");
             }
