@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1040089596911:android:ad225aec1552232bf5ec1a",
+        "mobilesdk_app_id": "1:1040089596911:android:d7ffc1c4e4df18ddf5ec1a",
         "android_client_info": {
-          "package_name": "com.example.drinkly"
+          "package_name": "com.fmgross.drinkly"
         }
       },
       "oauth_client": [
