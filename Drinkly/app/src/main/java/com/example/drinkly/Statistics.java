@@ -1,13 +1,10 @@
 package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,15 +18,13 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class Statistics extends AppCompatActivity {
     BarChart barChart;
-    int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
+    final int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
     Button lowValue, mediumValue, highValue;
 
     @Override

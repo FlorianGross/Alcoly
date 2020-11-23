@@ -18,9 +18,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.drinkly.NonMain.DatabaseHelper;
-import com.example.drinkly.NonMain.Getränke;
-import com.example.drinkly.NonMain.PrefConfig;
+import com.example.drinkly.backend.DatabaseHelper;
+import com.example.drinkly.backend.Getraenke;
+import com.example.drinkly.backend.PrefConfig;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -41,11 +41,7 @@ import java.util.List;
 
 
 public class CameraAndKI extends AppCompatActivity {
-    private ArrayList<Getränke> drinks;
     private ImageView imgView;
-    private FirebaseAutoMLLocalModel localModel;
-    private FirebaseVisionImageLabeler labeler;
-    private FirebaseVisionImage image;
     private TextView drinkName, erkannt;
     private Button openCamera, redo;
     float volume;
@@ -95,10 +91,10 @@ public class CameraAndKI extends AppCompatActivity {
 
                 Uri uri = useUri(result);
 
-                drinks = PrefConfig.readListFromPref(this);
+                ArrayList<Getraenke> drinks = PrefConfig.readListFromPref(this);
 
                 if (drinks == null) {
-                    drinks = new ArrayList<Getränke>();
+                    drinks = new ArrayList<Getraenke>();
                 }
 
                 //Restart Take Picture
@@ -132,7 +128,7 @@ public class CameraAndKI extends AppCompatActivity {
                      */
                     private void saveInDB(Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-                        Getränke getränk;
+                        Getraenke getraenk;
                         try {
                             volume = getVolume();
                             permil = getPermil();
@@ -142,10 +138,10 @@ public class CameraAndKI extends AppCompatActivity {
                             int month = calendar.get(Calendar.MONTH) + 1;
                             String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                             int realDateTest = Integer.parseInt(realDate);
-                            getränk = new Getränke(bitmap, new Date(), volume, permil, realDateTest);
-                            Toast.makeText(getApplicationContext(), getränk.toString(), Toast.LENGTH_SHORT).show();
-                            System.out.println(getränk.toString());
-                            databaseHelper.addOne(getränk);
+                            getraenk = new Getraenke(bitmap, new Date(), volume, permil, realDateTest);
+                            Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
+                            System.out.println(getraenk.toString());
+                            databaseHelper.addOne(getraenk);
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "Error creating Getränk", Toast.LENGTH_SHORT).show();
                             System.out.println("Error creating getrank");
@@ -246,7 +242,7 @@ public class CameraAndKI extends AppCompatActivity {
      * @param uri the Image in uri format
      */
     private void setLabelerFromLocalModel(Uri uri) {
-        localModel = new FirebaseAutoMLLocalModel.Builder()
+        FirebaseAutoMLLocalModel localModel = new FirebaseAutoMLLocalModel.Builder()
                 .setAssetFilePath("model/manifest.json")
                 .build();
         try {
@@ -254,8 +250,8 @@ public class CameraAndKI extends AppCompatActivity {
                     new FirebaseVisionOnDeviceAutoMLImageLabelerOptions.Builder(localModel)
                             .setConfidenceThreshold(0.0f)
                             .build();
-            labeler = FirebaseVision.getInstance().getOnDeviceAutoMLImageLabeler(options);
-            image = FirebaseVisionImage.fromFilePath(CameraAndKI.this, uri);
+            FirebaseVisionImageLabeler labeler = FirebaseVision.getInstance().getOnDeviceAutoMLImageLabeler(options);
+            FirebaseVisionImage image = FirebaseVisionImage.fromFilePath(CameraAndKI.this, uri);
             processImageLabeler(labeler, image);
         } catch (FirebaseMLException | IOException e) {
             // ...
@@ -273,7 +269,7 @@ public class CameraAndKI extends AppCompatActivity {
         labeler.processImage(image).addOnCompleteListener(new OnCompleteListener<List<FirebaseVisionImageLabel>>() {
             @Override
             public void onComplete(@NonNull Task<List<FirebaseVisionImageLabel>> task) {
-                Boolean succes = false;
+                boolean succes = false;
                 String returnLabel = "Nicht erkannt";
                 for (FirebaseVisionImageLabel label : task.getResult()) {
                     String eachlabel = label.getText().toUpperCase();

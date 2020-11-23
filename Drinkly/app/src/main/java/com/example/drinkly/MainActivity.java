@@ -2,12 +2,10 @@ package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
-import com.example.drinkly.NonMain.ProgressBarAnimation;
+import com.example.drinkly.backend.ProgressBarAnimation;
 
 public class MainActivity extends AppCompatActivity {
 

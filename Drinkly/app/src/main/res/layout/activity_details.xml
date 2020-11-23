@@ -63,7 +63,9 @@
                 android:textColor="@color/white"
                 android:text="Bier"
                 android:fontFamily="@font/helvetica_neue_regular"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                tools:ignore="Autofill"
+                android:inputType="text" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -112,7 +114,9 @@
                     android:fontFamily="@font/helvetica_neue_regular"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:inputType="text"
+                    tools:ignore="Autofill" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView

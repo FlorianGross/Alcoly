@@ -12,12 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.drinkly.NonMain.DatabaseHelper;
+import com.example.drinkly.backend.DatabaseHelper;
 
 
 
 public class FirstStartupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +55,8 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        databaseHelper.deleteAllGetränke();
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        databaseHelper.deleteAllGetraenke();
     }
 
     @Override

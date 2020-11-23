@@ -2,6 +2,7 @@ package com.example.drinkly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +12,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.drinkly.NonMain.DatabaseHelper;
-import com.example.drinkly.NonMain.Getränke;
+import com.example.drinkly.backend.DatabaseHelper;
+import com.example.drinkly.backend.Getraenke;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Details extends AppCompatActivity {
-    private ArrayList<Getränke> arrayList;
-    private DatabaseHelper databaseHelper;
-    private Button back, edit;
+    private Button edit;
     private EditText percentage, type;
     private TextView currentDate;
     private ImageView imageView;
@@ -34,7 +33,7 @@ public class Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        back = findViewById(R.id.back);
+        Button back = findViewById(R.id.back);
         edit = findViewById(R.id.edit);
         imageView = findViewById(R.id.currentImage);
         percentage = findViewById(R.id.currentPercentage);
@@ -80,8 +79,8 @@ public class Details extends AppCompatActivity {
      * Generates the details page
      */
     private void generateDelails() {
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        arrayList = databaseHelper.getAllGetraenke();
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             current = extras.getInt("intPosition");
@@ -102,7 +101,7 @@ public class Details extends AppCompatActivity {
      * @param ai the list of all drinks
      * @param i  the position of the current item in the array
      */
-    private void setAllValues(ArrayList<Getränke> ai, int i) {
+    private void setAllValues(ArrayList<Getraenke> ai, int i) {
         if (ai.get(i).getVolume() == 0.5) {
             check1.setChecked(false);
             check2.setChecked(true);
@@ -111,7 +110,7 @@ public class Details extends AppCompatActivity {
             check1.setChecked(true);
         }
         Date newDate = ai.get(i).getDate();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String strDate = formatter.format(newDate);
         currentDate.setText(strDate);
         percentage.setText(ai.get(i).getVolumePart() + "\u2030");

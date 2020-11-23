@@ -20,7 +20,11 @@ import java.text.DecimalFormat;
 
 public class mittlererWert extends Fragment {
 
-    private TextView age, weight, timeToDrive, amountOfAlc, textType, promille;
+    private TextView age;
+    private TextView weight;
+    private TextView timeToDrive;
+    private TextView amountOfAlc;
+    private TextView promille;
     private ImageView genderImage;
 
     @Override
@@ -38,7 +42,7 @@ public class mittlererWert extends Fragment {
         genderImage = root.findViewById(R.id.imageView8Medium);
         timeToDrive = root.findViewById(R.id.timeToDriveMedium);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholMedium);
-        textType = root.findViewById(R.id.textTypeMedium);
+        TextView textType = root.findViewById(R.id.textTypeMedium);
         promille = root.findViewById(R.id.PromilleMedium);
         setBasicData();
         refreshData();

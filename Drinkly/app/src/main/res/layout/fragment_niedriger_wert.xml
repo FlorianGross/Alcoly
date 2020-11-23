@@ -14,16 +14,15 @@
 
         <ImageView
             android:id="@+id/imageView9Low"
-            android:layout_marginLeft="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
             android:src="@mipmap/polygon" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/fragment"
-            android:outlineSpotShadowColor="@color/black">
+            android:background="@mipmap/fragment">
 
             <Button
                 android:id="@+id/editButtonLow"
@@ -59,7 +58,7 @@
                 android:text="100 kg"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintEnd_toStartOf="@+id/imageView8High"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ageTextStatsLow"
                 app:layout_constraintTop_toBottomOf="@+id/editButtonLow" />

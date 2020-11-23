@@ -4,34 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.drinkly.NonMain.Calculate;
-import com.example.drinkly.NonMain.DatabaseHelper;
-import com.example.drinkly.NonMain.Getränke;
-
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 
 public class MainScreen extends AppCompatActivity {
-    private ImageView mainButton;
     private TextView textView;
-    private ImageView leftB, centerB, rightB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        mainButton = findViewById(R.id.mainAction);
-        leftB = findViewById(R.id.LeftButton);
-        centerB = findViewById(R.id.CenterButton);
-        rightB = findViewById(R.id.RightButton);
+        ImageView mainButton = findViewById(R.id.mainAction);
+        ImageView leftB = findViewById(R.id.LeftButton);
+        ImageView centerB = findViewById(R.id.CenterButton);
+        ImageView rightB = findViewById(R.id.RightButton);
         textView = findViewById(R.id.promilleErgebnis);
 
 

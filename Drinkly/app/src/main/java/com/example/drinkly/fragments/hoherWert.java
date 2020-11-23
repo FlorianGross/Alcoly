@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,11 @@ import java.text.DecimalFormat;
 
 
 public class hoherWert extends Fragment {
-    private TextView age, weight, timeToDrive, amountOfAlc, textType, promille;
+    private TextView age;
+    private TextView weight;
+    private TextView timeToDrive;
+    private TextView amountOfAlc;
+    private TextView promille;
     private ImageView genderImage;
 
     @Override
@@ -40,7 +42,7 @@ public class hoherWert extends Fragment {
         genderImage = root.findViewById(R.id.imageView8High);
         timeToDrive = root.findViewById(R.id.textView9High);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
-        textType = root.findViewById(R.id.textTypeHigh);
+        TextView textType = root.findViewById(R.id.textTypeHigh);
         promille = root.findViewById(R.id.PromilleHigh);
         setBasicData();
         refreshData();

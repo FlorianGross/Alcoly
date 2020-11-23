@@ -10,27 +10,22 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.drinkly.NonMain.DatabaseHelper;
-import com.example.drinkly.NonMain.Getränke;
-import com.example.drinkly.NonMain.GroupAdapter;
-import com.example.drinkly.NonMain.myAdapter;
+import com.example.drinkly.backend.DatabaseHelper;
+import com.example.drinkly.backend.Getraenke;
+import com.example.drinkly.backend.GroupAdapter;
+import com.example.drinkly.backend.myAdapter;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class NewCalculator extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
-    private ArrayList<Getränke> arrayList;
+    private ArrayList<Getraenke> arrayList;
     private ArrayList<Integer> arrayListString;
     public double minResult;
     public double normalResult;
     public double highResult;
-    private Date firstDrink;
     private Date lastDrink;
-    private GroupAdapter groupAdapter;
-    private myAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +46,7 @@ public class NewCalculator extends AppCompatActivity {
     private void createRecycler() {
         RecyclerView newRecyclerView = findViewById(R.id.mRecyclerView);
         newRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        groupAdapter = new GroupAdapter(this, arrayListString);
+        GroupAdapter groupAdapter = new GroupAdapter(this, arrayListString);
         newRecyclerView.setAdapter(groupAdapter);
         newRecyclerView.setHasFixedSize(false);
     }
@@ -101,7 +96,7 @@ public class NewCalculator extends AppCompatActivity {
         arrayListString = databaseHelper.getAllDates(arrayList);
     }
 
-    public double getNormalResult(Context context, ArrayList<Getränke> arrayList) {
+    public double getNormalResult(Context context, ArrayList<Getraenke> arrayList) {
         try {
             lastDrink = arrayList.get(arrayList.size() - 1).getDate();
             double time = getDrinkTime(arrayList, new Date());
@@ -121,26 +116,25 @@ public class NewCalculator extends AppCompatActivity {
 
     public double getNormalResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
         return getNormalResult(context, arrayListHere);
     }
 
     public double getNormalTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
         try {
             lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
             double time = getDrinkTime(arrayListHere, new Date());
             double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
             normalResult = promille - time * (0.13 / 60);
-            double returnTime = (promille) / (0.13 / 60);
-            return returnTime;
+            return (promille) / (0.13 / 60);
         } catch (ArrayIndexOutOfBoundsException e) {
             return 0;
         }
     }
 
-    public double getMinResult(Context context, ArrayList<Getränke> arrayList) {
+    public double getMinResult(Context context, ArrayList<Getraenke> arrayList) {
         lastDrink = arrayList.get(arrayList.size() - 1).getDate();
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculatePromille(context, arrayList, sessionStart(lastDrink, arrayList), arrayList.size());
@@ -154,26 +148,25 @@ public class NewCalculator extends AppCompatActivity {
 
     public double getMinResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
         return getMinResult(context, arrayListHere);
     }
 
     public double getMinTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
         try {
             lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
             double time = getDrinkTime(arrayListHere, new Date());
             double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
             normalResult = promille - time * (0.15 / 60);
-            double returnTime = (promille) / (0.15 / 60);
-            return returnTime;
+            return (promille) / (0.15 / 60);
         } catch (ArrayIndexOutOfBoundsException e) {
             return 0;
         }
     }
 
-    public double getHighResult(Context context, ArrayList<Getränke> arrayList) {
+    public double getHighResult(Context context, ArrayList<Getraenke> arrayList) {
         lastDrink = arrayList.get(arrayList.size() - 1).getDate();
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculatePromille(context, arrayList, sessionStart(lastDrink, arrayList), arrayList.size());
@@ -187,20 +180,19 @@ public class NewCalculator extends AppCompatActivity {
 
     public double getHighResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
         return getHighResult(context, arrayListHere);
     }
 
     public double getHighTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
         try {
             lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
             double time = getDrinkTime(arrayListHere, new Date());
             double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
             normalResult = promille - time * (0.11 / 60);
-            double returnTime = (promille) / (0.11 / 60);
-            return returnTime;
+            return (promille) / (0.11 / 60);
         } catch (ArrayIndexOutOfBoundsException e) {
             return 0;
         }
@@ -214,9 +206,9 @@ public class NewCalculator extends AppCompatActivity {
      * @param now       the last drink of the arrayList
      * @return the duration between the first and the last drink in hours
      */
-    public double getDrinkTime(ArrayList<Getränke> arrayList, Date now) {
+    public double getDrinkTime(ArrayList<Getraenke> arrayList, Date now) {
 
-        firstDrink = arrayList.get(sessionStart(lastDrink, arrayList)).getDate();
+        Date firstDrink = arrayList.get(sessionStart(lastDrink, arrayList)).getDate();
         double result = now.getTime() - firstDrink.getTime();
         return result / 60000;
     }
@@ -228,7 +220,7 @@ public class NewCalculator extends AppCompatActivity {
      * @param arrayList the list of all drinks
      * @return the position of the first element of the session
      */
-    private int sessionStart(Date lastDrink, ArrayList<Getränke> arrayList) {
+    private int sessionStart(Date lastDrink, ArrayList<Getraenke> arrayList) {
         long datelast = lastDrink.getTime();
         long dateTest;
         int returnInt = -1;
@@ -249,10 +241,10 @@ public class NewCalculator extends AppCompatActivity {
      * @param startElement the first drink of the session
      * @return permile value of the drank drinks
      */
-    public double calculatePromille(Context context, ArrayList<Getränke> arrayList, int startElement, int endelement) {
+    public double calculatePromille(Context context, ArrayList<Getraenke> arrayList, int startElement, int endelement) {
         SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String gender = settings.getString("gender", "Male");
-        double r = getGenderR(gender.equals("Male"), 0.68, 0.55);
+        double r = getGenderR(gender.equals("Male"));
         int age = settings.getInt("age", 20);
         double u = getAgeU(age < 55, 0.15, 0.2);
         int m = settings.getInt("weight", 80);
@@ -292,20 +284,17 @@ public class NewCalculator extends AppCompatActivity {
      * Sets the "r" value from the userInput from Appstart
      *
      * @param male Boolean weather the person is Male or Female
-     * @param v2   the Value for Male
-     * @param v3   the Value for Female
      * @return the "r" value
      */
-    private double getGenderR(boolean male, double v2, double v3) {
-        double r = getAgeU(male, v2, v3);
-        return r;
+    private double getGenderR(boolean male) {
+        return getAgeU(male, 0.68, 0.55);
     }
 
     /**
      * Sets the OnClickListener for the detailsview
      */
     private void setOnCLickListener() {
-        listener = new myAdapter.RecyclerViewClickListener() {
+        myAdapter.RecyclerViewClickListener listener = new myAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
                 Intent intent = new Intent(getApplicationContext(), Details.class);

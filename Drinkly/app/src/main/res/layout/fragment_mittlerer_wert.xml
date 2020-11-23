@@ -14,17 +14,15 @@
 
         <ImageView
             android:id="@+id/imageView9Medium"
-            android:layout_marginLeft="180dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
             android:src="@mipmap/polygon" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:outlineSpotShadowColor="@color/black"
-            android:background="@mipmap/fragment"
-            >
+            android:background="@mipmap/fragment">
 
             <Button
                 android:id="@+id/editButtonMedium"
@@ -113,8 +111,8 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="04:12 h"
-                android:textColor="@color/white"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="70sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -166,8 +164,8 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="36 alkoholische Getränke, davon 22 stark"
-                android:textSize="16sp"
                 android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lastTourMedium" />
