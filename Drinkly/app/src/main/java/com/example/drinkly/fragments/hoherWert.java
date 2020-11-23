@@ -79,9 +79,9 @@ public class hoherWert extends Fragment {
                                 promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
                                 amountOfAlc.setText("0");
                             } catch (Exception e) {
-                                timeToDrive.setText(0);
-                                promille.setText(0);
-                                amountOfAlc.setText(0);
+                                timeToDrive.setText("");
+                                promille.setText("");
+                                amountOfAlc.setText("");
                             }
                         }
                     });

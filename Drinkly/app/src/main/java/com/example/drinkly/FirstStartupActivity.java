@@ -91,6 +91,7 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
 
         editor.putInt("age", age);
         editor.putInt("weight", Integer.parseInt(weight));
+        editor.putBoolean("valuesSet", true);
         editor.apply();
     }
 
