@@ -64,34 +64,28 @@ public class niedrigerWert extends Fragment {
     }
 
     private void refreshData() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                NewCalculator calculate = new NewCalculator();
-                                double timeToDriveDouble = calculate.getMinTimeToDrive(getContext().getApplicationContext()) / 60;
-                                DecimalFormat f = new DecimalFormat();
-                                f.setMaximumFractionDigits(2);
-                                String timeToDriveString = f.format(timeToDriveDouble);
-                                timeToDrive.setText(timeToDriveString + " h");
-                                promille.setText(f.format(calculate.getMinResultValue(getContext().getApplicationContext())) + " ‰");
-                                amountOfAlc.setText("0");
-                            } catch (Exception e) {
-                                timeToDrive.setText(0);
-                                promille.setText(0);
-                                amountOfAlc.setText(0);
-                            }
-                        }
-                    });
+        Runnable runnable = () -> {
+            while (true) {
+                getActivity().runOnUiThread(() -> {
                     try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        NewCalculator calculate = new NewCalculator();
+                        double timeToDriveDouble = calculate.getMinTimeToDrive(getContext().getApplicationContext()) / 60;
+                        DecimalFormat f = new DecimalFormat();
+                        f.setMaximumFractionDigits(2);
+                        String timeToDriveString = f.format(timeToDriveDouble);
+                        timeToDrive.setText(timeToDriveString + " h");
+                        promille.setText(f.format(calculate.getMinResultValue(getContext().getApplicationContext())) + " ‰");
+                        amountOfAlc.setText("0");
+                    } catch (Exception e) {
+                        timeToDrive.setText(0);
+                        promille.setText(0);
+                        amountOfAlc.setText(0);
                     }
+                });
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         };

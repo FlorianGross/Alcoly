@@ -294,13 +294,10 @@ public class NewCalculator extends AppCompatActivity {
      * Sets the OnClickListener for the detailsview
      */
     private void setOnCLickListener() {
-        myAdapter.RecyclerViewClickListener listener = new myAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), Details.class);
-                intent.putExtra("intPosition", position);
-                startActivity(intent);
-            }
+        myAdapter.RecyclerViewClickListener listener = (v, position) -> {
+            Intent intent = new Intent(getApplicationContext(), Details.class);
+            intent.putExtra("intPosition", position);
+            startActivity(intent);
         };
     }
 }

@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return ArrayList with all the elements from the Database
      */
     public ArrayList<Getraenke> getAllGetraenke() {
-        ArrayList<Getraenke> getraenke = new ArrayList<Getraenke>();
+        ArrayList<Getraenke> getraenke = new ArrayList<>();
         String queryString = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
@@ -125,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return An new ArrayList with all the Objects from this date
      */
     public ArrayList<Getraenke> getAllOfDate(int date) {
-        ArrayList<Getraenke> getraenkeList = new ArrayList<Getraenke>();
+        ArrayList<Getraenke> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " == " + date;
 

@@ -33,47 +33,26 @@ public class MainScreen extends AppCompatActivity {
             showStartActivity();
         } else {
             refreshData();
-            mainButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openCamera();
-                }
-            });
-            leftB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openCalculator();
-                }
-            });
-            rightB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openNothing();
-                }
-            });
+            mainButton.setOnClickListener(v -> openCamera());
+            leftB.setOnClickListener(v -> openCalculator());
+            rightB.setOnClickListener(v -> openNothing());
         }
     }
 
     private void refreshData() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            NewCalculator calculate = new NewCalculator();
-                            DecimalFormat f = new DecimalFormat();
-                            f.setMaximumFractionDigits(2);
-                            String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
-                            textView.setText(promilleString + " \u2030");
-                        }
-                    });
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Runnable runnable = () -> {
+            while (true) {
+                runOnUiThread(() -> {
+                    NewCalculator calculate = new NewCalculator();
+                    DecimalFormat f = new DecimalFormat();
+                    f.setMaximumFractionDigits(2);
+                    String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
+                    textView.setText(promilleString + " \u2030");
+                });
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         };

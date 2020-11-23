@@ -60,13 +60,10 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
     }
 
     private void setOnCLickListener() {
-        listener = new myAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(context, Details.class);
-                intent.putExtra("intPosition", position);
-                context.startActivity(intent);
-            }
+        listener = (v, position) -> {
+            Intent intent = new Intent(context, Details.class);
+            intent.putExtra("intPosition", position);
+            context.startActivity(intent);
         };
     }
 

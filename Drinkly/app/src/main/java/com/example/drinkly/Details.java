@@ -44,31 +44,25 @@ public class Details extends AppCompatActivity {
 
         generateDelails();
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-                startActivity(intent);
-            }
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+            startActivity(intent);
         });
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!saveMode) {
-                    percentage.setFocusable(true);
-                    type.setFocusable(true);
-                    percentage.setFocusableInTouchMode(true);
-                    type.setFocusableInTouchMode(true);
-                    edit.setText("Save");
-                    saveMode = true;
-                } else {
-                    percentage.setFocusable(false);
-                    type.setFocusable(false);
-                    percentage.setFocusableInTouchMode(false);
-                    type.setFocusableInTouchMode(false);
-                    edit.setText("Edit");
-                    saveMode = false;
-                }
+        edit.setOnClickListener(v -> {
+            if (!saveMode) {
+                percentage.setFocusable(true);
+                type.setFocusable(true);
+                percentage.setFocusableInTouchMode(true);
+                type.setFocusableInTouchMode(true);
+                edit.setText("Save");
+                saveMode = true;
+            } else {
+                percentage.setFocusable(false);
+                type.setFocusable(false);
+                percentage.setFocusableInTouchMode(false);
+                type.setFocusableInTouchMode(false);
+                edit.setText("Edit");
+                saveMode = false;
             }
         });
 

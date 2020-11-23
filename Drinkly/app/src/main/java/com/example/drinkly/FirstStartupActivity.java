@@ -30,15 +30,11 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
 
         generateSaveLocations(spinner);
 
-        forwardButton.setOnClickListener(new View.OnClickListener() {
+        forwardButton.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
+            saveSettings(ageInput, weightInput);
 
-                saveSettings(ageInput, weightInput);
-
-                startMainScreen();
-            }
+            startMainScreen();
         });
     }
 

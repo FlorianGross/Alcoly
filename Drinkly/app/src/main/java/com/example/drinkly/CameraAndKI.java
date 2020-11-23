@@ -23,7 +23,6 @@ import com.example.drinkly.backend.Getraenke;
 import com.example.drinkly.backend.PrefConfig;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.label.ImageLabel;
@@ -94,16 +93,11 @@ public class CameraAndKI extends AppCompatActivity {
                 ArrayList<Getraenke> drinks = PrefConfig.readListFromPref(this);
 
                 if (drinks == null) {
-                    drinks = new ArrayList<Getraenke>();
+                    drinks = new ArrayList<>();
                 }
 
                 //Restart Take Picture
-                redo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CropImage.activity().start(CameraAndKI.this);
-                    }
-                });
+                redo.setOnClickListener(v -> CropImage.activity().start(CameraAndKI.this));
                 //save Picture
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -299,14 +293,11 @@ public class CameraAndKI extends AppCompatActivity {
                 spinnerVolume.setSelection(1);
                 openCamera.setText("Hinzufügen");
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("OnFail", "" + e);
-                Toast.makeText(CameraAndKI.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
-            }
+        }).addOnFailureListener(e -> {
+            Log.e("OnFail", "" + e);
+            Toast.makeText(CameraAndKI.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
         });
 
     }
-    
+
 }

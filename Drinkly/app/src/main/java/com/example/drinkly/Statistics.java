@@ -47,29 +47,20 @@ public class Statistics extends AppCompatActivity {
         initializeBarChart();
 
 
-        lowValue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, new niedrigerWert());
-                ft.commit();
-            }
+        lowValue.setOnClickListener(v -> {
+            FragmentTransaction ft1 = fm.beginTransaction();
+            ft1.replace(R.id.fragment, new niedrigerWert());
+            ft1.commit();
         });
-        mediumValue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, new mittlererWert());
-                ft.commit();
-            }
+        mediumValue.setOnClickListener(v -> {
+            FragmentTransaction ft12 = fm.beginTransaction();
+            ft12.replace(R.id.fragment, new mittlererWert());
+            ft12.commit();
         });
-        highValue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment, new hoherWert());
-                ft.commit();
-            }
+        highValue.setOnClickListener(v -> {
+            FragmentTransaction ft13 = fm.beginTransaction();
+            ft13.replace(R.id.fragment, new hoherWert());
+            ft13.commit();
         });
 
     }
