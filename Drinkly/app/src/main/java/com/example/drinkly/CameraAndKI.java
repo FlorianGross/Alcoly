@@ -23,14 +23,14 @@ import com.example.drinkly.backend.Getraenke;
 import com.example.drinkly.backend.PrefConfig;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.ml.common.FirebaseMLException;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.automl.FirebaseAutoMLLocalModel;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
-import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
-import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.label.ImageLabel;
+import com.google.mlkit.vision.label.ImageLabeler;
+import com.google.mlkit.vision.label.ImageLabeling;
+import com.google.mlkit.vision.label.automl.AutoMLImageLabelerLocalModel;
+import com.google.mlkit.vision.label.automl.AutoMLImageLabelerOptions;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
@@ -236,42 +236,37 @@ public class CameraAndKI extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * Labels the Image with the Firebase KI
-     *
-     * @param uri the Image in uri format
-     */
     private void setLabelerFromLocalModel(Uri uri) {
-        FirebaseAutoMLLocalModel localModel = new FirebaseAutoMLLocalModel.Builder()
-                .setAssetFilePath("model/manifest.json")
-                .build();
+        AutoMLImageLabelerLocalModel localModel =
+                new AutoMLImageLabelerLocalModel.Builder()
+                        .setAssetFilePath("model/manifest.json")
+                        // or .setAbsoluteFilePath(absolute file path to manifest file)
+                        .build();
+
+        AutoMLImageLabelerOptions autoMLImageLabelerOptions =
+                new AutoMLImageLabelerOptions.Builder(localModel)
+                        .setConfidenceThreshold(0.0f)  // Evaluate your model in the Firebase console
+                        // to determine an appropriate value.
+                        .build();
+        ImageLabeler labeler = ImageLabeling.getClient(autoMLImageLabelerOptions);
+        InputImage image = null;
         try {
-            FirebaseVisionOnDeviceAutoMLImageLabelerOptions options =
-                    new FirebaseVisionOnDeviceAutoMLImageLabelerOptions.Builder(localModel)
-                            .setConfidenceThreshold(0.0f)
-                            .build();
-            FirebaseVisionImageLabeler labeler = FirebaseVision.getInstance().getOnDeviceAutoMLImageLabeler(options);
-            FirebaseVisionImage image = FirebaseVisionImage.fromFilePath(CameraAndKI.this, uri);
-            processImageLabeler(labeler, image);
-        } catch (FirebaseMLException | IOException e) {
-            // ...
+            image = InputImage.fromFilePath(this, uri);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        processImageLabeler(labeler, image);
+
     }
 
-    /**
-     * The process of Labeling
-     *
-     * @param labeler the labeler for the Image
-     * @param image   the image to be labeled
-     */
-    private void processImageLabeler(FirebaseVisionImageLabeler
-                                             labeler, FirebaseVisionImage image) {
-        labeler.processImage(image).addOnCompleteListener(new OnCompleteListener<List<FirebaseVisionImageLabel>>() {
+
+    private void processImageLabeler(ImageLabeler labeler, InputImage image) {
+        labeler.process(image).addOnCompleteListener(new OnCompleteListener<List<ImageLabel>>() {
             @Override
-            public void onComplete(@NonNull Task<List<FirebaseVisionImageLabel>> task) {
+            public void onComplete(@NonNull Task<List<ImageLabel>> task) {
                 boolean succes = false;
                 String returnLabel = "Nicht erkannt";
-                for (FirebaseVisionImageLabel label : task.getResult()) {
+                for (ImageLabel label : task.getResult()) {
                     String eachlabel = label.getText().toUpperCase();
                     float confidence = label.getConfidence();
                     if (confidence * 100 > 60) {
@@ -282,9 +277,9 @@ public class CameraAndKI extends AppCompatActivity {
                         returnLabel = eachlabel;
                     }
                 }
-                if(succes){
+                if (succes) {
                     onConfidenceSuccess(returnLabel);
-                }else{
+                } else {
                     onConfidenceDecline();
                 }
             }
@@ -304,7 +299,6 @@ public class CameraAndKI extends AppCompatActivity {
                 spinnerVolume.setSelection(1);
                 openCamera.setText("Hinzufügen");
             }
-
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -312,5 +306,7 @@ public class CameraAndKI extends AppCompatActivity {
                 Toast.makeText(CameraAndKI.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+    
 }

@@ -30,12 +30,13 @@ android {
     aaptOptions {
         noCompress "tflite"
     }
+
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
-    implementation 'com.google.firebase:firebase-ml-vision-automl:18.0.6'
-    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    //implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
+    implementation 'com.google.mlkit:image-labeling-automl:16.0.0'
+
 
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
