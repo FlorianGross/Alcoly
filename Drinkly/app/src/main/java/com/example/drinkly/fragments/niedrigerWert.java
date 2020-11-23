@@ -52,7 +52,7 @@ public class niedrigerWert extends Fragment {
         int weightInt = settings.getInt("weight", 80);
         age.setText(ageInt + "Jahre");
         weight.setText(weightInt + "kg");
-        if(genderImage.equals("Male")){
+        if(genderString.equals("Male")){
             genderImage.setImageResource(R.mipmap.male);
         }else{
             genderImage.setImageResource(R.drawable.female);
