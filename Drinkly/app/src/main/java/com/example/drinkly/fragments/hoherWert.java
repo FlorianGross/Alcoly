@@ -1,5 +1,7 @@
 package com.example.drinkly.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -16,9 +18,11 @@ import android.widget.TextView;
 import com.example.drinkly.NewCalculator;
 import com.example.drinkly.R;
 
+import java.text.DecimalFormat;
+
 
 public class hoherWert extends Fragment {
-    private TextView age, weight, timeToDrive, amountOfAlc, textType;
+    private TextView age, weight, timeToDrive, amountOfAlc, textType, promille;
     private ImageView genderImage;
 
     @Override
@@ -34,14 +38,27 @@ public class hoherWert extends Fragment {
         age = root.findViewById(R.id.ageTextStatsHigh);
         weight = root.findViewById(R.id.weightTextStatsHigh);
         genderImage = root.findViewById(R.id.imageView8);
-        timeToDrive = root.findViewById(R.id.textView9);
+        timeToDrive = root.findViewById(R.id.textView9High);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
         textType = root.findViewById(R.id.textTypeHigh);
-
-
-
+        promille = root.findViewById(R.id.PromilleHigh);
+        setBasicData();
         refreshData();
         return root;
+    }
+
+    private void setBasicData() {
+        SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+        String genderString = settings.getString("gender", "Male");
+        int ageInt = settings.getInt("age", 20);
+        int weightInt = settings.getInt("weight", 80);
+        age.setText(ageInt + "Jahre");
+        weight.setText(weightInt + "kg");
+        if(genderImage.equals("Male")){
+            genderImage.setImageResource(R.mipmap.male);
+        }else{
+            genderImage.setImageResource(R.drawable.female);
+        }
     }
 
     private void refreshData() {
@@ -53,10 +70,13 @@ public class hoherWert extends Fragment {
                         @Override
                         public void run() {
                             NewCalculator calculate = new NewCalculator();
-                            double returnDouble = calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60;
-                            String returnString = String.format("%s", returnDouble);
-                            timeToDrive.setText(returnString + " h");
-
+                            double timeToDriveDouble = calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60;
+                            DecimalFormat f = new DecimalFormat();
+                            f.setMaximumFractionDigits(2);
+                            String timeToDriveString = f.format(timeToDriveDouble);
+                            timeToDrive.setText(timeToDriveString + " h");
+                            promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
+                            amountOfAlc.setText("0");
                         }
                     });
                     try {

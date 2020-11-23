@@ -27,7 +27,7 @@
             >
 
             <Button
-                android:id="@+id/editButton"
+                android:id="@+id/editButtonMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -49,7 +49,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/weightTextStatsMedium"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editButton" />
+                app:layout_constraintTop_toBottomOf="@+id/editButtonMedium" />
 
             <TextView
                 android:id="@+id/weightTextStatsMedium"
@@ -63,7 +63,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView8"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ageTextStatsMedium"
-                app:layout_constraintTop_toBottomOf="@+id/editButton" />
+                app:layout_constraintTop_toBottomOf="@+id/editButtonMedium" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -74,13 +74,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/weightTextStatsMedium"
-                app:layout_constraintTop_toBottomOf="@+id/editButton" />
+                app:layout_constraintTop_toBottomOf="@+id/editButtonMedium" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/PromilleMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="2.5 ‰"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="70sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsMedium"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView8Medium"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="Geschätzte verbleibende Zeit bis Du
     wieder Autofahren darfst:"
@@ -89,7 +104,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsMedium" />
+                app:layout_constraintTop_toBottomOf="@+id/PromilleMedium" />
 
             <TextView
                 android:id="@+id/timeViewMedium"
@@ -103,10 +118,10 @@
                 android:textSize="70sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8Medium" />
 
             <TextView
-                android:id="@+id/amountOfAlcoholText"
+                android:id="@+id/amountOfAlcoholTextMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -129,10 +144,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholText" />
+                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholTextMedium" />
 
             <TextView
-                android:id="@+id/lastTour"
+                android:id="@+id/lastTourMedium"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -155,7 +170,7 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastTour" />
+                app:layout_constraintTop_toBottomOf="@+id/lastTourMedium" />
 
             <ImageView
                 android:id="@+id/imageView7"

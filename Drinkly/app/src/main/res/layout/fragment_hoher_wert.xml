@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imageView9High"
             android:layout_marginLeft="300dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,12 +22,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:outlineSpotShadowColor="@color/black"
             android:background="@mipmap/fragment"
-            >
+            android:outlineSpotShadowColor="@color/black">
 
             <Button
-                android:id="@+id/editButton"
+                android:id="@+id/editButtonHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -49,7 +48,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/weightTextStatsHigh"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editButton" />
+                app:layout_constraintTop_toBottomOf="@+id/editButtonHigh" />
 
             <TextView
                 android:id="@+id/weightTextStatsHigh"
@@ -60,27 +59,43 @@
                 android:text="100 kg"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintEnd_toStartOf="@+id/imageView8High"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ageTextStatsHigh"
-                app:layout_constraintTop_toBottomOf="@+id/editButton" />
+                app:layout_constraintTop_toBottomOf="@+id/editButtonHigh" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/imageView8High"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
-                android:src="@android:drawable/btn_star_big_off"
+                android:src="@drawable/female"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/weightTextStatsHigh"
-                app:layout_constraintTop_toBottomOf="@+id/editButton" />
+                app:layout_constraintTop_toBottomOf="@+id/editButtonHigh" />
+
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/PromilleHigh"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="2.5 ‰"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="70sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsHigh"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView8High"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="Geschätzte verbleibende Zeit bis Du
     wieder Autofahren darfst:"
@@ -89,24 +104,24 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsHigh" />
+                app:layout_constraintTop_toBottomOf="@+id/PromilleHigh" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView9High"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="04:12 h"
-                android:textColor="@color/white"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="70sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8High" />
 
             <TextView
-                android:id="@+id/amountOfAlcoholText"
+                android:id="@+id/amountOfAlcoholTextHigh"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -116,7 +131,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@+id/textView9High" />
 
             <TextView
                 android:id="@+id/amountOfAlcoholHigh"
@@ -129,10 +144,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholText" />
+                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholTextHigh" />
 
             <TextView
-                android:id="@+id/lastTour"
+                android:id="@+id/lastTourHigh"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -151,14 +166,14 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="36 alkoholische Getränke, davon 22 stark"
-                android:textSize="16sp"
                 android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastTour" />
+                app:layout_constraintTop_toBottomOf="@+id/lastTourHigh" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/imageView7High"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

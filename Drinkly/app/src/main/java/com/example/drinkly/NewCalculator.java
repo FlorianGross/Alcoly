@@ -125,6 +125,21 @@ public class NewCalculator extends AppCompatActivity {
         return getNormalResult(context, arrayListHere);
     }
 
+    public double getNormalTimeToDrive(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        try {
+            lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
+            double time = getDrinkTime(arrayListHere, new Date());
+            double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
+            normalResult = promille - time * (0.13 / 60);
+            double returnTime = (promille) / (0.13 / 60);
+            return returnTime;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
     public double getMinResult(Context context, ArrayList<Getränke> arrayList) {
         lastDrink = arrayList.get(arrayList.size() - 1).getDate();
         double time = getDrinkTime(arrayList, new Date());
@@ -134,6 +149,27 @@ public class NewCalculator extends AppCompatActivity {
             return 0.0;
         } else {
             return minResult;
+        }
+    }
+
+    public double getMinResultValue(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        return getMinResult(context, arrayListHere);
+    }
+
+    public double getMinTimeToDrive(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        try {
+            lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
+            double time = getDrinkTime(arrayListHere, new Date());
+            double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
+            normalResult = promille - time * (0.15 / 60);
+            double returnTime = (promille) / (0.15 / 60);
+            return returnTime;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
         }
     }
 
@@ -149,15 +185,21 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
+    public double getHighResultValue(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
+        return getHighResult(context, arrayListHere);
+    }
+
     public double getHighTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getränke> arrayListHere = databaseHelper.getAllGetraenke();
         try {
             lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
-            double time = getDrinkTime(arrayList, new Date());
+            double time = getDrinkTime(arrayListHere, new Date());
             double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
-            normalResult = promille - time * (0.13 / 60);
-            double returnTime = (promille)/(0.13 / 60);
+            normalResult = promille - time * (0.11 / 60);
+            double returnTime = (promille) / (0.11 / 60);
             return returnTime;
         } catch (ArrayIndexOutOfBoundsException e) {
             return 0;
