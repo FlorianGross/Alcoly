@@ -54,9 +54,9 @@ public class hoherWert extends Fragment {
         int weightInt = settings.getInt("weight", 80);
         age.setText(ageInt + "Jahre");
         weight.setText(weightInt + "kg");
-        if(genderString.equals("Male")){
+        if (genderString.equals("Male")) {
             genderImage.setImageResource(R.mipmap.male);
-        }else{
+        } else {
             genderImage.setImageResource(R.drawable.female);
         }
     }
@@ -69,14 +69,20 @@ public class hoherWert extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            NewCalculator calculate = new NewCalculator();
-                            double timeToDriveDouble = calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60;
-                            DecimalFormat f = new DecimalFormat();
-                            f.setMaximumFractionDigits(2);
-                            String timeToDriveString = f.format(timeToDriveDouble);
-                            timeToDrive.setText(timeToDriveString + " h");
-                            promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
-                            amountOfAlc.setText("0");
+                            try {
+                                NewCalculator calculate = new NewCalculator();
+                                double timeToDriveDouble = calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60;
+                                DecimalFormat f = new DecimalFormat();
+                                f.setMaximumFractionDigits(2);
+                                String timeToDriveString = f.format(timeToDriveDouble);
+                                timeToDrive.setText(timeToDriveString + " h");
+                                promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
+                                amountOfAlc.setText("0");
+                            } catch (Exception e) {
+                                timeToDrive.setText(0);
+                                promille.setText(0);
+                                amountOfAlc.setText(0);
+                            }
                         }
                     });
                     try {

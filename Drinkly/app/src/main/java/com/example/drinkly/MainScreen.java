@@ -38,7 +38,7 @@ public class MainScreen extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart", true);
 
-        if (firstStart) {
+        if (firstStart || prefs.getInt("weight", -1) == -1) {
             showStartActivity();
         } else {
             refreshData();
