@@ -64,14 +64,14 @@
                 android:text="Bier"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:textSize="30sp"
-                tools:ignore="Autofill"
+                tools:ignore="Autofill,LabelFor"
                 android:inputType="text" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/linie"
-                />
+                android:contentDescription="Bar" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -116,14 +116,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:inputType="text"
-                    tools:ignore="Autofill" />
+                    tools:ignore="Autofill,LabelFor" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/linie"
-                />
+                android:contentDescription="Bar" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
