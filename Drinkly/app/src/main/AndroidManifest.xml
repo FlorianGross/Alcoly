@@ -11,17 +11,16 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
-
-        <activity android:name="com.fmgross.alcoly.Details" />
-        <activity android:name="com.fmgross.alcoly.NewCalculator" />
-        <activity android:name="com.fmgross.alcoly.Statistics" />
-        <activity android:name="com.fmgross.alcoly.CameraAndKI" />
-        <activity android:name="com.fmgross.alcoly.MainScreen" />
-        <activity android:name="com.fmgross.alcoly.FirstStartupActivity" />
+        <activity android:name=".Details" />
+        <activity android:name=".NewCalculator" />
+        <activity android:name=".Statistics" />
+        <activity android:name=".CameraAndKI" />
+        <activity android:name=".MainScreen" />
+        <activity android:name=".FirstStartupActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name="com.fmgross.alcoly.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,4 +28,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

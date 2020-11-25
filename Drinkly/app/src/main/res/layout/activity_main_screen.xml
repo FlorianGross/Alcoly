@@ -11,9 +11,9 @@
 
     <ImageView
         android:id="@+id/LeftButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
         android:background="@mipmap/time"
         app:layout_constraintEnd_toStartOf="@+id/CenterButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -23,9 +23,9 @@
 
     <ImageView
         android:id="@+id/CenterButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
         android:background="@mipmap/beer"
         app:layout_constraintEnd_toStartOf="@+id/RightButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,9 +35,9 @@
 
     <ImageView
         android:id="@+id/RightButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
         android:background="@mipmap/person"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/mainAction"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:contentDescription="@string/app_logo"
         android:src="@drawable/alcoly_logo"
         app:cornerRadius="90dp"
@@ -65,6 +65,7 @@
         android:text="@string/_0_00"
         android:textAlignment="center"
         android:textSize="50sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

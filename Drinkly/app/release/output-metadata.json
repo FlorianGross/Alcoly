@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fmgross.drinkly",
+  "applicationId": "com.fmgross.alcoly",
   "variantName": "processReleaseResources",
   "elements": [
     {
