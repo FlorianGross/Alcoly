@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "1040089596911",
-    "firebase_url": "https://alkoli.firebaseio.com",
-    "project_id": "alkoli",
-    "storage_bucket": "alkoli.appspot.com"
+    "project_number": "765920232522",
+    "firebase_url": "https://alcoly.firebaseio.com",
+    "project_id": "alcoly",
+    "storage_bucket": "alcoly.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1040089596911:android:d7ffc1c4e4df18ddf5ec1a",
+        "mobilesdk_app_id": "1:765920232522:android:e330f859503e22daabd2b3",
         "android_client_info": {
-          "package_name": "com.fmgross.drinkly"
+          "package_name": "com.fmgross.alcoly"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1040089596911-ed55e96b6nsuimc34442tsau99l3uc40.apps.googleusercontent.com",
+          "client_id": "765920232522-c7rjgecfckutqj7titps62j0mjncdhur.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCK7P8Vwb0ODKpUKcgGb3mfUPmqiSdmIKM"
+          "current_key": "AIzaSyCp9M1cM_5biYdg42lic9apKyZ1AVB3AB0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1040089596911-ed55e96b6nsuimc34442tsau99l3uc40.apps.googleusercontent.com",
+              "client_id": "765920232522-c7rjgecfckutqj7titps62j0mjncdhur.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

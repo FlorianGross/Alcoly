@@ -1,4 +1,4 @@
-package com.fmgross.drinkly.backend;
+package com.fmgross.alcoly.backend;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fmgross.drinkly.Details;
-import com.fmgross.drinkly.R;
+import com.fmgross.alcoly.Details;
+import com.fmgross.alcoly.R;
 
 import java.util.ArrayList;
 

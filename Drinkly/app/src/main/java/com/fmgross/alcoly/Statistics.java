@@ -1,4 +1,4 @@
-package com.fmgross.drinkly;
+package com.fmgross.alcoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,15 +10,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.fmgross.drinkly.fragments.hoherWert;
-import com.fmgross.drinkly.fragments.mittlererWert;
-import com.fmgross.drinkly.fragments.niedrigerWert;
+import com.fmgross.alcoly.fragments.hoherWert;
+import com.fmgross.alcoly.fragments.mittlererWert;
+import com.fmgross.alcoly.fragments.niedrigerWert;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Statistics extends AppCompatActivity {
@@ -78,18 +80,17 @@ public class Statistics extends AppCompatActivity {
         barChart.animateY(500);
 
     }
-/*
+
     private ArrayList<BarEntry> addDrinks() {
         NewCalculator newCalculator = new NewCalculator();
         ArrayList<BarEntry> drinks = new ArrayList<>();
-        ArrayList<Long> dateList = newCalculator.getDates();
+        ArrayList<Integer> dateList = newCalculator.getDates();
         for (int i = 0; i < dateList.size(); i++) {
             Date newDate = new Date(dateList.get(i));
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
             String date = simpleDateFormat.format(newDate);
-            drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(dateList.get(i)),newCalculator.getMedPermilAtTime(dateList.get(i)),newCalculator.getMaxPermilAtTime(dateList.get(i))}));
+            drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(this, dateList.get(i)),newCalculator.getMedPermilAtTime(this, dateList.get(i)),newCalculator.getMaxPermilAtTime(this, dateList.get(i))}));
         }
         return drinks;
     }
-*/
 }

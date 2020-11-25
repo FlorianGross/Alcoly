@@ -1,4 +1,4 @@
-package com.fmgross.drinkly.backend;
+package com.fmgross.alcoly.backend;
 
 import android.graphics.Bitmap;
 

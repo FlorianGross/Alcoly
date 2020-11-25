@@ -1,4 +1,4 @@
-package com.fmgross.drinkly.fragments;
+package com.fmgross.alcoly.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fmgross.drinkly.NewCalculator;
-import com.fmgross.drinkly.R;
+import com.fmgross.alcoly.NewCalculator;
+import com.fmgross.alcoly.R;
 
 import java.text.DecimalFormat;
 
@@ -66,26 +66,28 @@ public class mittlererWert extends Fragment {
     private void refreshData() {
         Runnable runnable = () -> {
             while (true) {
-                getActivity().runOnUiThread(() -> {
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        try {
+                            NewCalculator calculate = new NewCalculator();
+                            double timeToDriveDouble = calculate.getNormalTimeToDrive(getContext().getApplicationContext()) / 60;
+                            DecimalFormat f = new DecimalFormat();
+                            f.setMaximumFractionDigits(2);
+                            String timeToDriveString = f.format(timeToDriveDouble);
+                            timeToDrive.setText(timeToDriveString + " h");
+                            promille.setText(f.format(calculate.getNormalResultValue(getContext().getApplicationContext())) + " ‰");
+                            amountOfAlc.setText("0");
+                        } catch (Exception e) {
+                            timeToDrive.setText("");
+                            promille.setText("");
+                            amountOfAlc.setText("");
+                        }
+                    });
                     try {
-                        NewCalculator calculate = new NewCalculator();
-                        double timeToDriveDouble = calculate.getNormalTimeToDrive(getContext().getApplicationContext()) / 60;
-                        DecimalFormat f = new DecimalFormat();
-                        f.setMaximumFractionDigits(2);
-                        String timeToDriveString = f.format(timeToDriveDouble);
-                        timeToDrive.setText(timeToDriveString + " h");
-                        promille.setText(f.format(calculate.getNormalResultValue(getContext().getApplicationContext())) + " ‰");
-                        amountOfAlc.setText("0");
-                    } catch (Exception e) {
-                        timeToDrive.setText(0);
-                        promille.setText(0);
-                        amountOfAlc.setText(0);
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                });
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         };

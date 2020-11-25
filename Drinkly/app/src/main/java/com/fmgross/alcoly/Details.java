@@ -1,4 +1,4 @@
-package com.fmgross.drinkly;
+package com.fmgross.alcoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fmgross.drinkly.backend.DatabaseHelper;
-import com.fmgross.drinkly.backend.Getraenke;
+import com.fmgross.alcoly.backend.DatabaseHelper;
+import com.fmgross.alcoly.backend.Getraenke;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

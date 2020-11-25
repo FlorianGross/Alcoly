@@ -1,4 +1,4 @@
-package com.fmgross.drinkly;
+package com.fmgross.alcoly;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fmgross.drinkly.backend.DatabaseHelper;
-import com.fmgross.drinkly.backend.Getraenke;
+import com.fmgross.alcoly.backend.DatabaseHelper;
+import com.fmgross.alcoly.backend.Getraenke;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;

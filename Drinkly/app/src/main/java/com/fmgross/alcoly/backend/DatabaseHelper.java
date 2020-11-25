@@ -1,4 +1,4 @@
-package com.fmgross.drinkly.backend;
+package com.fmgross.alcoly.backend;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,14 +23,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_GETRAENK_VOLUME = "GETRAENK_VOLUME";
     public static final String COLUMN_GETRAENK_VOLUMEP = "GETRAENK_VOLUMEP";
     public static final String COLUMN_GETRAENK_REALDATE = "GETRAENK_REALDATE";
+    public static final String COLUMN_ID = "ID";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 5);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " INTEGER )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " INTEGER )";
         db.execSQL(createTable);
     }
 
@@ -76,11 +77,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {
             do {
-                byte[] getraenkUri = cursor.getBlob(0);
-                long getraenkDate = cursor.getLong(1);
-                float getraenkVolume = cursor.getFloat(2);
-                float getraenkVolumeP = cursor.getFloat(3);
-                int realDate = cursor.getInt(4);
+                byte[] getraenkUri = cursor.getBlob(1);
+                long getraenkDate = cursor.getLong(2);
+                float getraenkVolume = cursor.getFloat(3);
+                float getraenkVolumeP = cursor.getFloat(4);
+                int realDate = cursor.getInt(5);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
@@ -132,11 +133,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {
             do {
-                byte[] getraenkUri = cursor.getBlob(0);
-                long getraenkDate = cursor.getLong(1);
-                float getraenkVolume = cursor.getFloat(2);
-                float getraenkVolumeP = cursor.getFloat(3);
-                int realDate = cursor.getInt(4);
+                byte[] getraenkUri = cursor.getBlob(1);
+                long getraenkDate = cursor.getLong(2);
+                float getraenkVolume = cursor.getFloat(3);
+                float getraenkVolumeP = cursor.getFloat(4);
+                int realDate = cursor.getInt(5);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
@@ -163,7 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToLast()) {
             do {
-                returnArray.add(cursor.getInt(4));
+                returnArray.add(cursor.getInt(5));
             } while (cursor.moveToPrevious());
         }
 

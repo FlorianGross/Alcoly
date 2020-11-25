@@ -1,11 +1,11 @@
-package com.fmgross.drinkly;
+package com.fmgross.alcoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
-import com.fmgross.drinkly.backend.ProgressBarAnimation;
+import com.fmgross.alcoly.backend.ProgressBarAnimation;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.fmgross.drinkly;
+package com.fmgross.alcoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.fmgross.drinkly.backend.DatabaseHelper;
+import com.fmgross.alcoly.backend.DatabaseHelper;
 
 
 

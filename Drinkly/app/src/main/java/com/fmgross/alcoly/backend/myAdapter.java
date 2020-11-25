@@ -1,4 +1,4 @@
-package com.fmgross.drinkly.backend;
+package com.fmgross.alcoly.backend;
 
 
 import android.annotation.SuppressLint;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fmgross.drinkly.R;
+import com.fmgross.alcoly.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.fmgross.drinkly.backend;
+package com.fmgross.alcoly.backend;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ProgressBar;
 
-import com.fmgross.drinkly.MainScreen;
+import com.fmgross.alcoly.MainScreen;
 
 public class ProgressBarAnimation extends Animation {
     private final Context context;
