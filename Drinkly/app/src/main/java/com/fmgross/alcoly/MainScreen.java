@@ -69,7 +69,7 @@ public class MainScreen extends AppCompatActivity {
     public void openCalculator() {
         Intent intent = new Intent(this, NewCalculator.class);
         startActivity(intent);
-        //overridePendingTransition(android.R.anim.fade_in, 0);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     /**
@@ -87,6 +87,7 @@ public class MainScreen extends AppCompatActivity {
     public void openNothing() {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     /**
@@ -101,5 +102,10 @@ public class MainScreen extends AppCompatActivity {
         editor.putBoolean("firstStart", false);
         editor.apply();
 
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
     }
 }

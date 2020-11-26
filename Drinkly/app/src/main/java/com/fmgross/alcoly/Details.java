@@ -120,4 +120,10 @@ public class Details extends AppCompatActivity {
         percentage.setText(ai.get(i).getVolumePart() + "\u2030");
         imageView.setImageBitmap(ai.get(i).getUri());
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 }

@@ -95,5 +95,7 @@ public class FirstStartupActivity extends AppCompatActivity implements AdapterVi
     public void startMainScreen() {
         Intent intent = new Intent(this, MainScreen.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
 }

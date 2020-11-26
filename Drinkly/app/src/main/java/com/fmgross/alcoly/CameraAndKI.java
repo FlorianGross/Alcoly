@@ -238,6 +238,7 @@ public class CameraAndKI extends AppCompatActivity {
     private void openMainScreen() {
         Intent intent = new Intent(this, MainScreen.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void setLabelerFromLocalModel(Uri uri) {
