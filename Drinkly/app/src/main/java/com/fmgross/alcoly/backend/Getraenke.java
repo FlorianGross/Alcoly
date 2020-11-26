@@ -12,13 +12,15 @@ public class Getraenke {
     private Date date;
     private float volume;
     private float volumePart;
+    private int session;
 
-    public Getraenke(Bitmap uri, Date date, float volume, float volumePart, int realDate) {
+    public Getraenke(Bitmap uri, Date date, float volume, float volumePart, int realDate, int session) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;
         this.volumePart = volumePart;
         this.realDate = realDate;
+        this.session = session;
     }
 
     /**
@@ -35,6 +37,7 @@ public class Getraenke {
                 ", realDate=" + realDate +
                 ", volume=" + volume +
                 ", volumePart=" + volumePart +
+                ", session=" + session +
                 '}';
     }
 
@@ -63,6 +66,10 @@ public class Getraenke {
         return realDate;
     }
 
+    public int getSession() {
+        return session;
+    }
+
     public void setUri(Bitmap uri) {
         this.uri = uri;
     }
@@ -81,5 +88,9 @@ public class Getraenke {
 
     public void setRealDate(int realDate) {
         this.realDate = realDate;
+    }
+
+    public void setSession(int session) {
+        this.session = session;
     }
 }

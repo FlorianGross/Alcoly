@@ -45,8 +45,12 @@ public class MainScreen extends AppCompatActivity {
                     NewCalculator calculate = new NewCalculator();
                     DecimalFormat f = new DecimalFormat();
                     f.setMaximumFractionDigits(2);
-                    String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
-                    textView.setText(promilleString + " \u2030");
+                    try {
+                        String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
+                        textView.setText(promilleString + " \u2030");
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        textView.setText(0.0 + " \u2030");
+                    }
                 });
                 try {
                     Thread.sleep(10000);

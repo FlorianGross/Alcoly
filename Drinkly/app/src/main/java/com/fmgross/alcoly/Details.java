@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -22,7 +23,7 @@ public class Details extends AppCompatActivity {
     private Button edit;
     private EditText percentage, type;
     private TextView currentDate;
-    private ImageView imageView;
+    private ImageView imageView, center, left, right;
     private CheckBox check1, check2;
     private int current = 0;
     private Boolean saveMode = false;
@@ -31,8 +32,9 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
-        Button back = findViewById(R.id.back);
+        center = findViewById(R.id.CenterButtonDetails);
+        left = findViewById(R.id.LeftButtonDetails);
+        right = findViewById(R.id.RightButtonDetails);
         edit = findViewById(R.id.edit);
         imageView = findViewById(R.id.currentImage);
         percentage = findViewById(R.id.currentPercentage);
@@ -43,8 +45,17 @@ public class Details extends AppCompatActivity {
 
         generateDelails();
 
-        back.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+
+        left.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Statistics.class);
+            startActivity(intent);
+        });
+        right.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewCalculator.class);
+            startActivity(intent);
+        });
+        center.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainScreen.class);
             startActivity(intent);
         });
         edit.setOnClickListener(v -> {

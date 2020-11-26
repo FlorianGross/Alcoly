@@ -31,6 +31,7 @@ import com.google.mlkit.vision.label.automl.AutoMLImageLabelerOptions;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -114,22 +115,41 @@ public class CameraAndKI extends AppCompatActivity {
                     private void saveInDB(Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getraenke getraenk;
-                        try {
+                       // try {
                             volume = getVolume();
                             permil = getPermil();
+                            int SessionInt;
+                            try {
+                                SessionInt = getSessionInt();
+                            }catch (Exception e){
+                                SessionInt = 0;
+                            }
                             Date returnDate = new Date();
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTime(returnDate);
                             int month = calendar.get(Calendar.MONTH) + 1;
                             String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                             int realDateTest = Integer.parseInt(realDate);
-                            getraenk = new Getraenke(bitmap, new Date(), volume, permil, realDateTest);
+                            getraenk = new Getraenke(bitmap, new Date(), volume, permil, realDateTest, SessionInt);
                             Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                             System.out.println(getraenk.toString());
                             databaseHelper.addOne(getraenk);
-                        } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(), "Error creating Getränk", Toast.LENGTH_SHORT).show();
-                            System.out.println("Error creating getrank");
+                        //} catch (Exception e) {
+                          //  Toast.makeText(getApplicationContext(), "Error creating Getränk", Toast.LENGTH_SHORT).show();
+                            //System.out.println("Error creating getrank");
+                        //}
+                    }
+
+                    private int getSessionInt() {
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+                        long lastElementTime = arrayList.get(arrayList.size() -1).getDate().getTime();
+                        long thisDate = new Date().getTime();
+                        if(thisDate - lastElementTime > 1.8e+7){
+                         return arrayList.get(arrayList.size()-1).getSession() + 1;
+                        }
+                        else {
+                            return arrayList.get(arrayList.size()-1).getSession();
                         }
                     }
 
@@ -255,10 +275,10 @@ public class CameraAndKI extends AppCompatActivity {
                     float confidence = label.getConfidence();
                     if (confidence * 100 > 60) {
                         succes = true;
+                        returnLabel = eachlabel;
                     } else {
                         System.out.println(confidence + " Decline");
                         onConfidenceDecline();
-                        returnLabel = eachlabel;
                     }
                 }
                 if (succes) {

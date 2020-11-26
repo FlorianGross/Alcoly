@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.fmgross.alcoly.backend.DatabaseHelper;
 import com.fmgross.alcoly.backend.Getraenke;
@@ -25,6 +26,7 @@ public class NewCalculator extends AppCompatActivity {
     public double normalResult;
     public double highResult;
     private Date lastDrink;
+    private ImageView left, right, center;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,21 @@ public class NewCalculator extends AppCompatActivity {
         getDatabase();
         //Creates the nested Recyclerview
         createRecycler();
+        left = findViewById(R.id.LeftButtonCalc);
+        center = findViewById(R.id.CenterButtonCalc);
+        right = findViewById(R.id.RightButtonCalc);
+        left.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewCalculator.class);
+            startActivity(intent);
+        });
+        right.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Statistics.class);
+            startActivity(intent);
+        });
+        center.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainScreen.class);
+            startActivity(intent);
+        });
     }
 
     /**
@@ -58,87 +75,13 @@ public class NewCalculator extends AppCompatActivity {
 
     /**
      * @param context
-     * @param date
-     * @return
-     */
-    public float getMinPermilAtTime(Context context, long date) {
-        getDatabase(context);
-        Date dateDate = new Date(date);
-        double promille = getPromilleToDate(context, dateDate);
-        double time = getDrinkTime(arrayList, dateDate);
-        return (float) (promille - time * (0.15 / 60));
-    }
-
-    /**
-     * @param context
-     * @param date
-     * @return
-     */
-    public float getMedPermilAtTime(Context context, long date) {
-        getDatabase(context);
-        Date dateDate = new Date(date);
-        double promille = getPromilleToDate(context, dateDate);
-        double time = getDrinkTime(arrayList, dateDate);
-        return (float) (promille - time * (0.13 / 60));
-    }
-
-    /**
-     * @param context
-     * @param date
-     * @return
-     */
-    public float getMaxPermilAtTime(Context context, long date) {
-        Date dateDate = new Date(date);
-        double promille = getPromilleToDate(context, dateDate);
-        double time = getDrinkTime(arrayList, dateDate);
-        return (float) (promille - time * (0.11 / 60));
-    }
-
-    /**
-     * @param context
-     * @param dateDate
-     * @return
-     */
-
-    private double getPromilleToDate(Context context, Date dateDate) {
-        getDatabase(context);
-        int lastElement = getLastElementWithDate(dateDate);
-        return calculatePromille(context, arrayList, sessionStart(arrayList.get(arrayList.size() - 1).getDate(), arrayList), lastElement);
-    }
-
-    /**
-     * @param dateDate
-     * @return
-     */
-    private int getLastElementWithDate(Date dateDate) {
-        int iterator = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).getDate().getTime() < dateDate.getTime()) {
-                iterator = i + 1;
-            }
-        }
-        return iterator;
-    }
-
-    /**
-     * @param context
-     */
-    private void getDatabase(Context context) {
-        databaseHelper = new DatabaseHelper(context);
-        arrayList = databaseHelper.getAllGetraenke();
-        arrayListString = databaseHelper.getAllDates();
-    }
-
-    /**
-     * @param context
      * @param arrayList
      * @return
      */
     public double getNormalResult(Context context, ArrayList<Getraenke> arrayList) {
         try {
-            lastDrink = arrayList.get(arrayList.size() - 1).getDate();
-            double time = getDrinkTime(arrayList, new Date());
-            double promille = calculatePromille(context, arrayList, sessionStart(lastDrink, arrayList), arrayList.size());
+            double time = getDrinkTime(context, arrayList, new Date());
+            double promille = calculateSessionPromille(context, arrayList);
             normalResult = promille - time * (0.13 / 60);
             System.out.println(time + "Time");
             System.out.println(promille + " promille");
@@ -158,7 +101,7 @@ public class NewCalculator extends AppCompatActivity {
      */
     public double getNormalResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         return getNormalResult(context, arrayListHere);
     }
 
@@ -168,11 +111,10 @@ public class NewCalculator extends AppCompatActivity {
      */
     public double getNormalTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         try {
-            lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
-            double time = getDrinkTime(arrayListHere, new Date());
-            double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
+            double time = getDrinkTime(context, arrayListHere, new Date());
+            double promille = calculateSessionPromille(context, arrayListHere);
             double returnTime = (promille - 0.5) / (0.13 / 60);
             if (returnTime < 0) {
                 return 0;
@@ -190,9 +132,8 @@ public class NewCalculator extends AppCompatActivity {
      * @return
      */
     public double getMinResult(Context context, ArrayList<Getraenke> arrayList) {
-        lastDrink = arrayList.get(arrayList.size() - 1).getDate();
-        double time = getDrinkTime(arrayList, new Date());
-        double promille = calculatePromille(context, arrayList, sessionStart(lastDrink, arrayList), arrayList.size());
+        double time = getDrinkTime(context, arrayList, new Date());
+        double promille = calculateSessionPromille(context, arrayList);
         minResult = promille - time * (0.15 / 60);
         if (minResult <= 0) {
             return 0.0;
@@ -207,7 +148,7 @@ public class NewCalculator extends AppCompatActivity {
      */
     public double getMinResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         return getMinResult(context, arrayListHere);
     }
 
@@ -217,11 +158,11 @@ public class NewCalculator extends AppCompatActivity {
      */
     public double getMinTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
+        ;
         try {
-            lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
-            double time = getDrinkTime(arrayListHere, new Date());
-            double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
+            double time = getDrinkTime(context, arrayListHere, new Date());
+            double promille = calculateSessionPromille(context, arrayListHere);
             normalResult = promille - time * (0.15 / 60);
             double returnTime = (promille - 0.5) / (0.15 / 60);
             if (returnTime < 0) {
@@ -242,9 +183,8 @@ public class NewCalculator extends AppCompatActivity {
      * @return
      */
     public double getHighResult(Context context, ArrayList<Getraenke> arrayList) {
-        lastDrink = arrayList.get(arrayList.size() - 1).getDate();
-        double time = getDrinkTime(arrayList, new Date());
-        double promille = calculatePromille(context, arrayList, sessionStart(lastDrink, arrayList), arrayList.size());
+        double time = getDrinkTime(context, arrayList, new Date());
+        double promille = calculateSessionPromille(context, arrayList);
         highResult = promille - time * (0.11 / 60);
         if (highResult <= 0) {
             return 0.0;
@@ -261,7 +201,7 @@ public class NewCalculator extends AppCompatActivity {
      */
     public double getHighResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         return getHighResult(context, arrayListHere);
     }
 
@@ -273,11 +213,11 @@ public class NewCalculator extends AppCompatActivity {
      */
     public double getHighTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllGetraenke();
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         try {
             lastDrink = arrayListHere.get(arrayListHere.size() - 1).getDate();
-            double time = getDrinkTime(arrayListHere, new Date());
-            double promille = calculatePromille(context, arrayListHere, sessionStart(lastDrink, arrayListHere), arrayListHere.size());
+            double time = getDrinkTime(context, arrayListHere, new Date());
+            double promille = calculateSessionPromille(context, arrayListHere);
             normalResult = promille - time * (0.11 / 60);
             double returnTime = (promille - 0.5) / (0.11 / 60);
             if (returnTime < 0) {
@@ -290,6 +230,12 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
+    private int getSessionInt(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+        return arrayList.get(arrayList.size() - 1).getSession();
+    }
+
 
     /**
      * Calculates the Time between the First and the last drink
@@ -298,42 +244,15 @@ public class NewCalculator extends AppCompatActivity {
      * @param now       the last drink of the arrayList
      * @return the duration between the first and the last drink in hours
      */
-    public double getDrinkTime(ArrayList<Getraenke> arrayList, Date now) {
-
-        Date firstDrink = arrayList.get(sessionStart(lastDrink, arrayList)).getDate();
+    public double getDrinkTime(Context context, ArrayList<Getraenke> arrayList, Date now) {
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
+        Date firstDrink = arrayList.get(0).getDate();
         double result = now.getTime() - firstDrink.getTime();
         return result / 60000;
     }
 
-    /**
-     * calculates the first drink
-     *
-     * @param lastDrink the last element of the arrayList
-     * @param arrayList the list of all drinks
-     * @return the position of the first element of the session
-     */
-    private int sessionStart(Date lastDrink, ArrayList<Getraenke> arrayList) {
-        long datelast = lastDrink.getTime();
-        long dateTest;
-        int returnInt = -1;
-        for (int j = 0; j < arrayList.size(); j++) {
-            dateTest = arrayList.get(j).getDate().getTime();
-            if ((datelast - dateTest) > 4.32e+7) {
-            } else if (returnInt == -1) {
-                returnInt = j;
-            }
-        }
-        return returnInt;
-    }
 
-    /**
-     * The main Calculator
-     *
-     * @param arrayList    the list of all drinks
-     * @param startElement the first drink of the session
-     * @return permile value of the drank drinks
-     */
-    public double calculatePromille(Context context, ArrayList<Getraenke> arrayList, int startElement, int endelement) {
+    public double calculateSessionPromille(Context context, ArrayList<Getraenke> arrayList) {
         SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String gender = settings.getString("gender", "Male");
         double r = getGenderR(gender.equals("Male"));
@@ -345,7 +264,7 @@ public class NewCalculator extends AppCompatActivity {
         double e;
         double a = 0;
 
-        for (int i = startElement; i < endelement; i++) {
+        for (int i = 0; i < arrayList.size(); i++) {
             v = (arrayList.get(i).getVolume() * 1000);
             e = (arrayList.get(i).getVolumePart() / 100);
             a += v * e * p;

@@ -23,15 +23,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_GETRAENK_VOLUME = "GETRAENK_VOLUME";
     public static final String COLUMN_GETRAENK_VOLUMEP = "GETRAENK_VOLUMEP";
     public static final String COLUMN_GETRAENK_REALDATE = "GETRAENK_REALDATE";
+    public static final String COLUMN_GETRAENK_SESSION = "GETRAENK_SESSION";
     public static final String COLUMN_ID = "ID";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 5);
+        super(context, DATABASE_NAME, null, 6);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " INTEGER )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_ID + " INTEGER PRIMARY KEY, " + COLUMN_GETTRAENK_URI + " BLOB, " + COLUMN_GETRAENK_DATE + " BLOB, " + COLUMN_GETRAENK_VOLUME + " REAL, " + COLUMN_GETRAENK_VOLUMEP + " REAL, " + COLUMN_GETRAENK_REALDATE + " INTEGER, " + COLUMN_GETRAENK_SESSION + " INTEGER )";
         db.execSQL(createTable);
     }
 
@@ -61,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GETRAENK_VOLUME, getraenke.getVolume());
         cv.put(COLUMN_GETRAENK_VOLUMEP, getraenke.getVolumePart());
         cv.put(COLUMN_GETRAENK_REALDATE, getraenke.getRealDate());
+        cv.put(COLUMN_GETRAENK_SESSION, getraenke.getSession());
         long insert = db.insert(TABLE_NAME, null, cv);
         return insert != -1;
     }
@@ -82,10 +84,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 float getraenkVolume = cursor.getFloat(3);
                 float getraenkVolumeP = cursor.getFloat(4);
                 int realDate = cursor.getInt(5);
-
+                int session = cursor.getInt(6);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
-                Getraenke newGetraenke = new Getraenke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate);
+                Getraenke newGetraenke = new Getraenke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
                 getraenke.add(newGetraenke);
             } while (cursor.moveToPrevious());
         }
@@ -138,10 +140,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 float getraenkVolume = cursor.getFloat(3);
                 float getraenkVolumeP = cursor.getFloat(4);
                 int realDate = cursor.getInt(5);
+                int session = cursor.getInt(6);
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
-                Getraenke newGetreanke = new Getraenke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate);
+                Getraenke newGetreanke = new Getraenke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
                 getraenkeList.add(newGetreanke);
             } while (cursor.moveToPrevious());
         }
@@ -182,6 +185,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         returnArray.clear();
         returnArray.addAll(set);
         return returnArray;
+    }
+    public ArrayList<Getraenke> getAllOfSession(int sessionInt) {
+        ArrayList<Getraenke> getraenkeList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_SESSION + " == " + sessionInt;
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToLast()) {
+            do {
+                byte[] getraenkUri = cursor.getBlob(1);
+                long getraenkDate = cursor.getLong(2);
+                float getraenkVolume = cursor.getFloat(3);
+                float getraenkVolumeP = cursor.getFloat(4);
+                int realDate = cursor.getInt(5);
+                int session = cursor.getInt(6);
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
+                Date returnDate = new Date(getraenkDate);
+                Getraenke newGetreanke = new Getraenke(bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
+                getraenkeList.add(newGetreanke);
+            } while (cursor.moveToPrevious());
+        }
+        cursor.close();
+        db.close();
+        return getraenkeList;
     }
 
 }

@@ -89,7 +89,7 @@ public class Statistics extends AppCompatActivity {
             Date newDate = new Date(dateList.get(i));
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
             String date = simpleDateFormat.format(newDate);
-            drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(this, dateList.get(i)),newCalculator.getMedPermilAtTime(this, dateList.get(i)),newCalculator.getMaxPermilAtTime(this, dateList.get(i))}));
+           // drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(this, dateList.get(i)),newCalculator.getMedPermilAtTime(this, dateList.get(i)),newCalculator.getMaxPermilAtTime(this, dateList.get(i))}));
         }
         return drinks;
     }
