@@ -12,18 +12,18 @@
         <item>Female</item>
     </string-array>
     <string-array name="permil">
-        <item>45‰</item>
-        <item>40‰</item>
-        <item>35‰</item>
-        <item>30‰</item>
-        <item>25‰</item>
-        <item>20‰</item>
-        <item>15‰</item>
-        <item>11‰</item>
-        <item>8‰</item>
-        <item>5‰</item>
-        <item>2.5‰</item>
-        <item>0‰</item>
+        <item>45 vol%</item>
+        <item>40 vol%</item>
+        <item>35 vol%</item>
+        <item>30 vol%</item>
+        <item>25 vol%</item>
+        <item>20 vol%</item>
+        <item>15 vol%</item>
+        <item>10 vol%</item>
+        <item>8 vol%</item>
+        <item>5 vol%</item>
+        <item>2.5 vol%</item>
+        <item>0 vol%</item>
     </string-array>
     <string-array name="volume">
         <item>Maß (1L)</item>

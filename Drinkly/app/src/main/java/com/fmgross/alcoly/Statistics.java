@@ -69,7 +69,7 @@ public class Statistics extends AppCompatActivity {
     private void initializeBarChart() {
         ArrayList<BarEntry> drink = new ArrayList<>();
         //drink = addDrinks();
-        drink.add(new BarEntry(20f, new float[]{1.0f, 1.2f, 1.3f}));
+        //drink.add(new BarEntry(20f, new float[]{1.0f, 1.2f, 1.3f}));
         BarDataSet barDataSet = new BarDataSet(drink, "Getränke");
         barDataSet.setColors(colorClassArray);
         barDataSet.setValueTextColor(Color.WHITE);

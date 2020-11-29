@@ -130,7 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Getraenke> getAllOfDate(int date) {
         ArrayList<Getraenke> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " == " + date;
+        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " = " + date;
 
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {
@@ -189,7 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Getraenke> getAllOfSession(int sessionInt) {
         ArrayList<Getraenke> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_SESSION + " == " + sessionInt;
+        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_SESSION + " = " + sessionInt;
 
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToLast()) {
@@ -209,7 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+        System.out.println(getraenkeList.toString());
         return getraenkeList;
     }
-
-}
+    }
