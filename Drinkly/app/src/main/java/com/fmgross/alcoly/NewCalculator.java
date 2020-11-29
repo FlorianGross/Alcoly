@@ -245,7 +245,7 @@ public class NewCalculator extends AppCompatActivity {
      * @return the duration between the first and the last drink in hours
      */
     public double getDrinkTime(ArrayList<Getraenke> arrayList, Date now) {
-        Date firstDrink = arrayList.get(0).getDate();
+        Date firstDrink = arrayList.get(arrayList.size() - 1).getDate();
         double result = now.getTime() - firstDrink.getTime();
         return result / 60000;
     }

@@ -134,7 +134,7 @@ public class CameraAndKI extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());
                         databaseHelper.addOne(getraenk);
-                        
+
                     }
 
                     private int getSessionInt() {

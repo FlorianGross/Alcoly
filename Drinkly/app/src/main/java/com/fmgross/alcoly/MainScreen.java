@@ -48,7 +48,7 @@ public class MainScreen extends AppCompatActivity {
                     try {
                         String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
                         textView.setText(promilleString + " \u2030");
-                    } catch (ArrayIndexOutOfBoundsException e) {
+                    } catch (Exception e) {
                         textView.setText(0.0 + " \u2030");
                     }
                 });
