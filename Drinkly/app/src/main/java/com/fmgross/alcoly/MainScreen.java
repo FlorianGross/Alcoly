@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fmgross.alcoly.NewCalculator;
+
 import java.text.DecimalFormat;
 
 

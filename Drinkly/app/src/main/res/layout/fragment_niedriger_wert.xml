@@ -24,61 +24,11 @@
             android:layout_height="match_parent"
             android:background="@mipmap/fragment">
 
-            <Button
-                android:id="@+id/editButtonLow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="Ändern"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/ageTextStatsLow"
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="20 Jahre"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/weightTextStatsLow"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editButtonLow" />
-
-            <TextView
-                android:id="@+id/weightTextStatsLow"
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="100 kg"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8Low"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/ageTextStatsLow"
-                app:layout_constraintTop_toBottomOf="@+id/editButtonLow" />
-
-            <ImageView
-                android:id="@+id/imageView8Low"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_marginTop="10dp"
-                android:src="@android:drawable/btn_star_big_off"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/weightTextStatsLow"
-                app:layout_constraintTop_toBottomOf="@+id/editButtonLow" />
-
             <TextView
                 android:id="@+id/PromilleLow"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="2.5 ‰"
                 android:textAlignment="center"
@@ -86,7 +36,7 @@
                 android:textSize="70sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weightTextStatsLow"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -173,7 +123,7 @@
                 android:id="@+id/imageView7Low"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textTypeLow"

@@ -6,9 +6,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fmgross.alcoly.fragments.hoherWert;
 import com.fmgross.alcoly.fragments.mittlererWert;
@@ -24,9 +28,12 @@ import java.util.Date;
 
 
 public class Statistics extends AppCompatActivity {
-    BarChart barChart;
+    private BarChart barChart;
     final int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
-    Button lowValue, mediumValue, highValue;
+    private Button lowValue, mediumValue, highValue;
+    private ImageView genderImage;
+    private TextView age, weight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +43,14 @@ public class Statistics extends AppCompatActivity {
         lowValue = findViewById(R.id.lowButton);
         mediumValue = findViewById(R.id.mediumButton);
         highValue = findViewById(R.id.highButton);
-
+        age = findViewById(R.id.ageTextStatsMedium);
+        weight = findViewById(R.id.weightTextStatsMedium);
+        genderImage = findViewById(R.id.imageView8Medium);
         FragmentManager fm = getSupportFragmentManager();
 
 
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment, new hoherWert());
+        ft.add(R.id.fragment, new mittlererWert());
         ft.commit();
 
 
@@ -64,6 +73,20 @@ public class Statistics extends AppCompatActivity {
             ft13.commit();
         });
 
+    }
+
+    private void setBasicData() {
+        SharedPreferences settings = this.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        String genderString = settings.getString("gender", "Male");
+        int ageInt = settings.getInt("age", 20);
+        int weightInt = settings.getInt("weight", 80);
+        age.setText(ageInt + "Jahre");
+        weight.setText(weightInt + "kg");
+        if (genderString.equals("Male")) {
+            genderImage.setImageResource(R.mipmap.male);
+        } else {
+            genderImage.setImageResource(R.drawable.female);
+        }
     }
 
     private void initializeBarChart() {
@@ -89,7 +112,7 @@ public class Statistics extends AppCompatActivity {
             Date newDate = new Date(dateList.get(i));
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
             String date = simpleDateFormat.format(newDate);
-           // drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(this, dateList.get(i)),newCalculator.getMedPermilAtTime(this, dateList.get(i)),newCalculator.getMaxPermilAtTime(this, dateList.get(i))}));
+            // drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(this, dateList.get(i)),newCalculator.getMedPermilAtTime(this, dateList.get(i)),newCalculator.getMaxPermilAtTime(this, dateList.get(i))}));
         }
         return drinks;
     }

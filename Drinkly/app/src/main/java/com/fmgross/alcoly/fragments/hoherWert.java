@@ -20,12 +20,11 @@ import java.text.DecimalFormat;
 
 
 public class hoherWert extends Fragment {
-    private TextView age;
-    private TextView weight;
+
     private TextView timeToDrive;
     private TextView amountOfAlc;
     private TextView promille;
-    private ImageView genderImage;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,31 +36,14 @@ public class hoherWert extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_hoher_wert, container, false);
-        age = root.findViewById(R.id.ageTextStatsHigh);
-        weight = root.findViewById(R.id.weightTextStatsHigh);
-        genderImage = root.findViewById(R.id.imageView8High);
         timeToDrive = root.findViewById(R.id.textView9High);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
         TextView textType = root.findViewById(R.id.textTypeHigh);
         promille = root.findViewById(R.id.PromilleHigh);
-        setBasicData();
         refreshData();
         return root;
     }
 
-    private void setBasicData() {
-        SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String genderString = settings.getString("gender", "Male");
-        int ageInt = settings.getInt("age", 20);
-        int weightInt = settings.getInt("weight", 80);
-        age.setText(ageInt + "Jahre");
-        weight.setText(weightInt + "kg");
-        if (genderString.equals("Male")) {
-            genderImage.setImageResource(R.mipmap.male);
-        } else {
-            genderImage.setImageResource(R.drawable.female);
-        }
-    }
 
     private void refreshData() {
         Runnable runnable = () -> {

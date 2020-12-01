@@ -2,13 +2,15 @@ package com.fmgross.alcoly;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -92,12 +94,15 @@ public class CameraAndKI extends AppCompatActivity {
                 redo.setOnClickListener(v -> CropImage.activity().start(CameraAndKI.this));
                 //save Picture
                 openCamera.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.P)
                     @Override
                     public void onClick(View v) {
                         //Saves the Uri as Bitmap inside the System and returns the Path as an String
                         Bitmap bitmap = null;
                         try {
-                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                            ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
+                            bitmap = ImageDecoder.decodeBitmap(source);
+                            //bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.out.print("Error Converting Bitmap");
@@ -115,7 +120,7 @@ public class CameraAndKI extends AppCompatActivity {
                     private void saveInDB(Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         Getraenke getraenk;
-                        // try {
+
                         volume = getVolume();
                         permil = getPermil();
                         int SessionInt;
@@ -241,13 +246,11 @@ public class CameraAndKI extends AppCompatActivity {
         AutoMLImageLabelerLocalModel localModel =
                 new AutoMLImageLabelerLocalModel.Builder()
                         .setAssetFilePath("model/manifest.json")
-                        // or .setAbsoluteFilePath(absolute file path to manifest file)
                         .build();
 
         AutoMLImageLabelerOptions autoMLImageLabelerOptions =
                 new AutoMLImageLabelerOptions.Builder(localModel)
-                        .setConfidenceThreshold(0.0f)  // Evaluate your model in the Firebase console
-                        // to determine an appropriate value.
+                        .setConfidenceThreshold(0.0f)
                         .build();
         ImageLabeler labeler = ImageLabeling.getClient(autoMLImageLabelerOptions);
         InputImage image = null;
