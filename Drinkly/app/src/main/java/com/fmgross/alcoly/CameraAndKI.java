@@ -145,7 +145,7 @@ public class CameraAndKI extends AppCompatActivity {
                     private int getSessionInt() {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
-                        long lastElementTime = arrayList.get(arrayList.size() - 1).getDate().getTime();
+                        long lastElementTime = arrayList.get(0).getDate().getTime();
                         long thisDate = new Date().getTime();
                         if (thisDate - lastElementTime > 2.88e+7) {
                             return arrayList.get(0).getSession() + 1;
