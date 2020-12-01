@@ -148,9 +148,9 @@ public class CameraAndKI extends AppCompatActivity {
                         long lastElementTime = arrayList.get(arrayList.size() - 1).getDate().getTime();
                         long thisDate = new Date().getTime();
                         if (thisDate - lastElementTime > 2.88e+7) {
-                            return arrayList.get(arrayList.size() - 1).getSession() + 1;
+                            return arrayList.get(0).getSession() + 1;
                         } else {
-                            return arrayList.get(arrayList.size() - 1).getSession();
+                            return arrayList.get(0).getSession();
                         }
                     }
 

@@ -86,7 +86,6 @@ public class NewCalculator extends AppCompatActivity {
         try {
             double time = getDrinkTime(arrayList, new Date());
             double promille = calculateSessionPromille(context, arrayList);
-            System.out.println(calculateSessionPromille(context, arrayList));
             normalResult = promille - time * (0.13 / 60);
             if (normalResult < 0) {
                 return 0;
@@ -233,6 +232,7 @@ public class NewCalculator extends AppCompatActivity {
     private int getSessionInt(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+        System.out.println(arrayList.get(0).getSession());
         return arrayList.get(0).getSession();
     }
 
