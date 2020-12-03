@@ -1,7 +1,6 @@
 package com.fmgross.alcoly.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 
 
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fmgross.alcoly.NewCalculator;
@@ -21,9 +19,7 @@ import java.text.DecimalFormat;
 
 public class hoherWert extends Fragment {
 
-    private TextView timeToDrive;
-    private TextView amountOfAlc;
-    private TextView promille;
+    private TextView timeToDrive, amountOfAlc, promille, textType;
 
 
     @Override
@@ -38,7 +34,7 @@ public class hoherWert extends Fragment {
         View root = inflater.inflate(R.layout.fragment_hoher_wert, container, false);
         timeToDrive = root.findViewById(R.id.textView9High);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
-        TextView textType = root.findViewById(R.id.textTypeHigh);
+        textType = root.findViewById(R.id.textTypeHigh);
         promille = root.findViewById(R.id.PromilleHigh);
         refreshData();
         return root;
@@ -56,13 +52,15 @@ public class hoherWert extends Fragment {
                             DecimalFormat f = new DecimalFormat();
                             f.setMaximumFractionDigits(2);
                             String timeToDriveString = f.format(timeToDriveDouble);
+                            int getränke = calculate.getSessionAmount(this.getActivity());
+                            textType.setText(getränke + " alkoholische Getränke");
                             timeToDrive.setText(timeToDriveString + " h");
                             promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
                             amountOfAlc.setText("0");
                         } catch (Exception e) {
-                            timeToDrive.setText("");
-                            promille.setText("");
-                            amountOfAlc.setText("");
+                            timeToDrive.setText("0 h");
+                            promille.setText("0.0 ‰");
+                            amountOfAlc.setText("0 ml");
                         }
                     });
                     try {

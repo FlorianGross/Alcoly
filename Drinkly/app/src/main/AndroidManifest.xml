@@ -11,18 +11,32 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
-        <activity android:name=".Details" />
-        <activity android:name=".NewCalculator" />
-        <activity android:name=".Statistics" />
-        <activity android:name=".CameraAndKI" />
-        <activity android:name=".MainScreen" />
-        <activity android:name=".FirstStartupActivity" />
+        <activity
+            android:name=".Details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewCalculator"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Statistics"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CameraAndKI"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FirstStartupActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".MainActivity"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

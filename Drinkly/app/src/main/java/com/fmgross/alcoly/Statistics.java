@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.Date;
 public class Statistics extends AppCompatActivity {
     private BarChart barChart;
     final int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
-    private Button lowValue, mediumValue, highValue;
+    private Button lowValue, mediumValue, highValue, edit;
     private ImageView genderImage;
     private TextView age, weight;
 
@@ -39,6 +40,7 @@ public class Statistics extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        edit = findViewById(R.id.editButtonMedium);
         barChart = findViewById(R.id.barChart);
         lowValue = findViewById(R.id.lowButton);
         mediumValue = findViewById(R.id.mediumButton);
@@ -46,17 +48,21 @@ public class Statistics extends AppCompatActivity {
         age = findViewById(R.id.ageTextStatsMedium);
         weight = findViewById(R.id.weightTextStatsMedium);
         genderImage = findViewById(R.id.imageView8Medium);
-        FragmentManager fm = getSupportFragmentManager();
 
+        setBasicData();
+
+        FragmentManager fm = getSupportFragmentManager();
 
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fragment, new mittlererWert());
         ft.commit();
 
-
         initializeBarChart();
 
-
+        edit.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FirstStartupActivity.class);
+            startActivity(intent);
+        });
         lowValue.setOnClickListener(v -> {
             FragmentTransaction ft1 = fm.beginTransaction();
             ft1.replace(R.id.fragment, new niedrigerWert());

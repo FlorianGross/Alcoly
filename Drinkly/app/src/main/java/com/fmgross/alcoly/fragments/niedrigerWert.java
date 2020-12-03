@@ -1,7 +1,5 @@
 package com.fmgross.alcoly.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import com.fmgross.alcoly.NewCalculator;
@@ -20,9 +18,8 @@ import java.text.DecimalFormat;
 
 public class niedrigerWert extends Fragment {
 
-    private TextView timeToDrive;
-    private TextView amountOfAlc;
-    private TextView promille;
+    private TextView timeToDrive, amountOfAlc, promille, textType;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +33,7 @@ public class niedrigerWert extends Fragment {
         View root = inflater.inflate(R.layout.fragment_niedriger_wert, container, false);
         timeToDrive = root.findViewById(R.id.textView9Low);
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholLow);
-        TextView textType = root.findViewById(R.id.textTypeLow);
+        textType = root.findViewById(R.id.textTypeLow);
         promille = root.findViewById(R.id.PromilleLow);
         refreshData();
         return root;
@@ -46,7 +43,6 @@ public class niedrigerWert extends Fragment {
     private void refreshData() {
         Runnable runnable = () -> {
             while (true) {
-
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -61,10 +57,13 @@ public class niedrigerWert extends Fragment {
                             DecimalFormat f = new DecimalFormat();
                             f.setMaximumFractionDigits(2);
                             String timeToDriveString = f.format(timeToDriveDouble);
+                            int getränke = calculate.getSessionAmount(this.getActivity());
+                            textType.setText(getränke + " alkoholische Getränke");
                             timeToDrive.setText(timeToDriveString + " h");
                             promille.setText(f.format(calculate.getMinResultValue(getContext().getApplicationContext())) + " ‰");
                             amountOfAlc.setText("0");
                         } catch (Exception e) {
+                            textType.setText("0 alkoholische Getränke");
                             timeToDrive.setText("0 h");
                             promille.setText("0.0 ‰");
                             amountOfAlc.setText("0 ml");

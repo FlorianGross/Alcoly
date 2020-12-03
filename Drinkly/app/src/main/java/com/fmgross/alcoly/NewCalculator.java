@@ -336,5 +336,11 @@ public class NewCalculator extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
+    public int getSessionAmount(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
+        return arrayListHere.size();
+    }
 }
 
