@@ -35,9 +35,8 @@ public class NewCalculator extends AppCompatActivity {
         center = findViewById(R.id.CenterButtonCalc);
         right = findViewById(R.id.RightButtonCalc);
 
-        //Reads the Database and creates the Arraylist
+
         getDatabase();
-        //Creates the nested Recyclerview
         createRecycler();
 
 
@@ -229,6 +228,11 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
+    /**
+     * Returns the Session id from the latest drink in the database
+     * @param context the Activity
+     * @return the session int
+     */
     private int getSessionInt(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
@@ -250,7 +254,12 @@ public class NewCalculator extends AppCompatActivity {
         return result / 60000;
     }
 
-
+    /**
+     * Calculates the permil from all the drinks of one session
+     * @param context the Activity
+     * @param arrayList the arrayList with the session
+     * @return the permil volume
+     */
     public double calculateSessionPromille(Context context, ArrayList<Getraenke> arrayList) {
         SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String gender = settings.getString("gender", "Male");
@@ -299,9 +308,6 @@ public class NewCalculator extends AppCompatActivity {
         return getAgeU(male, 0.68, 0.55);
     }
 
-    /**
-     * Sets the OnClickListener for the detailsview
-     */
     private void setOnCLickListener() {
         myAdapter.RecyclerViewClickListener listener = (v, position) -> {
             Intent intent = new Intent(getApplicationContext(), Details.class);
@@ -316,6 +322,14 @@ public class NewCalculator extends AppCompatActivity {
         dates = databaseHelper.getAllDates();
         return dates;
     }
+
+
+    public double getNormalResultInTime(int time){
+
+        return 0.0;
+    }
+
+
 
     @Override
     public void finish() {

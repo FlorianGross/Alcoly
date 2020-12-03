@@ -48,7 +48,6 @@ public class CameraAndKI extends AppCompatActivity {
     float permil;
     Spinner spinnerVolume, spinnerPermil;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,19 +96,16 @@ public class CameraAndKI extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.P)
                     @Override
                     public void onClick(View v) {
-                        //Saves the Uri as Bitmap inside the System and returns the Path as an String
                         Bitmap bitmap = null;
                         try {
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
                             bitmap = ImageDecoder.decodeBitmap(source);
-                            //bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.out.print("Error Converting Bitmap");
                         }
-                        //Stores the Informations inside the Database
+
                         saveInDB(bitmap);
-                        //Returns to the Main Screen
                         openMainScreen();
                     }
 
@@ -119,8 +115,6 @@ public class CameraAndKI extends AppCompatActivity {
                      */
                     private void saveInDB(Bitmap bitmap) {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-                        Getraenke getraenk;
-
                         volume = getVolume();
                         permil = getPermil();
                         int SessionInt;
@@ -135,7 +129,7 @@ public class CameraAndKI extends AppCompatActivity {
                         int month = calendar.get(Calendar.MONTH) + 1;
                         String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                         int realDateTest = Integer.parseInt(realDate);
-                        getraenk = new Getraenke(bitmap, new Date(), volume, permil, realDateTest, SessionInt);
+                        Getraenke getraenk = new Getraenke("Bier", bitmap, new Date(), volume, permil, realDateTest, SessionInt);
                         Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());
                         databaseHelper.addOne(getraenk);

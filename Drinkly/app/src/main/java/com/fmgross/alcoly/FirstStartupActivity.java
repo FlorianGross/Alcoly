@@ -5,87 +5,69 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-
-import com.fmgross.alcoly.backend.DatabaseHelper;
+import android.widget.ImageView;
 
 
-
-public class FirstStartupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class FirstStartupActivity extends AppCompatActivity {
+    ImageView maleImage, femaleImage;
+    Button forwardButton, skipButton;
+    EditText ageInput, weightInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_startup);
 
-        Button forwardButton = findViewById(R.id.forwardButton);
-        Spinner spinner = findViewById(R.id.spinner);
-        EditText ageInput = findViewById(R.id.ageInput);
-        EditText weightInput = findViewById(R.id.weightInput);
+        forwardButton = findViewById(R.id.forwardButton);
+        ageInput = findViewById(R.id.ageInput);
+        weightInput = findViewById(R.id.weightInput);
+        skipButton = findViewById(R.id.skipButton);
 
-        generateSaveLocations(spinner);
+        maleImage = findViewById(R.id.maleImage);
+        femaleImage = findViewById(R.id.felameImage);
 
+
+        maleImage.setOnClickListener(v -> {
+            maleImage.setBackgroundResource(R.mipmap.orangerectangle);
+            femaleImage.setBackgroundResource(R.mipmap.blackrectangle);
+            saveGender("Male");
+        });
+        femaleImage.setOnClickListener(v -> {
+            femaleImage.setBackgroundResource(R.mipmap.orangerectangle);
+            maleImage.setBackgroundResource(R.mipmap.blackrectangle);
+            saveGender("Female");
+        });
+        skipButton.setOnClickListener(v -> {
+            setValues(20, 80);
+            startMainScreen();
+        });
         forwardButton.setOnClickListener(v -> {
+            int age = Integer.parseInt(ageInput.getText().toString());
 
-            saveSettings(ageInput, weightInput);
+            String weight = weightInput.getText().toString();
 
+            setValues(age, Integer.parseInt(weight));
             startMainScreen();
         });
     }
 
-    /**
-     * Creates the Shared preference and the database, if it already exists, it cleans it
-     *
-     * @param spinner the spinner item
-     */
-    private void generateSaveLocations(Spinner spinner) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.genders, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        databaseHelper.deleteAllGetraenke();
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String gender = parent.getItemAtPosition(position).toString();
+    private void setValues(int i, int i2) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("gender", gender);
+
+        editor.putInt("age", i);
+        editor.putInt("weight", i2);
+        editor.putBoolean("valuesSet", true);
         editor.apply();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-    }
 
-    /**
-     * Saves the values inside the SharedPreferences
-     *
-     * @param ageInput    the age value, from the userInput
-     * @param weightInput the weight value, from the userInput
-     */
-    public void saveSettings(EditText ageInput, EditText weightInput) {
-
-
-        int age = Integer.parseInt(ageInput.getText().toString());
-
-        String weight = weightInput.getText().toString();
-
+    public void saveGender(String gender) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-
-        editor.putInt("age", age);
-        editor.putInt("weight", Integer.parseInt(weight));
-        editor.putBoolean("valuesSet", true);
+        editor.putString("gender", gender);
         editor.apply();
     }
 

@@ -13,14 +13,16 @@ public class Getraenke {
     private float volume;
     private float volumePart;
     private int session;
+    private String name;
 
-    public Getraenke(Bitmap uri, Date date, float volume, float volumePart, int realDate, int session) {
+    public Getraenke(String name, Bitmap uri, Date date, float volume, float volumePart, int realDate, int session) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;
         this.volumePart = volumePart;
         this.realDate = realDate;
         this.session = session;
+        this.name = name;
     }
 
     /**
@@ -32,7 +34,8 @@ public class Getraenke {
     @Override
     public String toString() {
         return "Getränke{" +
-                "Bitmap='" + uri.toString() +
+                "Name=" + name +
+                "Bitmap=" + uri.toString() +
                 ", date=" + date.toString() +
                 ", realDate=" + realDate +
                 ", volume=" + volume +
@@ -41,11 +44,8 @@ public class Getraenke {
                 '}';
     }
 
-    /**
-     * Returns the Date of the object
-     *
-     * @return Date from the Object
-     */
+    public String getName() {return name;}
+
     public Date getDate() {
         return date;
     }
@@ -69,6 +69,8 @@ public class Getraenke {
     public int getSession() {
         return session;
     }
+
+    public void setName(String name) {this.name = name;}
 
     public void setUri(Bitmap uri) {
         this.uri = uri;
