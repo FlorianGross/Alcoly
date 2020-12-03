@@ -48,8 +48,8 @@ public class hoherWert extends Fragment {
                     getActivity().runOnUiThread(() -> {
                         try {
                             NewCalculator calculate = new NewCalculator();
-                            int hours = (int) (calculate.getMinTimeToDrive(getContext().getApplicationContext()) / 60);
-                            int minutes = (int) (calculate.getMinTimeToDrive(getContext().getApplicationContext()) % 60);
+                            int hours = (int) (calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60);
+                            int minutes = (int) (calculate.getHighTimeToDrive(getContext().getApplicationContext()) % 60);
                             String time = hours + ":" + minutes;
                             DecimalFormat f = new DecimalFormat();
                             f.setMaximumFractionDigits(2);

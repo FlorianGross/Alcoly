@@ -47,15 +47,15 @@ public class mittlererWert extends Fragment {
                     getActivity().runOnUiThread(() -> {
                         try {
                             NewCalculator calculate = new NewCalculator();
-                            int hours = (int) (calculate.getMinTimeToDrive(getContext().getApplicationContext()) / 60);
-                            int minutes = (int) (calculate.getMinTimeToDrive(getContext().getApplicationContext()) % 60);
+                            int hours = (int) (calculate.getNormalTimeToDrive(getContext().getApplicationContext()) / 60);
+                            int minutes = (int) (calculate.getNormalTimeToDrive(getContext().getApplicationContext()) % 60);
                             String time = hours + ":" + minutes;
                             DecimalFormat f = new DecimalFormat();
                             f.setMaximumFractionDigits(2);
                             int getränke = calculate.getSessionAmount(this.getActivity());
                             textType.setText(getränke + " alkoholische Getränke");
                             timeToDrive.setText(time + " h");
-                            promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
+                            promille.setText(f.format(calculate.getNormalResultValue(getContext().getApplicationContext())) + " ‰");
                             amountOfAlc.setText("0");
                         } catch (Exception e) {
                             timeToDrive.setText("0 h");

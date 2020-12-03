@@ -61,7 +61,7 @@ public class niedrigerWert extends Fragment {
                             int getränke = calculate.getSessionAmount(this.getActivity());
                             textType.setText(getränke + " alkoholische Getränke");
                             timeToDrive.setText(time + " h");
-                            promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
+                            promille.setText(f.format(calculate.getMinResultValue(getContext().getApplicationContext())) + " ‰");
                             amountOfAlc.setText("0");
                         } catch (Exception e) {
                             textType.setText(0 + " alkoholische Getränke");
