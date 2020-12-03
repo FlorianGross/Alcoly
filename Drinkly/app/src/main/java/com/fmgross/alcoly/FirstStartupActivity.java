@@ -26,7 +26,7 @@ public class FirstStartupActivity extends AppCompatActivity {
         skipButton = findViewById(R.id.skipButton);
 
         maleImage = findViewById(R.id.maleImage);
-        femaleImage = findViewById(R.id.felameImage);
+        femaleImage = findViewById(R.id.femaleImage);
 
 
         maleImage.setOnClickListener(v -> {
@@ -53,12 +53,12 @@ public class FirstStartupActivity extends AppCompatActivity {
         });
     }
 
-    private void setValues(int i, int i2) {
+    private void setValues(int age, int weight) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        editor.putInt("age", i);
-        editor.putInt("weight", i2);
+        editor.putInt("age", age);
+        editor.putInt("weight", weight);
         editor.putBoolean("valuesSet", true);
         editor.apply();
     }

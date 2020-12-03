@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,8 +8,7 @@
     android:layout_marginTop="10dp"
     android:background="@drawable/rounded_corner"
     android:backgroundTint="#262626"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -22,9 +20,9 @@
         <ImageView
             android:id="@+id/currentImage"
             android:layout_width="90dp"
+            android:layout_height="60dp"
             android:background="@drawable/rounded_corner"
-            android:backgroundTint="@color/cardview_dark_background"
-            android:layout_height="60dp" />
+            android:backgroundTint="@color/cardview_dark_background" />
 
         <TextView
             android:id="@+id/time"
@@ -33,25 +31,25 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="0dp"
-            android:fontFamily="@font/helvetica_neue_regular"
             android:layout_marginBottom="0dp"
-            android:textColor="@color/white"
-            android:textSize="12sp"
+            android:fontFamily="@font/helvetica_neue_regular"
             android:text="19:30"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/type"
         android:layout_width="82dp"
         android:layout_height="14dp"
+        android:fontFamily="@font/helvetica_neue_regular"
+        android:text="Bier"
         android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/newvolumePerc"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Bier"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:textSize="12sp"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         tools:ignore="MissingConstraints" />
@@ -60,11 +58,11 @@
         android:id="@+id/newvolumePerc"
         android:layout_width="82dp"
         android:layout_height="14dp"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textColor="@color/white"
-        android:text="2.5 ‰"
         android:fontFamily="@font/helvetica_neue_regular"
+        android:text="2.5 ‰"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/newvolume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,11 +73,11 @@
         android:id="@+id/newvolume"
         android:layout_width="82dp"
         android:layout_height="14dp"
+        android:fontFamily="@font/helvetica_neue_regular"
+        android:text="0.5L"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:text="0.5L"
         android:textSize="12sp"
-        android:fontFamily="@font/helvetica_neue_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

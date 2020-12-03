@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/normalBackground"
+    android:orientation="vertical"
     tools:context=".Details">
     <ImageView
         android:id="@+id/LeftButtonDetails"
@@ -12,7 +13,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@mipmap/time"
-        app:layout_constraintEnd_toStartOf="@+id/CenterButton"
+        app:layout_constraintEnd_toStartOf="@+id/CenterButtonDetails"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,9 +25,9 @@
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:background="@mipmap/beer"
-        app:layout_constraintEnd_toStartOf="@+id/RightButton"
+        app:layout_constraintEnd_toStartOf="@+id/RightButtonDetails"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/LeftButton"
+        app:layout_constraintStart_toEndOf="@+id/LeftButtonDetails"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -38,7 +39,7 @@
         android:background="@mipmap/person"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/CenterButton"
+        app:layout_constraintStart_toEndOf="@+id/CenterButtonDetails"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
