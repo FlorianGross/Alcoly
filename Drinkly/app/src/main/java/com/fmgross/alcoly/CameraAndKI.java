@@ -1,4 +1,4 @@
-^package com.fmgross.alcoly;
+package com.fmgross.alcoly;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,43 +42,33 @@ import java.util.Objects;
 
 
 public class CameraAndKI extends AppCompatActivity {
-    private ImageView imgView;
-    private TextView drinkName, erkannt;
+    private ImageView imgView, buttonTL, buttonTR, buttonBL, buttonBR;
+    private SeekBar seekBar;
+    private TextView drinkName, erkannt, progressText;
     private Button openCamera, redo;
-    float volume;
-    float permil;
-    Spinner spinnerVolume, spinnerPermil;
+    private float volume;
+    private float permil;
+    private String type;
+    private int selectedButton = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_and_k_i);
-
+        setContentView(R.layout.activity_camera_and_ki);
+        buttonBL = findViewById(R.id.GridVolumeBL);
+        buttonBR = findViewById(R.id.GridVolumeBR);
+        buttonTL = findViewById(R.id.GridVolumeTL);
+        buttonTR = findViewById(R.id.GridVolumeTR);
+        seekBar = findViewById(R.id.seekBar);
         openCamera = findViewById(R.id.bt_open);
         imgView = findViewById(R.id.image_view);
         drinkName = findViewById(R.id.DrinkName);
         redo = findViewById(R.id.redo);
         erkannt = findViewById(R.id.Erkannt);
-        spinnerPermil = findViewById(R.id.permilSpinner);
-        spinnerVolume = findViewById(R.id.volumeSpinner);
+        progressText = findViewById(R.id.volPerText);
 
-        generateSpinner();
 
         CropImage.activity().start(CameraAndKI.this);
-
-    }
-
-    /**
-     * Generates the spinner and fills them with the String array
-     */
-    private void generateSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.permil, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPermil.setAdapter(adapter);
-
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.volume, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVolume.setAdapter(adapter2);
     }
 
 
@@ -89,9 +80,53 @@ public class CameraAndKI extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 Uri uri = useUri(result);
-                //Restart Take Picture
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    progressText.setText(progress + " vol%");
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                buttonBL.setOnClickListener(v -> {
+                    selectedButton = 3;
+                    buttonBL.setBackgroundResource(R.drawable.orangerectangle);
+                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+                });
+                buttonBR.setOnClickListener(v -> {
+                    selectedButton = 4;
+                    buttonBR.setBackgroundResource(R.drawable.orangerectangle);
+                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+                });
+                buttonTL.setOnClickListener(v -> {
+                    selectedButton = 1;
+                    buttonTL.setBackgroundResource(R.drawable.orangerectangle);
+                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+                });
+                buttonTR.setOnClickListener(v -> {
+                    selectedButton = 2;
+                    buttonTR.setBackgroundResource(R.drawable.orangerectangle);
+                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+                });
+
                 redo.setOnClickListener(v -> CropImage.activity().start(CameraAndKI.this));
-                //save Picture
+
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.P)
                     @Override
@@ -129,14 +164,14 @@ public class CameraAndKI extends AppCompatActivity {
                         int month = calendar.get(Calendar.MONTH) + 1;
                         String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                         int realDateTest = Integer.parseInt(realDate);
-                        Getraenke getraenk = new Getraenke("Bier", bitmap, new Date(), volume, permil, realDateTest, SessionInt);
+                        Getraenke getraenk = new Getraenke("Bier" + type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
                         Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());
                         databaseHelper.addOne(getraenk);
 
                     }
 
-                    private int getSessionInt() { 
+                    private int getSessionInt() {
                         NewCalculator calculator = new NewCalculator();
                         double promille = calculator.getHighResultValue(getParent());
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
@@ -153,36 +188,7 @@ public class CameraAndKI extends AppCompatActivity {
                      * @return the value of the drink
                      */
                     private float getPermil() {
-                        int permilItem = spinnerPermil.getSelectedItemPosition();
-                        System.out.println(permilItem);
-                        switch (permilItem) {
-                            case 0:
-                                return 45f;
-                            case 1:
-                                return 40f;
-                            case 2:
-                                return 35f;
-                            case 3:
-                                return 30f;
-                            case 4:
-                                return 25f;
-                            case 5:
-                                return 20f;
-                            case 6:
-                                return 15f;
-                            case 7:
-                                return 11f;
-                            case 8:
-                                return 8f;
-                            case 9:
-                                return 5.1f;
-                            case 10:
-                                return 2.5f;
-                            case 11:
-                                return 0f;
-                            default:
-                                return -1.0f;
-                        }
+                        return seekBar.getX();
                     }
 
                     /**
@@ -190,23 +196,45 @@ public class CameraAndKI extends AppCompatActivity {
                      * @return the volume of the drink selected
                      */
                     private float getVolume() {
-                        int volumeItem = spinnerVolume.getSelectedItemPosition();
-                        switch (volumeItem) {
-                            case 6:
-                                return 0.05f;
-                            case 5:
-                                return 0.1f;
-                            case 4:
-                            case 3:
-                                return 0.2f;
-                            case 2:
-                                return 0.3f;
-                            case 1:
-                                return 0.5f;
-                            case 0:
-                                return 1.00f;
-                            default:
-                                return -1.0f;
+                        if (type.equals("Glas") || type.equals("Flasche")) {
+                            switch (selectedButton) {
+                                case 1:
+                                    return 1;
+                                case 2:
+                                    return 0.5f;
+                                case 3:
+                                    return 0.3f;
+                                case 4:
+                                    return 0.25f;
+                                default:
+                                    return 0;
+                            }
+                        } else if (type.equals("Wine")) {
+                            switch (selectedButton) {
+                                case 1:
+                                    return 1;
+                                case 2:
+                                    return 0.5f;
+                                case 3:
+                                    return 0.3f;
+                                case 4:
+                                    return 0.1f;
+                                default:
+                                    return 0;
+                            }
+                        } else {
+                            switch (selectedButton) {
+                                case 1:
+                                    return 1;
+                                case 2:
+                                    return 0.5f;
+                                case 3:
+                                    return 0.3f;
+                                case 4:
+                                    return 0.1f;
+                                default:
+                                    return 0;
+                            }
                         }
                     }
                 });
@@ -286,16 +314,44 @@ public class CameraAndKI extends AppCompatActivity {
                 drinkName.setText("Nicht Erkannt");
                 erkannt.setVisibility(View.INVISIBLE);
                 openCamera.setVisibility(View.VISIBLE);
+                buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+                buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+                buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+                buttonTL.setBackgroundResource(R.drawable.blackrectangle);
                 openCamera.setText("Trotzdem");
             }
 
             private void onConfidenceSuccess(String eachlabel) {
                 drinkName.setText(eachlabel);
+                type = eachlabel;
                 openCamera.setVisibility(View.VISIBLE);
                 erkannt.setVisibility(View.VISIBLE);
-                spinnerPermil.setSelection(9);
-                spinnerVolume.setSelection(1);
+                seekBar.setX(5f);
+                selectedButton = 2;
+                buttonTR.setBackgroundResource(R.drawable.orangerectangle);
+                buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+                buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+                buttonTL.setBackgroundResource(R.drawable.blackrectangle);
                 openCamera.setText("Hinzufügen");
+
+                if (eachlabel.equals("Glas") || eachlabel.equals("Flasche")) {
+                   /*  buttonTR.setForeground();
+                    buttonTL.setForeground();
+                    buttonBL.setForeground();
+                    buttonBR.setForeground(); */
+                } else if (eachlabel.equals("Wein")) {
+                    /* buttonTR.setForeground();
+                    buttonTL.setForeground();
+                    buttonBL.setForeground();
+                    buttonBR.setForeground(); */
+                } else {
+                    /* buttonTR.setForeground();
+                    buttonTL.setForeground();
+                    buttonBL.setForeground();
+                    buttonBR.setForeground(); */
+                }
+
+
             }
         }).addOnFailureListener(e -> {
             Log.e("OnFail", "" + e);

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/normalBackground"
+    tools:context=".CameraAndKI">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="146dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corner"
+                android:contentDescription="Current Drink Image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Erkannt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Erkannt:"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="23sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view" />
+
+            <TextView
+                android:id="@+id/DrinkName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Bier"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Erkannt" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Falsch?"
+                android:textColor="#E24444"
+                android:textSize="23sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DrinkName" />
+
+            <Button
+                android:id="@+id/redo"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="#E24444"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Nochmal"
+                android:textSize="29sp"
+                />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Geschätzter Alkoholgehalt: "
+                android:textColor="@color/MainOrange"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/volPerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:text="5 vol%" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:thumb="@mipmap/slider"
+                android:progressBackgroundTint="#707070"
+                android:progressTint="#707070"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:progress="5"/>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/linie"
+                />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Volumen:"
+                android:textColor="@color/MainOrange"
+                android:textSize="20sp"
+                />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rowCount="2"
+                app:columnCount="2"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/GridVolumeTL"
+                    android:layout_width="155dp"
+                    android:layout_height="122dp"
+                    android:background="@mipmap/blackrectangle"
+                    android:foreground="@mipmap/beerxlarge"
+                    android:foregroundGravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="TL" />
+
+                <ImageView
+                    android:id="@+id/GridVolumeTR"
+                    android:layout_width="155dp"
+                    android:layout_height="122dp"
+                    android:foreground="@mipmap/beerlarge"
+                    android:foregroundGravity="center"
+                    android:background="@mipmap/orangerectangle"
+                    android:text="TR" />
+
+                <ImageView
+                    android:id="@+id/GridVolumeBL"
+                    android:layout_width="155dp"
+                    android:layout_height="122dp"
+                    android:foreground="@mipmap/beermedium"
+                    android:foregroundGravity="center"
+                    android:background="@mipmap/blackrectangle"
+                    android:text="BL" />
+
+                <ImageView
+                    android:id="@+id/GridVolumeBR"
+                    android:layout_width="155dp"
+                    android:layout_height="122dp"
+                    android:foreground="@mipmap/beersmall"
+                    android:foregroundGravity="center"
+                    android:background="@mipmap/blackrectangle"
+                    android:text="BR" />
+            </androidx.gridlayout.widget.GridLayout>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:src="@mipmap/linie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                tools:ignore="ContentDescription" />
+
+            <Button
+                android:id="@+id/bt_open"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/rounded_corner"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="OK"
+                android:textSize="42sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
