@@ -32,7 +32,7 @@ public class Statistics extends AppCompatActivity {
     private BarChart barChart;
     final int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
     private Button lowValue, mediumValue, highValue, edit;
-    private ImageView genderImage;
+    private ImageView genderImage, rightButton, centerButton, leftButton, settings;
     private TextView age, weight;
 
 
@@ -48,7 +48,10 @@ public class Statistics extends AppCompatActivity {
         age = findViewById(R.id.ageTextStatsMedium);
         weight = findViewById(R.id.weightTextStatsMedium);
         genderImage = findViewById(R.id.imageView8Medium);
-
+        rightButton = findViewById(R.id.RightButtonStats);
+        centerButton = findViewById(R.id.CenterButtonStats);
+        leftButton = findViewById(R.id.LeftButtonStats);
+        settings = findViewById(R.id.settingsButton);
         setBasicData();
 
         FragmentManager fm = getSupportFragmentManager();
@@ -59,6 +62,26 @@ public class Statistics extends AppCompatActivity {
 
         initializeBarChart();
 
+        settings.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
+        leftButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewCalculator.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
+        rightButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Statistics.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
+        centerButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainScreen.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
         edit.setOnClickListener(v -> {
             Intent intent = new Intent(this, FirstStartupActivity.class);
             startActivity(intent);

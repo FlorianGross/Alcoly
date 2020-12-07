@@ -230,6 +230,7 @@ public class NewCalculator extends AppCompatActivity {
 
     /**
      * Returns the Session id from the latest drink in the database
+     *
      * @param context the Activity
      * @return the session int
      */
@@ -256,7 +257,8 @@ public class NewCalculator extends AppCompatActivity {
 
     /**
      * Calculates the permil from all the drinks of one session
-     * @param context the Activity
+     *
+     * @param context   the Activity
      * @param arrayList the arrayList with the session
      * @return the permil volume
      */
@@ -324,11 +326,10 @@ public class NewCalculator extends AppCompatActivity {
     }
 
 
-    public double getNormalResultInTime(int time){
+    public double getNormalResultInTime(int time) {
 
         return 0.0;
     }
-
 
 
     @Override

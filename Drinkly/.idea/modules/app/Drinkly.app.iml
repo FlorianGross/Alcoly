@@ -59,6 +59,7 @@
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-analytics:18.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement:18.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.preference:preference:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-sdk:18.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.mlkit:image-labeling-automl:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.mlkit:image-labeling-common:16.0.0@aar" level="project" />

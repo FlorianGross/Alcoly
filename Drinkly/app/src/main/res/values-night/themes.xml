@@ -1,21 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Theme.Drinkly" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
         <item name="colorPrimary">#FF5722</item>
         <item name="colorPrimaryVariant">#FF852A</item>
         <item name="colorOnPrimary">#292828</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/normalBackground</item>
-        <!-- Customize your theme here. -->
-    </style>
-
-    <style name="ThemeOverlay.Drinkly.AppWidgetContainer" parent="">
-        <item name="appWidgetBackgroundColor">@color/light_blue_900</item>
-        <item name="appWidgetTextColor">@color/light_blue_200</item>
     </style>
 </resources>

@@ -4,23 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/normalBackground"
+    android:orientation="vertical"
     tools:context=".Statistics">
+
+    <ImageView
+        android:id="@+id/settingsButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/LeftButtonStats"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/time"
+        app:layout_constraintEnd_toStartOf="@+id/CenterButtonStats"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/CenterButtonStats"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/beer"
+        app:layout_constraintEnd_toStartOf="@+id/RightButtonStats"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/LeftButtonStats"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/RightButtonStats"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/person"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/CenterButtonStats"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/helvetica_neue_regular"
-        android:textSize="16sp"
         android:text="DEINE WERTE"
         android:textColor="@color/MainOrange"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/editButtonMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/CenterButtonStats" />
 
     <TextView
         android:id="@+id/ageTextStatsMedium"
@@ -30,11 +77,11 @@
         android:text="20 Jahre"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
         app:layout_constraintBottom_toTopOf="@id/barChart"
         app:layout_constraintEnd_toStartOf="@+id/weightTextStatsMedium"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
         tools:layout_editor_absoluteY="71dp" />
 
     <TextView
