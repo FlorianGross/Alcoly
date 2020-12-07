@@ -173,10 +173,10 @@ public class CameraAndKI extends AppCompatActivity {
 
                     private int getSessionInt() {
                         NewCalculator calculator = new NewCalculator();
-                        double promille = calculator.getHighResultValue(getParent());
+                        double promille = calculator.getMinResultValue(getParent());
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
-                        if (promille == 0) {
+                        if (promille <= 0) {
                             return arrayList.get(0).getSession() + 1;
                         } else {
                             return arrayList.get(0).getSession();
@@ -205,7 +205,7 @@ public class CameraAndKI extends AppCompatActivity {
                                 case 3:
                                     return 0.3f;
                                 case 4:
-                                    return 0.25f;
+                                    return 0.2f;
                                 default:
                                     return 0;
                             }
@@ -218,7 +218,7 @@ public class CameraAndKI extends AppCompatActivity {
                                 case 3:
                                     return 0.3f;
                                 case 4:
-                                    return 0.1f;
+                                    return 0.2f;
                                 default:
                                     return 0;
                             }
@@ -231,7 +231,7 @@ public class CameraAndKI extends AppCompatActivity {
                                 case 3:
                                     return 0.3f;
                                 case 4:
-                                    return 0.1f;
+                                    return 0.2f;
                                 default:
                                     return 0;
                             }

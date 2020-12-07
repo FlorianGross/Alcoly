@@ -20,119 +20,126 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/polygon" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@mipmap/fragment">
 
-
-            <TextView
-                android:id="@+id/PromilleHigh"
-                android:layout_width="300dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="0.0 ‰"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="70sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                >
 
-            <TextView
-                android:id="@+id/textView8High"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="Geschätzte verbleibende Zeit bis Du
-    wieder Autofahren darfst:"
-                android:textAlignment="textStart"
-                android:textColor="@color/MainOrange"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PromilleHigh" />
 
-            <TextView
-                android:id="@+id/textView9High"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="00:00 h"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="70sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8High" />
+                <TextView
+                    android:id="@+id/PromilleHigh"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="0.0 ‰"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="70sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/amountOfAlcoholTextHigh"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="Geschätzte Menge Alkohol im Blut: "
-                android:textColor="@color/MainOrange"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9High" />
+                <TextView
+                    android:id="@+id/textView8High"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="Geschätzte verbleibende Zeit bis Du
+        wieder Autofahren darfst:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/MainOrange"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/PromilleHigh" />
 
-            <TextView
-                android:id="@+id/amountOfAlcoholHigh"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="0,0ml"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholTextHigh" />
+                <TextView
+                    android:id="@+id/textView9High"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="00:00 h"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="70sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8High" />
 
-            <TextView
-                android:id="@+id/lastTourHigh"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="Getrunken in den letzten 24 Stunden:"
-                android:textColor="@color/MainOrange"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholHigh" />
+                <TextView
+                    android:id="@+id/amountOfAlcoholTextHigh"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="Geschätzte Menge Alkohol im Blut: "
+                    android:textColor="@color/MainOrange"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9High" />
 
-            <TextView
-                android:id="@+id/textTypeHigh"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/helvetica_neue_regular"
-                android:text="0 alkoholische Getränke, davon 0 stark"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastTourHigh" />
+                <TextView
+                    android:id="@+id/amountOfAlcoholHigh"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="0,0ml"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholTextHigh" />
 
-            <ImageView
-                android:id="@+id/imageView7High"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTypeHigh"
-                tools:src="@mipmap/linie" />
+                <TextView
+                    android:id="@+id/lastTourHigh"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="Getrunken in den letzten 24 Stunden:"
+                    android:textColor="@color/MainOrange"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/amountOfAlcoholHigh" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textTypeHigh"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:text="0 alkoholische Getränke, davon 0 stark"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lastTourHigh" />
+
+                <ImageView
+                    android:id="@+id/imageView7High"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textTypeHigh"
+                    tools:src="@mipmap/linie" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
     </LinearLayout>
 
 </FrameLayout>
