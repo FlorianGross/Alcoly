@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/normalBackground"
+    android:background="@color/MainBackground"
     tools:context=".NewCalculator">
 
     <ImageView
@@ -52,7 +52,7 @@
         android:fontFamily="@font/helvetica_neue_regular"
         android:text="@string/timeline"
         android:textAlignment="center"
-        android:textColor="@color/MainOrange"
+        android:textColor="@color/MainColor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

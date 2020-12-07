@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/normalBackground">
+    android:background="@color/MainBackground">
 
     <TextView
         android:id="@+id/DateView"
@@ -15,7 +15,7 @@
         android:layout_marginRight="25dp"
         android:fontFamily="@font/helvetica_neue_regular"
         android:text="Gestern"
-        android:textColor="@color/white"
+        android:textColor="@color/text"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/FirstRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -75,12 +75,11 @@ public class Statistics extends AppCompatActivity {
         rightButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, Statistics.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
         centerButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainScreen.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
         edit.setOnClickListener(v -> {
             Intent intent = new Intent(this, FirstStartupActivity.class);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/normalBackground"
+    android:background="@color/MainBackground"
     android:orientation="vertical"
     tools:context=".Details">
     <ImageView
@@ -50,7 +50,7 @@
         android:fontFamily="@font/helvetica_neue_regular"
         android:text="@string/info"
         android:textAlignment="center"
-        android:textColor="@color/MainOrange"
+        android:textColor="@color/MainColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
                     android:clickable="false"
                     android:fontFamily="@font/helvetica_neue_regular"
                     android:text="Geschätzter Alkoholgehalt: "
-                    android:textColor="@color/MainOrange"
+                    android:textColor="@color/MainColor"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

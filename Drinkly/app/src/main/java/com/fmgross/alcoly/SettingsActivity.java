@@ -23,16 +23,17 @@ public class SettingsActivity extends AppCompatActivity {
         leftButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, NewCalculator.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
         rightButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, Statistics.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
         centerButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainScreen.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
 
         if (savedInstanceState == null) {

@@ -34,7 +34,7 @@ public class MainScreen extends AppCompatActivity {
             refreshData();
             mainButton.setOnClickListener(v -> openCamera());
             leftB.setOnClickListener(v -> openCalculator());
-            rightB.setOnClickListener(v -> openNothing());
+            rightB.setOnClickListener(v -> openStatistics());
         }
     }
 
@@ -84,7 +84,7 @@ public class MainScreen extends AppCompatActivity {
     /**
      * Open the Statistics Page
      */
-    public void openNothing() {
+    public void openStatistics() {
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

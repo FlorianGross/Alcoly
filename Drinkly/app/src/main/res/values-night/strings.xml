@@ -1,8 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Alcoly</string>
+    <string name="age">Age:</string>
+    <string name="continue2">Continue</string>
+    <string name="gender">Gender:</string>
+    <string name="weight">Weight:</string>
+    <string name="_2_4_promille">2.4 Promille</string>
     <string name="application_by_florian_gro_sven_herz_verena_huber_and_milan_ritscher_2020_all_rights_reserved">Application by Florian Groß, Sven Herz, Verena Huber and Milan Ritscher © 2020 all rights reserved</string>
     <string name="app_logo">App Logo</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
     <string name="_0_00">0.00%</string>
     <string name="info">INFO</string>
     <string name="timeline">TIMELINE</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_navigation_panel">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_main_surrounding">MainActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
 </resources>
