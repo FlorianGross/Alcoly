@@ -150,6 +150,7 @@ public class CameraAndKI extends AppCompatActivity {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         volume = getVolume();
                         permil = getPermil();
+                        System.out.println(permil);
                         int SessionInt;
                         try {
                             SessionInt = getSessionInt();
@@ -186,7 +187,7 @@ public class CameraAndKI extends AppCompatActivity {
                      * @return the value of the drink
                      */
                     private float getPermil() {
-                        return seekBar.getX();
+                        return seekBar.getProgress();
                     }
 
                     /**
@@ -324,7 +325,8 @@ public class CameraAndKI extends AppCompatActivity {
                 type = eachlabel;
                 openCamera.setVisibility(View.VISIBLE);
                 erkannt.setVisibility(View.VISIBLE);
-                seekBar.setX(5f);
+                seekBar.setProgress(5);
+                System.out.println(seekBar.getX());
                 selectedButton = 2;
                 buttonTR.setBackgroundResource(R.drawable.orangerectangle);
                 buttonBR.setBackgroundResource(R.drawable.blackrectangle);
