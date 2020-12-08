@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
+import java.util.prefs.PreferenceChangeListener;
+
 public class SettingsActivity extends AppCompatActivity {
     ImageView rightButton, centerButton, leftButton;
 
