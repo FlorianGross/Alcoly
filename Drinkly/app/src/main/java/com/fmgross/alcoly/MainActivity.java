@@ -2,7 +2,9 @@ package com.fmgross.alcoly;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
@@ -17,11 +19,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(100);
         progressBar.setScaleY(3f);
+        SharedPreferences defaultSettings =PreferenceManager.getDefaultSharedPreferences(this);
+        if(defaultSettings.getBoolean("Night", true)){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         progressAnimation(2000);
+
 
     }
 

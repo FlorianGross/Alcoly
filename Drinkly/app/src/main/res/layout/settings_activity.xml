@@ -13,20 +13,23 @@
 
         <ImageView
             android:id="@+id/LeftButtonSettings"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@mipmap/time"
+            android:backgroundTint="@color/text"
             app:layout_constraintBottom_toBottomOf="@+id/CenterButtonSettings"
             app:layout_constraintEnd_toStartOf="@+id/CenterButtonSettings"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/CenterButtonSettings" />
+            app:layout_constraintTop_toTopOf="@+id/CenterButtonSettings"
+            />
 
         <ImageView
             android:id="@+id/CenterButtonSettings"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@mipmap/beer"
+            android:backgroundTint="@color/text"
             app:layout_constraintBottom_toBottomOf="@+id/RightButtonSettings"
             app:layout_constraintEnd_toStartOf="@+id/RightButtonSettings"
             app:layout_constraintHorizontal_bias="0.5"
@@ -35,11 +38,12 @@
 
         <ImageView
             android:id="@+id/RightButtonSettings"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@mipmap/person"
+            android:backgroundTint="@color/text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

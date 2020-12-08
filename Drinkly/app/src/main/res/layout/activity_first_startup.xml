@@ -42,6 +42,7 @@
         android:layout_marginEnd="60dp"
         android:background="@mipmap/blackrectangle"
         android:src="@mipmap/male"
+        app:tint="@color/text"
         app:layout_constraintBottom_toTopOf="@+id/ageInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -57,7 +58,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/maleImage"
         app:layout_constraintEnd_toStartOf="@+id/maleImage"
         app:layout_constraintStart_toEndOf="@+id/genderText"
-        app:layout_constraintTop_toTopOf="@+id/maleImage" />
+        app:layout_constraintTop_toTopOf="@+id/maleImage"
+        app:tint="@color/text" />
 
     <TextView
         android:id="@+id/ageText"

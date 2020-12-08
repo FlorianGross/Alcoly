@@ -7,7 +7,5 @@
             app:summaryOff="Dark Mode ist deaktiviert"
             app:summaryOn="Dark Mode aktiviert"
             app:title="Dark Mode" />
-
-
     </PreferenceCategory>
 </PreferenceScreen>

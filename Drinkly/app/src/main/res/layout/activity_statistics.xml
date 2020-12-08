@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/settingsButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:src="@color/text"
@@ -20,10 +20,11 @@
 
     <ImageView
         android:id="@+id/LeftButtonStats"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@mipmap/time"
+        android:backgroundTint="@color/text"
         app:layout_constraintEnd_toStartOf="@+id/CenterButtonStats"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,10 +33,11 @@
 
     <ImageView
         android:id="@+id/CenterButtonStats"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@mipmap/beer"
+        android:backgroundTint="@color/text"
         app:layout_constraintEnd_toStartOf="@+id/RightButtonStats"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/LeftButtonStats"
@@ -44,10 +46,11 @@
 
     <ImageView
         android:id="@+id/RightButtonStats"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@mipmap/person"
+        android:backgroundTint="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/CenterButtonStats"

@@ -25,7 +25,7 @@ public class ProgressBarAnimation extends Animation {
      * Applies the Transformation to the progressBar
      *
      * @param interpolatedTime the time, the Bar needs to fill
-     * @param t                the percentage, the progress bar is filled
+     * @param t the percentage, the progress bar is filled
      */
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {

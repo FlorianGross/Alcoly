@@ -38,7 +38,7 @@
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="Erkannt:"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/text"
                 android:textSize="23sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="Bier"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/text"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -112,13 +112,13 @@
                 android:progressTint="#707070"
                 android:thumb="@mipmap/slider" />
 
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:src="@mipmap/linie" />
-
 
             <TextView
                 android:id="@+id/textView"
@@ -161,6 +161,7 @@
                         android:background="@mipmap/blackrectangle"
                         android:foreground="@mipmap/beerxlarge"
                         android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
                         android:text="TL"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -190,6 +191,7 @@
                         android:layout_marginBottom="5dp"
                         android:background="@mipmap/orangerectangle"
                         android:foreground="@mipmap/beerlarge"
+                        android:foregroundTint="@color/text"
                         android:foregroundGravity="center"
                         android:text="TR"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -220,6 +222,7 @@
                         android:layout_marginEnd="5dp"
                         android:background="@mipmap/blackrectangle"
                         android:foreground="@mipmap/beermedium"
+                        android:foregroundTint="@color/text"
                         android:foregroundGravity="center"
                         android:text="BL"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -252,6 +255,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@mipmap/blackrectangle"
                         android:foreground="@mipmap/beersmall"
+                        android:foregroundTint="@color/text"
                         android:foregroundGravity="center"
                         android:text="BR"
                         app:layout_constraintBottom_toBottomOf="parent"
