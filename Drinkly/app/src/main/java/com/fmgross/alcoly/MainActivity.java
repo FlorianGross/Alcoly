@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(100);
         progressBar.setScaleY(3f);
-        SharedPreferences defaultSettings =PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences defaultSettings = PreferenceManager.getDefaultSharedPreferences(this);
         if(defaultSettings.getBoolean("Night", true)){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }else{
