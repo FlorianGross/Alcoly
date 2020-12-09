@@ -1,2 +1,4 @@
-Glas
-Flasche
+Bierflasche
+WeinFlasche
+WeinGlas
+Bierglas

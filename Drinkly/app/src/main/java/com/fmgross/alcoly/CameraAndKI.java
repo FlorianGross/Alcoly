@@ -40,7 +40,7 @@ import java.util.Objects;
 
 
 public class CameraAndKI extends AppCompatActivity {
-    private ImageView imgView, buttonTL, buttonTR, buttonBL, buttonBR;
+    private ImageView imgView, buttonTL, buttonTR, buttonBL, buttonBR, buttonBLWein, buttonBLBier, buttonBRWein, buttonBRBier, buttonTLWein, buttonTLBier, buttonTRWein, buttonTRBier;
     private SeekBar seekBar;
     private TextView drinkName, erkannt, progressText;
     private Button openCamera, redo;
@@ -48,6 +48,8 @@ public class CameraAndKI extends AppCompatActivity {
     private float permil;
     private String type;
     private int selectedButton = 2;
+    private int selectedButtonBier = 2;
+    private int selectedButtonWein = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,15 @@ public class CameraAndKI extends AppCompatActivity {
         buttonBR = findViewById(R.id.GridVolumeBR);
         buttonTL = findViewById(R.id.GridVolumeTL);
         buttonTR = findViewById(R.id.GridVolumeTR);
+        buttonBLWein = findViewById(R.id.GridVolumeBLWein);
+        buttonBRWein = findViewById(R.id.GridVolumeBRWein);
+        buttonTLWein = findViewById(R.id.GridVolumeTLWein);
+        buttonTRWein = findViewById(R.id.GridVolumeTRWein);
+        buttonBLBier = findViewById(R.id.GridVolumeBLBier);
+        buttonBRBier = findViewById(R.id.GridVolumeBRBier);
+        buttonTLBier = findViewById(R.id.GridVolumeTLBier);
+        buttonTRBier = findViewById(R.id.GridVolumeTRBier);
+
         seekBar = findViewById(R.id.seekBar);
         openCamera = findViewById(R.id.bt_open);
         imgView = findViewById(R.id.image_view);
@@ -81,7 +92,7 @@ public class CameraAndKI extends AppCompatActivity {
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    progressText.setText(progress + " vol%");
+                        progressText.setText(progress + " vol%");
                     }
 
                     @Override
@@ -94,34 +105,7 @@ public class CameraAndKI extends AppCompatActivity {
 
                     }
                 });
-                buttonBL.setOnClickListener(v -> {
-                    selectedButton = 3;
-                    buttonBL.setBackgroundResource(R.drawable.orangerectangle);
-                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
-                });
-                buttonBR.setOnClickListener(v -> {
-                    selectedButton = 4;
-                    buttonBR.setBackgroundResource(R.drawable.orangerectangle);
-                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
-                });
-                buttonTL.setOnClickListener(v -> {
-                    selectedButton = 1;
-                    buttonTL.setBackgroundResource(R.drawable.orangerectangle);
-                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
-                });
-                buttonTR.setOnClickListener(v -> {
-                    selectedButton = 2;
-                    buttonTR.setBackgroundResource(R.drawable.orangerectangle);
-                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
-                });
+                onClickListener();
 
                 redo.setOnClickListener(v -> CropImage.activity().start(CameraAndKI.this));
 
@@ -195,7 +179,7 @@ public class CameraAndKI extends AppCompatActivity {
                      * @return the volume of the drink selected
                      */
                     private float getVolume() {
-                        if (type.equals("Glas") || type.equals("Flasche")) {
+                        if (type.equals("Bierflasche") || type.equals("Bierglas")) {
                             switch (selectedButton) {
                                 case 1:
                                     return 1;
@@ -208,16 +192,16 @@ public class CameraAndKI extends AppCompatActivity {
                                 default:
                                     return 0;
                             }
-                        } else if (type.equals("Wine")) {
+                        } else if (type.equals("WeinFlasche") || type.equals("WeinGlas")) {
                             switch (selectedButton) {
                                 case 1:
                                     return 1;
                                 case 2:
                                     return 0.5f;
                                 case 3:
-                                    return 0.3f;
-                                case 4:
                                     return 0.2f;
+                                case 4:
+                                    return 0.1f;
                                 default:
                                     return 0;
                             }
@@ -239,6 +223,95 @@ public class CameraAndKI extends AppCompatActivity {
                 });
             }
         }
+    }
+
+    private void onClickListener() {
+        buttonBL.setOnClickListener(v -> {
+            selectedButton = 3;
+            buttonBL.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonBR.setOnClickListener(v -> {
+            selectedButton = 4;
+            buttonBR.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonTL.setOnClickListener(v -> {
+            selectedButton = 1;
+            buttonTL.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+            buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonTR.setOnClickListener(v -> {
+            selectedButton = 2;
+            buttonTR.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+            buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        //Bier
+        buttonBLBier.setOnClickListener(v -> {
+            selectedButtonBier = 3;
+            buttonBLBier.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBRBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTRBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonBRBier.setOnClickListener(v -> {
+            selectedButtonBier = 4;
+            buttonBRBier.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBLBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTRBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonTLBier.setOnClickListener(v -> {
+            selectedButtonBier = 1;
+            buttonTLBier.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBRBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTRBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonBLBier.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonTRBier.setOnClickListener(v -> {
+            selectedButtonBier = 2;
+            buttonTRBier.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBRBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonBLBier.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        //Wein
+        buttonBLWein.setOnClickListener(v -> {
+            selectedButtonWein = 3;
+            buttonBLWein.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBRWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTRWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTLWein.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonBRWein.setOnClickListener(v -> {
+            selectedButtonWein = 4;
+            buttonBRWein.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBLWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTRWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTLWein.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonTLWein.setOnClickListener(v -> {
+            selectedButtonWein = 1;
+            buttonTLWein.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBRWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTRWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonBLWein.setBackgroundResource(R.drawable.blackrectangle);
+        });
+        buttonTRWein.setOnClickListener(v -> {
+            selectedButtonWein = 2;
+            buttonTRWein.setBackgroundResource(R.drawable.orangerectangle);
+            buttonBRWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonBLWein.setBackgroundResource(R.drawable.blackrectangle);
+            buttonTLWein.setBackgroundResource(R.drawable.blackrectangle);
+        });
     }
 
     /**
@@ -334,16 +407,10 @@ public class CameraAndKI extends AppCompatActivity {
                 buttonTL.setBackgroundResource(R.drawable.blackrectangle);
                 openCamera.setText("Hinzufügen");
 
-                if (eachlabel.equals("Glas") || eachlabel.equals("Flasche")) {
-                   /*  buttonTR.setForeground();
-                    buttonTL.setForeground();
-                    buttonBL.setForeground();
-                    buttonBR.setForeground(); */
-                } else if (eachlabel.equals("Wein")) {
-                    /* buttonTR.setForeground();
-                    buttonTL.setForeground();
-                    buttonBL.setForeground();
-                    buttonBR.setForeground(); */
+                if (eachlabel.equals("Bierglas") || eachlabel.equals("Bierflasche")) {
+
+                } else if (eachlabel.equals("WeinGlas") || eachlabel.equals("WeinFlasche")) {
+
                 } else {
                     /* buttonTR.setForeground();
                     buttonTL.setForeground();

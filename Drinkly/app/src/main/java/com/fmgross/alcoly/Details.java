@@ -20,10 +20,9 @@ import java.util.Date;
 
 public class Details extends AppCompatActivity {
     private Button edit;
-    private EditText percentage, type;
-    private TextView currentDate;
-    private ImageView imageView, center, left, right;
-    private CheckBox check1, check2;
+    private TextView percentage, type, currentDate, volume;
+    private EditText percentageEdit, typeEdit, volumeEdit;
+    private ImageView imageView, center, left, right, backButton, deleteButton;
     private int current = 0;
     private Boolean saveMode = false;
 
@@ -37,14 +36,36 @@ public class Details extends AppCompatActivity {
         edit = findViewById(R.id.edit);
         imageView = findViewById(R.id.currentImage);
         percentage = findViewById(R.id.currentPercentage);
-        check1 = findViewById(R.id.currentCheckBox1);
-        check2 = findViewById(R.id.currentCheckBox2);
         type = findViewById(R.id.CurrentName);
         currentDate = findViewById(R.id.currentDate);
+        backButton = findViewById(R.id.backButtonDetails);
+        volume = findViewById(R.id.volume);
+        percentageEdit = findViewById(R.id.currentPercentageEdit);
+        typeEdit = findViewById(R.id.CurrentNameEdit);
+        volumeEdit = findViewById(R.id.volumeEdit);
+        deleteButton = findViewById(R.id.deleteButton);
 
-        generateDelails();
 
 
+
+        generateDetails();
+
+        deleteButton.setOnClickListener(v -> {
+            DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+            ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                current = extras.getInt("intPosition");
+            }
+            Getraenke delGetraenk = arrayList.get(current);
+            databaseHelper.deleteOne(delGetraenk);
+            Intent intent = new Intent(this, MainScreen.class);
+            startActivity(intent);
+        });
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewCalculator.class);
+            startActivity(intent);
+        });
         left.setOnClickListener(v -> {
             Intent intent = new Intent(this, Statistics.class);
             startActivity(intent);
@@ -58,21 +79,9 @@ public class Details extends AppCompatActivity {
             startActivity(intent);
         });
         edit.setOnClickListener(v -> {
-            if (!saveMode) {
-                percentage.setFocusable(true);
-                type.setFocusable(true);
-                percentage.setFocusableInTouchMode(true);
-                type.setFocusableInTouchMode(true);
-                edit.setText("Save");
-                saveMode = true;
-            } else {
-                percentage.setFocusable(false);
-                type.setFocusable(false);
-                percentage.setFocusableInTouchMode(false);
-                type.setFocusableInTouchMode(false);
-                edit.setText("Edit");
-                saveMode = false;
-            }
+
+
+
         });
 
 
@@ -81,7 +90,7 @@ public class Details extends AppCompatActivity {
     /**
      * Generates the details page
      */
-    private void generateDelails() {
+    private void generateDetails() {
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
         Bundle extras = getIntent().getExtras();
@@ -105,18 +114,13 @@ public class Details extends AppCompatActivity {
      * @param i  the position of the current item in the array
      */
     private void setAllValues(ArrayList<Getraenke> ai, int i) {
-        if (ai.get(i).getVolume() == 0.5) {
-            check1.setChecked(false);
-            check2.setChecked(true);
-        } else {
-            check2.setChecked(false);
-            check1.setChecked(true);
-        }
+        type.setText(ai.get(i).getName());
+        volume.setText(ai.get(i).getVolume() + "L");
         Date newDate = ai.get(i).getDate();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String strDate = formatter.format(newDate);
         currentDate.setText(strDate);
-        percentage.setText(ai.get(i).getVolumePart() + "\u2030");
+        percentage.setText(ai.get(i).getVolumePart() + "vol%");
         imageView.setImageBitmap(ai.get(i).getUri());
     }
 

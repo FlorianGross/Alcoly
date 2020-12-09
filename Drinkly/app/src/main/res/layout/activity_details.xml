@@ -7,6 +7,7 @@
     android:background="@color/MainBackground"
     android:orientation="vertical"
     tools:context=".Details">
+
     <ImageView
         android:id="@+id/LeftButtonDetails"
         android:layout_width="40dp"
@@ -60,12 +61,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CenterButton" />
 
+    <ImageView
+        android:id="@+id/backButtonDetails"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:background="@mipmap/smallellipse"
+        android:foreground="@mipmap/backarrow"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RightButtonDetails" />
+
+    <ImageView
+        android:id="@+id/deleteButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:background="@mipmap/smallellipse"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LeftButtonDetails" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +108,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
+            w
+
+            <TextView
                 android:id="@+id/CurrentName"
                 android:layout_width="wrap_content"
                 android:layout_height="72dp"
@@ -93,8 +118,21 @@
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:inputType="text"
                 android:text="Bier"
-                android:textColor="@color/white"
+                android:textColor="@color/text"
                 android:textSize="30sp"
+                tools:ignore="Autofill,LabelFor" />
+
+            <EditText
+                android:id="@+id/CurrentNameEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_marginLeft="35dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:inputType="text"
+                android:text="Bier"
+                android:textColor="@color/text"
+                android:textSize="30sp"
+                android:visibility="gone"
                 tools:ignore="Autofill,LabelFor" />
 
             <ImageView
@@ -133,19 +171,32 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
+                <TextView
                     android:id="@+id/currentPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/helvetica_neue_regular"
                     android:inputType="text"
-                    android:text="~ 5.0 ‰ "
-                    android:textColor="@color/white"
+                    android:text="5.0 vol% "
+                    android:textColor="@color/text"
                     android:textSize="35sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="Autofill,LabelFor" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/currentPercentageEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:inputType="text"
+                    android:text="~ 5.0 ‰ "
+                    android:textColor="@color/text"
+                    android:textSize="35sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
@@ -161,28 +212,37 @@
                 android:layout_marginRight="35dp"
                 android:orientation="vertical">
 
-
-                <CheckBox
-                    android:id="@+id/currentCheckBox1"
+                <TextView
+                    android:id="@+id/VolumeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:clickable="false"
                     android:fontFamily="@font/helvetica_neue_regular"
-                    android:text="0.3L"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:text="Geschätztes Volumen: "
+                    android:textColor="@color/MainColor"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <CheckBox
-                    android:id="@+id/currentCheckBox2"
+                <TextView
+                    android:id="@+id/volume"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="false"
+                    android:layout_height="50dp"
                     android:fontFamily="@font/helvetica_neue_regular"
                     android:text="0.5L"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textColor="@color/text"
+                    android:textSize="35sp" />
+
+                <EditText
+                    android:id="@+id/volumeEdit"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:inputType="text"
+                    android:text="0.5L"
+                    android:textColor="@color/text"
+                    android:textSize="35sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -200,7 +260,7 @@
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="19:20 11.01.2001"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/text"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>

@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
@@ -14,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setMax(100);
         progressBar.setScaleY(3f);
         SharedPreferences defaultSettings = PreferenceManager.getDefaultSharedPreferences(this);
-        if(defaultSettings.getBoolean("Night", true)){
+        if (defaultSettings.getBoolean("Night", true)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else{
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        progressAnimation(2000);
 
+        progressAnimation(2000);
 
     }
 

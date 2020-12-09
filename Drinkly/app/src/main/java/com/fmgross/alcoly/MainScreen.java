@@ -6,6 +6,7 @@ import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,8 +51,10 @@ public class MainScreen extends AppCompatActivity {
                     try {
                         String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
                         textView.setText(promilleString + " \u2030");
+                        textView.setTextSize(50);
                     } catch (Exception e) {
-                        textView.setText(0.0 + " \u2030");
+                        textView.setText("Drücke den Button um zu starten!");
+                        textView.setTextSize(20);
                     }
                 });
                 try {
@@ -78,6 +81,10 @@ public class MainScreen extends AppCompatActivity {
      * Opens the Camera Page
      */
     public void openCamera() {
+
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.blop);
+        mp.start();
+
         Intent intent = new Intent(this, CameraAndKI.class);
         startActivity(intent);
 

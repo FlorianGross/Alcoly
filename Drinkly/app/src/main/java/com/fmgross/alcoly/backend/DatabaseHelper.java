@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public boolean deleteOne(Getraenke getraenke) {
         SQLiteDatabase database = this.getWritableDatabase();
-        String queryString = "DELETE * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_URI + " = " + getraenke.getUri();
+        String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " = " + getraenke.getDate().getTime();
 
         Cursor cursor = database.rawQuery(queryString, null);
         return cursor.moveToFirst();

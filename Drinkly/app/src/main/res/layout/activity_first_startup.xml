@@ -25,10 +25,10 @@
     <TextView
         android:id="@+id/genderText"
         android:layout_width="170dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="35dp"
         android:fontFamily="@font/helvetica_neue_regular"
-        android:text="Dein Geschlecht:"
+        android:text="Dein biologisches Geschlecht:"
         android:textColor="@color/MainColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/femaleImage"

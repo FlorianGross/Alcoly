@@ -126,12 +126,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/helvetica_neue_regular"
-                android:text="Volumen:"
                 android:paddingBottom="10dp"
+                android:text="Volumen:"
                 android:textColor="@color/MainColor"
                 android:textSize="20sp" />
 
             <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/defaultGrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -143,15 +144,17 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/GridVolumeTLText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1L"
                         android:elevation="2dp"
-                        android:textSize="20sp"
                         android:paddingBottom="10dp"
+                        android:text="1L"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/GridVolumeTL"
                         app:layout_constraintEnd_toEndOf="@+id/GridVolumeTL"
                         app:layout_constraintStart_toStartOf="@+id/GridVolumeTL" />
+
                     <ImageView
                         android:id="@+id/GridVolumeTL"
                         android:layout_width="155dp"
@@ -174,6 +177,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/GridVolumeTRText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="2dp"
@@ -183,6 +187,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/GridVolumeTR"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
+
                     <ImageView
                         android:id="@+id/GridVolumeTR"
                         android:layout_width="155dp"
@@ -191,8 +196,8 @@
                         android:layout_marginBottom="5dp"
                         android:background="@mipmap/orangerectangle"
                         android:foreground="@mipmap/beerlarge"
-                        android:foregroundTint="@color/text"
                         android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
                         android:text="TR"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -205,15 +210,17 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/GridVolumeBLText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:elevation="2dp"
                         android:paddingBottom="10dp"
                         android:text="0.3L"
                         android:textSize="20dp"
-                        android:elevation="2dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
+
                     <ImageView
                         android:id="@+id/GridVolumeBL"
                         android:layout_width="155dp"
@@ -222,8 +229,8 @@
                         android:layout_marginEnd="5dp"
                         android:background="@mipmap/blackrectangle"
                         android:foreground="@mipmap/beermedium"
-                        android:foregroundTint="@color/text"
                         android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
                         android:text="BL"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -237,6 +244,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/GridVolumeBRText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="2dp"
@@ -255,8 +263,295 @@
                         android:layout_marginTop="5dp"
                         android:background="@mipmap/blackrectangle"
                         android:foreground="@mipmap/beersmall"
-                        android:foregroundTint="@color/text"
                         android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="BR"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.gridlayout.widget.GridLayout>
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/BierGrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:columnCount="2"
+                app:rowCount="2"
+                android:visibility="gone">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeTLBierText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="1L"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/GridVolumeTLBier"
+                        app:layout_constraintEnd_toEndOf="@+id/GridVolumeTLBier"
+                        app:layout_constraintStart_toStartOf="@+id/GridVolumeTLBier" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeTLBier"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@mipmap/blackrectangle"
+                        android:foreground="@mipmap/beerxlarge"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="TL"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeTRBierText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="1/2L"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/GridVolumeTRBier"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeTRBier"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@mipmap/orangerectangle"
+                        android:foreground="@mipmap/beerlarge"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="TR"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeBLBierText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="0.3L"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeBLBier"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@mipmap/blackrectangle"
+                        android:foreground="@mipmap/beermedium"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="BL"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeBRBierText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="0.2L"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeBRBier"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/blackrectangle"
+                        android:foreground="@mipmap/beersmall"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="BR"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/WeinGrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                app:columnCount="2"
+                app:rowCount="2">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeTLWeinText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="1L"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/GridVolumeTLWein"
+                        app:layout_constraintEnd_toEndOf="@+id/GridVolumeTLWein"
+                        app:layout_constraintStart_toStartOf="@+id/GridVolumeTLWein" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeTLWein"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@mipmap/blackrectangle"
+                        android:foreground="@mipmap/beerxlarge"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="TL"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeTRWeinText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="1/2L"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/GridVolumeTRWein"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeTRWein"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@mipmap/orangerectangle"
+                        android:foreground="@mipmap/beerlarge"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="TR"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeBLWeinText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="0.3L"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeBLWein"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@mipmap/blackrectangle"
+                        android:foreground="@mipmap/beermedium"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
+                        android:text="BL"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/GridVolumeBRWeinText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:text="0.2L"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/GridVolumeBRWein"
+                        android:layout_width="155dp"
+                        android:layout_height="122dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/blackrectangle"
+                        android:foreground="@mipmap/beersmall"
+                        android:foregroundGravity="center"
+                        android:foregroundTint="@color/text"
                         android:text="BR"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
