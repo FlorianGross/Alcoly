@@ -99,9 +99,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="5 vol%"
-                android:textSize="30sp"
                 android:textAlignment="center"
-                android:textColor="@color/text" />
+                android:textColor="@color/text"
+                android:textSize="30sp" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -112,7 +112,6 @@
                 android:progressBackgroundTint="#707070"
                 android:progressTint="#707070"
                 android:thumb="@mipmap/slider" />
-
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -274,14 +273,15 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.gridlayout.widget.GridLayout>
+
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/BierGrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="gone"
                 app:columnCount="2"
-                app:rowCount="2"
-                android:visibility="gone">
+                app:rowCount="2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -450,7 +450,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@mipmap/blackrectangle"
-                        android:foreground="@mipmap/beerxlarge"
+                        android:foreground="@mipmap/winebottle"
                         android:foregroundGravity="center"
                         android:foregroundTint="@color/text"
                         android:text="TL"
@@ -483,7 +483,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@mipmap/orangerectangle"
-                        android:foreground="@mipmap/beerlarge"
+                        android:foreground="@mipmap/winelargeglass"
                         android:foregroundGravity="center"
                         android:foregroundTint="@color/text"
                         android:text="TR"
@@ -516,7 +516,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:background="@mipmap/blackrectangle"
-                        android:foreground="@mipmap/beermedium"
+                        android:foreground="@mipmap/winemediumglass"
                         android:foregroundGravity="center"
                         android:foregroundTint="@color/text"
                         android:text="BL"
@@ -550,7 +550,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:background="@mipmap/blackrectangle"
-                        android:foreground="@mipmap/beersmall"
+                        android:foreground="@mipmap/winesmallglass"
                         android:foregroundGravity="center"
                         android:foregroundTint="@color/text"
                         android:text="BR"

@@ -41,7 +41,7 @@ public class Getraenke {
                 ", volume=" + volume +
                 ", volumePart=" + volumePart +
                 ", session=" + session +
-                '}';
+                "}";
     }
 
     public String getName() {return name;}

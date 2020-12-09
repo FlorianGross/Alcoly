@@ -46,7 +46,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         Date newDate = mdrinks.get(position).getDate();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         String strDate = formatter.format(newDate);
-
+        holder.type.setText(mdrinks.get(position).getName());
         holder.date.setText(strDate);
         holder.vol.setText(mdrinks.get(position).getVolume() + "L");
         holder.volP.setText(mdrinks.get(position).getVolumePart() + " \u2030");
@@ -62,6 +62,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public final TextView type;
         public final TextView date;
         public final TextView vol;
         public final TextView volP;
@@ -69,6 +70,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
+            type = itemView.findViewById(R.id.type);
             date = itemView.findViewById(R.id.time);
             vol = itemView.findViewById(R.id.newvolume);
             volP = itemView.findViewById(R.id.newvolumePerc);
