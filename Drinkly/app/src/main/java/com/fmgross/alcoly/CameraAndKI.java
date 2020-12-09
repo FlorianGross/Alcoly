@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class CameraAndKI extends AppCompatActivity {
     private int selectedButton = 2;
     private int selectedButtonBier = 2;
     private int selectedButtonWein = 2;
+    private GridLayout normal, bier, wein;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +61,20 @@ public class CameraAndKI extends AppCompatActivity {
         buttonBR = findViewById(R.id.GridVolumeBR);
         buttonTL = findViewById(R.id.GridVolumeTL);
         buttonTR = findViewById(R.id.GridVolumeTR);
+
         buttonBLWein = findViewById(R.id.GridVolumeBLWein);
         buttonBRWein = findViewById(R.id.GridVolumeBRWein);
         buttonTLWein = findViewById(R.id.GridVolumeTLWein);
         buttonTRWein = findViewById(R.id.GridVolumeTRWein);
+
         buttonBLBier = findViewById(R.id.GridVolumeBLBier);
         buttonBRBier = findViewById(R.id.GridVolumeBRBier);
         buttonTLBier = findViewById(R.id.GridVolumeTLBier);
         buttonTRBier = findViewById(R.id.GridVolumeTRBier);
+
+        normal = findViewById(R.id.defaultGrid);
+        bier = findViewById(R.id.BierGrid);
+        wein = findViewById(R.id.WeinGrid);
 
         seekBar = findViewById(R.id.seekBar);
         openCamera = findViewById(R.id.bt_open);
@@ -180,7 +188,7 @@ public class CameraAndKI extends AppCompatActivity {
                      */
                     private float getVolume() {
                         if (type.equals("Bierflasche") || type.equals("Bierglas")) {
-                            switch (selectedButton) {
+                            switch (selectedButtonBier) {
                                 case 1:
                                     return 1;
                                 case 2:
@@ -193,7 +201,7 @@ public class CameraAndKI extends AppCompatActivity {
                                     return 0;
                             }
                         } else if (type.equals("WeinFlasche") || type.equals("WeinGlas")) {
-                            switch (selectedButton) {
+                            switch (selectedButtonWein) {
                                 case 1:
                                     return 1;
                                 case 2:
@@ -226,6 +234,7 @@ public class CameraAndKI extends AppCompatActivity {
     }
 
     private void onClickListener() {
+        //Normal
         buttonBL.setOnClickListener(v -> {
             selectedButton = 3;
             buttonBL.setBackgroundResource(R.drawable.orangerectangle);
@@ -386,6 +395,9 @@ public class CameraAndKI extends AppCompatActivity {
                 drinkName.setText("Nicht Erkannt");
                 erkannt.setVisibility(View.INVISIBLE);
                 openCamera.setVisibility(View.VISIBLE);
+                normal.setVisibility(View.VISIBLE);
+                bier.setVisibility(View.GONE);
+                wein.setVisibility(View.GONE);
                 buttonTR.setBackgroundResource(R.drawable.blackrectangle);
                 buttonBR.setBackgroundResource(R.drawable.blackrectangle);
                 buttonBL.setBackgroundResource(R.drawable.blackrectangle);
@@ -400,22 +412,36 @@ public class CameraAndKI extends AppCompatActivity {
                 erkannt.setVisibility(View.VISIBLE);
                 seekBar.setProgress(5);
                 System.out.println(seekBar.getX());
-                selectedButton = 2;
-                buttonTR.setBackgroundResource(R.drawable.orangerectangle);
-                buttonBR.setBackgroundResource(R.drawable.blackrectangle);
-                buttonBL.setBackgroundResource(R.drawable.blackrectangle);
-                buttonTL.setBackgroundResource(R.drawable.blackrectangle);
                 openCamera.setText("Hinzufügen");
 
                 if (eachlabel.equals("Bierglas") || eachlabel.equals("Bierflasche")) {
+                    bier.setVisibility(View.VISIBLE);
+                    normal.setVisibility(View.GONE);
+                    wein.setVisibility(View.GONE);
+                    selectedButtonBier = 2;
+                    buttonBRBier.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonBLBier.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTRBier.setBackgroundResource(R.drawable.orangerectangle);
 
                 } else if (eachlabel.equals("WeinGlas") || eachlabel.equals("WeinFlasche")) {
-
+                    wein.setVisibility(View.VISIBLE);
+                    bier.setVisibility(View.GONE);
+                    wein.setVisibility(View.GONE);
+                    selectedButtonWein = 3;
+                    buttonBRWein.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonBLWein.setBackgroundResource(R.drawable.orangerectangle);
+                    buttonTLWein.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTRBier.setBackgroundResource(R.drawable.blackrectangle);
                 } else {
-                    /* buttonTR.setForeground();
-                    buttonTL.setForeground();
-                    buttonBL.setForeground();
-                    buttonBR.setForeground(); */
+                    normal.setVisibility(View.VISIBLE);
+                    bier.setVisibility(View.GONE);
+                    wein.setVisibility(View.GONE);
+                    selectedButton = 2;
+                    buttonTR.setBackgroundResource(R.drawable.orangerectangle);
+                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
                 }
 
 

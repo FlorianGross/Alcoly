@@ -99,8 +99,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/helvetica_neue_regular"
                 android:text="5 vol%"
+                android:textSize="30sp"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/text" />
 
             <SeekBar
                 android:id="@+id/seekBar"
