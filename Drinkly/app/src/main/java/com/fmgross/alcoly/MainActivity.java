@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        SharedPreferences.Editor editor = defaultSettings.edit();
-
         progressAnimation(2000);
 
     }
