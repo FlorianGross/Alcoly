@@ -241,7 +241,6 @@ public class NewCalculator extends AppCompatActivity {
         return arrayList.get(0).getSession();
     }
 
-
     /**
      * Calculates the Time between the First and the last drink
      *
@@ -278,6 +277,24 @@ public class NewCalculator extends AppCompatActivity {
             e = (arrayList.get(i).getVolumePart() / 100);
             a += v * e * p;
         }
+        double value = (a / (m * r));
+        return (value - (u * value));
+    }
+
+    public double calculateOnePromille(Context context, Getraenke getraenke) {
+        SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        String gender = settings.getString("gender", "Male");
+        double r = getGenderR(gender.equals("Male"));
+        int age = settings.getInt("age", 20);
+        double u = getAgeU(age < 55, 0.15, 0.2);
+        int m = settings.getInt("weight", 80);
+        double p = 0.8;
+        double v;
+        double e;
+        double a = 0;
+        v = (getraenke.getVolume() * 1000);
+        e = (getraenke.getVolumePart() / 100);
+        a += v * e * p;
         double value = (a / (m * r));
         return (value - (u * value));
     }
@@ -325,12 +342,28 @@ public class NewCalculator extends AppCompatActivity {
         return dates;
     }
 
-
-    public double getNormalResultInTime(int time) {
-
-        return 0.0;
+    public double allAlcoholTogether(Context context) {
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        arrayList = databaseHelper.getAllGetraenke();
+        double result = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            result += arrayList.get(i).getVolume();
+        }
+        return result;
     }
 
+    public double getPermilInSessionToDrink(Context context, int sessionInt, Getraenke getraenk) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(sessionInt);
+        int i = 0;
+        double permil = 0;
+        do {
+            permil += calculateOnePromille(context, arrayListHere.get(i));
+            i++;
+        } while (arrayListHere.get(i) != getraenk);
+
+        return 0;
+    }
 
     @Override
     public void finish() {

@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.gridlayout.widget.GridLayout;
+
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -155,7 +157,7 @@ public class CameraAndKI extends AppCompatActivity {
                         int month = calendar.get(Calendar.MONTH) + 1;
                         String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                         int realDateTest = Integer.parseInt(realDate);
-                        Getraenke getraenk = new Getraenke("Bier" + type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
+                        Getraenke getraenk = new Getraenke(type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
                         Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());
                         databaseHelper.addOne(getraenk);
@@ -187,7 +189,7 @@ public class CameraAndKI extends AppCompatActivity {
                      * @return the volume of the drink selected
                      */
                     private float getVolume() {
-                        if (type.equals("Bierflasche") || type.equals("Bierglas")) {
+                        if (type.equals("BIERFLASCHE") || type.equals("BIERGLAS")) {
                             switch (selectedButtonBier) {
                                 case 1:
                                     return 1;
@@ -200,7 +202,7 @@ public class CameraAndKI extends AppCompatActivity {
                                 default:
                                     return 0;
                             }
-                        } else if (type.equals("WeinFlasche") || type.equals("WeinGlas")) {
+                        } else if (type.equals("WEINFLASCHE") || type.equals("WEINGLAS")) {
                             switch (selectedButtonWein) {
                                 case 1:
                                     return 1;
@@ -379,8 +381,9 @@ public class CameraAndKI extends AppCompatActivity {
                     if (confidence * 100 > 60) {
                         succes = true;
                         returnLabel = eachlabel;
+                        System.out.println(eachlabel + " " + confidence + " Success");
                     } else {
-                        System.out.println(confidence + " Decline");
+                        System.out.println(eachlabel + " " + confidence + " Decline");
                         onConfidenceDecline();
                     }
                 }
@@ -398,6 +401,7 @@ public class CameraAndKI extends AppCompatActivity {
                 normal.setVisibility(View.VISIBLE);
                 bier.setVisibility(View.GONE);
                 wein.setVisibility(View.GONE);
+                type = "error";
                 buttonTR.setBackgroundResource(R.drawable.blackrectangle);
                 buttonBR.setBackgroundResource(R.drawable.blackrectangle);
                 buttonBL.setBackgroundResource(R.drawable.blackrectangle);
@@ -414,7 +418,7 @@ public class CameraAndKI extends AppCompatActivity {
                 System.out.println(seekBar.getX());
                 openCamera.setText("Hinzufügen");
 
-                if (eachlabel.equals("Bierglas") || eachlabel.equals("Bierflasche")) {
+                if (eachlabel.equals("BIERGLAS") || eachlabel.equals("BIERFLASCHE")) {
                     bier.setVisibility(View.VISIBLE);
                     normal.setVisibility(View.GONE);
                     wein.setVisibility(View.GONE);
@@ -424,7 +428,7 @@ public class CameraAndKI extends AppCompatActivity {
                     buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
                     buttonTRBier.setBackgroundResource(R.drawable.orangerectangle);
 
-                } else if (eachlabel.equals("WeinGlas") || eachlabel.equals("WeinFlasche")) {
+                } else if (eachlabel.equals("WEINGLAS") || eachlabel.equals("WEINFLASCHE")) {
                     wein.setVisibility(View.VISIBLE);
                     bier.setVisibility(View.GONE);
                     wein.setVisibility(View.GONE);
