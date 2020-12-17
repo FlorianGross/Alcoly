@@ -237,8 +237,21 @@ public class NewCalculator extends AppCompatActivity {
     private int getSessionInt(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
-        System.out.println(arrayList.get(0).getSession());
         return arrayList.get(0).getSession();
+    }
+
+    public int getNewSessionInt(Context context) {
+        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        ArrayList<Getraenke> newArrayList = databaseHelper.getAllGetraenke();
+        double promille = getHighResult(context, newArrayList);
+        System.out.println(newArrayList.toString());
+        if (promille <= 0) {
+            System.out.println("Session INT: " + newArrayList.get(0).getSession() + 1);
+            return newArrayList.get(0).getSession() + 1;
+        } else {
+            System.out.println("Session INT: " + newArrayList.get(0).getSession());
+            return newArrayList.get(0).getSession();
+        }
     }
 
     /**

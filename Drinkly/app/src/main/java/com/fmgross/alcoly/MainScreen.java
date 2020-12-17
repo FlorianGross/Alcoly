@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 
 public class MainScreen extends AppCompatActivity {
     private TextView textView;
+    private boolean running = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class MainScreen extends AppCompatActivity {
 
     private void refreshData() {
         Runnable runnable = () -> {
-            while (true) {
+            while (running) {
                 runOnUiThread(() -> {
                     NewCalculator calculate = new NewCalculator();
                     DecimalFormat f = new DecimalFormat();

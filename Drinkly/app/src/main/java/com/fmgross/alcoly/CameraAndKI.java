@@ -102,7 +102,6 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
         drinkName.setOnItemSelectedListener(this);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,7 +158,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                         int SessionInt;
                         try {
                             SessionInt = getSessionInt();
-                        } catch (Exception e) {
+                        }catch (ArrayIndexOutOfBoundsException e){
                             SessionInt = 0;
                         }
                         Date returnDate = new Date();
@@ -177,14 +176,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
 
                     private int getSessionInt() {
                         NewCalculator calculator = new NewCalculator();
-                        double promille = calculator.getMinResultValue(getParent());
-                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-                        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
-                        if (promille <= 0) {
-                            return arrayList.get(0).getSession() + 1;
-                        } else {
-                            return arrayList.get(0).getSession();
-                        }
+                        return calculator.getNewSessionInt(getApplicationContext());
                     }
 
                     /**
@@ -199,7 +191,8 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                      * gets the Volume of the spinners item
                      * @return the volume of the drink selected
                      */
-                    private float getVolume() throws IllegalArgumentException {
+                    private float getVolume() {
+                        System.out.println(type);
                         if (type.equals("BIERFLASCHE") || type.equals("BIERGLAS")) {
                             switch (selectedButtonBier) {
                                 case 1:
@@ -379,7 +372,6 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-
     private void processImageLabeler(ImageLabeler labeler, InputImage image) {
         labeler.process(image).addOnCompleteListener(new OnCompleteListener<List<ImageLabel>>() {
             @Override
@@ -497,6 +489,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        System.out.println("Item Selected" + position);
         switch (position) {
             case 0:
                 selectNone("None");
@@ -509,14 +502,11 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
             case 2:
                 selectWine("Wein");
                 openCamera.setVisibility(View.VISIBLE);
-
             case 3:
                 selectElse("Schnaps");
                 openCamera.setVisibility(View.VISIBLE);
-
         }
     }
-
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

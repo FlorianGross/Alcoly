@@ -137,7 +137,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:columnCount="2"
-                app:rowCount="2">
+                app:rowCount="2"
+                android:visibility="gone"
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
@@ -423,7 +425,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:columnCount="2"
                 app:rowCount="2">
 
