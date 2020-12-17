@@ -8,15 +8,19 @@
     android:orientation="vertical"
     tools:context=".Statistics">
 
-    <ImageView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/settingsButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="20dp"
-        android:src="@mipmap/settings"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/MainColor"
+        android:foreground="@mipmap/settings"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/text"
+        android:tint="@color/text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/text" />
 
     <ImageView
@@ -36,26 +40,26 @@
         android:id="@+id/CenterButtonStats"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
         android:background="@mipmap/beer"
         android:backgroundTint="@color/text"
+        app:layout_constraintBottom_toBottomOf="@+id/LeftButtonStats"
         app:layout_constraintEnd_toStartOf="@+id/RightButtonStats"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/LeftButtonStats"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/LeftButtonStats"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/RightButtonStats"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
         android:background="@mipmap/person"
         android:backgroundTint="@color/text"
+        app:layout_constraintBottom_toBottomOf="@+id/CenterButtonStats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/CenterButtonStats"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/CenterButtonStats"
         tools:ignore="MissingConstraints" />
 
 
@@ -68,62 +72,11 @@
         android:text="DEINE WERTE"
         android:textColor="@color/MainColor"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/editButtonMedium"
+        app:layout_constraintBottom_toTopOf="@+id/barChart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CenterButtonStats" />
 
-    <TextView
-        android:id="@+id/ageTextStatsMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="17dp"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:text="20 Jahre"
-        android:textColor="@color/text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/barChart"
-        app:layout_constraintEnd_toStartOf="@+id/weightTextStatsMedium"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        tools:layout_editor_absoluteY="71dp" />
-
-    <TextView
-        android:id="@+id/weightTextStatsMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="17dp"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:text="100 kg"
-        android:textColor="@color/text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ageTextStatsMedium"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8Medium"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ageTextStatsMedium"
-        app:layout_constraintTop_toTopOf="@+id/ageTextStatsMedium" />
-
-    <ImageView
-        android:id="@+id/imageView8Medium"
-        android:layout_width="17dp"
-        android:layout_height="17dp"
-        android:src="@mipmap/male"
-        app:layout_constraintBottom_toBottomOf="@+id/weightTextStatsMedium"
-        app:layout_constraintEnd_toStartOf="@+id/editButtonMedium"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/weightTextStatsMedium"
-        app:layout_constraintTop_toTopOf="@+id/weightTextStatsMedium" />
-
-    <Button
-        android:id="@+id/editButtonMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:text="Ändern"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView8Medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView8Medium"
-        app:layout_constraintTop_toTopOf="@+id/imageView8Medium" />
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
@@ -131,8 +84,7 @@
         android:layout_height="100dp"
         app:layout_constraintBottom_toTopOf="@+id/mediumButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weightTextStatsMedium" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/lowButton"

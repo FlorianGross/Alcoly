@@ -8,4 +8,24 @@
             app:summaryOn="Dark Mode aktiviert"
             app:title="Dark Mode" />
     </PreferenceCategory>
+    <PreferenceCategory app:title="Persönliche Daten">
+        <DropDownPreference
+            app:defaultValue="Männlich"
+            app:title="Geschlecht"
+            app:key="gender"
+            app:summary="Dein Geschlecht"
+            app:entries="@array/Gender"
+            app:entryValues="@array/Gender"
+            />
+        <EditTextPreference
+            app:defaultValue="20"
+            app:key="age"
+            app:summary="Dein Alter"
+            app:title="Alter" />
+        <EditTextPreference
+            app:key="weight"
+            app:summary="Dein Gewicht"
+            app:title="Gewicht"
+            app:defaultValue="80"/>
+    </PreferenceCategory>
 </PreferenceScreen>

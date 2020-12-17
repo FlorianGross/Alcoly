@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.Drinkly" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#FF5722</item>
         <item name="colorPrimaryVariant">#FF852A</item>
@@ -6,10 +7,21 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/MainBackground</item>
     </style>
+
     <style name="Theme.Drinkly.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="Theme.Drinkly.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.Drinkly.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="PreferenceScreen" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="PreferenceCategoryTitleTextStyle" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/MainColor</item>
+    </style>
 </resources>

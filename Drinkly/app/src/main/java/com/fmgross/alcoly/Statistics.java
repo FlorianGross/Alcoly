@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,9 +20,11 @@ import com.fmgross.alcoly.fragments.hoherWert;
 import com.fmgross.alcoly.fragments.mittlererWert;
 import com.fmgross.alcoly.fragments.niedrigerWert;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,28 +34,23 @@ import java.util.Date;
 public class Statistics extends AppCompatActivity {
     private BarChart barChart;
     final int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
-    private Button lowValue, mediumValue, highValue, edit;
-    private ImageView genderImage, rightButton, centerButton, leftButton, settings;
-    private TextView age, weight;
-
+    private Button lowValue, mediumValue, highValue;
+    private ImageView rightButton, centerButton, leftButton;
+    private FloatingActionButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        edit = findViewById(R.id.editButtonMedium);
+
         barChart = findViewById(R.id.barChart);
         lowValue = findViewById(R.id.lowButton);
         mediumValue = findViewById(R.id.mediumButton);
         highValue = findViewById(R.id.highButton);
-        age = findViewById(R.id.ageTextStatsMedium);
-        weight = findViewById(R.id.weightTextStatsMedium);
-        genderImage = findViewById(R.id.imageView8Medium);
         rightButton = findViewById(R.id.RightButtonStats);
         centerButton = findViewById(R.id.CenterButtonStats);
         leftButton = findViewById(R.id.LeftButtonStats);
         settings = findViewById(R.id.settingsButton);
-        setBasicData();
 
         FragmentManager fm = getSupportFragmentManager();
 
@@ -81,10 +79,6 @@ public class Statistics extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
-        edit.setOnClickListener(v -> {
-            Intent intent = new Intent(this, FirstStartupActivity.class);
-            startActivity(intent);
-        });
         lowValue.setOnClickListener(v -> {
             FragmentTransaction ft1 = fm.beginTransaction();
             ft1.replace(R.id.fragment, new niedrigerWert());
@@ -103,23 +97,9 @@ public class Statistics extends AppCompatActivity {
 
     }
 
-    private void setBasicData() {
-        SharedPreferences settings = this.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        String genderString = settings.getString("gender", "Male");
-        int ageInt = settings.getInt("age", 20);
-        int weightInt = settings.getInt("weight", 80);
-        age.setText(ageInt + "Jahre");
-        weight.setText(weightInt + "kg");
-        if (genderString.equals("Male")) {
-            genderImage.setImageResource(R.mipmap.male);
-        } else {
-            genderImage.setImageResource(R.drawable.female);
-        }
-    }
-
     private void initializeBarChart() {
         ArrayList<BarEntry> drink = new ArrayList<>();
-        //drink = addDrinks();
+        drink.add(0, new BarEntry(0, 0));
         //drink.add(new BarEntry(20f, new float[]{1.0f, 1.2f, 1.3f}));
         BarDataSet barDataSet = new BarDataSet(drink, "Getränke");
         barDataSet.setColors(colorClassArray);
@@ -127,9 +107,13 @@ public class Statistics extends AppCompatActivity {
         barDataSet.setValueTextSize(16f);
         BarData barData = new BarData(barDataSet);
         barChart.setFitBars(true);
+        barChart.setDragXEnabled(true);
+        barChart.setDragYEnabled(false);
         barChart.setData(barData);
-        barChart.animateY(500);
+        barChart.setDrawGridBackground(false);
 
+
+        barChart.animateY(500);
     }
 
     private ArrayList<BarEntry> addDrinks() {
@@ -137,9 +121,6 @@ public class Statistics extends AppCompatActivity {
         ArrayList<BarEntry> drinks = new ArrayList<>();
         ArrayList<Integer> dateList = newCalculator.getDates();
         for (int i = 0; i < dateList.size(); i++) {
-            Date newDate = new Date(dateList.get(i));
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
-            String date = simpleDateFormat.format(newDate);
             // drinks.add(new BarEntry(Float.parseFloat(date), new float[]{newCalculator.getMinPermilAtTime(this, dateList.get(i)),newCalculator.getMedPermilAtTime(this, dateList.get(i)),newCalculator.getMaxPermilAtTime(this, dateList.get(i))}));
         }
         return drinks;

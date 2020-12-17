@@ -23,4 +23,14 @@
     <string name="title_activity_main_surrounding">MainActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <string-array name="Types">
+        <item>Nicht Erkannt</item>
+        <item>Bier</item>
+        <item>Wein</item>
+        <item>Schnaps</item>
+    </string-array>
+    <string-array name="Gender">
+        <item>Männlich</item>
+        <item>Weiblich</item>
+    </string-array>
 </resources>

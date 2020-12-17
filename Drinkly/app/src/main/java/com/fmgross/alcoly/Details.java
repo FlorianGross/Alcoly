@@ -51,14 +51,7 @@ public class Details extends AppCompatActivity {
         generateDetails();
 
         deleteButton.setOnClickListener(v -> {
-            DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-            ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                current = extras.getInt("intPosition");
-            }
-            Getraenke delGetraenk = arrayList.get(current);
-            databaseHelper.deleteOne(delGetraenk);
+            deleteGetraenk();
             Intent intent = new Intent(this, MainScreen.class);
             startActivity(intent);
         });
@@ -85,6 +78,17 @@ public class Details extends AppCompatActivity {
         });
 
 
+    }
+
+    private void deleteGetraenk() {
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            current = extras.getInt("intPosition");
+        }
+        Getraenke delGetraenk = arrayList.get(current);
+        databaseHelper.deleteOne(delGetraenk);
     }
 
     /**

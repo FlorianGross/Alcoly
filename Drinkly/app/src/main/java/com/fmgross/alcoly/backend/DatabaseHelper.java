@@ -215,7 +215,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        System.out.println(getraenkeList.toString());
         return getraenkeList;
     }
 }

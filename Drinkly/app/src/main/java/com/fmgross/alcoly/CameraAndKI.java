@@ -13,12 +13,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import androidx.gridlayout.widget.GridLayout;
 
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,11 +45,12 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class CameraAndKI extends AppCompatActivity {
+public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private ImageView imgView, buttonTL, buttonTR, buttonBL, buttonBR, buttonBLWein, buttonBLBier, buttonBRWein, buttonBRBier, buttonTLWein, buttonTLBier, buttonTRWein, buttonTRBier;
     private SeekBar seekBar;
-    private TextView drinkName, erkannt, progressText;
+    private TextView erkannt, progressText;
     private Button openCamera, redo;
+    private Spinner drinkName;
     private float volume;
     private float permil;
     private String type;
@@ -86,8 +90,16 @@ public class CameraAndKI extends AppCompatActivity {
         erkannt = findViewById(R.id.Erkannt);
         progressText = findViewById(R.id.volPerText);
 
+        generateSpinner();
 
         CropImage.activity().start(CameraAndKI.this);
+    }
+
+    private void generateSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        drinkName.setAdapter(adapter);
+        drinkName.setOnItemSelectedListener(this);
     }
 
 
@@ -144,7 +156,6 @@ public class CameraAndKI extends AppCompatActivity {
                         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
                         volume = getVolume();
                         permil = getPermil();
-                        System.out.println(permil);
                         int SessionInt;
                         try {
                             SessionInt = getSessionInt();
@@ -188,7 +199,7 @@ public class CameraAndKI extends AppCompatActivity {
                      * gets the Volume of the spinners item
                      * @return the volume of the drink selected
                      */
-                    private float getVolume() {
+                    private float getVolume() throws IllegalArgumentException {
                         if (type.equals("BIERFLASCHE") || type.equals("BIERGLAS")) {
                             switch (selectedButtonBier) {
                                 case 1:
@@ -395,7 +406,7 @@ public class CameraAndKI extends AppCompatActivity {
             }
 
             private void onConfidenceDecline() {
-                drinkName.setText("Nicht Erkannt");
+                drinkName.setSelection(0);
                 erkannt.setVisibility(View.INVISIBLE);
                 openCamera.setVisibility(View.VISIBLE);
                 normal.setVisibility(View.VISIBLE);
@@ -410,42 +421,21 @@ public class CameraAndKI extends AppCompatActivity {
             }
 
             private void onConfidenceSuccess(String eachlabel) {
-                drinkName.setText(eachlabel);
-                type = eachlabel;
                 openCamera.setVisibility(View.VISIBLE);
                 erkannt.setVisibility(View.VISIBLE);
                 seekBar.setProgress(5);
-                System.out.println(seekBar.getX());
                 openCamera.setText("Hinzufügen");
 
                 if (eachlabel.equals("BIERGLAS") || eachlabel.equals("BIERFLASCHE")) {
-                    bier.setVisibility(View.VISIBLE);
-                    normal.setVisibility(View.GONE);
-                    wein.setVisibility(View.GONE);
-                    selectedButtonBier = 2;
-                    buttonBRBier.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonBLBier.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTRBier.setBackgroundResource(R.drawable.orangerectangle);
+                    drinkName.setSelection(1);
+                    selectBeer("Bier");
 
                 } else if (eachlabel.equals("WEINGLAS") || eachlabel.equals("WEINFLASCHE")) {
-                    wein.setVisibility(View.VISIBLE);
-                    bier.setVisibility(View.GONE);
-                    wein.setVisibility(View.GONE);
-                    selectedButtonWein = 3;
-                    buttonBRWein.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonBLWein.setBackgroundResource(R.drawable.orangerectangle);
-                    buttonTLWein.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTRBier.setBackgroundResource(R.drawable.blackrectangle);
+                    drinkName.setSelection(2);
+                    selectWine("Wein");
                 } else {
-                    normal.setVisibility(View.VISIBLE);
-                    bier.setVisibility(View.GONE);
-                    wein.setVisibility(View.GONE);
-                    selectedButton = 2;
-                    buttonTR.setBackgroundResource(R.drawable.orangerectangle);
-                    buttonBR.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonBL.setBackgroundResource(R.drawable.blackrectangle);
-                    buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+                    drinkName.setSelection(3);
+                    selectElse("Schnaps");
                 }
 
 
@@ -457,4 +447,79 @@ public class CameraAndKI extends AppCompatActivity {
 
     }
 
+    private void selectElse(String type) {
+        normal.setVisibility(View.VISIBLE);
+        bier.setVisibility(View.GONE);
+        wein.setVisibility(View.GONE);
+        this.type = type;
+        selectedButton = 2;
+        buttonTR.setBackgroundResource(R.drawable.orangerectangle);
+        buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+        buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+        buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+    }
+
+    private void selectWine(String type) {
+        wein.setVisibility(View.VISIBLE);
+        bier.setVisibility(View.GONE);
+        wein.setVisibility(View.GONE);
+        this.type = type;
+        selectedButtonWein = 3;
+        buttonBRWein.setBackgroundResource(R.drawable.blackrectangle);
+        buttonBLWein.setBackgroundResource(R.drawable.orangerectangle);
+        buttonTLWein.setBackgroundResource(R.drawable.blackrectangle);
+        buttonTRBier.setBackgroundResource(R.drawable.blackrectangle);
+    }
+
+    private void selectBeer(String type) {
+        bier.setVisibility(View.VISIBLE);
+        normal.setVisibility(View.GONE);
+        wein.setVisibility(View.GONE);
+        this.type = type;
+        selectedButtonBier = 2;
+        buttonBRBier.setBackgroundResource(R.drawable.blackrectangle);
+        buttonBLBier.setBackgroundResource(R.drawable.blackrectangle);
+        buttonTLBier.setBackgroundResource(R.drawable.blackrectangle);
+        buttonTRBier.setBackgroundResource(R.drawable.orangerectangle);
+    }
+
+    private void selectNone(String type) {
+        bier.setVisibility(View.GONE);
+        normal.setVisibility(View.GONE);
+        wein.setVisibility(View.GONE);
+        this.type = type;
+        selectedButtonBier = 0;
+        buttonTR.setBackgroundResource(R.drawable.blackrectangle);
+        buttonBR.setBackgroundResource(R.drawable.blackrectangle);
+        buttonBL.setBackgroundResource(R.drawable.blackrectangle);
+        buttonTL.setBackgroundResource(R.drawable.blackrectangle);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                selectNone("None");
+                openCamera.setVisibility(View.INVISIBLE);
+
+            case 1:
+                selectBeer("Bier");
+                openCamera.setVisibility(View.VISIBLE);
+
+            case 2:
+                selectWine("Wein");
+                openCamera.setVisibility(View.VISIBLE);
+
+            case 3:
+                selectElse("Schnaps");
+                openCamera.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        openCamera.setVisibility(View.INVISIBLE);
+    }
 }
