@@ -42,6 +42,9 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Refreshes the values from the main page
+     */
     private void refreshData() {
         Runnable runnable = () -> {
             while (running) {

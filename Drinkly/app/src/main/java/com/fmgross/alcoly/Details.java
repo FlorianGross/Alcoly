@@ -76,6 +76,9 @@ public class Details extends AppCompatActivity {
 
     }
 
+    /**
+     * When the button delete is pressed, deletes the  getraenk from the database
+     */
     private void deleteGetraenk() {
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();

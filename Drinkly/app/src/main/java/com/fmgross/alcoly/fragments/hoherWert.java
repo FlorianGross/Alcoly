@@ -40,7 +40,9 @@ public class hoherWert extends Fragment {
         return root;
     }
 
-
+    /**
+     * Refreshes the data of the Detailsfragment high on a new thread
+     */
     private void refreshData() {
         Runnable runnable = () -> {
             while (true) {

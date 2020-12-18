@@ -39,7 +39,9 @@ public class niedrigerWert extends Fragment {
         return root;
     }
 
-
+    /**
+     * Refreshes the data of the Detailsfragment low on a new thread
+     */
     private void refreshData() {
         Runnable runnable = () -> {
             while (true) {

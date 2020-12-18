@@ -51,6 +51,15 @@ public class settingsFragment extends Fragment {
 
         generateSettings();
 
+        onClickListener();
+
+        return root;
+    }
+
+    /**
+     * Generates all the OnClickListeners
+     */
+    private void onClickListener() {
         save.setOnClickListener(v -> {
             SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = settings.edit();
@@ -112,9 +121,11 @@ public class settingsFragment extends Fragment {
             male.setBackgroundColor(Color.rgb(34, 34, 34));
             female.setBackgroundColor(Color.rgb(255, 205, 25));
         });
-        return root;
     }
 
+    /**
+     * Generates the Fragment with the Values from the SharedPreference "Settings"
+     */
     private void generateSettings() {
         SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
         if (settings.getString("gender", "Male").equals("Male")) {

@@ -39,7 +39,9 @@ public class mittlererWert extends Fragment {
         refreshData();
         return root;
     }
-
+    /**
+     * Refreshes the data of the Detailsfragment medium on a new thread
+     */
     private void refreshData() {
         Runnable runnable = () -> {
             while (true) {

@@ -24,14 +24,12 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
     private final LayoutInflater mInflater;
     private final RecyclerViewClickListener listener;
 
-    // data is passed into the constructor
     public myAdapter(Context context, ArrayList<Getraenke> mdrinks, RecyclerViewClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.mdrinks = mdrinks;
         this.listener = listener;
     }
 
-    // inflates the cell layout from xml when needed
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +37,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each cell
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Insert New Data
@@ -53,14 +50,15 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
         holder.imgV.setImageBitmap(mdrinks.get(position).getUri());
     }
 
-    // total number of cells
+    /**
+     * returns the amount of getraenke from the adapter
+     * @return size of the arrayList
+     */
     @Override
     public int getItemCount() {
         return mdrinks.size();
     }
 
-
-    // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView type;
         public final TextView date;

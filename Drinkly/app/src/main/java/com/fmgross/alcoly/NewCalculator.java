@@ -124,12 +124,24 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
+    /**
+     * returns the min result from the current context
+     *
+     * @param context The Context, the database gets created
+     * @return The permil calculated with the high factor
+     */
     public double getMinResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         return getMinResult(context, arrayListHere);
     }
 
+    /**
+     * calculates the time until the permil value is 0.5 or below
+     *
+     * @param context
+     * @return
+     */
     public double getMinTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
@@ -150,6 +162,13 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
+    /**
+     * Calculates the permil with the high subtract
+     *
+     * @param context
+     * @param arrayList
+     * @return
+     */
     public double getHighResult(Context context, ArrayList<Getraenke> arrayList) {
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculateSessionPromille(context, arrayList);
@@ -209,6 +228,12 @@ public class NewCalculator extends AppCompatActivity {
         return arrayList.get(0).getSession();
     }
 
+    /**
+     * creates the session int with a value higher, if the permil value is equals 0
+     *
+     * @param context the context, the session is created in
+     * @return the new Session int created
+     */
     public int getNewSessionInt(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> newArrayList = databaseHelper.getAllGetraenke();
@@ -263,6 +288,13 @@ public class NewCalculator extends AppCompatActivity {
         return (value - (u * value));
     }
 
+    /**
+     * Calculates the permil for one of the drinks
+     *
+     * @param context   the context, the permil is needed from
+     * @param getraenke the getraenk which is calculated in
+     * @return the permil for one drink
+     */
     public double calculateOnePromille(Context context, Getraenke getraenke) {
         SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String gender = settings.getString("gender", "Male");
@@ -317,6 +349,11 @@ public class NewCalculator extends AppCompatActivity {
         };
     }
 
+    /**
+     * Creates an ArrayList with all the Dates
+     *
+     * @return
+     */
     public ArrayList<Integer> getDates() {
         ArrayList<Integer> dates;
         databaseHelper = new DatabaseHelper(getApplicationContext());
@@ -324,6 +361,12 @@ public class NewCalculator extends AppCompatActivity {
         return dates;
     }
 
+    /**
+     * Calculates all the values together
+     *
+     * @param context the context, the calculation is needed in
+     * @return all volumes together
+     */
     public double allAlcoholTogether(Context context) {
         databaseHelper = new DatabaseHelper(getApplicationContext());
         arrayList = databaseHelper.getAllGetraenke();
@@ -334,6 +377,12 @@ public class NewCalculator extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * @param context
+     * @param sessionInt
+     * @param getraenk
+     * @return
+     */
     public double getPermilInSessionToDrink(Context context, int sessionInt, Getraenke getraenk) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(sessionInt);
@@ -353,6 +402,12 @@ public class NewCalculator extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
+    /**
+     * Returns the size of the ArrayList with all the drinks with one session
+     *
+     * @param context the context, the int is needed
+     * @return the amount of Getraenke in the session
+     */
     public int getSessionAmount(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));

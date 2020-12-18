@@ -94,6 +94,9 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
         CropImage.activity().start(CameraAndKI.this);
     }
 
+    /**
+     * Generates the spinner with the ArrayList
+     */
     private void generateSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -101,6 +104,13 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
         drinkName.setOnItemSelectedListener(this);
     }
 
+    /**
+     * the result from the cropper Activity
+     *
+     * @param requestCode the requestcode to validate the data are for the right location
+     * @param resultCode  the resultCode to validate the data from the result
+     * @param data        the data for the Image
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -173,6 +183,10 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
 
                     }
 
+                    /**
+                     * Returns the Session int from the newest Session
+                     * @return int with the new Session
+                     */
                     private int getSessionInt() {
                         NewCalculator calculator = new NewCalculator();
                         return calculator.getNewSessionInt(getApplicationContext());
@@ -350,6 +364,11 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
+    /**
+     * creates the labeler for the Uri image
+     *
+     * @param uri the Uri of the Image
+     */
     private void setLabelerFromLocalModel(Uri uri) {
         AutoMLImageLabelerLocalModel localModel =
                 new AutoMLImageLabelerLocalModel.Builder()
@@ -371,6 +390,12 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
+    /**
+     * The prozess of Labeling
+     *
+     * @param labeler the created labeler
+     * @param image   the image as InputImage
+     */
     private void processImageLabeler(ImageLabeler labeler, InputImage image) {
         labeler.process(image).addOnCompleteListener(new OnCompleteListener<List<ImageLabel>>() {
             @Override
@@ -396,6 +421,9 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                 }
             }
 
+            /**
+             * If the process fails to recognise the getraenk
+             */
             private void onConfidenceDecline() {
                 drinkName.setSelection(0);
                 erkannt.setVisibility(View.INVISIBLE);
@@ -411,6 +439,10 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                 openCamera.setText("Trotzdem");
             }
 
+            /**
+             * If the process succeded to recognise the getraenk
+             * @param eachlabel
+             */
             private void onConfidenceSuccess(String eachlabel) {
                 openCamera.setVisibility(View.VISIBLE);
                 erkannt.setVisibility(View.VISIBLE);

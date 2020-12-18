@@ -89,6 +89,9 @@ public class Statistics extends AppCompatActivity {
 
     }
 
+    /**
+     * Initializes the Bar Chart
+     */
     private void initializeBarChart() {
         ArrayList<BarEntry> drink = new ArrayList<>();
         drink.add(0, new BarEntry(0, 0));
@@ -108,6 +111,11 @@ public class Statistics extends AppCompatActivity {
         barChart.animateY(500);
     }
 
+    /**
+     * Adds Entries to the Bar chart
+     *
+     * @return all the bar entries
+     */
     private ArrayList<BarEntry> addDrinks() {
         NewCalculator newCalculator = new NewCalculator();
         ArrayList<BarEntry> drinks = new ArrayList<>();

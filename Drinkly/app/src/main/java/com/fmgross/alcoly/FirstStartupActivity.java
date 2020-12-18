@@ -53,6 +53,11 @@ public class FirstStartupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Saves the other data to the SharedPreference
+     * @param age input from the ageinput
+     * @param weight input from the weightinput
+     */
     private void setValues(int age, int weight) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
@@ -66,7 +71,10 @@ public class FirstStartupActivity extends AppCompatActivity {
         editor.apply();
     }
 
-
+    /**
+     * Saves the gender to the SharedPreference
+     * @param gender
+     */
     public void saveGender(String gender) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

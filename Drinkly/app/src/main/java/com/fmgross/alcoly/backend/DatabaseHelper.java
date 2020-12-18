@@ -185,6 +185,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnArray;
     }
 
+    /**
+     * Creates an ArrayList with all the Getraenke from one Session
+     *
+     * @param sessionInt the number of the session
+     * @return ArrayList with all the getraenke
+     */
     public ArrayList<Getraenke> getAllOfSession(int sessionInt) {
         ArrayList<Getraenke> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
