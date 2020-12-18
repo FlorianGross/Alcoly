@@ -2,10 +2,12 @@ package com.fmgross.alcoly.backend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ProgressBar;
 
+import com.fmgross.alcoly.CameraAndKI;
 import com.fmgross.alcoly.MainScreen;
 
 public class ProgressBarAnimation extends Animation {
@@ -25,7 +27,7 @@ public class ProgressBarAnimation extends Animation {
      * Applies the Transformation to the progressBar
      *
      * @param interpolatedTime the time, the Bar needs to fill
-     * @param t the percentage, the progress bar is filled
+     * @param t                the percentage, the progress bar is filled
      */
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
@@ -34,7 +36,13 @@ public class ProgressBarAnimation extends Animation {
         progressBar.setProgress((int) value);
 
         if (value == to) {
-            context.startActivity(new Intent(context, MainScreen.class));
+            SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+            boolean scanOnStart = settings.getBoolean("scanOnStart", false);
+            if (scanOnStart) {
+                context.startActivity(new Intent(context, CameraAndKI.class));
+            } else {
+                context.startActivity(new Intent(context, MainScreen.class));
+            }
         }
     }
 }

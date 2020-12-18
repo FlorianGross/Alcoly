@@ -60,6 +60,9 @@ public class FirstStartupActivity extends AppCompatActivity {
         editor.putInt("age", age);
         editor.putInt("weight", weight);
         editor.putBoolean("valuesSet", true);
+        editor.putBoolean("scanOnStart", false);
+        editor.putBoolean("darkmode", true);
+        editor.putBoolean("audio", true);
         editor.apply();
     }
 

@@ -17,15 +17,17 @@ import java.text.DecimalFormat;
 public class MainScreen extends AppCompatActivity {
     private TextView textView;
     private boolean running = true;
+    private ImageView mainButton, leftB, centerB, rightB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        ImageView mainButton = findViewById(R.id.mainAction);
-        ImageView leftB = findViewById(R.id.LeftButton);
-        ImageView centerB = findViewById(R.id.CenterButton);
-        ImageView rightB = findViewById(R.id.RightButton);
+
+        mainButton = findViewById(R.id.mainAction);
+        leftB = findViewById(R.id.LeftButton);
+        centerB = findViewById(R.id.CenterButton);
+        rightB = findViewById(R.id.RightButton);
         textView = findViewById(R.id.promilleErgebnis);
 
 
