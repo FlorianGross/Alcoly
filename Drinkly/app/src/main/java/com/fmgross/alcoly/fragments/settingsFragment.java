@@ -28,13 +28,13 @@ public class settingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     private ImageView link, datenschutz;
-    private Button male, female;
+    private Button male, female, save;
     private EditText age, weight;
     private Switch night, audio, scanOnStart;
+    private String gender;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,47 +50,19 @@ public class settingsFragment extends Fragment {
         night = root.findViewById(R.id.darkmodeSwitch);
         audio = root.findViewById(R.id.audioSwitch);
         scanOnStart = root.findViewById(R.id.startWithScanSwitch);
+        save = root.findViewById(R.id.save);
 
         generateSettings();
 
-        weight.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings.edit();
-                int weight = Integer.parseInt(s.toString());
-                editor.putInt("weight", weight);
-            }
-        });
-
-        age.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings.edit();
-                int age = Integer.parseInt(s.toString());
-                editor.putInt("age", age);
-            }
+        save.setOnClickListener(v -> {
+            SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = settings.edit();
+            int ageValue = Integer.parseInt(age.getText().toString());
+            int weightValue = Integer.parseInt(weight.getText().toString());
+            editor.putInt("age", ageValue);
+            editor.putInt("weight", weightValue);
+            editor.putString("gender", gender);
+            editor.apply();
         });
 
         datenschutz.setOnClickListener(v -> {
@@ -106,44 +78,46 @@ public class settingsFragment extends Fragment {
         });
 
         night.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            System.out.println(isChecked);
             SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = settings.edit();
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 editor.putBoolean("darkmode", true);
+                editor.apply();
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 editor.putBoolean("darkmode", false);
+                editor.apply();
             }
         });
 
         audio.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            System.out.println(isChecked);
             SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("audio", isChecked);
+            editor.apply();
         });
 
         scanOnStart.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            System.out.println(isChecked);
             SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = settings.edit();
-            editor.putBoolean("scanOnStart", isChecked);
+            if (isChecked) {
+                editor.putBoolean("scanOnStart", true);
+                editor.apply();
+            } else {
+                editor.putBoolean("scanOnStart", false);
+                editor.apply();
+            }
         });
 
         male.setOnClickListener(v -> {
-            SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("gender", "Male");
+            gender = "Male";
             male.setBackgroundColor(Color.rgb(255, 205, 25));
             female.setBackgroundColor(Color.rgb(34, 34, 34));
         });
 
         female.setOnClickListener(v -> {
-            SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("gender", "Female");
+            gender = "Female";
             male.setBackgroundColor(Color.rgb(34, 34, 34));
             female.setBackgroundColor(Color.rgb(255, 205, 25));
         });
@@ -155,9 +129,11 @@ public class settingsFragment extends Fragment {
         if (settings.getString("gender", "Male").equals("Male")) {
             male.setBackgroundColor(Color.rgb(255, 205, 25));
             female.setBackgroundColor(Color.rgb(34, 34, 34));
+            gender = "Male";
         } else {
             male.setBackgroundColor(Color.rgb(34, 34, 34));
             female.setBackgroundColor(Color.rgb(255, 205, 25));
+            gender = "Female";
         }
 
         age.setText(settings.getInt("age", 20) + "");
