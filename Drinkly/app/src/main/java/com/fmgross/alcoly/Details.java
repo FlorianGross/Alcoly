@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,8 +45,6 @@ public class Details extends AppCompatActivity {
         deleteButton = findViewById(R.id.deleteButton);
 
 
-
-
         generateDetails();
 
         deleteButton.setOnClickListener(v -> {
@@ -72,7 +69,6 @@ public class Details extends AppCompatActivity {
             startActivity(intent);
         });
         edit.setOnClickListener(v -> {
-
 
 
         });

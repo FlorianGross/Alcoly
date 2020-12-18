@@ -1,8 +1,6 @@
 package com.fmgross.alcoly;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +14,7 @@ import java.text.DecimalFormat;
 
 public class MainScreen extends AppCompatActivity {
     private TextView textView;
-    private boolean running = true;
+    private final boolean running = true;
     private ImageView mainButton, leftB, centerB, rightB;
 
     @Override
@@ -113,11 +111,6 @@ public class MainScreen extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("firstStart", false);
         editor.apply();
-
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-    }
 }

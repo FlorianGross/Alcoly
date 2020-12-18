@@ -38,7 +38,6 @@ import com.google.mlkit.vision.label.automl.AutoMLImageLabelerOptions;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -158,7 +157,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                         int SessionInt;
                         try {
                             SessionInt = getSessionInt();
-                        }catch (ArrayIndexOutOfBoundsException e){
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             SessionInt = 0;
                         }
                         Date returnDate = new Date();

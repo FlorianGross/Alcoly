@@ -1,24 +1,13 @@
 package com.fmgross.alcoly;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 import com.fmgross.alcoly.fragments.settingsFragment;
 
-import java.util.prefs.PreferenceChangeListener;
 
 public class SettingsActivity extends AppCompatActivity {
     ImageView rightButton, centerButton, leftButton;

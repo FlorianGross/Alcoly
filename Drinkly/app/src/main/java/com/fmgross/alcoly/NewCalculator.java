@@ -76,11 +76,6 @@ public class NewCalculator extends AppCompatActivity {
         newRecyclerView.setHasFixedSize(false);
     }
 
-    /**
-     * @param context
-     * @param arrayList
-     * @return
-     */
     public double getNormalResult(Context context, ArrayList<Getraenke> arrayList) {
         try {
             double time = getDrinkTime(arrayList, new Date());
@@ -96,20 +91,12 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
-    /**
-     * @param context
-     * @return
-     */
     public double getNormalResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         return getNormalResult(context, arrayListHere);
     }
 
-    /**
-     * @param context
-     * @return
-     */
     public double getNormalTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
@@ -126,11 +113,6 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
-    /**
-     * @param context
-     * @param arrayList
-     * @return
-     */
     public double getMinResult(Context context, ArrayList<Getraenke> arrayList) {
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculateSessionPromille(context, arrayList);
@@ -142,20 +124,12 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
-    /**
-     * @param context
-     * @return
-     */
     public double getMinResultValue(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
         return getMinResult(context, arrayListHere);
     }
 
-    /**
-     * @param context
-     * @return
-     */
     public double getMinTimeToDrive(Context context) {
         databaseHelper = new DatabaseHelper(context.getApplicationContext());
         ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt(context));
@@ -176,11 +150,6 @@ public class NewCalculator extends AppCompatActivity {
         }
     }
 
-    /**
-     * @param context
-     * @param arrayList
-     * @return
-     */
     public double getHighResult(Context context, ArrayList<Getraenke> arrayList) {
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculateSessionPromille(context, arrayList);

@@ -6,20 +6,16 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 
 import com.fmgross.alcoly.R;
 
@@ -52,6 +48,7 @@ public class settingsFragment extends Fragment {
         scanOnStart = root.findViewById(R.id.startWithScanSwitch);
         save = root.findViewById(R.id.save);
 
+
         generateSettings();
 
         save.setOnClickListener(v -> {
@@ -83,12 +80,11 @@ public class settingsFragment extends Fragment {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 editor.putBoolean("darkmode", true);
-                editor.apply();
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 editor.putBoolean("darkmode", false);
-                editor.apply();
             }
+            editor.apply();
         });
 
         audio.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -101,13 +97,8 @@ public class settingsFragment extends Fragment {
         scanOnStart.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = settings.edit();
-            if (isChecked) {
-                editor.putBoolean("scanOnStart", true);
-                editor.apply();
-            } else {
-                editor.putBoolean("scanOnStart", false);
-                editor.apply();
-            }
+            editor.putBoolean("scanOnStart", isChecked);
+            editor.apply();
         });
 
         male.setOnClickListener(v -> {

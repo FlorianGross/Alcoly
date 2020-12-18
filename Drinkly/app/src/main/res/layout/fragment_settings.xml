@@ -4,11 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/MainBackground">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,6 +48,7 @@
                         android:id="@+id/femaleButton"
                         android:layout_width="170dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="10dp"
                         android:backgroundTint="@color/MainColor"
                         android:text="Weiblich"
@@ -66,6 +62,7 @@
                         android:layout_width="170dp"
                         android:layout_height="50dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
                         android:backgroundTint="@color/MainColor"
                         android:text="Männlich"
                         android:textSize="10sp"
@@ -89,7 +86,9 @@
                         android:id="@+id/AlterInput"
                         android:layout_width="170dp"
                         android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@mipmap/textinput"
                         android:inputType="number"
                         android:text="20"
@@ -117,7 +116,9 @@
                         android:id="@+id/GewichtInput"
                         android:layout_width="170dp"
                         android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@mipmap/textinput"
                         android:inputType="number"
                         android:text="80"
@@ -132,10 +133,12 @@
                         android:id="@+id/save"
                         android:layout_width="170dp"
                         android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/MainColor"
                         android:text="Speichern"
                         android:textSize="10sp"
-                        android:backgroundTint="@color/MainColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/GewichtInput" />
@@ -170,6 +173,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
                         android:enabled="true"
+                        android:thumbTint="@color/MainColor"
+                        android:trackTint="@color/MainColor"
                         app:layout_constraintBottom_toTopOf="@+id/audioSwitch"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -194,6 +199,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
                         android:enabled="true"
+                        android:thumbTint="@color/MainColor"
+                        android:trackTint="@color/MainColor"
                         app:layout_constraintBottom_toTopOf="@+id/startWithScanSwitch"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/darkmodeSwitch" />
@@ -218,6 +225,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
                         android:enabled="true"
+                        android:thumbTint="@color/MainColor"
+                        android:trackTint="@color/MainColor"
                         app:layout_constraintBottom_toTopOf="@+id/datenschutzButton"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/audioSwitch" />
@@ -270,5 +279,4 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </ScrollView>
 </FrameLayout>

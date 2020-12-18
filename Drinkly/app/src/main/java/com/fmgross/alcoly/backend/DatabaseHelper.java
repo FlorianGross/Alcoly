@@ -48,9 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Adds one getränk to the Database
      *
      * @param getraenke the object to be added
-     * @return true if it succeded
      */
-    public boolean addOne(Getraenke getraenke) {
+    public void addOne(Getraenke getraenke) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         Bitmap bitmap = getraenke.getUri();
@@ -66,7 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GETRAENK_REALDATE, getraenke.getRealDate());
         cv.put(COLUMN_GETRAENK_SESSION, getraenke.getSession());
         long insert = db.insert(TABLE_NAME, null, cv);
-        return insert != -1;
     }
 
     /**
@@ -103,25 +101,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Deletes one item from the Database
      *
      * @param getraenke the object, to be removed
-     * @return true if it succeded
      */
-    public boolean deleteOne(Getraenke getraenke) {
+    public void deleteOne(Getraenke getraenke) {
         SQLiteDatabase database = this.getWritableDatabase();
         String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " = " + getraenke.getDate().getTime();
 
         Cursor cursor = database.rawQuery(queryString, null);
-        return cursor.moveToFirst();
+        cursor.moveToFirst();
     }
 
     /**
      * Clears the Database from all objects
-     *
-     * @return true if it succeded
      */
-    public boolean deleteAllGetraenke() {
+    public void deleteAllGetraenke() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
-        return true;
     }
 
     /**
