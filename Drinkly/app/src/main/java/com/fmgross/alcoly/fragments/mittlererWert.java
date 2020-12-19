@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.fmgross.alcoly.NewCalculator;
 import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.backend.Calculation;
 
 import java.text.DecimalFormat;
 
@@ -48,16 +49,16 @@ public class mittlererWert extends Fragment {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
                         try {
-                            NewCalculator calculate = new NewCalculator();
-                            int hours = (int) (calculate.getNormalTimeToDrive(getContext().getApplicationContext()) / 60);
-                            int minutes = (int) (calculate.getNormalTimeToDrive(getContext().getApplicationContext()) % 60);
+                            Calculation calculate = new Calculation(getContext());
+                            int hours = (int) (calculate.getNormalTimeToDrive() / 60);
+                            int minutes = (int) (calculate.getNormalTimeToDrive() % 60);
                             String time = hours + ":" + minutes;
                             DecimalFormat f = new DecimalFormat();
                             f.setMaximumFractionDigits(2);
-                            int getränke = calculate.getSessionAmount(this.getActivity());
+                            int getränke = calculate.getSessionAmount();
                             textType.setText(getränke + " alkoholische Getränke");
                             timeToDrive.setText(time + " h");
-                            promille.setText(f.format(calculate.getNormalResultValue(getContext().getApplicationContext())) + " ‰");
+                            promille.setText(f.format(calculate.getNormalResultValue()) + " ‰");
                             amountOfAlc.setText("0");
                         } catch (Exception e) {
                             timeToDrive.setText("0 h");

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.fmgross.alcoly.backend.Calculation;
 import com.fmgross.alcoly.fragments.hoherWert;
 import com.fmgross.alcoly.fragments.mittlererWert;
 import com.fmgross.alcoly.fragments.niedrigerWert;
@@ -117,7 +118,7 @@ public class Statistics extends AppCompatActivity {
      * @return all the bar entries
      */
     private ArrayList<BarEntry> addDrinks() {
-        NewCalculator newCalculator = new NewCalculator();
+        Calculation newCalculator = new Calculation(this);
         ArrayList<BarEntry> drinks = new ArrayList<>();
         ArrayList<Integer> dateList = newCalculator.getDates();
         for (int i = 0; i < dateList.size(); i++) {

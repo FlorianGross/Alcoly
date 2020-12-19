@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fmgross.alcoly.backend.Calculation;
+
 import java.text.DecimalFormat;
 
 
@@ -49,11 +51,11 @@ public class MainScreen extends AppCompatActivity {
         Runnable runnable = () -> {
             while (running) {
                 runOnUiThread(() -> {
-                    NewCalculator calculate = new NewCalculator();
+                    Calculation calculate = new Calculation(this);
                     DecimalFormat f = new DecimalFormat();
                     f.setMaximumFractionDigits(2);
                     try {
-                        String promilleString = f.format(calculate.getNormalResultValue(getApplicationContext()));
+                        String promilleString = f.format(calculate.getNormalResultValue());
                         textView.setText(promilleString + " \u2030");
                         textView.setTextSize(50);
                     } catch (Exception e) {

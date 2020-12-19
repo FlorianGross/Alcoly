@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fmgross.alcoly.backend.Calculation;
 import com.fmgross.alcoly.backend.DatabaseHelper;
 import com.fmgross.alcoly.backend.Getraenke;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -188,8 +189,8 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                      * @return int with the new Session
                      */
                     private int getSessionInt() {
-                        NewCalculator calculator = new NewCalculator();
-                        return calculator.getNewSessionInt(getApplicationContext());
+                        Calculation calculator = new Calculation(getParent());
+                        return calculator.getNewSessionInt();
                     }
 
                     /**

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.fmgross.alcoly.NewCalculator;
 import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.backend.Calculation;
 
 import java.text.DecimalFormat;
 
@@ -49,16 +50,16 @@ public class hoherWert extends Fragment {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
                         try {
-                            NewCalculator calculate = new NewCalculator();
-                            int hours = (int) (calculate.getHighTimeToDrive(getContext().getApplicationContext()) / 60);
-                            int minutes = (int) (calculate.getHighTimeToDrive(getContext().getApplicationContext()) % 60);
+                            Calculation calculate = new Calculation(getContext());
+                            int hours = (int) (calculate.getHighTimeToDrive() / 60);
+                            int minutes = (int) (calculate.getHighTimeToDrive() % 60);
                             String time = hours + ":" + minutes;
                             DecimalFormat f = new DecimalFormat();
                             f.setMaximumFractionDigits(2);
-                            int getränke = calculate.getSessionAmount(this.getActivity());
+                            int getränke = calculate.getSessionAmount();
                             textType.setText(getränke + " alkoholische Getränke");
                             timeToDrive.setText(time + " h");
-                            promille.setText(f.format(calculate.getHighResultValue(getContext().getApplicationContext())) + " ‰");
+                            promille.setText(f.format(calculate.getHighResultValue()) + " ‰");
                             amountOfAlc.setText("0");
                         } catch (Exception e) {
                             timeToDrive.setText("0 h");
