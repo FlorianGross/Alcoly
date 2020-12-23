@@ -20,6 +20,6 @@
     <fragment
         android:id="@+id/navigation_statistik"
         android:name="com.fmgross.alcoly.fragments.Fragment_Statistics"
-        android:label="Statistik"
+        android:label="Statistic"
         tools:layout="@layout/fragment_fragment_statistics" />
 </navigation>

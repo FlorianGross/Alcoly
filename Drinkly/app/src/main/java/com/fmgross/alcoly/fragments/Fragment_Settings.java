@@ -21,16 +21,18 @@ import com.fmgross.alcoly.R;
 
 public class Fragment_Settings extends Fragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     private ImageView link, datenschutz;
     private Button male, female, save;
     private EditText age, weight;
     private Switch night, audio, scanOnStart;
     private String gender;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        generateSettings();
+        onClickListener();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,12 +49,6 @@ public class Fragment_Settings extends Fragment {
         audio = root.findViewById(R.id.audioSwitch);
         scanOnStart = root.findViewById(R.id.startWithScanSwitch);
         save = root.findViewById(R.id.save);
-
-
-        generateSettings();
-
-        onClickListener();
-
         return root;
     }
 
@@ -137,12 +133,10 @@ public class Fragment_Settings extends Fragment {
             female.setBackgroundColor(Color.rgb(255, 205, 25));
             gender = "Female";
         }
-
         age.setText(settings.getInt("age", 20) + "");
         weight.setText(settings.getInt("weight", 80) + "");
         audio.setChecked(settings.getBoolean("audio", true));
         night.setChecked(settings.getBoolean("darkmode", true));
         scanOnStart.setChecked(settings.getBoolean("scanOnStart", false));
-
     }
 }

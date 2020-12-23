@@ -27,6 +27,7 @@ public class Fragment_Main extends Fragment {
         super.onCreate(savedInstanceState);
 
         refreshData();
+
         mainButton.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), Activity_Camera.class);
             startActivity(intent);

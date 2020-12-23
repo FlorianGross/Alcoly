@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
@@ -34,17 +36,20 @@ public class Fragment_Details extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         generateDetails();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
         deleteButton.setOnClickListener(v -> {
             deleteGetraenk();
-
+            ft.replace(R.id.nav_host_fragment, new Fragment_Timeline());
+            ft.commit();
 
         });
         backButton.setOnClickListener(v -> {
-
+            ft.replace(R.id.nav_host_fragment, new Fragment_Timeline());
+            ft.commit();
         });
         edit.setOnClickListener(v -> {
-
 
         });
     }
@@ -64,7 +69,6 @@ public class Fragment_Details extends Fragment {
         typeEdit = root.findViewById(R.id.CurrentNameEdit);
         volumeEdit = root.findViewById(R.id.volumeEdit);
         deleteButton = root.findViewById(R.id.deleteButton);
-
         return root;
     }
 

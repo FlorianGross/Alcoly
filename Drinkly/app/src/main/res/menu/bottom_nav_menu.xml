@@ -3,16 +3,13 @@
     <item
         android:id="@+id/timeline"
         android:icon="@mipmap/time"
-        android:title="Timeline"
-        />
+        android:title="" />
     <item
         android:id="@+id/homeButton"
         android:icon="@mipmap/homebutton"
-        android:title="Home"
-        />
+        android:title="" />
     <item
-        android:id="statistics"
+        android:id="@+id/statistics"
         android:icon="@mipmap/person"
-        android:title="Statistik"
-        />
+        android:title="" />
 </menu>

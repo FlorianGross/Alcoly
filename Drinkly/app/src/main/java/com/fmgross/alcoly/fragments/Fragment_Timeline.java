@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +63,14 @@ public class Fragment_Timeline extends Fragment {
 
     private void setOnCLickListener() {
         Backend_Adapter.RecyclerViewClickListener listener = (v, position) -> {
-
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Bundle arguments = new Bundle();
+            arguments.putInt("intposition",position);
+            Fragment_Details fragment = new Fragment_Details();
+            fragment.setArguments(arguments);
+            ft.replace(R.id.nav_host_fragment, fragment);
+            ft.commit();
         };
     }
 }

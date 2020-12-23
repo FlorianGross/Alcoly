@@ -51,10 +51,8 @@ public class Fragment_Statistics extends Fragment {
         initializeBarChart();
 
         settings.setOnClickListener(v -> {
-
-            ft.add(R.id.nav_host_fragment, new Fragment_Settings());
+            ft.replace(R.id.nav_host_fragment, new Fragment_Settings());
             ft.commit();
-
         });
         lowValue.setOnClickListener(v -> {
             ft.replace(R.id.fragment, new Fragment_NiedrigerWert());
@@ -68,9 +66,6 @@ public class Fragment_Statistics extends Fragment {
             ft.replace(R.id.fragment, new Fragment_HoherWert());
             ft.commit();
         });
-
-
-
         return root;
     }
 
@@ -91,8 +86,6 @@ public class Fragment_Statistics extends Fragment {
         barChart.setDragYEnabled(false);
         barChart.setData(barData);
         barChart.setDrawGridBackground(false);
-
-
         barChart.animateY(500);
     }
 
