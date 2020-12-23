@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/MainBackground"
-    tools:context=".fragments.Fragment_mittlerer_wert">
+    tools:context=".fragments.Fragment_MittlererWert">
 
     <LinearLayout
         android:layout_width="match_parent"

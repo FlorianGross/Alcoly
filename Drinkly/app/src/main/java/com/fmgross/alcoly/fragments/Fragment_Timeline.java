@@ -17,7 +17,7 @@ import com.fmgross.alcoly.backend.Backend_Adapter;
 
 import java.util.ArrayList;
 
-public class Fragment_Fragment_Timeline extends Fragment {
+public class Fragment_Timeline extends Fragment {
 
     private Backend_DatabaseHelper databaseHelper;
     private ArrayList<Backend_Getraenk> arrayList;

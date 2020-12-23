@@ -21,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class Fragment_Fragment_Statistics extends Fragment {
+public class Fragment_Statistics extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,27 +45,27 @@ public class Fragment_Fragment_Statistics extends Fragment {
         FragmentManager fm = getActivity().getSupportFragmentManager();
 
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment, new Fragment_mittlerer_wert());
+        ft.add(R.id.fragment, new Fragment_MittlererWert());
         ft.commit();
 
         initializeBarChart();
 
         settings.setOnClickListener(v -> {
 
-            ft.add(R.id.nav_host_fragment, new Fragment_Fragment_Settings());
+            ft.add(R.id.nav_host_fragment, new Fragment_Settings());
             ft.commit();
 
         });
         lowValue.setOnClickListener(v -> {
-            ft.replace(R.id.fragment, new Fragment_niedriger_wert());
+            ft.replace(R.id.fragment, new Fragment_NiedrigerWert());
             ft.commit();
         });
         mediumValue.setOnClickListener(v -> {
-            ft.replace(R.id.fragment, new Fragment_mittlerer_wert());
+            ft.replace(R.id.fragment, new Fragment_MittlererWert());
             ft.commit();
         });
         highValue.setOnClickListener(v -> {
-            ft.replace(R.id.fragment, new Fragment_hoher_wert());
+            ft.replace(R.id.fragment, new Fragment_HoherWert());
             ft.commit();
         });
 

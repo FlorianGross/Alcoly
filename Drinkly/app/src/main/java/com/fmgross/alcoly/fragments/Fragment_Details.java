@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Fragment_Fragment_Details extends Fragment {
+public class Fragment_Details extends Fragment {
     private Button edit;
     private TextView percentage, type, currentDate, volume;
     private EditText percentageEdit, typeEdit, volumeEdit;

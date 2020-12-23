@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.fmgross.alcoly.R;
 
-public class Fragment_Fragment_Settings extends Fragment {
+public class Fragment_Settings extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

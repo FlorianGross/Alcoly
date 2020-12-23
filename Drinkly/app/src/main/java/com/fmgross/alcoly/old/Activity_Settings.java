@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fmgross.alcoly.R;
-import com.fmgross.alcoly.fragments.Fragment_Fragment_Settings;
+import com.fmgross.alcoly.fragments.Fragment_Settings;
 
 
 public class Activity_Settings extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class Activity_Settings extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings, new Fragment_Fragment_Settings())
+                    .replace(R.id.settings, new Fragment_Settings())
                     .commit();
         }
     }
