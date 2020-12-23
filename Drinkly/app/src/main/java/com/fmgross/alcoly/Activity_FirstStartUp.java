@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
-public class FirstStartupActivity extends AppCompatActivity {
+public class Activity_FirstStartUp extends AppCompatActivity {
     ImageView maleImage, femaleImage;
     Button forwardButton, skipButton;
     EditText ageInput, weightInput;
@@ -86,7 +86,7 @@ public class FirstStartupActivity extends AppCompatActivity {
      * Starts the MainScreen
      */
     public void startMainScreen() {
-        Intent intent = new Intent(this, MainPage.class);
+        Intent intent = new Intent(this, Activity_MainPage.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

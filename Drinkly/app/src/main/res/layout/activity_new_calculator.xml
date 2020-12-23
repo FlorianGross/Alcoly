@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/MainBackground"
-    tools:context=".NewCalculator">
+    tools:context=".old.Activity_Timeline">
 
     <ImageView
         android:id="@+id/LeftButtonCalc"

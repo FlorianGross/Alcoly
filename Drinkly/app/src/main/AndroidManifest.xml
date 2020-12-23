@@ -11,35 +11,43 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly" >
-        <activity android:name=".MainPage" />
+        <activity android:name=".Activity_MainPage" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".old.Activity_Settings"
             android:label="@string/title_activity_settings"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Details"
+            android:name=".old.Activity_Details"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NewCalculator"
+            android:name=".old.Activity_Timeline"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Statistics"
+            android:name=".old.Activity_Statistics"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CameraAndKI"
+            android:name=".Activity_Camera"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainScreen"
+            android:name=".old.Activity_MainScreen"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FirstStartupActivity"
+            android:name=".Activity_FirstStartUp"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait"
+            android:noHistory="true"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity_Main"
             android:noHistory="true"
             android:screenOrientation="portrait" >
             <intent-filter>

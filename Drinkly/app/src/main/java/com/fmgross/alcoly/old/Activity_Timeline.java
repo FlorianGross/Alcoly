@@ -1,26 +1,24 @@
-package com.fmgross.alcoly;
+package com.fmgross.alcoly.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.fmgross.alcoly.backend.DatabaseHelper;
-import com.fmgross.alcoly.backend.Getraenke;
-import com.fmgross.alcoly.backend.GroupAdapter;
-import com.fmgross.alcoly.backend.myAdapter;
+import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
+import com.fmgross.alcoly.backend.Backend_Getraenk;
+import com.fmgross.alcoly.backend.Backend_GroupAdapter;
+import com.fmgross.alcoly.backend.Backend_Adapter;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-public class NewCalculator extends AppCompatActivity {
-    private DatabaseHelper databaseHelper;
-    private ArrayList<Getraenke> arrayList;
+public class Activity_Timeline extends AppCompatActivity {
+    private Backend_DatabaseHelper databaseHelper;
+    private ArrayList<Backend_Getraenk> arrayList;
     private ArrayList<Integer> arrayListString;
     public double minResult;
     public double normalResult;
@@ -41,16 +39,16 @@ public class NewCalculator extends AppCompatActivity {
 
 
         left.setOnClickListener(v -> {
-            Intent intent = new Intent(this, NewCalculator.class);
+            Intent intent = new Intent(this, Activity_Timeline.class);
             startActivity(intent);
         });
         right.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Statistics.class);
+            Intent intent = new Intent(this, Activity_Statistics.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
         center.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainScreen.class);
+            Intent intent = new Intent(this, Activity_MainScreen.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
@@ -60,7 +58,7 @@ public class NewCalculator extends AppCompatActivity {
      * Returns all getränke inside an arrayList
      */
     private void getDatabase() {
-        databaseHelper = new DatabaseHelper(getApplicationContext());
+        databaseHelper = new Backend_DatabaseHelper(getApplicationContext());
         arrayList = databaseHelper.getAllGetraenke();
         arrayListString = databaseHelper.getAllDates();
     }
@@ -71,14 +69,14 @@ public class NewCalculator extends AppCompatActivity {
     private void createRecycler() {
         RecyclerView newRecyclerView = findViewById(R.id.mRecyclerView);
         newRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GroupAdapter groupAdapter = new GroupAdapter(this, arrayListString);
+        Backend_GroupAdapter groupAdapter = new Backend_GroupAdapter(this, arrayListString);
         newRecyclerView.setAdapter(groupAdapter);
         newRecyclerView.setHasFixedSize(false);
     }
 
     private void setOnCLickListener() {
-        myAdapter.RecyclerViewClickListener listener = (v, position) -> {
-            Intent intent = new Intent(getApplicationContext(), Details.class);
+        Backend_Adapter.RecyclerViewClickListener listener = (v, position) -> {
+            Intent intent = new Intent(getApplicationContext(), Activity_Details.class);
             intent.putExtra("intPosition", position);
             startActivity(intent);
         };

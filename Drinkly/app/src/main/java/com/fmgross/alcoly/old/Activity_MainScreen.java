@@ -1,4 +1,4 @@
-package com.fmgross.alcoly;
+package com.fmgross.alcoly.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fmgross.alcoly.backend.Calculation;
+import com.fmgross.alcoly.Activity_Camera;
+import com.fmgross.alcoly.Activity_FirstStartUp;
+import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.backend.Backend_Calculation;
 
 import java.text.DecimalFormat;
 
 
-public class MainScreen extends AppCompatActivity {
+public class Activity_MainScreen extends AppCompatActivity {
     private TextView textView;
     private final boolean running = true;
     private ImageView mainButton, leftB, centerB, rightB;
@@ -51,7 +54,7 @@ public class MainScreen extends AppCompatActivity {
         Runnable runnable = () -> {
             while (running) {
                 runOnUiThread(() -> {
-                    Calculation calculate = new Calculation(this);
+                    Backend_Calculation calculate = new Backend_Calculation(this);
                     DecimalFormat f = new DecimalFormat();
                     f.setMaximumFractionDigits(2);
                     try {
@@ -78,7 +81,7 @@ public class MainScreen extends AppCompatActivity {
      * Opens the Calculator page
      */
     public void openCalculator() {
-        Intent intent = new Intent(this, NewCalculator.class);
+        Intent intent = new Intent(this, Activity_Timeline.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -91,7 +94,7 @@ public class MainScreen extends AppCompatActivity {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.blop);
         mp.start();
 
-        Intent intent = new Intent(this, CameraAndKI.class);
+        Intent intent = new Intent(this, Activity_Camera.class);
         startActivity(intent);
 
     }
@@ -100,7 +103,7 @@ public class MainScreen extends AppCompatActivity {
      * Open the Statistics Page
      */
     public void openStatistics() {
-        Intent intent = new Intent(this, Statistics.class);
+        Intent intent = new Intent(this, Activity_Statistics.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
@@ -109,7 +112,7 @@ public class MainScreen extends AppCompatActivity {
      * Starts the first Startup activity
      */
     private void showStartActivity() {
-        Intent intent = new Intent(this, FirstStartupActivity.class);
+        Intent intent = new Intent(this, Activity_FirstStartUp.class);
         startActivity(intent);
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);

@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.fmgross.alcoly.R;
-import com.fmgross.alcoly.backend.Calculation;
+import com.fmgross.alcoly.backend.Backend_Calculation;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -102,7 +102,7 @@ public class Fragment_Fragment_Statistics extends Fragment {
      * @return all the bar entries
      */
     private ArrayList<BarEntry> addDrinks() {
-        Calculation newCalculator = new Calculation(getContext());
+        Backend_Calculation newCalculator = new Backend_Calculation(getContext());
         ArrayList<BarEntry> drinks = new ArrayList<>();
         ArrayList<Integer> dateList = newCalculator.getDates();
         for (int i = 0; i < dateList.size(); i++) {

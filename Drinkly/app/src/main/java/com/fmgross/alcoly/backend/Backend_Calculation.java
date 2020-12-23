@@ -1,32 +1,25 @@
 package com.fmgross.alcoly.backend;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.fmgross.alcoly.Details;
-import com.fmgross.alcoly.R;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Calculation {
-    private DatabaseHelper databaseHelper;
-    private ArrayList<Getraenke> arrayList;
+public class Backend_Calculation {
+    private Backend_DatabaseHelper databaseHelper;
+    private ArrayList<Backend_Getraenk> arrayList;
     private ArrayList<Integer> arrayListString;
     public double minResult;
     public double normalResult;
     public double highResult;
     private Context context;
 
-    public Calculation(Context context) {
+    public Backend_Calculation(Context context) {
         this.context = context;
     }
 
-    public double getNormalResult(ArrayList<Getraenke> arrayList) {
+    public double getNormalResult(ArrayList<Backend_Getraenk> arrayList) {
         try {
             double time = getDrinkTime(arrayList, new Date());
             double promille = calculateSessionPromille(arrayList);
@@ -42,14 +35,14 @@ public class Calculation {
     }
 
     public double getNormalResultValue() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         return getNormalResult(arrayListHere);
     }
 
     public double getNormalTimeToDrive() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         try {
             double promille = calculateSessionPromille(arrayListHere);
             double returnTime = (promille - 0.5) / (0.13 / 60);
@@ -63,7 +56,7 @@ public class Calculation {
         }
     }
 
-    public double getMinResult(ArrayList<Getraenke> arrayList) {
+    public double getMinResult(ArrayList<Backend_Getraenk> arrayList) {
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculateSessionPromille(arrayList);
         minResult = promille - time * (0.15 / 60);
@@ -80,8 +73,8 @@ public class Calculation {
      * @return The permil calculated with the high factor
      */
     public double getMinResultValue() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         return getMinResult(arrayListHere);
     }
 
@@ -91,8 +84,8 @@ public class Calculation {
      * @return
      */
     public double getMinTimeToDrive() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         try {
             double time = getDrinkTime(arrayListHere, new Date());
             double promille = calculateSessionPromille(arrayListHere);
@@ -115,7 +108,7 @@ public class Calculation {
      *
      * @return
      */
-    public double getHighResult(ArrayList<Getraenke> arrayList) {
+    public double getHighResult(ArrayList<Backend_Getraenk> arrayList) {
         double time = getDrinkTime(arrayList, new Date());
         double promille = calculateSessionPromille(arrayList);
         highResult = promille - time * (0.11 / 60);
@@ -132,8 +125,8 @@ public class Calculation {
      * @return The permil calculated with the high factor
      */
     public double getHighResultValue() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         return getHighResult(arrayListHere);
     }
 
@@ -143,8 +136,8 @@ public class Calculation {
      * @return the time until the value = 0.5
      */
     public double getHighTimeToDrive() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         try {
             double time = getDrinkTime(arrayListHere, new Date());
             double promille = calculateSessionPromille(arrayListHere);
@@ -166,8 +159,8 @@ public class Calculation {
      * @return the session int
      */
     private int getSessionInt() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
         return arrayList.get(0).getSession();
     }
 
@@ -177,8 +170,8 @@ public class Calculation {
      * @return the new Session int created
      */
     public int getNewSessionInt() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> newArrayList = databaseHelper.getAllGetraenke();
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> newArrayList = databaseHelper.getAllGetraenke();
         double promille = getHighResult(newArrayList);
         System.out.println(newArrayList.toString());
         if (promille <= 0) {
@@ -197,7 +190,7 @@ public class Calculation {
      * @param now       the last drink of the arrayList
      * @return the duration between the first and the last drink in hours
      */
-    public double getDrinkTime(ArrayList<Getraenke> arrayList, Date now) {
+    public double getDrinkTime(ArrayList<Backend_Getraenk> arrayList, Date now) {
         Date firstDrink = arrayList.get(arrayList.size() - 1).getDate();
         double result = now.getTime() - firstDrink.getTime();
         return result / 60000;
@@ -209,7 +202,7 @@ public class Calculation {
      * @param arrayList the arrayList with the session
      * @return the permil volume
      */
-    public double calculateSessionPromille(ArrayList<Getraenke> arrayList) {
+    public double calculateSessionPromille(ArrayList<Backend_Getraenk> arrayList) {
         SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String gender = settings.getString("gender", "Male");
         double r = getGenderR(gender.equals("Male"));
@@ -235,7 +228,7 @@ public class Calculation {
      * @param getraenke the getraenk which is calculated in
      * @return the permil for one drink
      */
-    public double calculateOnePromille(Getraenke getraenke) {
+    public double calculateOnePromille(Backend_Getraenk getraenke) {
         SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         String gender = settings.getString("gender", "Male");
         double r = getGenderR(gender.equals("Male"));
@@ -288,7 +281,7 @@ public class Calculation {
      */
     public ArrayList<Integer> getDates() {
         ArrayList<Integer> dates;
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
         dates = databaseHelper.getAllDates();
         return dates;
     }
@@ -299,7 +292,7 @@ public class Calculation {
      * @return all volumes together
      */
     public double allAlcoholTogether() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
         arrayList = databaseHelper.getAllGetraenke();
         double result = 0;
         for (int i = 0; i < arrayList.size(); i++) {
@@ -313,9 +306,9 @@ public class Calculation {
      * @param getraenk
      * @return
      */
-    public double getPermilInSessionToDrink(int sessionInt, Getraenke getraenk) {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(sessionInt);
+    public double getPermilInSessionToDrink(int sessionInt, Backend_Getraenk getraenk) {
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(sessionInt);
         int i = 0;
         double permil = 0;
         do {
@@ -332,8 +325,8 @@ public class Calculation {
      * @return the amount of Getraenke in the session
      */
     public int getSessionAmount() {
-        databaseHelper = new DatabaseHelper(context.getApplicationContext());
-        ArrayList<Getraenke> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         return arrayListHere.size();
     }
 }

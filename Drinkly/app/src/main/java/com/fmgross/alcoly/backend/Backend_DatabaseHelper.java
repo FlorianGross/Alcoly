@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class Backend_DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "getraenkeSammlung";
     public static final String TABLE_NAME = "table_name";
     public static final String COLUMN_GETRRAENK_NAME = "GETRAENK_NAME";
@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_GETRAENK_SESSION = "GETRAENK_SESSION";
     public static final String COLUMN_ID = "ID";
 
-    public DatabaseHelper(Context context) {
+    public Backend_DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 6);
     }
 
@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *
      * @param getraenke the object to be added
      */
-    public void addOne(Getraenke getraenke) {
+    public void addOne(Backend_Getraenk getraenke) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         Bitmap bitmap = getraenke.getUri();
@@ -72,8 +72,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *
      * @return ArrayList with all the elements from the Database
      */
-    public ArrayList<Getraenke> getAllGetraenke() {
-        ArrayList<Getraenke> getraenke = new ArrayList<>();
+    public ArrayList<Backend_Getraenk> getAllGetraenke() {
+        ArrayList<Backend_Getraenk> getraenke = new ArrayList<>();
         String queryString = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
@@ -88,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int session = cursor.getInt(7);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
-                Getraenke newGetraenke = new Getraenke(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
+                Backend_Getraenk newGetraenke = new Backend_Getraenk(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
                 getraenke.add(newGetraenke);
             } while (cursor.moveToPrevious());
         }
@@ -102,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      *
      * @param getraenke the object, to be removed
      */
-    public void deleteOne(Getraenke getraenke) {
+    public void deleteOne(Backend_Getraenk getraenke) {
         SQLiteDatabase database = this.getWritableDatabase();
         String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " = " + getraenke.getDate().getTime();
 
@@ -124,8 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param date the specific Date
      * @return An new ArrayList with all the Objects from this date
      */
-    public ArrayList<Getraenke> getAllOfDate(int date) {
-        ArrayList<Getraenke> getraenkeList = new ArrayList<>();
+    public ArrayList<Backend_Getraenk> getAllOfDate(int date) {
+        ArrayList<Backend_Getraenk> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " = " + date;
 
@@ -142,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
-                Getraenke newGetreanke = new Getraenke(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
+                Backend_Getraenk newGetreanke = new Backend_Getraenk(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
                 getraenkeList.add(newGetreanke);
             } while (cursor.moveToPrevious());
         }
@@ -191,8 +191,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param sessionInt the number of the session
      * @return ArrayList with all the getraenke
      */
-    public ArrayList<Getraenke> getAllOfSession(int sessionInt) {
-        ArrayList<Getraenke> getraenkeList = new ArrayList<>();
+    public ArrayList<Backend_Getraenk> getAllOfSession(int sessionInt) {
+        ArrayList<Backend_Getraenk> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_SESSION + " = " + sessionInt;
 
@@ -209,7 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
                 Date returnDate = new Date(getraenkDate);
-                Getraenke newGetreanke = new Getraenke(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
+                Backend_Getraenk newGetreanke = new Backend_Getraenk(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
                 getraenkeList.add(newGetreanke);
             } while (cursor.moveToPrevious());
         }

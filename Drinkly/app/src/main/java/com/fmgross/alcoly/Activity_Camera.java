@@ -25,9 +25,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fmgross.alcoly.backend.Calculation;
-import com.fmgross.alcoly.backend.DatabaseHelper;
-import com.fmgross.alcoly.backend.Getraenke;
+import com.fmgross.alcoly.backend.Backend_Calculation;
+import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
+import com.fmgross.alcoly.backend.Backend_Getraenk;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Activity_Camera extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private ImageView imgView, buttonTL, buttonTR, buttonBL, buttonBR, buttonBLWein, buttonBLBier, buttonBRWein, buttonBRBier, buttonTLWein, buttonTLBier, buttonTRWein, buttonTRBier;
     private SeekBar seekBar;
     private TextView erkannt, progressText;
@@ -92,7 +92,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
 
         generateSpinner();
 
-        CropImage.activity().start(CameraAndKI.this);
+        CropImage.activity().start(Activity_Camera.this);
     }
 
     /**
@@ -138,7 +138,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                 });
                 onClickListener();
 
-                redo.setOnClickListener(v -> CropImage.activity().start(CameraAndKI.this));
+                redo.setOnClickListener(v -> CropImage.activity().start(Activity_Camera.this));
 
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -162,7 +162,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                      * @param bitmap the Bimap generated from the Cropper Camera
                      */
                     private void saveInDB(Bitmap bitmap) {
-                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getApplicationContext());
                         volume = getVolume();
                         permil = getPermil();
                         int SessionInt;
@@ -177,7 +177,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                         int month = calendar.get(Calendar.MONTH) + 1;
                         String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
                         int realDateTest = Integer.parseInt(realDate);
-                        Getraenke getraenk = new Getraenke(type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
+                        Backend_Getraenk getraenk = new Backend_Getraenk(type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
                         Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());
                         databaseHelper.addOne(getraenk);
@@ -189,7 +189,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
                      * @return int with the new Session
                      */
                     private int getSessionInt() {
-                        Calculation calculator = new Calculation(getParent());
+                        Backend_Calculation calculator = new Backend_Calculation(getParent());
                         return calculator.getNewSessionInt();
                     }
 
@@ -360,7 +360,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
      * Opens the MainScreen window
      */
     private void openMainScreen() {
-        Intent intent = new Intent(this, MainScreen.class);
+        Intent intent = new Intent(this, Activity_MainPage.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
@@ -466,7 +466,7 @@ public class CameraAndKI extends AppCompatActivity implements AdapterView.OnItem
             }
         }).addOnFailureListener(e -> {
             Log.e("OnFail", "" + e);
-            Toast.makeText(CameraAndKI.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
+            Toast.makeText(Activity_Camera.this, "Something went wrong! " + e, Toast.LENGTH_SHORT).show();
         });
 
     }

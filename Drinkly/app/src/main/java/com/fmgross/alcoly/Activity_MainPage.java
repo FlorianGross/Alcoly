@@ -12,7 +12,7 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainPage extends AppCompatActivity {
+public class Activity_MainPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class MainPage extends AppCompatActivity {
      * Starts the first Startup activity
      */
     private void showStartActivity() {
-        Intent intent = new Intent(this, FirstStartupActivity.class);
+        Intent intent = new Intent(this, Activity_FirstStartUp.class);
         startActivity(intent);
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);

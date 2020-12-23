@@ -1,4 +1,4 @@
-package com.fmgross.alcoly;
+package com.fmgross.alcoly.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,14 +10,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fmgross.alcoly.backend.DatabaseHelper;
-import com.fmgross.alcoly.backend.Getraenke;
+import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
+import com.fmgross.alcoly.backend.Backend_Getraenk;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Details extends AppCompatActivity {
+public class Activity_Details extends AppCompatActivity {
     private Button edit;
     private TextView percentage, type, currentDate, volume;
     private EditText percentageEdit, typeEdit, volumeEdit;
@@ -29,6 +30,7 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
         center = findViewById(R.id.CenterButtonDetails);
         left = findViewById(R.id.LeftButtonDetails);
         right = findViewById(R.id.RightButtonDetails);
@@ -49,23 +51,23 @@ public class Details extends AppCompatActivity {
 
         deleteButton.setOnClickListener(v -> {
             deleteGetraenk();
-            Intent intent = new Intent(this, MainScreen.class);
+            Intent intent = new Intent(this, Activity_MainScreen.class);
             startActivity(intent);
         });
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, NewCalculator.class);
+            Intent intent = new Intent(this, Activity_Timeline.class);
             startActivity(intent);
         });
         left.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Statistics.class);
+            Intent intent = new Intent(this, Activity_Statistics.class);
             startActivity(intent);
         });
         right.setOnClickListener(v -> {
-            Intent intent = new Intent(this, NewCalculator.class);
+            Intent intent = new Intent(this, Activity_Timeline.class);
             startActivity(intent);
         });
         center.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainScreen.class);
+            Intent intent = new Intent(this, Activity_MainScreen.class);
             startActivity(intent);
         });
         edit.setOnClickListener(v -> {
@@ -80,13 +82,13 @@ public class Details extends AppCompatActivity {
      * When the button delete is pressed, deletes the  getraenk from the database
      */
     private void deleteGetraenk() {
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             current = extras.getInt("intPosition");
         }
-        Getraenke delGetraenk = arrayList.get(current);
+        Backend_Getraenk delGetraenk = arrayList.get(current);
         databaseHelper.deleteOne(delGetraenk);
     }
 
@@ -94,8 +96,8 @@ public class Details extends AppCompatActivity {
      * Generates the details page
      */
     private void generateDetails() {
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        ArrayList<Getraenke> arrayList = databaseHelper.getAllGetraenke();
+        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             current = extras.getInt("intPosition");
@@ -116,7 +118,7 @@ public class Details extends AppCompatActivity {
      * @param ai the list of all drinks
      * @param i  the position of the current item in the array
      */
-    private void setAllValues(ArrayList<Getraenke> ai, int i) {
+    private void setAllValues(ArrayList<Backend_Getraenk> ai, int i) {
         type.setText(ai.get(i).getName());
         volume.setText(ai.get(i).getVolume() + "L");
         Date newDate = ai.get(i).getDate();

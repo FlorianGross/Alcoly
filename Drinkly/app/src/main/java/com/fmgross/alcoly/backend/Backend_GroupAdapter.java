@@ -11,17 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fmgross.alcoly.Details;
+import com.fmgross.alcoly.old.Activity_Details;
 import com.fmgross.alcoly.R;
 
 import java.util.ArrayList;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder> {
+public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdapter.myViewHolder> {
     private final Context context;
     private final ArrayList<Integer> arrayListGroup;
-    private myAdapter.RecyclerViewClickListener listener;
+    private Backend_Adapter.RecyclerViewClickListener listener;
 
-    public GroupAdapter(Context context, ArrayList<Integer> arrayListGroup) {
+    public Backend_GroupAdapter(Context context, ArrayList<Integer> arrayListGroup) {
         this.context = context;
         this.arrayListGroup = arrayListGroup;
     }
@@ -30,7 +30,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_group, parent, false);
-        return new GroupAdapter.myViewHolder(view);
+        return new Backend_GroupAdapter.myViewHolder(view);
     }
 
     @Override
@@ -45,14 +45,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
         String postString = day + "." + month + "." + year;
         holder.tv.setText(postString);
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(context);
         //ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();
-        ArrayList<Getraenke> newGetraenkeList = databaseHelper.getAllOfDate(arrayListGroup.get(position));
+        ArrayList<Backend_Getraenk> newGetraenkeList = databaseHelper.getAllOfDate(arrayListGroup.get(position));
         int numberOfColumns = 3;
 
         setOnCLickListener();
         holder.rv.setLayoutManager(new GridLayoutManager(context, numberOfColumns));
-        myAdapter adapter = new myAdapter(context, newGetraenkeList, listener);
+        Backend_Adapter adapter = new Backend_Adapter(context, newGetraenkeList, listener);
         holder.rv.setAdapter(adapter);
         holder.rv.setHasFixedSize(false);
 
@@ -61,7 +61,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.myViewHolder
 
     private void setOnCLickListener() {
         listener = (v, position) -> {
-            Intent intent = new Intent(context, Details.class);
+            Intent intent = new Intent(context, Activity_Details.class);
             intent.putExtra("intPosition", position);
             context.startActivity(intent);
         };

@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fmgross.alcoly.NewCalculator;
 import com.fmgross.alcoly.R;
-import com.fmgross.alcoly.backend.Calculation;
+import com.fmgross.alcoly.backend.Backend_Calculation;
 
 import java.text.DecimalFormat;
 
@@ -50,7 +49,7 @@ public class Fragment_hoher_wert extends Fragment {
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
                         try {
-                            Calculation calculate = new Calculation(getContext());
+                            Backend_Calculation calculate = new Backend_Calculation(getContext());
                             int hours = (int) (calculate.getHighTimeToDrive() / 60);
                             int minutes = (int) (calculate.getHighTimeToDrive() % 60);
                             String time = hours + ":" + minutes;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/MainBackground"
     android:orientation="vertical"
-    tools:context=".Statistics">
+    tools:context=".old.Activity_Statistics">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/settingsButton"

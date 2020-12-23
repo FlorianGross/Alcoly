@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/MainBackground"
     android:orientation="vertical"
-    tools:context=".MainScreen">
+    tools:context=".old.Activity_MainScreen">
 
     <ImageView
         android:id="@+id/LeftButton"

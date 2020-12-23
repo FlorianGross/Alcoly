@@ -7,17 +7,16 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ProgressBar;
 
-import com.fmgross.alcoly.CameraAndKI;
-import com.fmgross.alcoly.MainPage;
-import com.fmgross.alcoly.MainScreen;
+import com.fmgross.alcoly.Activity_Camera;
+import com.fmgross.alcoly.Activity_MainPage;
 
-public class ProgressBarAnimation extends Animation {
+public class Backend_ProgressBar extends Animation {
     private final Context context;
     private final ProgressBar progressBar;
     private final float from;
     private final float to;
 
-    public ProgressBarAnimation(Context context, ProgressBar progressBar, float from, float to) {
+    public Backend_ProgressBar(Context context, ProgressBar progressBar, float from, float to) {
         this.context = context;
         this.progressBar = progressBar;
         this.from = from;
@@ -40,9 +39,9 @@ public class ProgressBarAnimation extends Animation {
             SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
             boolean scanOnStart = settings.getBoolean("scanOnStart", false);
             if (scanOnStart) {
-                context.startActivity(new Intent(context, CameraAndKI.class));
+                context.startActivity(new Intent(context, Activity_Camera.class));
             } else {
-                context.startActivity(new Intent(context, MainPage.class));
+                context.startActivity(new Intent(context, Activity_MainPage.class));
             }
         }
     }

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
-public class Getraenke {
+public class Backend_Getraenk {
     private Bitmap uri;
     private int realDate;
     private Date date;
@@ -15,7 +15,7 @@ public class Getraenke {
     private int session;
     private String name;
 
-    public Getraenke(String name, Bitmap uri, Date date, float volume, float volumePart, int realDate, int session) {
+    public Backend_Getraenk(String name, Bitmap uri, Date date, float volume, float volumePart, int realDate, int session) {
         this.uri = uri;
         this.date = date;
         this.volume = volume;

@@ -1,4 +1,4 @@
-package com.fmgross.alcoly;
+package com.fmgross.alcoly.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.fmgross.alcoly.backend.Calculation;
+import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.backend.Backend_Calculation;
 import com.fmgross.alcoly.fragments.Fragment_hoher_wert;
 import com.fmgross.alcoly.fragments.Fragment_mittlerer_wert;
 import com.fmgross.alcoly.fragments.Fragment_niedriger_wert;
@@ -24,7 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 
-public class Statistics extends AppCompatActivity {
+public class Activity_Statistics extends AppCompatActivity {
     private BarChart barChart;
     final int[] colorClassArray = new int[]{Color.BLUE, Color.WHITE, Color.RED};
     private Button lowValue, mediumValue, highValue;
@@ -54,21 +55,21 @@ public class Statistics extends AppCompatActivity {
         initializeBarChart();
 
         settings.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SettingsActivity.class);
+            Intent intent = new Intent(this, Activity_Settings.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
         leftButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, NewCalculator.class);
+            Intent intent = new Intent(this, Activity_Timeline.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
         rightButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Statistics.class);
+            Intent intent = new Intent(this, Activity_Statistics.class);
             startActivity(intent);
         });
         centerButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainScreen.class);
+            Intent intent = new Intent(this, Activity_MainScreen.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
@@ -118,7 +119,7 @@ public class Statistics extends AppCompatActivity {
      * @return all the bar entries
      */
     private ArrayList<BarEntry> addDrinks() {
-        Calculation newCalculator = new Calculation(this);
+        Backend_Calculation newCalculator = new Backend_Calculation(this);
         ArrayList<BarEntry> drinks = new ArrayList<>();
         ArrayList<Integer> dateList = newCalculator.getDates();
         for (int i = 0; i < dateList.size(); i++) {

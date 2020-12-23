@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
-    private final ArrayList<Getraenke> mdrinks;
+public class Backend_Adapter extends RecyclerView.Adapter<Backend_Adapter.ViewHolder> {
+    private final ArrayList<Backend_Getraenk> mdrinks;
     private final LayoutInflater mInflater;
     private final RecyclerViewClickListener listener;
 
-    public myAdapter(Context context, ArrayList<Getraenke> mdrinks, RecyclerViewClickListener listener) {
+    public Backend_Adapter(Context context, ArrayList<Backend_Getraenk> mdrinks, RecyclerViewClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.mdrinks = mdrinks;
         this.listener = listener;

@@ -1,8 +1,6 @@
 package com.fmgross.alcoly.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,30 +9,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.preference.Preference;
 
-import com.fmgross.alcoly.CameraAndKI;
-import com.fmgross.alcoly.FirstStartupActivity;
+import com.fmgross.alcoly.Activity_Camera;
 import com.fmgross.alcoly.R;
-import com.fmgross.alcoly.backend.Calculation;
+import com.fmgross.alcoly.backend.Backend_Calculation;
 
 import java.text.DecimalFormat;
 
 public class Fragment_Main extends Fragment {
+
+    private TextView textView;
+    private final boolean running = true;
+    private ImageView mainButton;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         refreshData();
         mainButton.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), CameraAndKI.class);
+            Intent intent = new Intent(getActivity(), Activity_Camera.class);
             startActivity(intent);
         });
     }
-
-    private TextView textView;
-    private final boolean running = true;
-    private ImageView mainButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +49,7 @@ public class Fragment_Main extends Fragment {
         Runnable runnable = () -> {
             while (running) {
                 getActivity().runOnUiThread(() -> {
-                    Calculation calculate = new Calculation(getContext());
+                    Backend_Calculation calculate = new Backend_Calculation(getContext());
                     DecimalFormat f = new DecimalFormat();
                     f.setMaximumFractionDigits(2);
                     try {

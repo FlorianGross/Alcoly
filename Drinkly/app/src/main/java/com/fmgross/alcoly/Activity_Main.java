@@ -8,9 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
-import com.fmgross.alcoly.backend.ProgressBarAnimation;
+import com.fmgross.alcoly.backend.Backend_ProgressBar;
 
-public class MainActivity extends AppCompatActivity {
+public class Activity_Main extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
      * @param time the time, the progressBar needs to finish
      */
     public void progressAnimation(int time) {
-        ProgressBarAnimation anim = new ProgressBarAnimation(this, progressBar, 0f, 100f);
+        Backend_ProgressBar anim = new Backend_ProgressBar(this, progressBar, 0f, 100f);
         anim.setDuration(time);
         progressBar.setAnimation(anim);
     }

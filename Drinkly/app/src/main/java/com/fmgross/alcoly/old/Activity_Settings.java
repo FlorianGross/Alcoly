@@ -1,14 +1,15 @@
-package com.fmgross.alcoly;
+package com.fmgross.alcoly.old;
 
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.fragments.Fragment_Fragment_Settings;
 
 
-public class SettingsActivity extends AppCompatActivity {
+public class Activity_Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
