@@ -9,17 +9,17 @@
         android:id="@+id/navigation_timeline"
         android:name="com.fmgross.alcoly.fragments.Fragment_Timeline"
         android:label="Timeline"
-        tools:layout="@layout/fragment_fragment_timeline" />
+        tools:layout="@layout/fragment_timeline" />
 
     <fragment
         android:id="@+id/navigation_main"
         android:name="com.fmgross.alcoly.fragments.Fragment_Main"
         android:label="Main"
-        tools:layout="@layout/fragment_fragment_main" />
+        tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/navigation_statistik"
         android:name="com.fmgross.alcoly.fragments.Fragment_Statistics"
         android:label="Statistic"
-        tools:layout="@layout/fragment_fragment_statistics" />
+        tools:layout="@layout/fragment_statistics" />
 </navigation>

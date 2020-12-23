@@ -29,16 +29,15 @@ public class Fragment_Timeline extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getDatabase();
-        createRecycler();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_fragment_timeline, container, false);
+        View root = inflater.inflate(R.layout.fragment_timeline, container, false);
         newRecyclerView = root.findViewById(R.id.mRecyclerView);
+        getDatabase();
+        createRecycler();
         return root;
     }
 

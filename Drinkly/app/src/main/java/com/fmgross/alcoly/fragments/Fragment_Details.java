@@ -35,6 +35,24 @@ public class Fragment_Details extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_details, container, false);
+        edit = root.findViewById(R.id.edit);
+        imageView = root.findViewById(R.id.currentImage);
+        percentage = root.findViewById(R.id.currentPercentage);
+        type = root.findViewById(R.id.CurrentName);
+        currentDate = root.findViewById(R.id.currentDate);
+        backButton = root.findViewById(R.id.backButtonDetails);
+        volume = root.findViewById(R.id.volume);
+        percentageEdit = root.findViewById(R.id.currentPercentageEdit);
+        typeEdit = root.findViewById(R.id.CurrentNameEdit);
+        volumeEdit = root.findViewById(R.id.volumeEdit);
+        deleteButton = root.findViewById(R.id.deleteButton);
+
         generateDetails();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -52,23 +70,6 @@ public class Fragment_Details extends Fragment {
         edit.setOnClickListener(v -> {
 
         });
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_fragment_details, container, false);
-        edit = root.findViewById(R.id.edit);
-        imageView = root.findViewById(R.id.currentImage);
-        percentage = root.findViewById(R.id.currentPercentage);
-        type = root.findViewById(R.id.CurrentName);
-        currentDate = root.findViewById(R.id.currentDate);
-        backButton = root.findViewById(R.id.backButtonDetails);
-        volume = root.findViewById(R.id.volume);
-        percentageEdit = root.findViewById(R.id.currentPercentageEdit);
-        typeEdit = root.findViewById(R.id.CurrentNameEdit);
-        volumeEdit = root.findViewById(R.id.volumeEdit);
-        deleteButton = root.findViewById(R.id.deleteButton);
         return root;
     }
 

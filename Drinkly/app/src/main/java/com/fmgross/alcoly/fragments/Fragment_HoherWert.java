@@ -25,7 +25,6 @@ public class Fragment_HoherWert extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        refreshData();
     }
 
     @Override
@@ -36,6 +35,7 @@ public class Fragment_HoherWert extends Fragment {
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholHigh);
         textType = root.findViewById(R.id.textTypeHigh);
         promille = root.findViewById(R.id.PromilleHigh);
+        refreshData();
         return root;
     }
 

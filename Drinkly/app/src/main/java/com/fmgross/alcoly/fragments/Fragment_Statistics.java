@@ -34,7 +34,7 @@ public class Fragment_Statistics extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_fragment_statistics, container, false);
+        View root = inflater.inflate(R.layout.fragment_statistics, container, false);
 
         barChart = root.findViewById(R.id.barChart);
         lowValue = root.findViewById(R.id.lowButton);

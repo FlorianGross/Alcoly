@@ -23,7 +23,6 @@ public class Fragment_NiedrigerWert extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        refreshData();
     }
 
     @Override
@@ -34,6 +33,7 @@ public class Fragment_NiedrigerWert extends Fragment {
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholLow);
         textType = root.findViewById(R.id.textTypeLow);
         promille = root.findViewById(R.id.PromilleLow);
+        refreshData();
         return root;
     }
 

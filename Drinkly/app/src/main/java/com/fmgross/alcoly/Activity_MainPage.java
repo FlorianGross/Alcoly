@@ -26,13 +26,13 @@ public class Activity_MainPage extends AppCompatActivity {
             showStartActivity();
         }
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_timeline, R.id.navigation_main, R.id.navigation_statistik
         ).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 
     /**
@@ -41,10 +41,5 @@ public class Activity_MainPage extends AppCompatActivity {
     private void showStartActivity() {
         Intent intent = new Intent(this, Activity_FirstStartUp.class);
         startActivity(intent);
-
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean("firstStart", false);
-        editor.apply();
     }
 }

@@ -55,7 +55,8 @@ public class Activity_FirstStartUp extends AppCompatActivity {
 
     /**
      * Saves the other data to the SharedPreference
-     * @param age input from the ageinput
+     *
+     * @param age    input from the ageinput
      * @param weight input from the weightinput
      */
     private void setValues(int age, int weight) {
@@ -73,6 +74,7 @@ public class Activity_FirstStartUp extends AppCompatActivity {
 
     /**
      * Saves the gender to the SharedPreference
+     *
      * @param gender
      */
     public void saveGender(String gender) {
@@ -86,9 +88,15 @@ public class Activity_FirstStartUp extends AppCompatActivity {
      * Starts the MainScreen
      */
     public void startMainScreen() {
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
+
         Intent intent = new Intent(this, Activity_MainPage.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     }
 
 }

@@ -25,21 +25,19 @@ public class Fragment_Main extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        refreshData();
-
-        mainButton.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), Activity_Camera.class);
-            startActivity(intent);
-        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_main, container, false);
         mainButton = root.findViewById(R.id.mainAction);
         textView = root.findViewById(R.id.promilleErgebnis);
+        mainButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), Activity_Camera.class);
+            startActivity(intent);
+        });
+        refreshData();
         return root;
     }
 

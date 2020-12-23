@@ -30,8 +30,6 @@ public class Fragment_Settings extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        generateSettings();
-        onClickListener();
     }
 
     @Override
@@ -49,6 +47,8 @@ public class Fragment_Settings extends Fragment {
         audio = root.findViewById(R.id.audioSwitch);
         scanOnStart = root.findViewById(R.id.startWithScanSwitch);
         save = root.findViewById(R.id.save);
+        generateSettings();
+        onClickListener();
         return root;
     }
 

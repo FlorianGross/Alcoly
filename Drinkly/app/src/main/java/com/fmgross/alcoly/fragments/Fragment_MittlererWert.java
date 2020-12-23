@@ -24,7 +24,6 @@ public class Fragment_MittlererWert extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        refreshData();
     }
 
     @Override
@@ -35,6 +34,7 @@ public class Fragment_MittlererWert extends Fragment {
         amountOfAlc = root.findViewById(R.id.amountOfAlcoholMedium);
         textType = root.findViewById(R.id.textTypeMedium);
         promille = root.findViewById(R.id.PromilleMedium);
+        refreshData();
         return root;
     }
     /**
