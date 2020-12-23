@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@color/MainBackground"
     android:orientation="vertical"
-    tools:context=".FirstStartupActivity">
+    tools:context=".Activity_FirstStartUp">
 
     <ImageView
         android:id="@+id/imageView"
