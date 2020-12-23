@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.fmgross.alcoly.backend.Calculation;
-import com.fmgross.alcoly.fragments.hoherWert;
-import com.fmgross.alcoly.fragments.mittlererWert;
-import com.fmgross.alcoly.fragments.niedrigerWert;
+import com.fmgross.alcoly.fragments.Fragment_hoher_wert;
+import com.fmgross.alcoly.fragments.Fragment_mittlerer_wert;
+import com.fmgross.alcoly.fragments.Fragment_niedriger_wert;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -48,7 +48,7 @@ public class Statistics extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment, new mittlererWert());
+        ft.add(R.id.fragment, new Fragment_mittlerer_wert());
         ft.commit();
 
         initializeBarChart();
@@ -74,17 +74,17 @@ public class Statistics extends AppCompatActivity {
         });
         lowValue.setOnClickListener(v -> {
             FragmentTransaction ft1 = fm.beginTransaction();
-            ft1.replace(R.id.fragment, new niedrigerWert());
+            ft1.replace(R.id.fragment, new Fragment_niedriger_wert());
             ft1.commit();
         });
         mediumValue.setOnClickListener(v -> {
             FragmentTransaction ft12 = fm.beginTransaction();
-            ft12.replace(R.id.fragment, new mittlererWert());
+            ft12.replace(R.id.fragment, new Fragment_mittlerer_wert());
             ft12.commit();
         });
         highValue.setOnClickListener(v -> {
             FragmentTransaction ft13 = fm.beginTransaction();
-            ft13.replace(R.id.fragment, new hoherWert());
+            ft13.replace(R.id.fragment, new Fragment_hoher_wert());
             ft13.commit();
         });
 

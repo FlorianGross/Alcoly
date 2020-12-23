@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_main">
+
+    <fragment
+        android:id="@+id/navigation_timeline"
+        android:name="com.fmgross.alcoly.fragments.Fragment_Fragment_Timeline"
+        android:label="Timeline"
+        tools:layout="@layout/fragment_fragment_timeline" />
+
+    <fragment
+        android:id="@+id/navigation_main"
+        android:name="com.fmgross.alcoly.fragments.Fragment_Main"
+        android:label="Main"
+        tools:layout="@layout/fragment_fragment_main" />
+
+    <fragment
+        android:id="@+id/navigation_statistik"
+        android:name="com.fmgross.alcoly.fragments.Fragment_Fragment_Statistics"
+        android:label="Statistik"
+        tools:layout="@layout/fragment_fragment_statistics" />
+</navigation>

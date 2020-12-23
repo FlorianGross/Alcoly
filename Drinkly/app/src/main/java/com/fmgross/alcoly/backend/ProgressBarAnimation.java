@@ -8,6 +8,7 @@ import android.view.animation.Transformation;
 import android.widget.ProgressBar;
 
 import com.fmgross.alcoly.CameraAndKI;
+import com.fmgross.alcoly.MainPage;
 import com.fmgross.alcoly.MainScreen;
 
 public class ProgressBarAnimation extends Animation {
@@ -41,7 +42,7 @@ public class ProgressBarAnimation extends Animation {
             if (scanOnStart) {
                 context.startActivity(new Intent(context, CameraAndKI.class));
             } else {
-                context.startActivity(new Intent(context, MainScreen.class));
+                context.startActivity(new Intent(context, MainPage.class));
             }
         }
     }

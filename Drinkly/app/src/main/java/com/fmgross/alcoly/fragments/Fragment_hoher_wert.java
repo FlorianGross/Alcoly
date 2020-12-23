@@ -18,7 +18,7 @@ import com.fmgross.alcoly.backend.Calculation;
 import java.text.DecimalFormat;
 
 
-public class hoherWert extends Fragment {
+public class Fragment_hoher_wert extends Fragment {
 
     private TextView timeToDrive, amountOfAlc, promille, textType;
 

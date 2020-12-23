@@ -33,4 +33,5 @@
         <item>Männlich</item>
         <item>Weiblich</item>
     </string-array>
+    <string name="title_activity_main_page2">MainActivity</string>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/timeline"
+        android:icon="@mipmap/time"
+        android:title="Timeline"
+        />
+    <item
+        android:id="@+id/homeButton"
+        android:icon="@mipmap/homebutton"
+        android:title="Home"
+        />
+    <item
+        android:id="statistics"
+        android:icon="@mipmap/person"
+        android:title="Statistik"
+        />
+</menu>
