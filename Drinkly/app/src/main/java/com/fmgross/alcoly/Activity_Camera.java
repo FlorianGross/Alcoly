@@ -92,13 +92,15 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
         generateSpinner();
 
-        CropImage.activity().start(Activity_Camera.this);
+        CropImage.activity().start(this);
+        System.out.println("start crop activity");
     }
 
     /**
      * Generates the spinner with the ArrayList
      */
     private void generateSpinner() {
+        System.out.println("Generate Spinner");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         drinkName.setAdapter(adapter);
@@ -114,6 +116,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        System.out.println("Activity Result");
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
@@ -138,12 +141,13 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 });
                 onClickListener();
 
-                redo.setOnClickListener(v -> CropImage.activity().start(Activity_Camera.this));
+                redo.setOnClickListener(v -> CropImage.activity().start(this));
 
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.P)
                     @Override
                     public void onClick(View v) {
+                        System.out.println("OnClick");
                         Bitmap bitmap = null;
                         try {
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
@@ -162,6 +166,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                      * @param bitmap the Bimap generated from the Cropper Camera
                      */
                     private void saveInDB(Bitmap bitmap) {
+                        System.out.println("save in db");
                         Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getApplicationContext());
                         volume = getVolume();
                         permil = getPermil();
@@ -360,6 +365,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
      * Opens the MainScreen window
      */
     private void openMainScreen() {
+        System.out.println("Open Main Screen");
         Intent intent = new Intent(this, Activity_MainPage.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -371,6 +377,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
      * @param uri the Uri of the Image
      */
     private void setLabelerFromLocalModel(Uri uri) {
+        System.out.println("setLabelerFromLocalModel");
         AutoMLImageLabelerLocalModel localModel =
                 new AutoMLImageLabelerLocalModel.Builder()
                         .setAssetFilePath("model/manifest.json")
@@ -398,6 +405,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
      * @param image   the image as InputImage
      */
     private void processImageLabeler(ImageLabeler labeler, InputImage image) {
+        System.out.println("Process Image Labeler");
         labeler.process(image).addOnCompleteListener(new OnCompleteListener<List<ImageLabel>>() {
             @Override
             public void onComplete(@NonNull Task<List<ImageLabel>> task) {

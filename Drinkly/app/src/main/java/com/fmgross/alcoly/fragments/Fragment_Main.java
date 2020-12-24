@@ -41,34 +41,51 @@ public class Fragment_Main extends Fragment {
         return root;
     }
 
+    private void setData() {
+        try {
+            Backend_Calculation calculate = new Backend_Calculation(getContext());
+            DecimalFormat f = new DecimalFormat();
+            f.setMaximumFractionDigits(2);
+            String promilleString = f.format(calculate.getNormalResultValue());
+
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    textView.setText(promilleString + " \u2030");
+                    textView.setTextSize(50);
+                });
+            }
+
+        } catch (Exception e) {
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    textView.setText("Drücke den Button um zu starten!");
+                    textView.setTextSize(20);
+                });
+            }
+
+        }
+
+
+    }
+
     /**
      * Refreshes the values from the main page
      */
     private void refreshData() {
-        Runnable runnable = () -> {
-            while (running) {
-                getActivity().runOnUiThread(() -> {
-                    Backend_Calculation calculate = new Backend_Calculation(getContext());
-                    DecimalFormat f = new DecimalFormat();
-                    f.setMaximumFractionDigits(2);
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    setData();
                     try {
-                        String promilleString = f.format(calculate.getNormalResultValue());
-                        textView.setText(promilleString + " \u2030");
-                        textView.setTextSize(50);
-                    } catch (Exception e) {
-                        textView.setText("Drücke den Button um zu starten!");
-                        textView.setTextSize(20);
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                });
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
-        };
-        Thread thread = new Thread(runnable);
-        thread.start();
+        });
+        t.start();
     }
-
 }

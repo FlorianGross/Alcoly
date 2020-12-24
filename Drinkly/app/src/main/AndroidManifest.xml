@@ -11,10 +11,12 @@
         android:roundIcon="@mipmap/alcoly_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly" >
-        <activity android:name=".Activity_MainPage" />
+        <activity android:name=".Activity_MainPage"
+            android:noHistory="false"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".old.Activity_Settings"
-            android:label="@string/title_activity_settings"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity

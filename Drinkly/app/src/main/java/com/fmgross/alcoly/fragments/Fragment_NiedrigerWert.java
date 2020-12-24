@@ -37,39 +37,44 @@ public class Fragment_NiedrigerWert extends Fragment {
         return root;
     }
 
+    private void setData() {
+        try {
+            Backend_Calculation calculate = new Backend_Calculation(getContext());
+            int hours = (int) (calculate.getMinTimeToDrive() / 60);
+            int minutes = (int) (calculate.getMinTimeToDrive() % 60);
+            String time = hours + ":" + minutes;
+            DecimalFormat f = new DecimalFormat();
+            f.setMaximumFractionDigits(2);
+            int getränke = calculate.getSessionAmount();
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    textType.setText(getränke + " alkoholische Getränke");
+                    timeToDrive.setText(time + " h");
+                    promille.setText(f.format(calculate.getMinResultValue()) + " ‰");
+                    amountOfAlc.setText("0");
+                });
+            }
+        } catch (Exception e) {
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() -> {
+                    textType.setText(0 + " alkoholische Getränke");
+                    timeToDrive.setText("0 h");
+                    promille.setText("0.0 ‰");
+                    amountOfAlc.setText("0 ml");
+                });
+            }
+        }
+    }
+
     /**
      * Refreshes the data of the Detailsfragment low on a new thread
      */
     private void refreshData() {
-        Runnable runnable = () -> {
-            while (true) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                if (getActivity() != null) {
-                    getActivity().runOnUiThread(() -> {
-                        try {
-                            Backend_Calculation calculate = new Backend_Calculation(getContext());
-                            int hours = (int) (calculate.getMinTimeToDrive() / 60);
-                            int minutes = (int) (calculate.getMinTimeToDrive() % 60);
-                            String time = hours + ":" + minutes;
-                            DecimalFormat f = new DecimalFormat();
-                            f.setMaximumFractionDigits(2);
-                            int getränke = calculate.getSessionAmount();
-                            textType.setText(getränke + " alkoholische Getränke");
-                            timeToDrive.setText(time + " h");
-                            promille.setText(f.format(calculate.getMinResultValue()) + " ‰");
-                            amountOfAlc.setText("0");
-                        } catch (Exception e) {
-                            textType.setText(0 + " alkoholische Getränke");
-                            timeToDrive.setText("0 h");
-                            promille.setText("0.0 ‰");
-                            amountOfAlc.setText("0 ml");
-                        }
-                    });
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    setData();
                     try {
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {
@@ -77,8 +82,7 @@ public class Fragment_NiedrigerWert extends Fragment {
                     }
                 }
             }
-        };
-        Thread thread = new Thread(runnable);
-        thread.start();
+        });
+        t.start();
     }
 }

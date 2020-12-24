@@ -51,20 +51,24 @@ public class Fragment_Statistics extends Fragment {
         initializeBarChart();
 
         settings.setOnClickListener(v -> {
-            ft.replace(R.id.nav_host_fragment, new Fragment_Settings());
-            ft.commit();
+            FragmentTransaction ft1 = fm.beginTransaction();
+            ft1.replace(R.id.nav_host_fragment, new Fragment_Settings());
+            ft1.commit();
         });
         lowValue.setOnClickListener(v -> {
-            ft.replace(R.id.fragment, new Fragment_NiedrigerWert());
-            ft.commit();
+            FragmentTransaction ft2 = fm.beginTransaction();
+            ft2.replace(R.id.fragment, new Fragment_NiedrigerWert());
+            ft2.commit();
         });
         mediumValue.setOnClickListener(v -> {
-            ft.replace(R.id.fragment, new Fragment_MittlererWert());
-            ft.commit();
+            FragmentTransaction ft3 = fm.beginTransaction();
+            ft3.replace(R.id.fragment, new Fragment_MittlererWert());
+            ft3.commit();
         });
         highValue.setOnClickListener(v -> {
-            ft.replace(R.id.fragment, new Fragment_HoherWert());
-            ft.commit();
+            FragmentTransaction ft4 = fm.beginTransaction();
+            ft4.replace(R.id.fragment, new Fragment_HoherWert());
+            ft4.commit();
         });
         return root;
     }
