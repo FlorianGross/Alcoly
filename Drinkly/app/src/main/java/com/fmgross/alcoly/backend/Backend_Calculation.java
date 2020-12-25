@@ -13,7 +13,7 @@ public class Backend_Calculation {
     public double minResult;
     public double normalResult;
     public double highResult;
-    private Context context;
+    private final Context context;
 
     public Backend_Calculation(Context context) {
         this.context = context;

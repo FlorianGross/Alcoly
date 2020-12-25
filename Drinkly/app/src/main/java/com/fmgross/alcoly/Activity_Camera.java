@@ -92,8 +92,8 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
         generateSpinner();
 
-        CropImage.activity().start(this);
         System.out.println("start crop activity");
+        CropImage.activity().start(this);
     }
 
     /**
@@ -116,12 +116,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        System.out.println("Activity Result");
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
-
                 Uri uri = useUri(result);
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
@@ -141,13 +139,12 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 });
                 onClickListener();
 
-                redo.setOnClickListener(v -> CropImage.activity().start(this));
+                redo.setOnClickListener(v -> CropImage.activity().start(Activity_Camera.this));
 
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.P)
                     @Override
                     public void onClick(View v) {
-                        System.out.println("OnClick");
                         Bitmap bitmap = null;
                         try {
                             ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
@@ -163,10 +160,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
                     /**
                      * Stores the new Getränk in the Database
+                     *
                      * @param bitmap the Bimap generated from the Cropper Camera
                      */
                     private void saveInDB(Bitmap bitmap) {
-                        System.out.println("save in db");
                         Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getApplicationContext());
                         volume = getVolume();
                         permil = getPermil();
@@ -191,15 +188,17 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
                     /**
                      * Returns the Session int from the newest Session
+                     *
                      * @return int with the new Session
                      */
                     private int getSessionInt() {
-                        Backend_Calculation calculator = new Backend_Calculation(getParent());
+                        Backend_Calculation calculator = new Backend_Calculation(getApplicationContext());
                         return calculator.getNewSessionInt();
                     }
 
                     /**
                      * gets the value of the Spinners item
+                     *
                      * @return the value of the drink
                      */
                     private float getPermil() {
@@ -208,6 +207,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
                     /**
                      * gets the Volume of the spinners item
+                     *
                      * @return the volume of the drink selected
                      */
                     private float getVolume() {
@@ -393,6 +393,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
             image = InputImage.fromFilePath(this, uri);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Error with labeling");
         }
         processImageLabeler(labeler, image);
 

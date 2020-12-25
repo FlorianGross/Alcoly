@@ -3,6 +3,8 @@
     package="com.fmgross.alcoly" >
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -33,7 +35,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity_Camera"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".old.Activity_MainScreen"
@@ -46,7 +47,6 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait"
-            android:noHistory="true"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".Activity_Main"
