@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fmgross.alcoly" >
+    package="com.fmgross.alcoly">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/alcoly"
+        android:icon="@drawable/alcoly_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/alcoly_round"
+        android:roundIcon="@drawable/alcoly_logo_rounded"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Drinkly" >
-        <activity android:name=".Activity_MainPage"
-            android:noHistory="false"
-            android:screenOrientation="portrait"
-            />
+        android:theme="@style/Theme.Drinkly">
         <activity
-            android:name=".old.Activity_Settings"
-            android:noHistory="true"
+            android:name=".Activity_MainPage"
+            android:noHistory="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".old.Activity_Details"
@@ -51,7 +47,7 @@
         <activity
             android:name=".Activity_Main"
             android:noHistory="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
