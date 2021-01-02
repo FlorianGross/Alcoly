@@ -55,7 +55,7 @@ public class Fragment_Timeline extends Fragment {
      */
     private void createRecycler() {
         newRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Backend_GroupAdapter groupAdapter = new Backend_GroupAdapter(getContext(), arrayListString);
+        Backend_GroupAdapter groupAdapter = new Backend_GroupAdapter(getContext(), getActivity().getSupportFragmentManager(), arrayListString);
         newRecyclerView.setAdapter(groupAdapter);
         newRecyclerView.setHasFixedSize(false);
     }

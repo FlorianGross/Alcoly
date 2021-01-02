@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 
 public class Activity_FirstStartUp extends AppCompatActivity {
-    ImageView maleImage, femaleImage;
+    Button maleImage, femaleImage;
     Button forwardButton, skipButton;
     EditText ageInput, weightInput;
 

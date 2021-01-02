@@ -29,7 +29,7 @@ public class Fragment_Details extends Fragment {
     private TextView percentage, type, currentDate, volume;
     private EditText percentageEdit, typeEdit, volumeEdit;
     private ImageView imageView, backButton, deleteButton;
-    private int current = 0;
+    private int current;
     private Boolean saveMode = false;
 
     @Override
@@ -54,21 +54,26 @@ public class Fragment_Details extends Fragment {
         deleteButton = root.findViewById(R.id.deleteButton);
 
         generateDetails();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+
 
         deleteButton.setOnClickListener(v -> {
+            System.out.println("Delete Button pressed");
             deleteGetraenk();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.nav_host_fragment, new Fragment_Timeline());
             ft.commit();
 
         });
         backButton.setOnClickListener(v -> {
+            System.out.println("Back Button Pressed");
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.nav_host_fragment, new Fragment_Timeline());
             ft.commit();
         });
         edit.setOnClickListener(v -> {
-
+            System.out.println("Edit button pressed");
         });
         return root;
     }
@@ -91,11 +96,14 @@ public class Fragment_Details extends Fragment {
      * Generates the details page
      */
     private void generateDetails() {
+        System.out.println("Generate Details");
         Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
         ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
         Bundle extras = getArguments();
         if (extras != null) {
             current = extras.getInt("intPosition");
+        }else {
+            System.out.println("int = null");
         }
         percentage.setFocusable(false);
         type.setFocusable(false);
@@ -114,6 +122,7 @@ public class Fragment_Details extends Fragment {
      * @param i  the position of the current item in the array
      */
     private void setAllValues(ArrayList<Backend_Getraenk> ai, int i) {
+        System.out.println("Set All Values");
         type.setText(ai.get(i).getName());
         volume.setText(ai.get(i).getVolume() + " L");
         Date newDate = ai.get(i).getDate();

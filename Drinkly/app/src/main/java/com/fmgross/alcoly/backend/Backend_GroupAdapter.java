@@ -1,17 +1,23 @@
 package com.fmgross.alcoly.backend;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fmgross.alcoly.Activity_MainPage;
 import com.fmgross.alcoly.R;
+import com.fmgross.alcoly.fragments.Fragment_Details;
 
 import java.util.ArrayList;
 
@@ -19,10 +25,12 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
     private final Context context;
     private final ArrayList<Integer> arrayListGroup;
     private Backend_Adapter.RecyclerViewClickListener listener;
+    private FragmentManager activity;
 
-    public Backend_GroupAdapter(Context context, ArrayList<Integer> arrayListGroup) {
+    public Backend_GroupAdapter(Context context, FragmentManager activity, ArrayList<Integer> arrayListGroup) {
         this.context = context;
         this.arrayListGroup = arrayListGroup;
+        this.activity = activity;
     }
 
     @NonNull
@@ -45,7 +53,6 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
         holder.tv.setText(postString);
 
         Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(context);
-        //ArrayList<Getränke> getränkeList = databaseHelper.getAllGetraenke();
         ArrayList<Backend_Getraenk> newGetraenkeList = databaseHelper.getAllOfDate(arrayListGroup.get(position));
         int numberOfColumns = 3;
 
@@ -60,7 +67,16 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
 
     private void setOnCLickListener() {
         listener = (v, position) -> {
-            //Opens new Details page
+
+            FragmentManager fm = activity;
+            FragmentTransaction ft = fm.beginTransaction();
+            Bundle arguments = new Bundle();
+            arguments.putInt("intposition",position);
+            context.startActivity(new Intent(context, Activity_MainPage.class), arguments);
+            Fragment_Details fragment = new Fragment_Details();
+            fragment.setArguments(arguments);
+            ft.replace(R.id.nav_host_fragment, fragment);
+            ft.commit();
         };
     }
 
