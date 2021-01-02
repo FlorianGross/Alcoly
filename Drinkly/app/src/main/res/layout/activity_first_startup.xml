@@ -11,9 +11,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="320dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="67dp"
         android:src="@drawable/alcoly_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -22,140 +22,183 @@
         app:srcCompat="@drawable/alcoly_logo"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/genderText"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:text="Dein biologisches Geschlecht:"
-        android:textColor="@color/MainColor"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/femaleImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/femaleImage" />
-
-    <ImageView
-        android:id="@+id/maleImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="60dp"
-        android:background="@mipmap/blackrectangle"
-        android:src="@mipmap/male"
-        app:tint="@color/text"
-        app:layout_constraintBottom_toTopOf="@+id/ageInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/femaleImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="10dp"
-        android:background="@mipmap/orangerectangle"
-        android:src="@mipmap/female"
-        app:layout_constraintBottom_toBottomOf="@+id/maleImage"
-        app:layout_constraintEnd_toStartOf="@+id/maleImage"
-        app:layout_constraintStart_toEndOf="@+id/genderText"
-        app:layout_constraintTop_toTopOf="@+id/maleImage"
-        app:tint="@color/text" />
-
-    <TextView
-        android:id="@+id/ageText"
-        android:layout_width="121dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="35dp"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:text="Dein Alter:"
-        android:textColor="@color/MainColor"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ageInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ageInput" />
-
-
-    <EditText
-        android:id="@+id/ageInput"
-        android:layout_width="185dp"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:background="@mipmap/textinput"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:inputType="number"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/weightInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ageText"
-        app:layout_constraintTop_toBottomOf="@+id/maleImage" />
-
-    <TextView
-        android:id="@+id/weightText"
-        android:layout_width="153dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="35dp"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:inputType="number"
-        android:text="Dein Gewicht:"
-        android:textColor="@color/MainColor"
-        android:textSize="20sp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/weightInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/weightInput" />
-
-    <EditText
-        android:id="@+id/weightInput"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/textinput"
-        android:fontFamily="@font/helvetica_neue_regular"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/Datenschutz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/weightText"
-        app:layout_constraintTop_toBottomOf="@+id/ageInput" />
-
-    <TextView
-        android:id="@+id/Datenschutz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mit dem Klicken auf OK erklärst du dich mit unseren
-Nutzungsbedingungen einverstanden"
-        android:textAlignment="center"
-        android:textColor="@color/text"
-        app:layout_constraintBottom_toTopOf="@+id/forwardButton"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewStartup"
+        android:layout_width="375dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="40dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:backgroundTint="@color/AlternativeBackground"
+        app:layout_constraintBottom_toTopOf="@+id/skipButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weightInput" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/weightInput"
+                android:layout_width="83dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/textinput"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/ageInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ageText"
+                app:layout_constraintTop_toBottomOf="@+id/maleImage" />
+
+            <TextView
+                android:id="@+id/jahreText"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
+                android:text="Jahre"
+                android:textSize="17dp"
+                app:layout_constraintBottom_toBottomOf="@+id/weightInput"
+                app:layout_constraintStart_toEndOf="@+id/weightInput"
+                app:layout_constraintTop_toTopOf="@+id/weightInput" />
+
+            <TextView
+                android:id="@+id/kgText"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
+                android:text="kg"
+                android:textSize="17dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ageInput"
+                app:layout_constraintStart_toEndOf="@+id/ageInput"
+                app:layout_constraintTop_toTopOf="@+id/ageInput" />
+
+            <TextView
+                android:id="@+id/Datenschutz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="@string/nutzungsbedingungenCheck"
+                android:autoLink="web"
+                android:textColorLink="@color/MainColor"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/ageText"
+                android:layout_width="148dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Alter:"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/weightInput"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/weightInput" />
+
+            <Button
+                android:id="@+id/femaleImage"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:backgroundTint="@color/MainColor"
+                android:text="WEIBLICH"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/maleImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/text" />
+
+            <TextView
+                android:id="@+id/genderText"
+                android:layout_width="148dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:text="Geschlecht:"
+                android:textColor="@color/text"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/femaleImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/femaleImage" />
+
+            <EditText
+                android:id="@+id/ageInput"
+                android:layout_width="83dp"
+                android:layout_height="30dp"
+                android:autofillHints=""
+                android:background="@mipmap/textinput"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/Datenschutz"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/weightText"
+                app:layout_constraintTop_toBottomOf="@+id/weightInput" />
+
+            <TextView
+                android:id="@+id/weightText"
+                android:layout_width="148dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/helvetica_neue_regular"
+                android:inputType="number"
+                android:orientation="vertical"
+                android:text="Gewicht:"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ageInput"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ageInput" />
+
+            <Button
+                android:id="@+id/maleImage"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:backgroundTint="@color/MainColor"
+                android:text="Männlich"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/weightInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/femaleImage"
+                app:tint="@color/text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/skipButton"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/cardview_light_background"
+        android:backgroundTint="@color/gray"
         android:text="Überspringen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/forwardButton"
         app:layout_constraintEnd_toStartOf="@+id/forwardButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Datenschutz" />
+        app:layout_constraintTop_toTopOf="@+id/forwardButton" />
 
     <Button
         android:id="@+id/forwardButton"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/gray"
         android:fontFamily="@font/helvetica_neue_regular"
         android:text="Ok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/Datenschutz"
-        app:layout_constraintStart_toEndOf="@+id/skipButton" />
+        app:layout_constraintStart_toEndOf="@+id/skipButton"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewStartup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

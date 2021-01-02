@@ -9,4 +9,5 @@
     <color name="text">#FFFFFFFF</color>
     <color name="MainBackground">#191919</color>
     <color name="AlternativeBackground">#0B0B0B</color>
+    <color name="gray">#636363</color>
 </resources>

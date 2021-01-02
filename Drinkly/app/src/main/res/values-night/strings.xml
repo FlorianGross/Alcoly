@@ -5,7 +5,7 @@
     <string name="gender">Gender:</string>
     <string name="weight">Weight:</string>
     <string name="_2_4_promille">2.4 Promille</string>
-    <string name="application_by_florian_gro_sven_herz_verena_huber_and_milan_ritscher_2020_all_rights_reserved">Application by Florian Groß, Sven Herz, Verena Huber and Milan Ritscher © 2020 all rights reserved</string>
+    <string name="startText">Application by Florian Groß, Sven Herz, Verena Huber and Milan Ritscher © 2021 all rights reserved</string>
     <string name="app_logo">App Logo</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="tab_text_1">Tab 1</string>
@@ -22,6 +22,7 @@
     <string name="add_widget">Add widget</string>
     <string name="title_activity_main_surrounding">MainActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="nutzungsbedingungenCheck">Mit dem Klicken auf OK erklärst du dich mit unseren <a href="https://fmgross.de/datenschutzerklaerung-von-com-fmgross-alcoly/"> Nutzungsbedingungen </a>einverstanden</string>
 
     <string-array name="Types">
         <item>Nicht Erkannt</item>

@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="376dp"
-        android:layout_height="383dp"
+        android:layout_width="187dp"
+        android:layout_height="191dp"
         android:src="@drawable/alcoly_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +23,8 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="210dp"
-        android:layout_height="5dp"
+        android:layout_width="234dp"
+        android:layout_height="4dp"
         android:progressTint="@color/text"
         app:layout_constraintBottom_toTopOf="@+id/allRightsReserved"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,13 +33,13 @@
 
     <TextView
         android:id="@+id/allRightsReserved"
-        android:layout_width="320dp"
+        android:layout_width="140dp"
         android:layout_height="30dp"
-        android:text="@string/application_by_florian_gro_sven_herz_verena_huber_and_milan_ritscher_2020_all_rights_reserved"
+        android:text="@string/startText"
         android:textAlignment="center"
         android:textColor="#707070"
         android:fontFamily="@font/helvetica_neue_regular"
-        android:textSize="12sp"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
