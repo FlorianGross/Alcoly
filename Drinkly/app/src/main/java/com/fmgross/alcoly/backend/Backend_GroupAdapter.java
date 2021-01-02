@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fmgross.alcoly.old.Activity_Details;
 import com.fmgross.alcoly.R;
 
 import java.util.ArrayList;
@@ -61,9 +60,7 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
 
     private void setOnCLickListener() {
         listener = (v, position) -> {
-            Intent intent = new Intent(context, Activity_Details.class);
-            intent.putExtra("intPosition", position);
-            context.startActivity(intent);
+            //Opens new Details page
         };
     }
 
