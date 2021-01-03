@@ -18,23 +18,7 @@
             android:noHistory="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".old.Activity_Details"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".old.Activity_Timeline"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".old.Activity_Statistics"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Activity_Camera"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".old.Activity_MainScreen"
-            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity_FirstStartUp"
