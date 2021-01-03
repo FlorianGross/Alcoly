@@ -1,6 +1,5 @@
 package com.fmgross.alcoly.backend;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -67,12 +66,10 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
 
     private void setOnCLickListener() {
         listener = (v, position) -> {
-
             FragmentManager fm = activity;
             FragmentTransaction ft = fm.beginTransaction();
             Bundle arguments = new Bundle();
             arguments.putInt("intposition",position);
-            context.startActivity(new Intent(context, Activity_MainPage.class), arguments);
             Fragment_Details fragment = new Fragment_Details();
             fragment.setArguments(arguments);
             ft.replace(R.id.nav_host_fragment, fragment);
