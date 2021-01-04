@@ -2,29 +2,141 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/MainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity_MainPage">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
-
     <FrameLayout
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/timelineButton"
+            android:layout_width="110dp"
+            android:layout_height="38dp"
+            app:layout_constraintBottom_toBottomOf="@+id/scanButton"
+            app:layout_constraintEnd_toStartOf="@+id/scanButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scanButton">
+
+            <ImageView
+                android:id="@+id/timelineImage"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                app:layout_constraintBottom_toBottomOf="@+id/timelineText"
+                app:layout_constraintEnd_toStartOf="@+id/timelineText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/timelineText"
+                app:srcCompat="@mipmap/time"
+                />
+
+            <TextView
+                android:id="@+id/timelineText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TIMELINE"
+                android:textColor="@color/reverseText"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/timelineImage"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scanButton"
+            android:layout_width="110dp"
+            android:layout_height="38dp"
+            android:background="@color/MainColor"
+            app:layout_constraintBottom_toBottomOf="@+id/sessionButton"
+            app:layout_constraintEnd_toStartOf="@+id/sessionButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/timelineButton"
+            app:layout_constraintTop_toTopOf="@+id/sessionButton">
+
+            <ImageView
+                android:id="@+id/scanImage"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                app:layout_constraintBottom_toBottomOf="@+id/scanText"
+                app:layout_constraintEnd_toStartOf="@+id/scanText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/scanText"
+                app:srcCompat="@mipmap/homebutton"
+                app:tint="@color/reverseText" />
+
+            <TextView
+                android:id="@+id/scanText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCANNEN"
+                android:textColor="@color/reverseText"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/scanImage"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sessionButton"
+            android:layout_width="110dp"
+            android:layout_height="38dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/scanButton"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/sessionImage"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                app:layout_constraintBottom_toBottomOf="@+id/sessionText"
+                app:layout_constraintEnd_toStartOf="@+id/sessionText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/sessionText"
+                app:srcCompat="@mipmap/person" />
+
+            <TextView
+                android:id="@+id/sessionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SESSION"
+                android:textColor="@color/reverseText"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/sessionImage"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

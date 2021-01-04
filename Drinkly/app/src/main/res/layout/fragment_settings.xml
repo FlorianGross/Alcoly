@@ -127,7 +127,7 @@
                         android:inputType="number"
                         android:text="80"
                         android:textAlignment="center"
-                        android:textColor="@color/text"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toTopOf="@+id/save"
                         app:layout_constraintEnd_toEndOf="parent"

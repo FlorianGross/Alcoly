@@ -10,4 +10,5 @@
     <color name="MainBackground">#ffffff</color>
     <color name="AlternativeBackground">#EAEAEA</color>
     <color name="gray">#636363</color>
+    <color name="reverseText">#ffffff</color>
 </resources>
