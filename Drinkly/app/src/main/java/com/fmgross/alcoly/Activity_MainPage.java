@@ -52,22 +52,22 @@ public class Activity_MainPage extends AppCompatActivity {
         timelineButton.setOnClickListener(v -> {
             setAllfalse();
             timelineText.setVisibility(View.VISIBLE);
-            timelineImage.setColorFilter(Color.argb(255,0,0,0));
-            timelineButton.setBackgroundColor(Color.argb(255, 255,205,25));
+            timelineImage.setColorFilter(getResources().getColor(R.color.reverseText, null));
+            timelineButton.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
             getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Fragment_Timeline()).commit();
         });
         scanButton.setOnClickListener(v -> {
             setAllfalse();
             scanText.setVisibility(View.VISIBLE);
-            scanImage.setColorFilter(Color.argb(255,0,0,0));
-            scanButton.setBackgroundColor(Color.argb(255, 255,205,25));
+            scanImage.setColorFilter(getResources().getColor(R.color.reverseText, null));
+            scanButton.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
             getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Fragment_Main()).commit();
         });
         sessionButton.setOnClickListener(v -> {
             setAllfalse();
             sessionText.setVisibility(View.VISIBLE);
-            sessionImage.setColorFilter(Color.argb(255,0,0,0));
-            sessionButton .setBackgroundColor(Color.argb(255, 255,205,25));
+            sessionImage.setColorFilter(getResources().getColor(R.color.reverseText, null));
+            sessionButton.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
             getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Fragment_Statistics()).commit();
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new Fragment_Main()).commit();
@@ -77,12 +77,12 @@ public class Activity_MainPage extends AppCompatActivity {
         timelineText.setVisibility(View.GONE);
         sessionText.setVisibility(View.GONE);
         scanText.setVisibility(View.GONE);
-        timelineButton.setBackgroundResource(R.color.MainBackground);
-        sessionButton.setBackgroundResource(R.color.MainBackground);
-        scanButton.setBackgroundResource(R.color.MainBackground);
-        sessionImage.setColorFilter(Color.argb(255,255,255,255));
-        scanImage.setColorFilter(Color.argb(255,255,255,255));
-        timelineImage.setColorFilter(Color.argb(255,255,255,255));
+        timelineButton.setBackgroundColor(getResources().getColor(R.color.MainBackground, null));
+        sessionButton.setBackgroundColor(getResources().getColor(R.color.MainBackground, null));
+        scanButton.setBackgroundColor(getResources().getColor(R.color.MainBackground, null));
+        sessionImage.setColorFilter(getResources().getColor(R.color.text, null));
+        scanImage.setColorFilter(getResources().getColor(R.color.text, null));
+        timelineImage.setColorFilter(getResources().getColor(R.color.text, null));
     }
 
 

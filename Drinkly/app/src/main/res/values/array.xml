@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<string-array name="timeline">
+    <item>1 Monat</item>
+    <item>3 Monate</item>
+    <item>6 Monate</item>
+</string-array>
 
 </resources>

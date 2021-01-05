@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MainBackground">
+    android:backgroundTint="@color/MainBackground"
+    >
 
     <androidx.cardview.widget.CardView
         style="@style/CardView.Dark"
@@ -22,7 +23,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@color/AlternativeBackground"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/AlternativeBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +36,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <SeekBar
                     android:id="@+id/seekBar2"
@@ -77,7 +80,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
-                android:background="@color/AlternativeBackground"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/AlternativeBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

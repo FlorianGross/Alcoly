@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,13 +27,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Fragment_Details extends Fragment {
+public class Fragment_Details extends Fragment implements AdapterView.OnItemSelectedListener{
     private Button edit;
     private TextView percentage, type, currentDate, volume;
     private EditText percentageEdit, typeEdit, volumeEdit;
     private ImageView imageView, backButton, deleteButton;
     private int current;
     private Boolean saveMode = false;
+    private Spinner spinner;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +56,8 @@ public class Fragment_Details extends Fragment {
         typeEdit = root.findViewById(R.id.CurrentNameEdit);
         volumeEdit = root.findViewById(R.id.volumeEdit);
         deleteButton = root.findViewById(R.id.deleteButton);
-
+        spinner = root.findViewById(R.id.spinner2);
+        generateSpinner();
         generateDetails();
 
 
@@ -76,6 +81,13 @@ public class Fragment_Details extends Fragment {
             System.out.println("Edit button pressed");
         });
         return root;
+    }
+
+    private void generateSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.timeline, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     /**
@@ -131,5 +143,15 @@ public class Fragment_Details extends Fragment {
         currentDate.setText(strDate);
         percentage.setText(ai.get(i).getVolumePart() + " vol%");
         imageView.setImageBitmap(ai.get(i).getUri());
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

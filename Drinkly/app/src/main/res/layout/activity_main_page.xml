@@ -49,7 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/timelineText"
                 app:srcCompat="@mipmap/time"
-                />
+                app:tint="@color/text" />
 
             <TextView
                 android:id="@+id/timelineText"
@@ -121,7 +121,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/sessionText"
-                app:srcCompat="@mipmap/person" />
+                app:srcCompat="@mipmap/person"
+                app:tint="@color/text" />
 
             <TextView
                 android:id="@+id/sessionText"
