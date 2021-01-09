@@ -22,8 +22,8 @@ public class Activity_FirstStartUp extends AppCompatActivity {
         setContentView(R.layout.activity_first_startup);
 
         forwardButton = findViewById(R.id.forwardButton);
-        ageInput = findViewById(R.id.ageInput);
-        weightInput = findViewById(R.id.weightInput);
+        weightInput = findViewById(R.id.ageInput);
+        ageInput = findViewById(R.id.weightInput);
         skipButton = findViewById(R.id.skipButton);
 
         maleImage = findViewById(R.id.maleImage);

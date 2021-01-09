@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 
 public class Fragment_Main extends Fragment {
 
-    private TextView textView;
+    private TextView textView, timeToDrive;
     private final boolean running = true;
     private ImageView mainButton;
 
@@ -33,6 +33,7 @@ public class Fragment_Main extends Fragment {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         mainButton = root.findViewById(R.id.mainAction);
         textView = root.findViewById(R.id.promilleErgebnis);
+        timeToDrive = root.findViewById(R.id.timeToDrive);
         mainButton.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), Activity_Camera.class);
             startActivity(intent);
@@ -47,19 +48,21 @@ public class Fragment_Main extends Fragment {
             DecimalFormat f = new DecimalFormat();
             f.setMaximumFractionDigits(2);
             String promilleString = f.format(calculate.getNormalResultValue());
-
+            int hours = (int) (calculate.getNormalTimeToDrive() / 60);
+            int minutes = (int) (calculate.getNormalTimeToDrive() % 60);
+            String time = hours + ":" + minutes;
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
                     textView.setText(promilleString + " \u2030");
-                    textView.setTextSize(50);
+                    timeToDrive.setText(time + "h");
                 });
             }
 
         } catch (Exception e) {
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
-                    textView.setText("Drücke den Button um zu starten!");
-                    textView.setTextSize(20);
+                    textView.setText("0 \u2030");
+                    timeToDrive.setText("0 h");
                 });
             }
 
@@ -73,16 +76,13 @@ public class Fragment_Main extends Fragment {
      */
     private void refreshData() {
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    setData();
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Thread t = new Thread(() -> {
+            while (true) {
+                setData();
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });

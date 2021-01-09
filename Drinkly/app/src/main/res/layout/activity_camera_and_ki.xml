@@ -23,9 +23,9 @@
                 android:id="@+id/constraintLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/AlternativeBackground"
-                android:background="@drawable/rounded_corner"
                 android:layout_weight="1"
+                android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/AlternativeBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -57,6 +57,7 @@
 
                 <Spinner
                     android:id="@+id/DrinkName"
+                    style="@style/Widget.AppCompat.Spinner"
                     android:layout_width="195dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="10dp"
@@ -64,7 +65,6 @@
                     android:background="@mipmap/textinput"
                     android:fontFamily="@font/helvetica_neue_regular"
                     android:text="Bier"
-                    style="@style/Widget.AppCompat.Spinner"
                     android:textAlignment="center"
                     android:textColor="@color/text"
                     android:textSize="20sp"
@@ -78,10 +78,10 @@
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="188dp"
-                android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/AlternativeBackground"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
+                android:backgroundTint="@color/AlternativeBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
@@ -132,8 +132,8 @@
                 android:id="@+id/constraintLayout6"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_weight="1"
                 android:layout_marginTop="20dp"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:backgroundTint="@color/AlternativeBackground"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -145,20 +145,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout13"
+                        android:id="@+id/ButtonBier4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout11"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonBier3"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -177,7 +178,6 @@
                             android:id="@+id/GridVolumeTLBier"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beerxlarge"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -189,13 +189,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout11"
+                        android:id="@+id/ButtonBier3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout13"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonBier4"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout12"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonBier2"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -214,8 +216,6 @@
                             android:id="@+id/GridVolumeTRBier"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
-                            android:backgroundTint="@color/MainColor"
                             android:foreground="@mipmap/beerlarge"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -227,13 +227,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout12"
+                        android:id="@+id/ButtonBier2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout11"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonBier3"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout14"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonBier1"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -252,7 +254,6 @@
                             android:id="@+id/GridVolumeBLBier"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beermedium"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -265,11 +266,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout14"
+                        android:id="@+id/ButtonBier1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout12"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonBier2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -290,7 +293,6 @@
                             android:id="@+id/GridVolumeBRBier"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beersmall"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -308,20 +310,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout10"
+                        android:id="@+id/ButtonWein4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonWein3"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -344,7 +348,6 @@
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
                             android:text="TL"
-                            android:background="@drawable/outlinefile"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -352,13 +355,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout7"
+                        android:id="@+id/ButtonWein3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout10"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonWein4"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonWein2"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -380,9 +385,6 @@
                             android:foreground="@mipmap/winelargeglass"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
-                            android:text="TR"
-                            android:backgroundTint="@color/MainColor"
-                            android:background="@drawable/rounded_corner"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -390,13 +392,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout8"
+                        android:id="@+id/ButtonWein2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/outlinefile"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout7"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonWein3"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout9"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonWein1"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -415,7 +419,6 @@
                             android:id="@+id/GridVolumeBLWein"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/winemediumglass"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -429,11 +432,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout9"
+                        android:id="@+id/ButtonWein1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/outlinefile"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout8"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonWein2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -454,7 +459,6 @@
                             android:id="@+id/GridVolumeBRWein"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/winesmallglass"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -474,20 +478,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout17"
+                        android:id="@+id/ButtonNormal4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/outlinefile"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout15"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonNormal3"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -506,7 +512,6 @@
                             android:id="@+id/GridVolumeTL"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beerxlarge"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -518,13 +523,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout15"
+                        android:id="@+id/ButtonNormal3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
+                        android:background="@drawable/outlinefile"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout17"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonNormal4"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout16"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonNormal2"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -543,7 +550,6 @@
                             android:id="@+id/GridVolumeTR"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beerlarge"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -555,13 +561,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout16"
+                        android:id="@+id/ButtonNormal2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout15"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonNormal3"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/constraintLayout18"
+                        app:layout_constraintStart_toEndOf="@+id/ButtonNormal1"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -580,7 +588,6 @@
                             android:id="@+id/GridVolumeBL"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beermedium"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -593,11 +600,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout18"
+                        android:id="@+id/ButtonNormal1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlinefile"
+
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/constraintLayout16"
+                        app:layout_constraintEnd_toStartOf="@+id/ButtonNormal2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -618,7 +627,6 @@
                             android:id="@+id/GridVolumeBR"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
-                            android:background="@drawable/outlinefile"
                             android:foreground="@mipmap/beersmall"
                             android:foregroundGravity="center"
                             android:foregroundTint="@color/text"
@@ -648,7 +656,7 @@
                     android:id="@+id/redo"
                     android:layout_width="120dp"
                     android:layout_height="45dp"
-                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="@color/MainColor"
                     android:foreground="@mipmap/reset"
                     android:foregroundGravity="center"
                     app:layout_constraintBottom_toBottomOf="@+id/bt_open"
@@ -661,7 +669,7 @@
                     android:id="@+id/bt_open"
                     android:layout_width="180dp"
                     android:layout_height="55.82dp"
-                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="@color/MainColor"
                     android:fontFamily="@font/helvetica_neue_regular"
                     android:text="OK"
                     android:textSize="24sp"

@@ -34,6 +34,21 @@ public class Backend_Calculation {
         }
     }
 
+    public double getNormalResultToTime(ArrayList<Backend_Getraenk> arrayList, Date date) {
+        try {
+            double time = getDrinkTime(arrayList, date);
+            double promille = calculateSessionPromille(arrayList);
+            normalResult = promille - time * (0.13 / 60);
+            if (normalResult < 0) {
+                return 0;
+            } else {
+                return normalResult;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
     public double getNormalResultValue() {
         databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
         ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
