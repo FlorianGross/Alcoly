@@ -158,7 +158,6 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
      */
     public ArrayList<Integer> getAllDates() {
         ArrayList<Integer> returnArray = new ArrayList<>();
-
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(queryString, null);

@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private Backend_DatabaseHelper databaseHelper;
-    private ArrayList<Backend_Getraenk> arrayList;
     private ArrayList<Integer> arrayListString;
     private RecyclerView newRecyclerView;
     private Spinner spinner;
@@ -39,8 +38,10 @@ public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSel
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_timeline, container, false);
+
         newRecyclerView = root.findViewById(R.id.mRecyclerView);
         spinner = root.findViewById(R.id.spinner2);
+
         getDatabase();
         createRecycler();
         generateSpinner();
@@ -53,12 +54,12 @@ public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSel
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
     }
+
     /**
      * Returns all getränke inside an arrayList
      */
     private void getDatabase() {
         databaseHelper = new Backend_DatabaseHelper(getContext().getApplicationContext());
-        arrayList = databaseHelper.getAllGetraenke();
         arrayListString = databaseHelper.getAllDates();
     }
 
@@ -70,19 +71,6 @@ public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSel
         Backend_GroupAdapter groupAdapter = new Backend_GroupAdapter(getContext(), getActivity().getSupportFragmentManager(), arrayListString);
         newRecyclerView.setAdapter(groupAdapter);
         newRecyclerView.setHasFixedSize(false);
-    }
-
-    private void setOnCLickListener() {
-        Backend_Adapter.RecyclerViewClickListener listener = (v, position) -> {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            Bundle arguments = new Bundle();
-            arguments.putInt("intposition",position);
-            Fragment_Details fragment = new Fragment_Details();
-            fragment.setArguments(arguments);
-            ft.replace(R.id.nav_host_fragment, fragment);
-            ft.commit();
-        };
     }
 
     @Override

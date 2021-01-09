@@ -23,7 +23,9 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/fragment">
+            android:foreground="@mipmap/fragment"
+            android:background="@drawable/roundedcornerhard"
+            android:backgroundTint="@color/AlternativeBackground">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -37,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/helvetica_neue_regular"
-                    android:text="0.0 ‰"
+                    android:text="0 ‰"
                     android:textAlignment="center"
                     android:textColor="@color/text"
                     android:textSize="70sp"
@@ -67,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/helvetica_neue_regular"
-                    android:text="00:00 h"
+                    android:text="0:0 h"
                     android:textAlignment="center"
                     android:textColor="@color/text"
                     android:textSize="70sp"

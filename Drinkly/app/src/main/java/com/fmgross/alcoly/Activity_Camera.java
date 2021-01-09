@@ -275,11 +275,14 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                             SessionInt = 0;
                         }
                         Date returnDate = new Date();
+                        System.out.println(returnDate.toString());
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(returnDate);
-                        int month = calendar.get(Calendar.MONTH) + 1;
-                        String realDate = calendar.get(Calendar.DAY_OF_MONTH) + "" + month + "" + calendar.get(Calendar.YEAR);
-                        int realDateTest = Integer.parseInt(realDate);
+                        int day = calendar.get(Calendar.DAY_OF_MONTH) * 1000000;
+                        int month = (calendar.get(Calendar.MONTH) + 1) * 10000;
+                        int year = calendar.get(Calendar.YEAR);
+                        System.out.println(day + " Day" + month + " Month" + year + "Year " + " Date");
+                        int realDateTest = day + month + year;
                         Backend_Getraenk getraenk = new Backend_Getraenk(type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
                         Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());

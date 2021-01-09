@@ -18,6 +18,8 @@ import com.fmgross.alcoly.Activity_MainPage;
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.fragments.Fragment_Details;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdapter.myViewHolder> {
@@ -43,19 +45,14 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
 
         int preString = arrayListGroup.get(position);
-        int day = preString / 1000000;
-        preString = preString - day * 1000000;
-        int month = preString / 10000;
-        preString = preString - month * 10000;
-        int year = preString;
-        String postString = day + "." + month + "." + year;
+        String postString = getRealDate(preString);
         holder.tv.setText(postString);
+
+        setOnCLickListener(arrayListGroup.get(position));
 
         Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(context);
         ArrayList<Backend_Getraenk> newGetraenkeList = databaseHelper.getAllOfDate(arrayListGroup.get(position));
         int numberOfColumns = 3;
-
-        setOnCLickListener();
         holder.rv.setLayoutManager(new GridLayoutManager(context, numberOfColumns));
         Backend_Adapter adapter = new Backend_Adapter(context, newGetraenkeList, listener);
         holder.rv.setAdapter(adapter);
@@ -64,16 +61,32 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
 
     }
 
-    private void setOnCLickListener() {
-        listener = (v, position) -> {
-            FragmentManager fm = activity;
-            FragmentTransaction ft = fm.beginTransaction();
-            Bundle arguments = new Bundle();
-            arguments.putInt("intposition",position);
-            Fragment_Details fragment = new Fragment_Details();
-            fragment.setArguments(arguments);
-            ft.replace(R.id.nav_host_fragment, fragment);
-            ft.commit();
+    @NotNull
+    private String getRealDate(int preString) {
+        int day = preString / 1000000;
+        preString = preString - day * 1000000;
+        int month = preString / 10000;
+        preString = preString - month * 10000;
+        int year = preString;
+        return day + "." + month + "." + year;
+    }
+
+    private void setOnCLickListener(int prestring) {
+        listener = new Backend_Adapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                System.out.println(position + " position");
+                FragmentManager fm = activity;
+                FragmentTransaction ft = fm.beginTransaction();
+                Bundle arguments = new Bundle();
+                arguments.putInt("intRealDate", prestring);
+                arguments.putInt("intposition", position);
+                System.out.println(arguments.toString());
+                Fragment_Details fragment = new Fragment_Details();
+                fragment.setArguments(arguments);
+                ft.replace(R.id.nav_host_fragment, fragment);
+                ft.commit();
+            }
         };
     }
 

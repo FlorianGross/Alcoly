@@ -2,6 +2,7 @@ package com.fmgross.alcoly.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.health.SystemHealthManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleableRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -27,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Fragment_Details extends Fragment implements AdapterView.OnItemSelectedListener{
+public class Fragment_Details extends Fragment {
     private Button edit;
     private TextView percentage, type, currentDate, volume;
     private EditText percentageEdit, typeEdit, volumeEdit;
@@ -35,6 +37,8 @@ public class Fragment_Details extends Fragment implements AdapterView.OnItemSele
     private int current;
     private Boolean saveMode = false;
     private Spinner spinner;
+    private Backend_Getraenk getraenk;
+    private int realDate;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,11 +60,10 @@ public class Fragment_Details extends Fragment implements AdapterView.OnItemSele
         typeEdit = root.findViewById(R.id.CurrentNameEdit);
         volumeEdit = root.findViewById(R.id.volumeEdit);
         deleteButton = root.findViewById(R.id.deleteButton);
+
         generateDetails();
 
-
         deleteButton.setOnClickListener(v -> {
-            System.out.println("Delete Button pressed");
             deleteGetraenk();
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -69,44 +72,30 @@ public class Fragment_Details extends Fragment implements AdapterView.OnItemSele
 
         });
         backButton.setOnClickListener(v -> {
-            System.out.println("Back Button Pressed");
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.nav_host_fragment, new Fragment_Timeline());
             ft.commit();
         });
         edit.setOnClickListener(v -> {
-            System.out.println("Edit button pressed");
         });
         return root;
     }
 
-    /**
-     * When the button delete is pressed, deletes the  getraenk from the database
-     */
-    private void deleteGetraenk() {
-        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
-        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
-        Bundle extras = getArguments();
-        if (extras != null) {
-            current = extras.getInt("intPosition");
-        }
-        Backend_Getraenk delGetraenk = arrayList.get(current);
-        databaseHelper.deleteOne(delGetraenk);
-    }
-
-    /**
-     * Generates the details page
-     */
     private void generateDetails() {
-        System.out.println("Generate Details");
-        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
-        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
         Bundle extras = getArguments();
         if (extras != null) {
-            current = extras.getInt("intPosition");
-        }else {
-            System.out.println("int = null");
+            realDate = extras.getInt("intRealDate");
+            current = extras.getInt("intposition");
+            System.out.println("intRealDate: " + realDate + "IntPosition:" + current);
+            Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
+            ArrayList<Backend_Getraenk> db = databaseHelper.getAllOfDate(realDate);
+            System.out.println(db.toString());
+            getraenk = db.get(current);
+            System.out.println(getraenk.toString());
+
+        } else {
+            throw new IllegalArgumentException("No Getraenk selected");
         }
         percentage.setFocusable(false);
         type.setFocusable(false);
@@ -115,34 +104,26 @@ public class Fragment_Details extends Fragment implements AdapterView.OnItemSele
         if (saveMode = false) {
             edit.setText("Edit");
         }
-        setAllValues(arrayList, current);
+        setAllValues(getraenk);
     }
 
     /**
-     * sets all the values of the details view
-     *
-     * @param ai the list of all drinks
-     * @param i  the position of the current item in the array
+     * When the button delete is pressed, deletes the  getraenk from the database
      */
-    private void setAllValues(ArrayList<Backend_Getraenk> ai, int i) {
-        System.out.println("Set All Values");
-        type.setText(ai.get(i).getName());
-        volume.setText(ai.get(i).getVolume() + " L");
-        Date newDate = ai.get(i).getDate();
+    private void deleteGetraenk() {
+        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
+        databaseHelper.deleteOne(getraenk);
+    }
+
+
+    private void setAllValues(Backend_Getraenk getraenk) {
+        type.setText(getraenk.getName());
+        volume.setText(getraenk.getVolume() + " L");
+        Date newDate = getraenk.getDate();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String strDate = formatter.format(newDate);
         currentDate.setText(strDate);
-        percentage.setText(ai.get(i).getVolumePart() + " vol%");
-        imageView.setImageBitmap(ai.get(i).getUri());
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+        percentage.setText(getraenk.getVolumePart() + " vol%");
+        imageView.setImageBitmap(getraenk.getUri());
     }
 }
