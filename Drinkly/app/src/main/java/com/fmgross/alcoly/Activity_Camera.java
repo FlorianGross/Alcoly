@@ -260,109 +260,6 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         }
     }
 
-    private void onClickListener() {
-        //Normal
-        buttonBL.setOnClickListener(v -> {
-            System.out.println("ButtonBl selected");
-            selectedButton = 3;
-            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonBR.setOnClickListener(v -> {
-            System.out.println("ButtonBR selected");
-            selectedButton = 4;
-            System.out.println(buttonBR.getColorFilter());
-            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            System.out.println(buttonBR.getColorFilter());
-        });
-        buttonTL.setOnClickListener(v -> {
-            System.out.println("ButtonTL selected");
-            selectedButton = 1;
-            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonTR.setOnClickListener(v -> {
-            System.out.println("ButtonTR selected");
-            selectedButton = 2;
-            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        //Bier
-        buttonBLBier.setOnClickListener(v -> {
-            System.out.println("ButtonBLBier selected");
-            selectedButtonBier = 3;
-            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonBRBier.setOnClickListener(v -> {
-            System.out.println("ButtonBRBier selected");
-            selectedButtonBier = 4;
-            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonTLBier.setOnClickListener(v -> {
-            System.out.println("ButtonTlBier Selected");
-            selectedButtonBier = 1;
-            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonTRBier.setOnClickListener(v -> {
-            System.out.println("ButtonTRBier Selected");
-            selectedButtonBier = 2;
-            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        //Wein
-        buttonBLWein.setOnClickListener(v -> {
-            System.out.println("ButtonBLWein Selected");
-            selectedButtonWein = 3;
-            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonBRWein.setOnClickListener(v -> {
-            System.out.println("ButtonBRWein Selected");
-            selectedButtonWein = 4;
-            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonTLWein.setOnClickListener(v -> {
-            System.out.println("ButtonTLWein Selected");
-            selectedButtonWein = 1;
-            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-        buttonTRWein.setOnClickListener(v -> {
-            System.out.println("ButtonTRWein Selected");
-            selectedButtonWein = 2;
-            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
-            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
-        });
-    }
 
     /**
      * Gets the Uri from the Cropper and labels it with the KI
@@ -572,5 +469,109 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         openCamera.setVisibility(View.GONE);
+    }
+
+    private void onClickListener() {
+        //Normal
+        buttonBL.setOnClickListener(v -> {
+            System.out.println("ButtonBl selected");
+            selectedButton = 3;
+            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonBR.setOnClickListener(v -> {
+            System.out.println("ButtonBR selected");
+            selectedButton = 4;
+            System.out.println(buttonBR.getColorFilter());
+            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            System.out.println(buttonBR.getColorFilter());
+        });
+        buttonTL.setOnClickListener(v -> {
+            System.out.println("ButtonTL selected");
+            selectedButton = 1;
+            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonTR.setOnClickListener(v -> {
+            System.out.println("ButtonTR selected");
+            selectedButton = 2;
+            buttonTR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBR.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTL.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        //Bier
+        buttonBLBier.setOnClickListener(v -> {
+            System.out.println("ButtonBLBier selected");
+            selectedButtonBier = 3;
+            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonBRBier.setOnClickListener(v -> {
+            System.out.println("ButtonBRBier selected");
+            selectedButtonBier = 4;
+            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonTLBier.setOnClickListener(v -> {
+            System.out.println("ButtonTlBier Selected");
+            selectedButtonBier = 1;
+            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonTRBier.setOnClickListener(v -> {
+            System.out.println("ButtonTRBier Selected");
+            selectedButtonBier = 2;
+            buttonTRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBRBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTLBier.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        //Wein
+        buttonBLWein.setOnClickListener(v -> {
+            System.out.println("ButtonBLWein Selected");
+            selectedButtonWein = 3;
+            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonBRWein.setOnClickListener(v -> {
+            System.out.println("ButtonBRWein Selected");
+            selectedButtonWein = 4;
+            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonTLWein.setOnClickListener(v -> {
+            System.out.println("ButtonTLWein Selected");
+            selectedButtonWein = 1;
+            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
+        buttonTRWein.setOnClickListener(v -> {
+            System.out.println("ButtonTRWein Selected");
+            selectedButtonWein = 2;
+            buttonTRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.MainColor));
+            buttonBRWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonBLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+            buttonTLWein.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.AlternativeBackground));
+        });
     }
 }

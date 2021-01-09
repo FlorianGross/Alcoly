@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,13 +31,14 @@ public class Activity_FirstStartUp extends AppCompatActivity {
 
 
         maleImage.setOnClickListener(v -> {
-            maleImage.setBackgroundResource(R.mipmap.orangerectangle);
-            femaleImage.setBackgroundResource(R.mipmap.blackrectangle);
+
+            maleImage.setBackgroundColor(Color.argb(255, 255, 205, 25));
+            femaleImage.setBackgroundColor(Color.argb(255, 99, 99, 99));
             saveGender("Male");
         });
         femaleImage.setOnClickListener(v -> {
-            femaleImage.setBackgroundResource(R.mipmap.orangerectangle);
-            maleImage.setBackgroundResource(R.mipmap.blackrectangle);
+            femaleImage.setBackgroundColor(Color.argb(255, 255, 205, 25));
+            maleImage.setBackgroundColor(Color.argb(255, 99, 99, 99));
             saveGender("Female");
         });
         skipButton.setOnClickListener(v -> {
