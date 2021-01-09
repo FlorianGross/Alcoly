@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,12 +22,13 @@ import com.fmgross.alcoly.backend.Backend_Adapter;
 
 import java.util.ArrayList;
 
-public class Fragment_Timeline extends Fragment {
+public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private Backend_DatabaseHelper databaseHelper;
     private ArrayList<Backend_Getraenk> arrayList;
     private ArrayList<Integer> arrayListString;
-    RecyclerView newRecyclerView;
+    private RecyclerView newRecyclerView;
+    private Spinner spinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,11 +40,19 @@ public class Fragment_Timeline extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_timeline, container, false);
         newRecyclerView = root.findViewById(R.id.mRecyclerView);
+        spinner = root.findViewById(R.id.spinner2);
         getDatabase();
         createRecycler();
+        generateSpinner();
         return root;
     }
 
+    private void generateSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.timeline, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
     /**
      * Returns all getränke inside an arrayList
      */
@@ -71,5 +83,15 @@ public class Fragment_Timeline extends Fragment {
             ft.replace(R.id.nav_host_fragment, fragment);
             ft.commit();
         };
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

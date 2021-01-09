@@ -56,8 +56,6 @@ public class Fragment_Details extends Fragment implements AdapterView.OnItemSele
         typeEdit = root.findViewById(R.id.CurrentNameEdit);
         volumeEdit = root.findViewById(R.id.volumeEdit);
         deleteButton = root.findViewById(R.id.deleteButton);
-        spinner = root.findViewById(R.id.spinner2);
-        generateSpinner();
         generateDetails();
 
 
@@ -81,13 +79,6 @@ public class Fragment_Details extends Fragment implements AdapterView.OnItemSele
             System.out.println("Edit button pressed");
         });
         return root;
-    }
-
-    private void generateSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.timeline, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
     }
 
     /**

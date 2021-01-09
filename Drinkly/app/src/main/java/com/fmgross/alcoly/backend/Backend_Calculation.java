@@ -188,12 +188,9 @@ public class Backend_Calculation {
         databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
         ArrayList<Backend_Getraenk> newArrayList = databaseHelper.getAllGetraenke();
         double promille = getHighResult(newArrayList);
-        System.out.println(newArrayList.toString());
         if (promille <= 0) {
-            System.out.println("Session INT: " + newArrayList.get(0).getSession() + 1);
             return newArrayList.get(0).getSession() + 1;
         } else {
-            System.out.println("Session INT: " + newArrayList.get(0).getSession());
             return newArrayList.get(0).getSession();
         }
     }
