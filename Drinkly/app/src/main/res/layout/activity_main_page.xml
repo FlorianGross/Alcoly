@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/MainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/MainBackground"
     tools:context=".Activity_MainPage">
 
     <FrameLayout
@@ -55,6 +55,7 @@
                 android:id="@+id/timelineText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotobold"
                 android:text="TIMELINE"
                 android:textColor="@color/reverseText"
                 android:visibility="gone"
@@ -92,6 +93,7 @@
                 android:id="@+id/scanText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotobold"
                 android:text="SCANNEN"
                 android:textColor="@color/reverseText"
                 android:visibility="visible"
@@ -128,6 +130,7 @@
                 android:id="@+id/sessionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotobold"
                 android:text="SESSION"
                 android:textColor="@color/reverseText"
                 android:visibility="gone"

@@ -4,283 +4,298 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/MainBackground">
-        <LinearLayout
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            style="@style/CardView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview"
-                style="@style/CardView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/genderTextInv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="TextView"
-                        android:textColor="@color/text"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="@+id/femaleButton"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/femaleButton" />
-
-                    <TextView
-                        android:id="@+id/genderText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="Geschlecht: "
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/maleButton"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/maleButton" />
-
-                    <Button
-                        android:id="@+id/femaleButton"
-                        android:layout_width="170dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:backgroundTint="@color/MainColor"
-                        android:text="Weiblich"
-                        android:textSize="10sp"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toTopOf="@+id/maleButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/maleButton"
-                        android:layout_width="170dp"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:backgroundTint="@color/MainColor"
-                        android:text="Männlich"
-                        android:textSize="10sp"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toTopOf="@+id/AlterInput"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/femaleButton" />
-
-                    <TextView
-                        android:id="@+id/AlterText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Alter: "
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/AlterInput"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/AlterInput" />
-
-                    <EditText
-                        android:id="@+id/AlterInput"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@mipmap/textinput"
-                        android:inputType="number"
-                        android:text="20"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        app:layout_constraintBottom_toTopOf="@+id/GewichtInput"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/maleButton" />
-
-                    <TextView
-                        android:id="@+id/GewichtText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="Gewicht:"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/GewichtInput"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/GewichtInput" />
-
-                    <EditText
-                        android:id="@+id/GewichtInput"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@mipmap/textinput"
-                        android:inputType="number"
-                        android:text="80"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        app:layout_constraintBottom_toTopOf="@+id/save"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/AlterInput" />
-
-                    <Button
-                        android:id="@+id/save"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:backgroundTint="@color/MainColor"
-                        android:text="Speichern"
-                        android:textSize="10sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/GewichtInput" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                style="@style/CardView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/genderTextInv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="TextView"
+                    android:textColor="@color/text"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/femaleButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/femaleButton" />
 
-                    <TextView
-                        android:id="@+id/darkmodeText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="Nachtmodus"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/darkmodeSwitch"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/darkmodeSwitch" />
+                <TextView
+                    android:id="@+id/genderText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Geschlecht: "
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/maleButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/maleButton" />
 
-                    <Switch
-                        android:id="@+id/darkmodeSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:enabled="true"
-                        android:thumbTint="@color/MainColor"
-                        android:trackTint="@color/MainColor"
-                        app:layout_constraintBottom_toTopOf="@+id/audioSwitch"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <Button
+                    android:id="@+id/femaleButton"
+                    android:layout_width="170dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/MainColor"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Weiblich"
+                    android:textColor="@color/text"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toTopOf="@+id/maleButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/audioText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="Audio"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/audioSwitch"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/audioSwitch" />
+                <Button
+                    android:id="@+id/maleButton"
+                    android:layout_width="170dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/MainColor"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Männlich"
+                    android:textColor="@color/text"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toTopOf="@+id/AlterInput"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/femaleButton" />
 
-                    <Switch
-                        android:id="@+id/audioSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:enabled="true"
-                        android:thumbTint="@color/MainColor"
-                        android:trackTint="@color/MainColor"
-                        app:layout_constraintBottom_toTopOf="@+id/startWithScanSwitch"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/darkmodeSwitch" />
+                <TextView
+                    android:id="@+id/AlterText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Alter: "
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/AlterInput"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/AlterInput" />
 
-                    <TextView
-                        android:id="@+id/startWithScanText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginBottom="3dp"
-                        android:text="Beim Starten Scannen"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/startWithScanSwitch"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/startWithScanSwitch" />
+                <EditText
+                    android:id="@+id/AlterInput"
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@mipmap/textinput"
+                    android:fontFamily="@font/robotobold"
+                    android:inputType="number"
+                    android:text="20"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@+id/GewichtInput"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/maleButton" />
 
-                    <Switch
-                        android:id="@+id/startWithScanSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:enabled="true"
-                        android:thumbTint="@color/MainColor"
-                        android:trackTint="@color/MainColor"
-                        app:layout_constraintBottom_toTopOf="@+id/datenschutzButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/audioSwitch" />
+                <TextView
+                    android:id="@+id/GewichtText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Gewicht:"
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/GewichtInput"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/GewichtInput" />
 
-                    <TextView
-                        android:id="@+id/datenschutzText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="Imformationen zum Datenschutz"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/datenschutzButton"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/datenschutzButton" />
+                <EditText
+                    android:id="@+id/GewichtInput"
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@mipmap/textinput"
+                    android:fontFamily="@font/robotobold"
+                    android:inputType="number"
+                    android:text="80"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@+id/save"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/AlterInput" />
 
-                    <ImageView
-                        android:id="@+id/datenschutzButton"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_marginBottom="5dp"
-                        android:src="@mipmap/link"
-                        app:layout_constraintBottom_toTopOf="@+id/formelnButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/startWithScanSwitch" />
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/MainColor"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Speichern"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/GewichtInput" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/formelnText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="Wissenschaftliche Informationen"
-                        android:textColor="@color/text"
-                        app:layout_constraintBottom_toBottomOf="@+id/formelnButton"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/formelnButton" />
+        <androidx.cardview.widget.CardView
+            style="@style/CardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/formelnButton"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_marginBottom="20dp"
-                        android:src="@mipmap/link"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/datenschutzButton" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/darkmodeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Nachtmodus"
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/darkmodeSwitch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/darkmodeSwitch" />
+
+                <Switch
+                    android:id="@+id/darkmodeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:enabled="true"
+                    android:thumbTint="@color/MainColor"
+                    android:trackTint="@color/MainColor"
+                    app:layout_constraintBottom_toTopOf="@+id/audioSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/audioText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Audio"
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/audioSwitch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/audioSwitch" />
+
+                <Switch
+                    android:id="@+id/audioSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:enabled="true"
+                    android:thumbTint="@color/MainColor"
+                    android:trackTint="@color/MainColor"
+                    app:layout_constraintBottom_toTopOf="@+id/startWithScanSwitch"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/darkmodeSwitch" />
+
+                <TextView
+                    android:id="@+id/startWithScanText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Beim Starten Scannen"
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/startWithScanSwitch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/startWithScanSwitch" />
+
+                <Switch
+                    android:id="@+id/startWithScanSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:enabled="true"
+                    android:thumbTint="@color/MainColor"
+                    android:trackTint="@color/MainColor"
+                    app:layout_constraintBottom_toTopOf="@+id/datenschutzButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/audioSwitch" />
+
+                <TextView
+                    android:id="@+id/datenschutzText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Imformationen zum Datenschutz"
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/datenschutzButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/datenschutzButton" />
+
+                <ImageView
+                    android:id="@+id/datenschutzButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@mipmap/link"
+                    app:layout_constraintBottom_toTopOf="@+id/formelnButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/startWithScanSwitch" />
+
+                <TextView
+                    android:id="@+id/formelnText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Wissenschaftliche Informationen"
+                    android:textColor="@color/text"
+                    app:layout_constraintBottom_toBottomOf="@+id/formelnButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/formelnButton" />
+
+                <ImageView
+                    android:id="@+id/formelnButton"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@mipmap/link"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/datenschutzButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </FrameLayout>

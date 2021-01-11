@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/MainBackground"
+    android:orientation="vertical"
     tools:context=".fragments.Fragment_NiedrigerWert">
 
     <LinearLayout
@@ -23,21 +23,20 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:foreground="@mipmap/fragment"
             android:background="@drawable/roundedcornerhard"
-            android:backgroundTint="@color/AlternativeBackground">
+            android:backgroundTint="@color/AlternativeBackground"
+            android:foreground="@mipmap/fragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/PromilleLow"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="0 ‰"
                     android:textAlignment="center"
                     android:textColor="@color/text"
@@ -52,7 +51,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="Geschätzte verbleibende Zeit bis Du
         wieder Autofahren darfst:"
                     android:textAlignment="textStart"
@@ -67,7 +66,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="0:0 h"
                     android:textAlignment="center"
                     android:textColor="@color/text"
@@ -81,7 +80,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="Geschätzte Menge Alkohol im Blut: "
                     android:textColor="@color/MainColor"
                     android:textSize="16sp"
@@ -94,7 +93,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="0,0ml"
                     android:textColor="@color/text"
                     android:textSize="16sp"
@@ -107,7 +106,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="Getrunken in den letzten 24 Stunden:"
                     android:textColor="@color/MainColor"
                     android:textSize="16sp"
@@ -119,7 +118,7 @@
                     android:id="@+id/textTypeLow"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/helvetica_neue_regular"
+                    android:fontFamily="@font/robotobold"
                     android:text="0 alkoholische Getränke"
                     android:textColor="@color/text"
                     android:textSize="16sp"
