@@ -22,14 +22,14 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/roundedcornerhard"
-            android:backgroundTint="@color/AlternativeBackground"
-            android:foreground="@mipmap/fragment">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundedcornerhard"
+                android:backgroundTint="@color/AlternativeBackground"
+                android:foreground="@mipmap/fragment">
 
 
                 <TextView
@@ -120,23 +120,15 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
                     android:fontFamily="@font/robotobold"
                     android:text="0 alkoholische Getränke"
                     android:textColor="@color/text"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lastTourHigh" />
-
-                <ImageView
-                    android:id="@+id/imageView7High"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textTypeHigh"
-                    tools:src="@mipmap/linie" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
