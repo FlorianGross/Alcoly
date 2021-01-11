@@ -34,21 +34,6 @@ public class Backend_Calculation {
         }
     }
 
-    public double getNormalResultToTime(ArrayList<Backend_Getraenk> arrayList, Date date) {
-        try {
-            double time = getDrinkTime(arrayList, date);
-            double promille = calculateSessionPromille(arrayList);
-            normalResult = promille - time * (0.13 / 60);
-            if (normalResult < 0) {
-                return 0;
-            } else {
-                return normalResult;
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return 0;
-        }
-    }
-
     public double getNormalResultValue() {
         databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
         ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
@@ -340,5 +325,94 @@ public class Backend_Calculation {
         databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
         ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
         return arrayListHere.size();
+    }
+
+    public float getBarLowEntry(int i) {
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> getraenke = databaseHelper.getAllOfSession(getSessionInt());
+        return (float) getLowResultToTime(getraenke, getraenke.get(i));
+    }
+
+    public float getBarMediumEntry(int i) {
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> getraenke = databaseHelper.getAllOfSession(getSessionInt());
+        return (float) getNormalResultToTime(getraenke, getraenke.get(i));
+    }
+
+    public double getNormalResultToTime(ArrayList<Backend_Getraenk> arrayList, Backend_Getraenk getraenk) {
+        try {
+            double time = getDrinkTime(arrayList, getraenk.getDate());
+            double promille = calculateSessionPromilleToDrink(arrayList, getraenk);
+            normalResult = promille - time * (0.13 / 60);
+            if (normalResult < 0) {
+                return 0;
+            } else {
+                return normalResult;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
+    public double getLowResultToTime(ArrayList<Backend_Getraenk> arrayList, Backend_Getraenk getraenk) {
+        try {
+            double time = getDrinkTime(arrayList, getraenk.getDate());
+            double promille = calculateSessionPromilleToDrink(arrayList, getraenk);
+            normalResult = promille - time * (0.15 / 60);
+            if (normalResult < 0) {
+                return 0;
+            } else {
+                return normalResult;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
+    public double getHighResultToTime(ArrayList<Backend_Getraenk> arrayList, Backend_Getraenk getraenk) {
+        try {
+            double time = getDrinkTime(arrayList, getraenk.getDate());
+            double promille = calculateSessionPromilleToDrink(arrayList, getraenk);
+            normalResult = promille - time * (0.11 / 60);
+            if (normalResult < 0) {
+                return 0;
+            } else {
+                return normalResult;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Calculates the permil from all the drinks of one session
+     *
+     * @param arrayList the arrayList with the session
+     * @return the permil volume
+     */
+    public double calculateSessionPromilleToDrink(ArrayList<Backend_Getraenk> arrayList, Backend_Getraenk getraenk) {
+        SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        String gender = settings.getString("gender", "Male");
+        double r = getGenderR(gender.equals("Male"));
+        int age = settings.getInt("age", 20);
+        double u = getAgeU(age < 55, 0.15, 0.2);
+        int m = settings.getInt("weight", 80);
+        double p = 0.8;
+        double v;
+        double e;
+        double a = 0;
+        for (int i = 0; i < arrayList.indexOf(getraenk) + 1; i++) {
+            v = (arrayList.get(i).getVolume() * 1000);
+            e = (arrayList.get(i).getVolumePart() / 100);
+            a += v * e * p;
+        }
+        double value = (a / (m * r));
+        return (value - (u * value));
+    }
+
+    public float getBarHighEntry(int i) {
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> getraenke = databaseHelper.getAllOfSession(getSessionInt());
+        return (float) getHighResultToTime(getraenke, getraenke.get(i));
     }
 }
