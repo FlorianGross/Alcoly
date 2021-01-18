@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Backend_Calculation {
     private Backend_DatabaseHelper databaseHelper;
@@ -415,4 +416,60 @@ public class Backend_Calculation {
         ArrayList<Backend_Getraenk> getraenke = databaseHelper.getAllOfSession(getSessionInt());
         return (float) getHighResultToTime(getraenke, getraenke.get(i));
     }
+
+    public float getLineNormalEntryTime(long value) {
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> getraenke = databaseHelper.getAllToTime();
+        long millis = TimeUnit.HOURS.toMillis(value);
+        getNormalResultATTime(getraenke, millis);
+        return 0;
+    }
+
+    public double getNormalResultATTime(ArrayList<Backend_Getraenk> arrayList, long time) {
+        try {
+            //double timehere = arrayList.get(0).getDate().getTime();
+            double timehere = 0;
+            double promille = calculateSessionPromilleToTime(arrayList, time);
+            normalResult = promille - timehere * (0.13 / 60);
+            System.out.println("time:" + timehere + " promille:" + promille + " result:" + normalResult);
+            if (normalResult < 0) {
+                return 0;
+            } else {
+                return normalResult;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
+    /**
+     * Calculates the permil from all the drinks of one session
+     *
+     * @param arrayList the arrayList with the session
+     * @return the permil volume
+     */
+    public double calculateSessionPromilleToTime(ArrayList<Backend_Getraenk> arrayList, long time) {
+        SharedPreferences settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        String gender = settings.getString("gender", "Male");
+        double r = getGenderR(gender.equals("Male"));
+        int age = settings.getInt("age", 20);
+        double u = getAgeU(age < 55, 0.15, 0.2);
+        int m = settings.getInt("weight", 80);
+        double p = 0.8;
+        double v;
+        double e;
+        double a = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).getDate().getTime() < time) {
+                System.out.println("Break");
+            } else {
+                v = (arrayList.get(i).getVolume() * 1000);
+                e = (arrayList.get(i).getVolumePart() / 100);
+                a += v * e * p;
+            }
+        }
+        double value = (a / (m * r));
+        return (value - (u * value));
+    }
+
 }

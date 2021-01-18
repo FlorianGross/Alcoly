@@ -15,16 +15,21 @@ import androidx.fragment.app.FragmentTransaction;
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.backend.Backend_Calculation;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.concurrent.RunnableFuture;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Fragment_Statistics extends Fragment {
 
@@ -98,22 +103,25 @@ public class Fragment_Statistics extends Fragment {
         try {
             lineChart.setNoDataText("Graph wird geladen...");
             setChartPreset();
+            //setChartPresetTest();
 
             ArrayList<ILineDataSet> dataSets = new ArrayList<>();
             Backend_Calculation newCalculator = new Backend_Calculation(getContext());
 
-            generateLowValues(dataSets, newCalculator);
+
+            /*generateLowValues(dataSets, newCalculator);
             lineChart.setNoDataText("Graph wird geladen.");
             generateMediumValues(dataSets, newCalculator);
-            lineChart.setNoDataText("Graph wird geladen..");
+            lineChart.setNoDataText("Graph wird geladen..");*/
             generateHighValues(dataSets, newCalculator);
             lineChart.setNoDataText("Graph wird geladen...");
+
+            //generateMedTestValues(dataSets, newCalculator);
 
             LineData data = new LineData(dataSets);
             try {
                 lineChart.getData().setValueTextColor(getResources().getColor(R.color.text, null));
-            }catch (NullPointerException g){
-                System.out.println(g);
+            } catch (NullPointerException g) {
             }
             lineChart.setData(data);
             lineChart.invalidate();
@@ -152,6 +160,41 @@ public class Fragment_Statistics extends Fragment {
         l.setDrawInside(false);
     }
 
+    private void setChartPresetTest() {
+        Legend l = lineChart.getLegend();
+        l.setEnabled(false);
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
+        xAxis.setTextSize(10f);
+        xAxis.setTextColor(Color.WHITE);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLines(true);
+        xAxis.setTextColor(Color.rgb(255, 192, 56));
+        xAxis.setCenterAxisLabels(true);
+        xAxis.setGranularity(1f); // one hour
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                final SimpleDateFormat mFormat = new SimpleDateFormat("HH");
+                long millis = TimeUnit.HOURS.toMillis((long) value);
+                return mFormat.format(new Date(millis));
+            }
+        });
+
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setGranularityEnabled(true);
+        leftAxis.setAxisMinimum(0f);
+        leftAxis.setAxisMaximum(3f);
+        leftAxis.setYOffset(-9f);
+        leftAxis.setTextColor(Color.rgb(255, 192, 56));
+
+        YAxis rightAxis = lineChart.getAxisRight();
+        rightAxis.setEnabled(false);
+    }
+
     private void generateHighValues(ArrayList<ILineDataSet> dataSets, Backend_Calculation newCalculator) {
         ArrayList<Entry> valueshigh = new ArrayList<>();
         valueshigh.add(new Entry(0, 0));
@@ -181,6 +224,7 @@ public class Fragment_Statistics extends Fragment {
         int colormedium = Color.RED;
         e.setColor(colormedium);
         e.setCircleColor(colormedium);
+        System.out.println(e.toString());
         dataSets.add(e);
     }
 
@@ -191,6 +235,24 @@ public class Fragment_Statistics extends Fragment {
             valueslow.add(new Entry(i + 1, newCalculator.getBarLowEntry(i)));
         }
         LineDataSet d = new LineDataSet(valueslow, "low");
+        d.setLineWidth(1f);
+        d.setCircleRadius(1.5f);
+        d.setValueTextColor(getResources().getColor(R.color.text, null));
+        int colorlow = Color.BLUE;
+        d.setColor(colorlow);
+        d.setCircleColor(colorlow);
+        dataSets.add(d);
+    }
+
+    private void generateMedTestValues(ArrayList<ILineDataSet> dataSets, Backend_Calculation newCalculator) {
+        ArrayList<Entry> valuesTest = new ArrayList<>();
+        long now = TimeUnit.MILLISECONDS.toHours(System.currentTimeMillis());
+        int beginTime = (int) (now - 12);
+        for (int i = beginTime; i <= now; i++) {
+            valuesTest.add(new Entry(i, newCalculator.getLineNormalEntryTime((i))));
+        }
+        System.out.println(valuesTest.toString());
+        LineDataSet d = new LineDataSet(valuesTest, "test");
         d.setLineWidth(1f);
         d.setCircleRadius(1.5f);
         d.setValueTextColor(getResources().getColor(R.color.text, null));

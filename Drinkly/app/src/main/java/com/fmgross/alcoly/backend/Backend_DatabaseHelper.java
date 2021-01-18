@@ -216,4 +216,32 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return getraenkeList;
     }
+
+    public ArrayList<Backend_Getraenk> getAllToTime() {
+        ArrayList<Backend_Getraenk> getraenkeList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Date date = new Date();
+        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " > " + (date.getTime() - (8.64e+7/2));
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToLast()) {
+            do {
+                String getraenkName = cursor.getString(1);
+                byte[] getraenkUri = cursor.getBlob(2);
+                long getraenkDate = cursor.getLong(3);
+                float getraenkVolume = cursor.getFloat(4);
+                float getraenkVolumeP = cursor.getFloat(5);
+                int realDate = cursor.getInt(6);
+                int session = cursor.getInt(7);
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(getraenkUri, 0, getraenkUri.length);
+                Date returnDate = new Date(getraenkDate);
+                Backend_Getraenk newGetreanke = new Backend_Getraenk(getraenkName, bitmap, returnDate, getraenkVolume, getraenkVolumeP, realDate, session);
+                getraenkeList.add(newGetreanke);
+            } while (cursor.moveToPrevious());
+        }
+        cursor.close();
+        db.close();
+        return getraenkeList;
+    }
 }

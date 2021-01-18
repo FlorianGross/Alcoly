@@ -23,7 +23,11 @@
     <string name="title_activity_main_surrounding">MainActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="nutzungsbedingungenCheck">Mit dem Klicken auf OK erklärst du dich mit unseren <a href="https://fmgross.de/datenschutzerklaerung-von-com-fmgross-alcoly/"> Nutzungsbedingungen </a>einverstanden</string>
-
+    <string name="informations">Benutzen Sie dieses Tool nicht dazu, um zu entscheiden, ob Sie noch ein Fahrzeug führen dürfen oder nicht. <br></br>
+        Die App liefert ungefähre Werte für gesunde Erwachsene. <br></br>
+        Eine genaue Berechnung der Blutalkoholkonzentration ist abhängig von der Menge, Dauer und der zeitlichen Verteilung des Alkoholkonsums sowie individuellen physiologischen Merkmalen. <br></br>
+        Krankheiten oder Medikamenteneinnahme können die Blutalkoholkonzentration ebenfalls beeinflussen. <br></br>
+    </string>
     <string-array name="Types">
         <item>Nicht Erkannt</item>
         <item>Bier</item>
