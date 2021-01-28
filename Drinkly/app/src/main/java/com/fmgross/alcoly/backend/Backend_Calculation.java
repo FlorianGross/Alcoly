@@ -20,6 +20,26 @@ public class Backend_Calculation {
         this.context = context;
     }
 
+
+    private double getAmountOfAlc(ArrayList<Backend_Getraenk> arrayList) {
+        double p = 0.8;
+        double v;
+        double e;
+        double a = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            v = (arrayList.get(i).getVolume() * 1000);
+            e = (arrayList.get(i).getVolumePart() / 100);
+            a += v * e * p;
+        }
+        return a;
+    }
+
+    public double getAmountOfAlcResult() {
+        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
+        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(getSessionInt());
+        return getAmountOfAlc(arrayListHere);
+    }
+
     public double getNormalResult(ArrayList<Backend_Getraenk> arrayList) {
         try {
             double time = getDrinkTime(arrayList, new Date());

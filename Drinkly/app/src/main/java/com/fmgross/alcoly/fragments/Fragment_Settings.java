@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
@@ -57,14 +58,18 @@ public class Fragment_Settings extends Fragment {
      */
     private void onClickListener() {
         save.setOnClickListener(v -> {
-            SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = settings.edit();
-            int ageValue = Integer.parseInt(age.getText().toString());
-            int weightValue = Integer.parseInt(weight.getText().toString());
-            editor.putInt("age", ageValue);
-            editor.putInt("weight", weightValue);
-            editor.putString("gender", gender);
-            editor.apply();
+            try {
+                SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
+                int ageValue = Integer.parseInt(age.getText().toString());
+                int weightValue = Integer.parseInt(weight.getText().toString());
+                editor.putInt("age", ageValue);
+                editor.putInt("weight", weightValue);
+                editor.putString("gender", gender);
+                editor.apply();
+            } catch (Exception e) {
+                Toast.makeText(getActivity().getApplicationContext(), "Error\nVersuchen sie es mit einer anderen Eingabe", Toast.LENGTH_LONG).show();
+            }
         });
 
         datenschutz.setOnClickListener(v -> {

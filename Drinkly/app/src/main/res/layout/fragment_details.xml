@@ -38,7 +38,9 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
                     android:background="@mipmap/smallellipse"
-                    android:foregroundGravity="center"
+                    android:foreground="@drawable/trashcan"
+                    android:foregroundTint="@color/white"
+                    android:foregroundGravity="fill"
                     app:layout_constraintBottom_toBottomOf="@+id/info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/info" />
@@ -80,8 +82,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-
-                        w
 
                         <TextView
                             android:id="@+id/CurrentName"

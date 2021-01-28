@@ -53,7 +53,7 @@ public class Fragment_HoherWert extends Fragment {
                     textType.setText(getränke + " alkoholische Getränke");
                     timeToDrive.setText(time + " h");
                     promille.setText(f.format(calculate.getHighResultValue()) + " ‰");
-                    amountOfAlc.setText("0");
+                    amountOfAlc.setText(f.format(calculate.getAmountOfAlcResult()) + " g");
                 });
             }
         } catch (Exception e) {

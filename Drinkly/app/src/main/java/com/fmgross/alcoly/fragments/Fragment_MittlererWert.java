@@ -52,7 +52,7 @@ public class Fragment_MittlererWert extends Fragment {
                     textType.setText(getränke + " alkoholische Getränke");
                     timeToDrive.setText(time + " h");
                     promille.setText(f.format(calculate.getNormalResultValue()) + " ‰");
-                    amountOfAlc.setText("0");
+                    amountOfAlc.setText(f.format(calculate.getAmountOfAlcResult()) + " g");
                 });
             }
         } catch (Exception e) {
@@ -71,16 +71,13 @@ public class Fragment_MittlererWert extends Fragment {
      * Refreshes the data of the Detailsfragment medium on a new thread
      */
     private void refreshData() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    setData();
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Thread t = new Thread(() -> {
+            while (true) {
+                setData();
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });

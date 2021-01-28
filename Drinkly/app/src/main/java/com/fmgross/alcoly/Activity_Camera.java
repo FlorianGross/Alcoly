@@ -1,6 +1,5 @@
 package com.fmgross.alcoly;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -19,8 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.gridlayout.widget.GridLayout;
 
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -284,7 +281,6 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                         System.out.println(day + " Day" + month + " Month" + year + "Year " + " Date");
                         int realDateTest = day + month + year;
                         Backend_Getraenk getraenk = new Backend_Getraenk(type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
-                        Toast.makeText(getApplicationContext(), getraenk.toString(), Toast.LENGTH_SHORT).show();
                         System.out.println(getraenk.toString());
                         databaseHelper.addOne(getraenk);
 
@@ -316,7 +312,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                      */
                     private float getVolume() {
                         System.out.println(type);
-                        if (type.equals("BIERFLASCHE") || type.equals("BIERGLAS")) {
+                        if (type.equals("Bier")){
                             switch (selectedButtonBier) {
                                 case 1:
                                     return 1;
@@ -329,7 +325,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                                 default:
                                     return 0;
                             }
-                        } else if (type.equals("WEINFLASCHE") || type.equals("WEINGLAS")) {
+                        } else if (type.equals("Wein")) {
                             switch (selectedButtonWein) {
                                 case 1:
                                     return 1;
@@ -562,7 +558,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 openCamera.setVisibility(View.VISIBLE);
                 break;
             case 3:
-                selectElse("Schnaps");
+                selectElse("Custom");
                 openCamera.setVisibility(View.VISIBLE);
                 break;
         }

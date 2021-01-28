@@ -51,7 +51,7 @@ public class Fragment_NiedrigerWert extends Fragment {
                     textType.setText(getränke + " alkoholische Getränke");
                     timeToDrive.setText(time + " h");
                     promille.setText(f.format(calculate.getMinResultValue()) + " ‰");
-                    amountOfAlc.setText("0");
+                    amountOfAlc.setText(f.format(calculate.getAmountOfAlcResult()) + " g");
                 });
             }
         } catch (Exception e) {

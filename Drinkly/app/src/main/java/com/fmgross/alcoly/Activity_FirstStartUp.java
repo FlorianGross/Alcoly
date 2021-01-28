@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class Activity_FirstStartUp extends AppCompatActivity {
@@ -53,12 +54,17 @@ public class Activity_FirstStartUp extends AppCompatActivity {
             forward();
         });
         forwardButton.setOnClickListener(v -> {
-            int age = Integer.parseInt(ageInput.getText().toString());
+            int age;
+            int weight;
+            try {
+                age = Integer.parseInt(ageInput.getText().toString());
+                weight = Integer.parseInt(weightInput.getText().toString());
 
-            String weight = weightInput.getText().toString();
-
-            setValues(age, Integer.parseInt(weight));
-            forward();
+                setValues(age, weight);
+                forward();
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "Error\nVersuchen sie es mit einer anderen Eingabe", Toast.LENGTH_LONG).show();
+            }
         });
     }
 
