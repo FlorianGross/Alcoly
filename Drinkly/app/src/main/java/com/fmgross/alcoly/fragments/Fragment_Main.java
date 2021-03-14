@@ -1,6 +1,9 @@
 package com.fmgross.alcoly.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +38,12 @@ public class Fragment_Main extends Fragment {
         textView = root.findViewById(R.id.promilleErgebnis);
         timeToDrive = root.findViewById(R.id.timeToDrive);
         mainButton.setOnClickListener(view -> {
+            SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+            boolean audio = settings.getBoolean("audio", true);
+            if (audio) {
+                MediaPlayer sound = MediaPlayer.create(this.getContext(), R.raw.blop);
+                sound.start();
+            }
             Intent intent = new Intent(getActivity(), Activity_Camera.class);
             startActivity(intent);
         });

@@ -80,11 +80,11 @@ public class Backend_Getraenk {
         this.date = date;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(float volume) {
         this.volume = volume;
     }
 
-    public void setVolumePart(int volumePart) {
+    public void setVolumePart(float volumePart) {
         this.volumePart = volumePart;
     }
 

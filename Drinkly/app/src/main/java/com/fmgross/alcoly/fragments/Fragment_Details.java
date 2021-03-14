@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
 import com.fmgross.alcoly.backend.Backend_Getraenk;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,8 +37,7 @@ public class Fragment_Details extends Fragment {
     private EditText percentageEdit, typeEdit, volumeEdit;
     private ImageView imageView, backButton, deleteButton;
     private int current;
-    private Boolean saveMode = false;
-    private Spinner spinner;
+    private boolean saveMode = false;
     private Backend_Getraenk getraenk;
     private int realDate;
 
@@ -78,6 +79,43 @@ public class Fragment_Details extends Fragment {
             ft.commit();
         });
         edit.setOnClickListener(v -> {
+            if (!saveMode) {
+                percentageEdit.setText(percentage.getText());
+                volumeEdit.setText(volume.getText());
+                typeEdit.setText(type.getText());
+                percentage.setVisibility(View.GONE);
+                volume.setVisibility(View.GONE);
+                type.setVisibility(View.GONE);
+                percentageEdit.setVisibility(View.VISIBLE);
+                typeEdit.setVisibility(View.VISIBLE);
+                volumeEdit.setVisibility(View.VISIBLE);
+                saveMode = true;
+                edit.setText("Speichern");
+            } else {
+                try {
+                    percentage.setText(percentageEdit.getText());
+                    volume.setText(volumeEdit.getText());
+                    type.setText(typeEdit.getText());
+                    percentage.setVisibility(View.VISIBLE);
+                    volume.setVisibility(View.VISIBLE);
+                    type.setVisibility(View.VISIBLE);
+                    percentageEdit.setVisibility(View.GONE);
+                    typeEdit.setVisibility(View.GONE);
+                    volumeEdit.setVisibility(View.GONE);
+                    saveMode = false;
+                    edit.setText("Ändern");
+                    Backend_Getraenk test = getraenk;
+                    Backend_DatabaseHelper dbHelper = new Backend_DatabaseHelper(getContext());
+                    dbHelper.deleteOne(getraenk);
+                    test.setName(typeEdit.getText().toString());
+                    test.setVolume(Float.parseFloat(volumeEdit.getText().toString()));
+                    test.setVolumePart(Float.parseFloat(percentageEdit.getText().toString()));
+                    dbHelper.addOne(test);
+                } catch (Exception e) {
+                    Toast.makeText(getContext().getApplicationContext(), "Fehler bei Ihrer Eingabe", Toast.LENGTH_SHORT).show();
+                }
+            }
+
         });
         return root;
     }
@@ -97,13 +135,6 @@ public class Fragment_Details extends Fragment {
         } else {
             throw new IllegalArgumentException("No Getraenk selected");
         }
-        percentage.setFocusable(false);
-        type.setFocusable(false);
-        percentage.setFocusableInTouchMode(false);
-        type.setFocusableInTouchMode(false);
-        if (saveMode = false) {
-            edit.setText("Edit");
-        }
         setAllValues(getraenk);
     }
 
@@ -118,12 +149,12 @@ public class Fragment_Details extends Fragment {
 
     private void setAllValues(Backend_Getraenk getraenk) {
         type.setText(getraenk.getName());
-        volume.setText(getraenk.getVolume() + " L");
+        volume.setText(getraenk.getVolume() + "");
         Date newDate = getraenk.getDate();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String strDate = formatter.format(newDate);
         currentDate.setText(strDate);
-        percentage.setText(getraenk.getVolumePart() + " vol%");
+        percentage.setText(getraenk.getVolumePart() + "");
         imageView.setImageBitmap(getraenk.getUri());
     }
 }
