@@ -13,6 +13,16 @@
         android:roundIcon="@drawable/alcoly_logo_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="android3.maxtingapp.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
         <activity
             android:name=".Activity_MainPage"
             android:noHistory="false"
