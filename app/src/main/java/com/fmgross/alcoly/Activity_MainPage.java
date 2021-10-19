@@ -1,25 +1,16 @@
 package com.fmgross.alcoly;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.fmgross.alcoly.fragments.Fragment_Main;
 import com.fmgross.alcoly.fragments.Fragment_Statistics;
 import com.fmgross.alcoly.fragments.Fragment_Timeline;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 public class Activity_MainPage extends AppCompatActivity {
 
     ImageView timelineImage, scanImage, sessionImage;

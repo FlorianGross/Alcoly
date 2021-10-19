@@ -22,8 +22,6 @@ import java.text.DecimalFormat;
 public class Fragment_Main extends Fragment {
 
     private TextView textView, timeToDrive;
-    private final boolean running = true;
-    private ImageView mainButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,7 @@ public class Fragment_Main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        mainButton = root.findViewById(R.id.mainAction);
+        ImageView mainButton = root.findViewById(R.id.mainAction);
         textView = root.findViewById(R.id.promilleErgebnis);
         timeToDrive = root.findViewById(R.id.timeToDrive);
         mainButton.setOnClickListener(view -> {

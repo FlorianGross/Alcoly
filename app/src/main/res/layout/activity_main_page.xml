@@ -49,14 +49,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/timelineText"
                 app:srcCompat="@mipmap/time"
-                app:tint="@color/text" />
+                app:tint="@color/text"
+                android:contentDescription="@string/leftimage" />
 
             <TextView
                 android:id="@+id/timelineText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/robotobold"
-                android:text="TIMELINE"
+                android:text="@string/timeline"
                 android:textColor="@color/reverseText"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -87,14 +88,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/scanText"
                 app:srcCompat="@mipmap/homebutton"
-                app:tint="@color/reverseText" />
+                app:tint="@color/reverseText"
+                android:contentDescription="@string/mainimage" />
 
             <TextView
                 android:id="@+id/scanText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/robotobold"
-                android:text="SCANNEN"
+                android:text="@string/scannen"
                 android:textColor="@color/reverseText"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -124,14 +126,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/sessionText"
                 app:srcCompat="@mipmap/person"
-                app:tint="@color/text" />
+                app:tint="@color/text"
+                android:contentDescription="@string/rightimage" />
 
             <TextView
                 android:id="@+id/sessionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/robotobold"
-                android:text="SESSION"
+                android:text="@string/session"
                 android:textColor="@color/reverseText"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"

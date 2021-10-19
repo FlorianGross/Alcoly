@@ -28,6 +28,29 @@
         Eine genaue Berechnung der Blutalkoholkonzentration ist abhängig von der Menge, Dauer und der zeitlichen Verteilung des Alkoholkonsums sowie individuellen physiologischen Merkmalen. <br></br>
         Krankheiten oder Medikamenteneinnahme können die Blutalkoholkonzentration ebenfalls beeinflussen. <br></br>
     </string>
+    <string name="current_drink_image">Current Drink Image</string>
+    <string name="erkannt">Erkannt:</string>
+    <string name="bier">Bier</string>
+    <string name="gesch_tzter_alkoholgehalt">Geschätzter Alkoholgehalt:</string>
+    <string name="tr">TR</string>
+    <string name="bl">BL</string>
+    <string name="ok">OK</string>
+    <string name="berspringen">Überspringen</string>
+    <string name="wichtiger_hinweis_zur_app">Wichtiger Hinweis zur App</string>
+    <string name="m_nnlich">Männlich</string>
+    <string name="gewicht">Gewicht:</string>
+    <string name="geschlecht">Geschlecht:</string>
+    <string name="weiblich">WEIBLICH</string>
+    <string name="alter">Alter:</string>
+    <string name="kg">kg</string>
+    <string name="jahre">Jahre</string>
+    <string name="image">Image</string>
+    <string name="leftimage">LeftImage</string>
+    <string name="timeline">TIMELINE</string>
+    <string name="scannen">SCANNEN</string>
+    <string name="mainimage">MainImage</string>
+    <string name="rightimage">RightImage</string>
+    <string name="session">SESSION</string>
     <string-array name="Types">
         <item>Nicht Erkannt</item>
         <item>Bier</item>
