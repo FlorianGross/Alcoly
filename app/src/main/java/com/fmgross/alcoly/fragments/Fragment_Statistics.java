@@ -112,7 +112,7 @@ public class Fragment_Statistics extends Fragment {
             lineChart.setData(data);
             lineChart.invalidate();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Error:" + e);
             lineChart.setNoDataText("Keine Einträge gefunden!");
         }
     }

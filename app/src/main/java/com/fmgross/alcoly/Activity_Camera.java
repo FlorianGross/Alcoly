@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.fmgross.alcoly.backend.Backend_Calculation;
 import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
 import com.fmgross.alcoly.backend.Backend_Getraenk;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
@@ -37,8 +38,8 @@ import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.automl.AutoMLImageLabelerLocalModel;
 import com.google.mlkit.vision.label.automl.AutoMLImageLabelerOptions;
-import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -93,7 +94,11 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
         generateSpinner();
         System.out.println("start crop activity");
-        CropImage.activity().start(this);
+        ImagePicker.with(this)
+                .crop()	    			//Crop image(Optional), Check Customization for more option
+                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
         //Normal
         buttonBL.setOnClickListener(v -> {
             System.out.println("ButtonBl selected");
@@ -216,12 +221,12 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+        if (requestCode == ImagePicker.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Uri uri = useUri(result);
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-                    uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID+".provider", result);
+                if(data != null) {
+                    imgView.setImageURI(data.getData());
+                    setLabelerFromLocalModel(data.getData());
+                    FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", new File(data.getData().getPath()));
                 }
                 seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
@@ -241,7 +246,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 });
                 onClickListener();
 
-                redo.setOnClickListener(v -> CropImage.activity().start(Activity_Camera.this));
+               // redo.setOnClickListener(v -> ImagePicker.activity().start(Activity_Camera.this));
 
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -249,7 +254,8 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                     public void onClick(View v) {
                         Bitmap bitmap = null;
                         try {
-                            ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), uri);
+                            assert data != null;
+                            ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), data.getData());
                             bitmap = ImageDecoder.decodeBitmap(source);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -360,20 +366,6 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 });
             }
         }
-    }
-
-
-    /**
-     * Gets the Uri from the Cropper and labels it with the KI
-     *
-     * @param result the Result from the Cropper
-     * @return uri, the finished Image in Uri format
-     */
-    private Uri useUri(CropImage.ActivityResult result) {
-        Uri uri = result.getUri();
-        imgView.setImageURI(uri);
-        setLabelerFromLocalModel(uri);
-        return uri;
     }
 
     /**

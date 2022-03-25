@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/font/helveticaneueregular.xml" value="0.11388888888888889" />
         <entry key="app/src/main/res/layout/activity_camera_and_ki.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.25" />
