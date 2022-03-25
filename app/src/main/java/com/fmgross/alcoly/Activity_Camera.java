@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
-import android.graphics.drawable.VectorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -131,7 +130,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
             System.out.println("ButtonTR selected");
             selectedButton = 2;
             buttonTR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));;
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
             buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
             buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
@@ -460,7 +459,6 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
             /**
              * If the process succeded to recognise the getraenk
-             * @param eachlabel
              */
             private void onConfidenceSuccess(String eachlabel) {
                 openCamera.setVisibility(View.VISIBLE);
