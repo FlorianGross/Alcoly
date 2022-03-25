@@ -59,7 +59,7 @@
                     android:fontFamily="@font/robotobold"
                     android:text="Weiblich"
                     android:textColor="@color/text"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     app:layout_constraintBottom_toTopOf="@+id/maleButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

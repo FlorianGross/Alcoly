@@ -248,7 +248,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 });
                 onClickListener();
 
-               // redo.setOnClickListener(v -> ImagePicker.activity().start(Activity_Camera.this));
+               redo.setOnClickListener(v -> {
+                   Intent intent = new Intent(this, getClass());
+                   startActivity(intent);
+               });
 
                 openCamera.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.P)

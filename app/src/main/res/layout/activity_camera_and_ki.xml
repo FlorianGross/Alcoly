@@ -435,7 +435,7 @@
                             android:elevation="2dp"
                             android:paddingBottom="10dp"
                             android:text="0.3L"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -604,7 +604,7 @@
                             android:elevation="2dp"
                             android:paddingBottom="10dp"
                             android:text="0.3L"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
