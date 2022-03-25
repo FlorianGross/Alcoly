@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
+import android.graphics.drawable.VectorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Button;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -104,99 +106,100 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
             System.out.println("ButtonBl selected");
             selectedButton = 3;
             buttonBL.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonBR.setOnClickListener(v -> {
             System.out.println("ButtonBR selected");
             selectedButton = 4;
             buttonBR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTL.setOnClickListener(v -> {
             System.out.println("ButtonTL selected");
             selectedButton = 1;
             buttonTL.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTR.setOnClickListener(v -> {
             System.out.println("ButtonTR selected");
             selectedButton = 2;
             buttonTR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));;
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         //Bier
         buttonBLBier.setOnClickListener(v -> {
             System.out.println("ButtonBLBier selected");
             selectedButtonBier = 3;
             buttonBLBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonBRBier.setOnClickListener(v -> {
             System.out.println("ButtonBRBier selected");
             selectedButtonBier = 4;
             buttonBRBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTLBier.setOnClickListener(v -> {
             System.out.println("ButtonTlBier Selected");
             selectedButtonBier = 1;
             buttonTLBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTRBier.setOnClickListener(v -> {
             System.out.println("ButtonTRBier Selected");
             selectedButtonBier = 2;
             buttonTRBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         //Wein
         buttonBLWein.setOnClickListener(v -> {
             System.out.println("ButtonBLWein Selected");
             selectedButtonWein = 3;
             buttonBLWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonBRWein.setOnClickListener(v -> {
             System.out.println("ButtonBRWein Selected");
             selectedButtonWein = 4;
             buttonBRWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTLWein.setOnClickListener(v -> {
             System.out.println("ButtonTLWein Selected");
             selectedButtonWein = 1;
             buttonTLWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTRWein.setOnClickListener(v -> {
             System.out.println("ButtonTRWein Selected");
             selectedButtonWein = 2;
             buttonTRWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
     }
 
@@ -448,10 +451,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 bier.setVisibility(View.GONE);
                 wein.setVisibility(View.GONE);
                 type = "error";
-                buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-                buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-                buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-                buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+                buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+                buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+                buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+                buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
                 seekBar.setProgress(0);
             }
 
@@ -494,9 +497,9 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         this.type = type;
         selectedButton = 2;
         buttonTR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-        buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+        buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
     private void selectWine(String type) {
@@ -505,10 +508,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         normal.setVisibility(View.GONE);
         this.type = type;
         selectedButtonWein = 3;
-        buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+        buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         buttonBLWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-        buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+        buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
     private void selectBeer(String type) {
@@ -517,10 +520,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         wein.setVisibility(View.GONE);
         this.type = type;
         selectedButtonBier = 3;
-        buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+        buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         buttonBLBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-        buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+        buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
     private void selectNone(String type) {
@@ -529,10 +532,10 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         wein.setVisibility(View.GONE);
         this.type = type;
         selectedButtonBier = 0;
-        buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-        buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+        buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+        buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
     @Override
@@ -571,99 +574,99 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
             System.out.println("ButtonBl selected");
             selectedButton = 3;
             buttonBL.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonBR.setOnClickListener(v -> {
             System.out.println("ButtonBR selected");
             selectedButton = 4;
             buttonBR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTL.setOnClickListener(v -> {
             System.out.println("ButtonTL selected");
             selectedButton = 1;
             buttonTL.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTR.setOnClickListener(v -> {
             System.out.println("ButtonTR selected");
             selectedButton = 2;
             buttonTR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBR.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTL.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         //Bier
         buttonBLBier.setOnClickListener(v -> {
             System.out.println("ButtonBLBier selected");
             selectedButtonBier = 3;
             buttonBLBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonBRBier.setOnClickListener(v -> {
             System.out.println("ButtonBRBier selected");
             selectedButtonBier = 4;
             buttonBRBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTLBier.setOnClickListener(v -> {
             System.out.println("ButtonTlBier Selected");
             selectedButtonBier = 1;
             buttonTLBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTRBier.setOnClickListener(v -> {
             System.out.println("ButtonTRBier Selected");
             selectedButtonBier = 2;
             buttonTRBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLBier.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         //Wein
         buttonBLWein.setOnClickListener(v -> {
             System.out.println("ButtonBLWein Selected");
             selectedButtonWein = 3;
             buttonBLWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonBRWein.setOnClickListener(v -> {
             System.out.println("ButtonBRWein Selected");
             selectedButtonWein = 4;
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTLWein.setOnClickListener(v -> {
             System.out.println("ButtonTLWein Selected");
             selectedButtonWein = 1;
             buttonTLWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
         buttonTRWein.setOnClickListener(v -> {
             System.out.println("ButtonTRWein Selected");
             selectedButtonWein = 2;
             buttonTRWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
-            buttonBRWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonBLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
-            buttonTLWein.setBackground(getResources().getDrawable(R.drawable.outlinefile, null));
+            buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonBLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
+            buttonTLWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         });
     }
 }
