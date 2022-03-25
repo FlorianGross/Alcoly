@@ -45,10 +45,10 @@ public class Fragment_NiedrigerWert extends Fragment {
             String time = hours + ":" + minutes;
             DecimalFormat f = new DecimalFormat();
             f.setMaximumFractionDigits(2);
-            int getränke = calculate.getSessionAmount();
+            int getraenke = calculate.getSessionAmount();
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
-                    textType.setText(getränke + " alkoholische Getränke");
+                    textType.setText(getraenke + " alkoholische Getränke");
                     timeToDrive.setText(time + " h");
                     promille.setText(f.format(calculate.getMinResultValue()) + " ‰");
                     amountOfAlc.setText(f.format(calculate.getAmountOfAlcResult()) + " g");
@@ -70,16 +70,13 @@ public class Fragment_NiedrigerWert extends Fragment {
      * Refreshes the data of the Detailsfragment low on a new thread
      */
     private void refreshData() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    setData();
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Thread t = new Thread(() -> {
+            while (true) {
+                setData();
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });

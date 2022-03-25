@@ -2,22 +2,17 @@ package com.fmgross.alcoly.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.health.SystemHealthManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StyleableRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,8 +20,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
 import com.fmgross.alcoly.backend.Backend_Getraenk;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,11 +28,9 @@ public class Fragment_Details extends Fragment {
     private Button edit;
     private TextView percentage, type, currentDate, volume;
     private EditText percentageEdit, typeEdit, volumeEdit;
-    private ImageView imageView, backButton, deleteButton;
-    private int current;
+    private ImageView imageView;
     private boolean saveMode = false;
     private Backend_Getraenk getraenk;
-    private int realDate;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,12 +46,12 @@ public class Fragment_Details extends Fragment {
         percentage = root.findViewById(R.id.currentPercentage);
         type = root.findViewById(R.id.CurrentName);
         currentDate = root.findViewById(R.id.currentDate);
-        backButton = root.findViewById(R.id.backButtonDetails);
+        ImageView backButton = root.findViewById(R.id.backButtonDetails);
         volume = root.findViewById(R.id.volume);
         percentageEdit = root.findViewById(R.id.currentPercentageEdit);
         typeEdit = root.findViewById(R.id.CurrentNameEdit);
         volumeEdit = root.findViewById(R.id.volumeEdit);
-        deleteButton = root.findViewById(R.id.deleteButton);
+        ImageView deleteButton = root.findViewById(R.id.deleteButton);
 
         generateDetails();
 
@@ -123,8 +114,8 @@ public class Fragment_Details extends Fragment {
     private void generateDetails() {
         Bundle extras = getArguments();
         if (extras != null) {
-            realDate = extras.getInt("intRealDate");
-            current = extras.getInt("intposition");
+            int realDate = extras.getInt("intRealDate");
+            int current = extras.getInt("intposition");
             System.out.println("intRealDate: " + realDate + "IntPosition:" + current);
             Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
             ArrayList<Backend_Getraenk> db = databaseHelper.getAllOfDate(realDate);

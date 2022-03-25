@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Backend_Calculation {
     private Backend_DatabaseHelper databaseHelper;
-    private ArrayList<Backend_Getraenk> arrayList;
     private ArrayList<Integer> arrayListString;
     public double minResult;
     public double normalResult;
@@ -311,7 +310,7 @@ public class Backend_Calculation {
      */
     public double allAlcoholTogether() {
         databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
-        arrayList = databaseHelper.getAllGetraenke();
+        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
         double result = 0;
         for (int i = 0; i < arrayList.size(); i++) {
             result += arrayList.get(i).getVolume();

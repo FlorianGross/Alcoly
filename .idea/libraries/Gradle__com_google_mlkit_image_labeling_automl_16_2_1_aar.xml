@@ -5,9 +5,10 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27f4309a07a93c81a3bfd63f052c9422/jetified-image-labeling-automl-16.2.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b1432da564aa63d008bb352d22d1c2df/jetified-image-labeling-automl-16.2.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cb993fadd9807d65f4c700a5595a99ba/jetified-image-labeling-automl-16.2.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/710e5b97af1a400690d375edb7159aa3/transformed/jetified-image-labeling-automl-16.2.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/710e5b97af1a400690d375edb7159aa3/transformed/jetified-image-labeling-automl-16.2.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/710e5b97af1a400690d375edb7159aa3/transformed/jetified-image-labeling-automl-16.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/be18081f621c951705810121fa8a4238/transformed/jetified-image-labeling-automl-16.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/be18081f621c951705810121fa8a4238/transformed/jetified-image-labeling-automl-16.2.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/be18081f621c951705810121fa8a4238/transformed/jetified-image-labeling-automl-16.2.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/image-labeling-automl/16.2.1/dd9b5d2f19724fd26aceaa6cee60ac537cb87294/image-labeling-automl-16.2.1-javadoc.jar!/" />

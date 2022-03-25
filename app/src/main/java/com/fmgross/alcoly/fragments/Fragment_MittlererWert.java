@@ -46,10 +46,10 @@ public class Fragment_MittlererWert extends Fragment {
             String time = hours + ":" + minutes;
             DecimalFormat f = new DecimalFormat();
             f.setMaximumFractionDigits(2);
-            int getränke = calculate.getSessionAmount();
+            int getraenke = calculate.getSessionAmount();
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
-                    textType.setText(getränke + " alkoholische Getränke");
+                    textType.setText(getraenke + " alkoholische Getränke");
                     timeToDrive.setText(time + " h");
                     promille.setText(f.format(calculate.getNormalResultValue()) + " ‰");
                     amountOfAlc.setText(f.format(calculate.getAmountOfAlcResult()) + " g");

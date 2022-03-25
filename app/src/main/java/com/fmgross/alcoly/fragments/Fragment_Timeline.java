@@ -9,22 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.backend.Backend_DatabaseHelper;
-import com.fmgross.alcoly.backend.Backend_Getraenk;
 import com.fmgross.alcoly.backend.Backend_GroupAdapter;
-import com.fmgross.alcoly.backend.Backend_Adapter;
 
 import java.util.ArrayList;
 
 public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private Backend_DatabaseHelper databaseHelper;
     private ArrayList<Integer> arrayListString;
     private RecyclerView newRecyclerView;
     private Spinner spinner;
@@ -59,7 +54,7 @@ public class Fragment_Timeline extends Fragment implements AdapterView.OnItemSel
      * Returns all getränke inside an arrayList
      */
     private void getDatabase() {
-        databaseHelper = new Backend_DatabaseHelper(getContext().getApplicationContext());
+        Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext().getApplicationContext());
         arrayListString = databaseHelper.getAllDates();
     }
 

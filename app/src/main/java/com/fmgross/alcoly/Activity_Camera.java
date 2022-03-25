@@ -276,7 +276,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                             SessionInt = 0;
                         }
                         Date returnDate = new Date();
-                        System.out.println(returnDate.toString());
+                        System.out.println(returnDate);
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(returnDate);
                         int day = calendar.get(Calendar.DAY_OF_MONTH) * 1000000;
@@ -285,7 +285,7 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                         System.out.println(day + " Day" + month + " Month" + year + "Year " + " Date");
                         int realDateTest = day + month + year;
                         Backend_Getraenk getraenk = new Backend_Getraenk(type, bitmap, new Date(), volume, permil, realDateTest, SessionInt);
-                        System.out.println(getraenk.toString());
+                        System.out.println(getraenk);
                         databaseHelper.addOne(getraenk);
 
                     }

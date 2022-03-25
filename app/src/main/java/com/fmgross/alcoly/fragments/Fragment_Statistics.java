@@ -2,7 +2,6 @@ package com.fmgross.alcoly.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +33,6 @@ import java.util.concurrent.TimeUnit;
 public class Fragment_Statistics extends Fragment {
 
     private LineChart lineChart;
-    private Button lowValue, mediumValue, highValue;
-    private FloatingActionButton settings;
 
 
     @Override
@@ -49,26 +46,23 @@ public class Fragment_Statistics extends Fragment {
         View root = inflater.inflate(R.layout.fragment_statistics, container, false);
 
         lineChart = root.findViewById(R.id.lineChart);
-        lowValue = root.findViewById(R.id.lowButton);
-        mediumValue = root.findViewById(R.id.mediumButton);
-        highValue = root.findViewById(R.id.highButton);
-        settings = root.findViewById(R.id.settingsButton);
+        Button lowValue = root.findViewById(R.id.lowButton);
+        Button mediumValue = root.findViewById(R.id.mediumButton);
+        Button highValue = root.findViewById(R.id.highButton);
+        FloatingActionButton settings = root.findViewById(R.id.settingsButton);
 
         FragmentManager fm = getActivity().getSupportFragmentManager();
 
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fragment, new Fragment_MittlererWert());
         ft.commit();
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                initializeBarChart();
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            initializeBarChart();
         });
         t.start();
 
@@ -103,20 +97,12 @@ public class Fragment_Statistics extends Fragment {
         try {
             lineChart.setNoDataText("Graph wird geladen...");
             setChartPreset();
-            //setChartPresetTest();
 
             ArrayList<ILineDataSet> dataSets = new ArrayList<>();
             Backend_Calculation newCalculator = new Backend_Calculation(getContext());
 
-
-            /*generateLowValues(dataSets, newCalculator);
-            lineChart.setNoDataText("Graph wird geladen.");
-            generateMediumValues(dataSets, newCalculator);
-            lineChart.setNoDataText("Graph wird geladen..");*/
             generateHighValues(dataSets, newCalculator);
             lineChart.setNoDataText("Graph wird geladen...");
-
-            //generateMedTestValues(dataSets, newCalculator);
 
             LineData data = new LineData(dataSets);
             try {
@@ -224,7 +210,7 @@ public class Fragment_Statistics extends Fragment {
         int colormedium = Color.RED;
         e.setColor(colormedium);
         e.setCircleColor(colormedium);
-        System.out.println(e.toString());
+        System.out.println(e);
         dataSets.add(e);
     }
 
@@ -251,7 +237,7 @@ public class Fragment_Statistics extends Fragment {
         for (int i = beginTime; i <= now; i++) {
             valuesTest.add(new Entry(i, newCalculator.getLineNormalEntryTime((i))));
         }
-        System.out.println(valuesTest.toString());
+        System.out.println(valuesTest);
         LineDataSet d = new LineDataSet(valuesTest, "test");
         d.setLineWidth(1f);
         d.setCircleRadius(1.5f);

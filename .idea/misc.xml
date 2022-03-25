@@ -5,7 +5,13 @@
       <map>
         <entry key="app/src/main/res/layout/activity_camera_and_ki.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14447463768115942" />
-        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_details.xml" value="0.12552083333333333" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/fragment_mittlerer_wert.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/fragment_niedriger_wert.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/main_page.xml" value="0.165" />
       </map>
     </option>
   </component>

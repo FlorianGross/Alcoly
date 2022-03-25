@@ -1,7 +1,6 @@
 package com.fmgross.alcoly.backend;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fmgross.alcoly.Activity_MainPage;
 import com.fmgross.alcoly.R;
 import com.fmgross.alcoly.fragments.Fragment_Details;
 
@@ -26,7 +24,7 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
     private final Context context;
     private final ArrayList<Integer> arrayListGroup;
     private Backend_Adapter.RecyclerViewClickListener listener;
-    private FragmentManager activity;
+    private final FragmentManager activity;
 
     public Backend_GroupAdapter(Context context, FragmentManager activity, ArrayList<Integer> arrayListGroup) {
         this.context = context;
@@ -72,21 +70,17 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
     }
 
     private void setOnCLickListener(int prestring) {
-        listener = new Backend_Adapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                System.out.println(position + " position");
-                FragmentManager fm = activity;
-                FragmentTransaction ft = fm.beginTransaction();
-                Bundle arguments = new Bundle();
-                arguments.putInt("intRealDate", prestring);
-                arguments.putInt("intposition", position);
-                System.out.println(arguments.toString());
-                Fragment_Details fragment = new Fragment_Details();
-                fragment.setArguments(arguments);
-                ft.replace(R.id.nav_host_fragment, fragment);
-                ft.commit();
-            }
+        listener = (v, position) -> {
+            System.out.println(position + " position");
+            FragmentTransaction ft = activity.beginTransaction();
+            Bundle arguments = new Bundle();
+            arguments.putInt("intRealDate", prestring);
+            arguments.putInt("intposition", position);
+            System.out.println(arguments);
+            Fragment_Details fragment = new Fragment_Details();
+            fragment.setArguments(arguments);
+            ft.replace(R.id.nav_host_fragment, fragment);
+            ft.commit();
         };
     }
 

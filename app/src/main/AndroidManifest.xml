@@ -13,6 +13,10 @@
         android:roundIcon="@drawable/alcoly_logo_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drinkly">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="android3.maxtingapp.provider"
@@ -20,7 +24,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
         <activity
@@ -44,8 +48,10 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

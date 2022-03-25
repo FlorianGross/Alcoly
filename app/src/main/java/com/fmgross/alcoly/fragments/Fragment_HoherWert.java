@@ -47,10 +47,10 @@ public class Fragment_HoherWert extends Fragment {
             String time = hours + ":" + minutes;
             DecimalFormat f = new DecimalFormat();
             f.setMaximumFractionDigits(2);
-            int getränke = calculate.getSessionAmount();
+            int getraenke = calculate.getSessionAmount();
             if (getActivity() != null) {
                 getActivity().runOnUiThread(() -> {
-                    textType.setText(getränke + " alkoholische Getränke");
+                    textType.setText(getraenke + " alkoholische Getränke");
                     timeToDrive.setText(time + " h");
                     promille.setText(f.format(calculate.getHighResultValue()) + " ‰");
                     amountOfAlc.setText(f.format(calculate.getAmountOfAlcResult()) + " g");
@@ -72,15 +72,12 @@ public class Fragment_HoherWert extends Fragment {
      * Refreshes the data of the Detailsfragment high on a new thread
      */
     private void refreshData() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                setData();
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        Thread t = new Thread(() -> {
+            setData();
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
         t.start();
