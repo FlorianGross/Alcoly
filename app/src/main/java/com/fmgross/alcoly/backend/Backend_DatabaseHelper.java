@@ -108,6 +108,7 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = database.rawQuery(queryString, null);
         cursor.moveToFirst();
+        cursor.close();
     }
 
     /**
@@ -167,7 +168,7 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
                 returnArray.add(cursor.getInt(6));
             } while (cursor.moveToPrevious());
         }
-
+        cursor.close();
         return removeDublicates(returnArray);
     }
 

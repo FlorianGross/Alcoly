@@ -1,27 +1,9 @@
 <resources>
     <string name="app_name">Alcoly</string>
-    <string name="age">Age:</string>
-    <string name="continue2">Continue</string>
-    <string name="gender">Gender:</string>
-    <string name="weight">Weight:</string>
-    <string name="_2_4_promille">2.4 Promille</string>
     <string name="startText">Application by Florian Groß, Sven Herz, Verena Huber and Milan Ritscher © 2021 all rights reserved</string>
     <string name="app_logo">App Logo</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="_0_00">0.00%</string>
     <string name="info">INFO</string>
     <string name="timeline">TIMELINE</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_navigation_panel">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="title_activity_main_surrounding">MainActivity</string>
-    <string name="title_activity_settings">SettingsActivity</string>
     <string name="nutzungsbedingungenCheck">Mit dem Klicken auf OK erklärst du dich mit unseren <a href="https://fmgross.de/datenschutzerklaerung-von-com-fmgross-alcoly/"> Nutzungsbedingungen </a>einverstanden</string>
     <string name="informations">Benutzen Sie dieses Tool nicht dazu, um zu entscheiden, ob Sie noch ein Fahrzeug führen dürfen oder nicht. <br></br>
         Die App liefert ungefähre Werte für gesunde Erwachsene. <br></br>
@@ -55,9 +37,5 @@
         <item>Bier</item>
         <item>Wein</item>
         <item>Schnaps</item>
-    </string-array>
-    <string-array name="Gender">
-        <item>Männlich</item>
-        <item>Weiblich</item>
     </string-array>
 </resources>

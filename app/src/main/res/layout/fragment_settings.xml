@@ -14,7 +14,6 @@
         android:paddingRight="10dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardview"
             style="@style/CardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,7 +24,6 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/genderTextInv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -38,7 +36,6 @@
                     app:layout_constraintTop_toTopOf="@+id/femaleButton" />
 
                 <TextView
-                    android:id="@+id/genderText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -74,13 +71,12 @@
                     android:fontFamily="@font/robotobold"
                     android:text="Männlich"
                     android:textColor="@color/text"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     app:layout_constraintBottom_toTopOf="@+id/AlterInput"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/femaleButton" />
 
                 <TextView
-                    android:id="@+id/AlterText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -111,7 +107,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/maleButton" />
 
                 <TextView
-                    android:id="@+id/GewichtText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -152,7 +147,7 @@
                     android:backgroundTint="@color/MainColor"
                     android:fontFamily="@font/robotobold"
                     android:text="Speichern"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/GewichtInput" />
@@ -169,7 +164,6 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/darkmodeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -195,7 +189,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/audioText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -222,7 +215,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/darkmodeSwitch" />
 
                 <TextView
-                    android:id="@+id/startWithScanText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -249,7 +241,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/audioSwitch" />
 
                 <TextView
-                    android:id="@+id/datenschutzText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -273,7 +264,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/startWithScanSwitch" />
 
                 <TextView
-                    android:id="@+id/formelnText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"

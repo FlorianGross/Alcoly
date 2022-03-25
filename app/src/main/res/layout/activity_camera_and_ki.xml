@@ -140,7 +140,6 @@
                     android:contentDescription="Image" />
 
                 <ImageView
-                    android:id="@+id/progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/progress"
@@ -187,7 +186,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeTLBierText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -226,7 +224,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeTRBierText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -264,7 +261,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeBLBierText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -276,7 +272,6 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:id="@+id/GridVolumeBLBier"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
                             android:foreground="@mipmap/beermedium"
@@ -303,7 +298,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeBRBierText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -315,7 +309,6 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:id="@+id/GridVolumeBRBier"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
                             android:foreground="@mipmap/beersmall"
@@ -354,7 +347,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeTLWeinText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -392,7 +384,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeTRWeinText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -429,7 +420,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeBLWeinText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -441,7 +431,6 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:id="@+id/GridVolumeBLWein"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
                             android:foreground="@mipmap/winemediumglass"
@@ -469,7 +458,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeBRWeinText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -481,7 +469,6 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:id="@+id/GridVolumeBRWein"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
                             android:foreground="@mipmap/winesmallglass"
@@ -522,7 +509,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeTLText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -560,7 +546,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeTRText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -598,7 +583,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeBLText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -610,7 +594,6 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:id="@+id/GridVolumeBL"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
                             android:foreground="@mipmap/beermedium"
@@ -637,7 +620,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/GridVolumeBRText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="2dp"
@@ -649,7 +631,6 @@
                             app:layout_constraintStart_toStartOf="parent" />
 
                         <ImageView
-                            android:id="@+id/GridVolumeBR"
                             android:layout_width="68dp"
                             android:layout_height="135dp"
                             android:foreground="@mipmap/beersmall"
@@ -666,7 +647,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
