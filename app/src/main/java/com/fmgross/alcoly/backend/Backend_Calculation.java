@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Backend_Calculation {
     private Backend_DatabaseHelper databaseHelper;
-    private ArrayList<Integer> arrayListString;
     public double minResult;
     public double normalResult;
     public double highResult;
@@ -101,7 +100,6 @@ public class Backend_Calculation {
     /**
      * calculates the time until the permil value is 0.5 or below
      *
-     * @return
      */
     public double getMinTimeToDrive() {
         databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
@@ -126,7 +124,6 @@ public class Backend_Calculation {
     /**
      * Calculates the permil with the high subtract
      *
-     * @return
      */
     public double getHighResult(ArrayList<Backend_Getraenk> arrayList) {
         double time = getDrinkTime(arrayList, new Date());
@@ -289,51 +286,6 @@ public class Backend_Calculation {
      */
     private double getGenderR(boolean male) {
         return getAgeU(male, 0.68, 0.55);
-    }
-
-    /**
-     * Creates an ArrayList with all the Dates
-     *
-     * @return
-     */
-    public ArrayList<Integer> getDates() {
-        ArrayList<Integer> dates;
-        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
-        dates = databaseHelper.getAllDates();
-        return dates;
-    }
-
-    /**
-     * Calculates all the values together
-     *
-     * @return all volumes together
-     */
-    public double allAlcoholTogether() {
-        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
-        ArrayList<Backend_Getraenk> arrayList = databaseHelper.getAllGetraenke();
-        double result = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            result += arrayList.get(i).getVolume();
-        }
-        return result;
-    }
-
-    /**
-     * @param sessionInt
-     * @param getraenk
-     * @return
-     */
-    public double getPermilInSessionToDrink(int sessionInt, Backend_Getraenk getraenk) {
-        databaseHelper = new Backend_DatabaseHelper(context.getApplicationContext());
-        ArrayList<Backend_Getraenk> arrayListHere = databaseHelper.getAllOfSession(sessionInt);
-        int i = 0;
-        double permil = 0;
-        do {
-            permil += calculateOnePromille(arrayListHere.get(i));
-            i++;
-        } while (arrayListHere.get(i) != getraenk);
-
-        return 0;
     }
 
     /**

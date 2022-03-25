@@ -96,7 +96,6 @@ public class Activity_FirstStartUp extends AppCompatActivity {
     /**
      * Saves the gender to the SharedPreference
      *
-     * @param gender
      */
     public void saveGender(String gender) {
         SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);

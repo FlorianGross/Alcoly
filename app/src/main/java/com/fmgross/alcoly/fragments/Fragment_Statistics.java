@@ -108,6 +108,7 @@ public class Fragment_Statistics extends Fragment {
             try {
                 lineChart.getData().setValueTextColor(getResources().getColor(R.color.text, null));
             } catch (NullPointerException g) {
+                System.out.println("Error" + g);
             }
             lineChart.setData(data);
             lineChart.invalidate();
@@ -146,41 +147,6 @@ public class Fragment_Statistics extends Fragment {
         l.setDrawInside(false);
     }
 
-    private void setChartPresetTest() {
-        Legend l = lineChart.getLegend();
-        l.setEnabled(false);
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
-        xAxis.setTextSize(10f);
-        xAxis.setTextColor(Color.WHITE);
-        xAxis.setDrawAxisLine(false);
-        xAxis.setDrawGridLines(true);
-        xAxis.setTextColor(Color.rgb(255, 192, 56));
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setGranularity(1f); // one hour
-        xAxis.setValueFormatter(new ValueFormatter() {
-            @Override
-            public String getFormattedValue(float value) {
-                final SimpleDateFormat mFormat = new SimpleDateFormat("HH");
-                long millis = TimeUnit.HOURS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
-            }
-        });
-
-        YAxis leftAxis = lineChart.getAxisLeft();
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis.setDrawGridLines(true);
-        leftAxis.setGranularityEnabled(true);
-        leftAxis.setAxisMinimum(0f);
-        leftAxis.setAxisMaximum(3f);
-        leftAxis.setYOffset(-9f);
-        leftAxis.setTextColor(Color.rgb(255, 192, 56));
-
-        YAxis rightAxis = lineChart.getAxisRight();
-        rightAxis.setEnabled(false);
-    }
-
     private void generateHighValues(ArrayList<ILineDataSet> dataSets, Backend_Calculation newCalculator) {
         ArrayList<Entry> valueshigh = new ArrayList<>();
         valueshigh.add(new Entry(0, 0));
@@ -195,57 +161,6 @@ public class Fragment_Statistics extends Fragment {
         f.setColor(colorhigh);
         f.setCircleColor(colorhigh);
         dataSets.add(f);
-    }
-
-    private void generateMediumValues(ArrayList<ILineDataSet> dataSets, Backend_Calculation newCalculator) {
-        ArrayList<Entry> valuesmedium = new ArrayList<>();
-        valuesmedium.add(new Entry(0, 0));
-        for (int i = 0; i < newCalculator.getSessionAmount(); i++) {
-            valuesmedium.add(new Entry(i + 1, newCalculator.getBarMediumEntry(i)));
-        }
-        LineDataSet e = new LineDataSet(valuesmedium, "medium");
-        e.setLineWidth(1f);
-        e.setCircleRadius(1.5f);
-        e.setValueTextColor(getResources().getColor(R.color.text, null));
-        int colormedium = Color.RED;
-        e.setColor(colormedium);
-        e.setCircleColor(colormedium);
-        System.out.println(e);
-        dataSets.add(e);
-    }
-
-    private void generateLowValues(ArrayList<ILineDataSet> dataSets, Backend_Calculation newCalculator) {
-        ArrayList<Entry> valueslow = new ArrayList<>();
-        valueslow.add(new Entry(0, 0));
-        for (int i = 0; i < newCalculator.getSessionAmount(); i++) {
-            valueslow.add(new Entry(i + 1, newCalculator.getBarLowEntry(i)));
-        }
-        LineDataSet d = new LineDataSet(valueslow, "low");
-        d.setLineWidth(1f);
-        d.setCircleRadius(1.5f);
-        d.setValueTextColor(getResources().getColor(R.color.text, null));
-        int colorlow = Color.BLUE;
-        d.setColor(colorlow);
-        d.setCircleColor(colorlow);
-        dataSets.add(d);
-    }
-
-    private void generateMedTestValues(ArrayList<ILineDataSet> dataSets, Backend_Calculation newCalculator) {
-        ArrayList<Entry> valuesTest = new ArrayList<>();
-        long now = TimeUnit.MILLISECONDS.toHours(System.currentTimeMillis());
-        int beginTime = (int) (now - 12);
-        for (int i = beginTime; i <= now; i++) {
-            valuesTest.add(new Entry(i, newCalculator.getLineNormalEntryTime((i))));
-        }
-        System.out.println(valuesTest);
-        LineDataSet d = new LineDataSet(valuesTest, "test");
-        d.setLineWidth(1f);
-        d.setCircleRadius(1.5f);
-        d.setValueTextColor(getResources().getColor(R.color.text, null));
-        int colorlow = Color.BLUE;
-        d.setColor(colorlow);
-        d.setCircleColor(colorlow);
-        dataSets.add(d);
     }
 
 

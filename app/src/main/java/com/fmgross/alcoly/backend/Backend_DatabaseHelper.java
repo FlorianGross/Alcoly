@@ -64,7 +64,7 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_GETRAENK_VOLUMEP, getraenke.getVolumePart());
         cv.put(COLUMN_GETRAENK_REALDATE, getraenke.getRealDate());
         cv.put(COLUMN_GETRAENK_SESSION, getraenke.getSession());
-        long insert = db.insert(TABLE_NAME, null, cv);
+        db.insert(TABLE_NAME, null, cv);
     }
 
     /**
@@ -109,14 +109,6 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery(queryString, null);
         cursor.moveToFirst();
         cursor.close();
-    }
-
-    /**
-     * Clears the Database from all objects
-     */
-    public void deleteAllGetraenke() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, null, null);
     }
 
     /**

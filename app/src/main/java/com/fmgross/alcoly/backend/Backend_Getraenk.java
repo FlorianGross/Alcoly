@@ -72,14 +72,6 @@ public class Backend_Getraenk {
 
     public void setName(String name) {this.name = name;}
 
-    public void setUri(Bitmap uri) {
-        this.uri = uri;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public void setVolume(float volume) {
         this.volume = volume;
     }
@@ -88,11 +80,4 @@ public class Backend_Getraenk {
         this.volumePart = volumePart;
     }
 
-    public void setRealDate(int realDate) {
-        this.realDate = realDate;
-    }
-
-    public void setSession(int session) {
-        this.session = session;
-    }
 }
