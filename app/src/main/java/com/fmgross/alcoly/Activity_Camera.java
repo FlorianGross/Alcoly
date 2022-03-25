@@ -469,16 +469,16 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
                 if (eachlabel.equals("BIERGLAS") || eachlabel.equals("BIERFLASCHE")) {
                     drinkName.setSelection(1);
                     seekBar.setProgress(5);
-                    selectBeer("Bier");
+                    selectBeer();
 
                 } else if (eachlabel.equals("WEINGLAS") || eachlabel.equals("WEINFLASCHE")) {
                     drinkName.setSelection(2);
                     seekBar.setProgress(11);
-                    selectWine("Wein");
+                    selectWine();
                 } else {
                     drinkName.setSelection(3);
                     seekBar.setProgress(5);
-                    selectElse("Custom");
+                    selectElse();
                 }
 
 
@@ -490,11 +490,11 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
 
     }
 
-    private void selectElse(String type) {
+    private void selectElse() {
         normal.setVisibility(View.VISIBLE);
         bier.setVisibility(View.GONE);
         wein.setVisibility(View.GONE);
-        this.type = type;
+        this.type = "Custom";
         selectedButton = 2;
         buttonTR.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
         buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
@@ -502,11 +502,11 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         buttonTL.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
-    private void selectWine(String type) {
+    private void selectWine() {
         wein.setVisibility(View.VISIBLE);
         bier.setVisibility(View.GONE);
         normal.setVisibility(View.GONE);
-        this.type = type;
+        this.type = "Wein";
         selectedButtonWein = 3;
         buttonBRWein.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         buttonBLWein.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
@@ -514,11 +514,11 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
-    private void selectBeer(String type) {
+    private void selectBeer() {
         bier.setVisibility(View.VISIBLE);
         normal.setVisibility(View.GONE);
         wein.setVisibility(View.GONE);
-        this.type = type;
+        this.type = "Bier";
         selectedButtonBier = 3;
         buttonBRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         buttonBLBier.setBackgroundColor(getResources().getColor(R.color.MainColor, null));
@@ -526,11 +526,11 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         buttonTRBier.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
     }
 
-    private void selectNone(String type) {
+    private void selectNone() {
         bier.setVisibility(View.GONE);
         normal.setVisibility(View.GONE);
         wein.setVisibility(View.GONE);
-        this.type = type;
+        this.type = "None";
         selectedButtonBier = 0;
         buttonTR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
         buttonBR.setBackground(VectorDrawableCompat.create(getResources(), R.drawable.outlinefile, null));
@@ -543,21 +543,21 @@ public class Activity_Camera extends AppCompatActivity implements AdapterView.On
         System.out.println("Item Selected" + position);
         switch (position) {
             case 0:
-                selectNone("None");
+                selectNone();
                 openCamera.setVisibility(View.GONE);
                 break;
 
             case 1:
-                selectBeer("Bier");
+                selectBeer();
                 openCamera.setVisibility(View.VISIBLE);
                 break;
 
             case 2:
-                selectWine("Wein");
+                selectWine();
                 openCamera.setVisibility(View.VISIBLE);
                 break;
             case 3:
-                selectElse("Custom");
+                selectElse();
                 openCamera.setVisibility(View.VISIBLE);
                 break;
         }
