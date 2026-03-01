@@ -31,7 +31,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/timelineButton"
-            android:layout_width="110dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
             app:layout_constraintBottom_toBottomOf="@+id/scanButton"
             app:layout_constraintEnd_toStartOf="@+id/scanButton"
@@ -69,7 +69,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scanButton"
-            android:layout_width="110dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
             android:background="@color/MainColor"
             app:layout_constraintBottom_toBottomOf="@+id/sessionButton"
@@ -108,7 +108,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sessionButton"
-            android:layout_width="110dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

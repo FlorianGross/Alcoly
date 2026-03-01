@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MainBackground">
+    android:background="@color/MainBackground"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,29 +12,18 @@
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
 
         <androidx.cardview.widget.CardView
             style="@style/CardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="TextView"
-                    android:textColor="@color/text"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/femaleButton"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/femaleButton" />
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,7 +90,7 @@
                     android:inputType="number"
                     android:text="20"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toTopOf="@+id/GewichtInput"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +121,7 @@
                     android:inputType="number"
                     android:text="80"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toTopOf="@+id/save"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +136,7 @@
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@color/MainColor"
                     android:fontFamily="@font/robotobold"
-                    android:text="Speichern"
+                    android:text="@string/speichern"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -157,24 +147,24 @@
         <androidx.cardview.widget.CardView
             style="@style/CardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="Nachtmodus"
+                    android:text="@string/nachtmodus"
                     android:textColor="@color/text"
                     app:layout_constraintBottom_toBottomOf="@+id/darkmodeSwitch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/darkmodeSwitch" />
 
-                <Switch
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/darkmodeSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,13 +184,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="Audio"
+                    android:text="@string/audio_label"
                     android:textColor="@color/text"
                     app:layout_constraintBottom_toBottomOf="@+id/audioSwitch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/audioSwitch" />
 
-                <Switch
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/audioSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,13 +210,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="3dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="Beim Starten Scannen"
+                    android:text="@string/beim_starten_scannen"
                     android:textColor="@color/text"
                     app:layout_constraintBottom_toBottomOf="@+id/startWithScanSwitch"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/startWithScanSwitch" />
 
-                <Switch
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/startWithScanSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -245,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="Imformationen zum Datenschutz"
+                    android:text="@string/info_datenschutz"
                     android:textColor="@color/text"
                     app:layout_constraintBottom_toBottomOf="@+id/datenschutzButton"
                     app:layout_constraintStart_toStartOf="parent"
@@ -258,6 +248,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
                     android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/datenschutz_oeffnen"
                     android:src="@mipmap/link"
                     app:layout_constraintBottom_toTopOf="@+id/formelnButton"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -268,7 +259,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="Wissenschaftliche Informationen"
+                    android:text="@string/wissenschaftliche_info"
                     android:textColor="@color/text"
                     app:layout_constraintBottom_toBottomOf="@+id/formelnButton"
                     app:layout_constraintStart_toStartOf="parent"
@@ -281,6 +272,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="25dp"
                     android:layout_marginBottom="20dp"
+                    android:contentDescription="@string/wissenschaft_oeffnen"
                     android:src="@mipmap/link"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -288,4 +280,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

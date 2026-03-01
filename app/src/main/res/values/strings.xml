@@ -39,4 +39,18 @@
     <string name="mainimage">MainImage</string>
     <string name="rightimage">RightImage</string>
     <string name="session">SESSION</string>
+    <string name="druecke_button_start">Drücke den Button um zu starten!</string>
+    <string name="default_time">0:00 h</string>
+    <string name="default_promille">0 \u2030</string>
+    <string name="niedriger_wert">NIEDRIGER WERT</string>
+    <string name="mittlerer_wert">MITTLERER WERT</string>
+    <string name="hoher_wert">HOHER WERT</string>
+    <string name="nachtmodus">Nachtmodus</string>
+    <string name="audio_label">Audio</string>
+    <string name="beim_starten_scannen">Beim Starten Scannen</string>
+    <string name="info_datenschutz">Informationen zum Datenschutz</string>
+    <string name="wissenschaftliche_info">Wissenschaftliche Informationen</string>
+    <string name="speichern">Speichern</string>
+    <string name="datenschutz_oeffnen">Datenschutz öffnen</string>
+    <string name="wissenschaft_oeffnen">Wissenschaftliche Informationen öffnen</string>
 </resources>

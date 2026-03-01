@@ -25,9 +25,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout7"
-        android:layout_width="375dp"
+        android:layout_width="0dp"
         android:layout_height="400dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/AlternativeBackground"
         android:paddingLeft="10dp"
@@ -47,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/weightInput"
+                android:id="@+id/ageInput"
                 android:layout_width="83dp"
                 android:layout_height="30dp"
                 android:background="@mipmap/textinput"
@@ -55,7 +57,7 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/ageInput"
+                app:layout_constraintBottom_toTopOf="@+id/weightInput"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ageText"
@@ -68,9 +70,9 @@
                 android:fontFamily="@font/robotobold"
                 android:text="@string/jahre"
                 android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/weightInput"
-                app:layout_constraintStart_toEndOf="@+id/weightInput"
-                app:layout_constraintTop_toTopOf="@+id/weightInput" />
+                app:layout_constraintBottom_toBottomOf="@+id/ageInput"
+                app:layout_constraintStart_toEndOf="@+id/ageInput"
+                app:layout_constraintTop_toTopOf="@+id/ageInput" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,9 +81,9 @@
                 android:fontFamily="@font/robotobold"
                 android:text="@string/kg"
                 android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ageInput"
-                app:layout_constraintStart_toEndOf="@+id/ageInput"
-                app:layout_constraintTop_toTopOf="@+id/ageInput" />
+                app:layout_constraintBottom_toBottomOf="@+id/weightInput"
+                app:layout_constraintStart_toEndOf="@+id/weightInput"
+                app:layout_constraintTop_toTopOf="@+id/weightInput" />
 
             <TextView
                 android:id="@+id/Datenschutz"
@@ -107,9 +109,9 @@
                 android:text="@string/alter"
                 android:textColor="@color/text"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/weightInput"
+                app:layout_constraintBottom_toBottomOf="@+id/ageInput"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/weightInput" />
+                app:layout_constraintTop_toTopOf="@+id/ageInput" />
 
             <Button
                 android:id="@+id/femaleImage"
@@ -138,7 +140,7 @@
                 app:layout_constraintTop_toTopOf="@+id/femaleImage" />
 
             <EditText
-                android:id="@+id/ageInput"
+                android:id="@+id/weightInput"
                 android:layout_width="83dp"
                 android:layout_height="30dp"
                 android:autofillHints=""
@@ -150,7 +152,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/weightText"
-                app:layout_constraintTop_toBottomOf="@+id/weightInput" />
+                app:layout_constraintTop_toBottomOf="@+id/ageInput" />
 
             <TextView
                 android:id="@+id/weightText"
@@ -162,9 +164,9 @@
                 android:text="@string/gewicht"
                 android:textColor="@color/text"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ageInput"
+                app:layout_constraintBottom_toBottomOf="@+id/weightInput"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ageInput" />
+                app:layout_constraintTop_toTopOf="@+id/weightInput" />
 
             <Button
                 android:id="@+id/maleImage"
@@ -175,7 +177,7 @@
                 android:fontFamily="@font/robotobold"
                 android:text="@string/m_nnlich"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/weightInput"
+                app:layout_constraintBottom_toTopOf="@+id/ageInput"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/femaleImage"
                 app:tint="@color/text" />
