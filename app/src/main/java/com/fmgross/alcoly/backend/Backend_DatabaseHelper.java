@@ -12,8 +12,6 @@ import android.graphics.BitmapFactory;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class Backend_DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "getraenkeSammlung";
@@ -104,11 +102,8 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
      */
     public void deleteOne(Backend_Getraenk getraenke) {
         SQLiteDatabase database = this.getWritableDatabase();
-        String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " = " + getraenke.getDate().getTime();
-
-        Cursor cursor = database.rawQuery(queryString, null);
-        cursor.moveToFirst();
-        cursor.close();
+        database.delete(TABLE_NAME, COLUMN_GETRAENK_DATE + " = ?",
+                new String[]{String.valueOf(getraenke.getDate().getTime())});
     }
 
     /**
@@ -120,9 +115,8 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Backend_Getraenk> getAllOfDate(int date) {
         ArrayList<Backend_Getraenk> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " = " + date;
-
-        Cursor cursor = db.rawQuery(queryString, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_REALDATE + " = ?",
+                new String[]{String.valueOf(date)});
         if (cursor.moveToLast()) {
             do {
                 String getraenkName = cursor.getString(1);
@@ -152,28 +146,15 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Integer> getAllDates() {
         ArrayList<Integer> returnArray = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + TABLE_NAME;
-        Cursor cursor = db.rawQuery(queryString, null);
+        Cursor cursor = db.rawQuery("SELECT DISTINCT " + COLUMN_GETRAENK_REALDATE + " FROM " + TABLE_NAME +
+                " ORDER BY " + COLUMN_GETRAENK_REALDATE + " DESC", null);
 
-        if (cursor.moveToLast()) {
+        if (cursor.moveToFirst()) {
             do {
-                returnArray.add(cursor.getInt(6));
-            } while (cursor.moveToPrevious());
+                returnArray.add(cursor.getInt(0));
+            } while (cursor.moveToNext());
         }
         cursor.close();
-        return removeDublicates(returnArray);
-    }
-
-    /**
-     * Removes the Dublicates from the getAllDates function
-     *
-     * @param returnArray the begin array, with the dublicates
-     * @return the finalized array without the dublicates
-     */
-    private ArrayList<Integer> removeDublicates(ArrayList<Integer> returnArray) {
-        Set<Integer> set = new LinkedHashSet<>(returnArray);
-        returnArray.clear();
-        returnArray.addAll(set);
         return returnArray;
     }
 
@@ -186,9 +167,8 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Backend_Getraenk> getAllOfSession(int sessionInt) {
         ArrayList<Backend_Getraenk> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_SESSION + " = " + sessionInt;
-
-        Cursor cursor = db.rawQuery(queryString, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_SESSION + " = ?",
+                new String[]{String.valueOf(sessionInt)});
         if (cursor.moveToLast()) {
             do {
                 String getraenkName = cursor.getString(1);
@@ -213,10 +193,10 @@ public class Backend_DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Backend_Getraenk> getAllToTime() {
         ArrayList<Backend_Getraenk> getraenkeList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Date date = new Date();
-        String queryString = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " > " + (date.getTime() - (8.64e+7/2));
-
-        Cursor cursor = db.rawQuery(queryString, null);
+        long halfDayMillis = 43200000L;
+        long cutoff = new Date().getTime() - halfDayMillis;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_GETRAENK_DATE + " > ?",
+                new String[]{String.valueOf(cutoff)});
         if (cursor.moveToLast()) {
             do {
                 String getraenkName = cursor.getString(1);

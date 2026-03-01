@@ -2,6 +2,7 @@ package com.fmgross.alcoly.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,12 +117,10 @@ public class Fragment_Details extends Fragment {
         if (extras != null) {
             int realDate = extras.getInt("intRealDate");
             int current = extras.getInt("intposition");
-            System.out.println("intRealDate: " + realDate + "IntPosition:" + current);
+            Log.d("Fragment_Details", "intRealDate: " + realDate + " IntPosition:" + current);
             Backend_DatabaseHelper databaseHelper = new Backend_DatabaseHelper(getContext());
             ArrayList<Backend_Getraenk> db = databaseHelper.getAllOfDate(realDate);
-            System.out.println(db.toString());
             getraenk = db.get(current);
-            System.out.println(getraenk.toString());
 
         } else {
             throw new IllegalArgumentException("No Getraenk selected");

@@ -58,17 +58,29 @@ public class Fragment_Settings extends Fragment {
      */
     private void onClickListener() {
         save.setOnClickListener(v -> {
+            if (getContext() == null) return;
             try {
-                SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings.edit();
                 int ageValue = Integer.parseInt(age.getText().toString());
                 int weightValue = Integer.parseInt(weight.getText().toString());
+
+                if (ageValue < 1 || ageValue > 150) {
+                    Toast.makeText(getContext(), "Bitte geben Sie ein Alter zwischen 1 und 150 ein", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (weightValue < 20 || weightValue > 500) {
+                    Toast.makeText(getContext(), "Bitte geben Sie ein Gewicht zwischen 20 und 500 kg ein", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                SharedPreferences settings = getContext().getSharedPreferences("settings", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
                 editor.putInt("age", ageValue);
                 editor.putInt("weight", weightValue);
                 editor.putString("gender", gender);
                 editor.apply();
-            } catch (Exception e) {
-                Toast.makeText(getActivity().getApplicationContext(), "Error\nVersuchen sie es mit einer anderen Eingabe", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Gespeichert", Toast.LENGTH_SHORT).show();
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "Bitte geben Sie gültige Zahlen ein", Toast.LENGTH_LONG).show();
             }
         });
 

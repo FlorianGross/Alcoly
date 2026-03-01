@@ -2,6 +2,9 @@ package com.fmgross.alcoly.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,15 +59,7 @@ public class Fragment_Statistics extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fragment, new Fragment_MittlererWert());
         ft.commit();
-        Thread t = new Thread(() -> {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            initializeBarChart();
-        });
-        t.start();
+        new Handler(Looper.getMainLooper()).postDelayed(this::initializeBarChart, 100);
 
 
         settings.setOnClickListener(v -> {
@@ -108,12 +103,12 @@ public class Fragment_Statistics extends Fragment {
             try {
                 lineChart.getData().setValueTextColor(getResources().getColor(R.color.text, null));
             } catch (NullPointerException g) {
-                System.out.println("Error" + g);
+                Log.w("Fragment_Statistics", "Chart data not yet available", g);
             }
             lineChart.setData(data);
             lineChart.invalidate();
         } catch (Exception e) {
-            System.out.println("Error:" + e);
+            Log.e("Fragment_Statistics", "Error initializing chart", e);
             lineChart.setNoDataText("Keine Einträge gefunden!");
         }
     }
