@@ -28,8 +28,8 @@ public class Activity_FirstStartUp extends AppCompatActivity {
         constraintLayout = findViewById(R.id.informations);
 
         forwardButton = findViewById(R.id.forwardButton);
-        weightInput = findViewById(R.id.ageInput);
-        ageInput = findViewById(R.id.weightInput);
+        ageInput = findViewById(R.id.ageInput);
+        weightInput = findViewById(R.id.weightInput);
         skipButton = findViewById(R.id.skipButton);
 
         maleImage = findViewById(R.id.maleImage);
@@ -52,16 +52,23 @@ public class Activity_FirstStartUp extends AppCompatActivity {
             forward();
         });
         forwardButton.setOnClickListener(v -> {
-            int age;
-            int weight;
             try {
-                age = Integer.parseInt(ageInput.getText().toString());
-                weight = Integer.parseInt(weightInput.getText().toString());
+                int age = Integer.parseInt(ageInput.getText().toString());
+                int weight = Integer.parseInt(weightInput.getText().toString());
+
+                if (age < 1 || age > 150) {
+                    Toast.makeText(getApplicationContext(), "Bitte geben Sie ein Alter zwischen 1 und 150 ein", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (weight < 20 || weight > 500) {
+                    Toast.makeText(getApplicationContext(), "Bitte geben Sie ein Gewicht zwischen 20 und 500 kg ein", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 setValues(age, weight);
                 forward();
-            }catch (Exception e){
-                Toast.makeText(getApplicationContext(), "Error\nVersuchen sie es mit einer anderen Eingabe", Toast.LENGTH_LONG).show();
+            } catch (NumberFormatException e) {
+                Toast.makeText(getApplicationContext(), "Bitte geben Sie gültige Zahlen ein", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -2,12 +2,14 @@ package com.fmgross.alcoly.backend;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Backend_Calculation {
+    private static final String TAG = "Backend_Calculation";
     private Backend_DatabaseHelper databaseHelper;
     public double minResult;
     public double normalResult;
@@ -402,7 +404,7 @@ public class Backend_Calculation {
             double timehere = 0;
             double promille = calculateSessionPromilleToTime(arrayList, time);
             normalResult = promille - timehere * (0.13 / 60);
-            System.out.println("time:" + timehere + " promille:" + promille + " result:" + normalResult);
+            Log.d(TAG, "time:" + timehere + " promille:" + promille + " result:" + normalResult);
             if (normalResult < 0) {
                 return 0;
             } else {
@@ -432,7 +434,7 @@ public class Backend_Calculation {
         double a = 0;
         for (int i = 0; i < arrayList.size(); i++) {
             if (arrayList.get(i).getDate().getTime() < time) {
-                System.out.println("Break");
+                Log.d(TAG, "Skipping drink before cutoff time");
             } else {
                 v = (arrayList.get(i).getVolume() * 1000);
                 e = (arrayList.get(i).getVolumePart() / 100);

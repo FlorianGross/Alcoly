@@ -2,6 +2,7 @@ package com.fmgross.alcoly.backend;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,12 +72,11 @@ public class Backend_GroupAdapter extends RecyclerView.Adapter<Backend_GroupAdap
 
     private void setOnCLickListener(int prestring) {
         listener = (v, position) -> {
-            System.out.println(position + " position");
+            Log.d("Backend_GroupAdapter", position + " position");
             FragmentTransaction ft = activity.beginTransaction();
             Bundle arguments = new Bundle();
             arguments.putInt("intRealDate", prestring);
             arguments.putInt("intposition", position);
-            System.out.println(arguments);
             Fragment_Details fragment = new Fragment_Details();
             fragment.setArguments(arguments);
             ft.replace(R.id.nav_host_fragment, fragment);
