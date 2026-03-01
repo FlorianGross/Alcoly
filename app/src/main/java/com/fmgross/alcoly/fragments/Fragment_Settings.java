@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
+import androidx.appcompat.widget.SwitchCompat;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -25,7 +25,7 @@ public class Fragment_Settings extends Fragment {
     private ImageView link, datenschutz;
     private Button male, female, save;
     private EditText age, weight;
-    private Switch night, audio, scanOnStart;
+    private SwitchCompat night, audio, scanOnStart;
     private String gender;
 
     @Override
